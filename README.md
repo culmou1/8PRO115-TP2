@@ -6,7 +6,7 @@ toujours dans le même ordre
 
 ############## Commit ##############
 
-git commit -m -a "Message pour le Commit"
+git commit -a -m "Message pour le Commit"
 
 
 ############## Pull ##############
