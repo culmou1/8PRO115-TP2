@@ -1,13 +1,26 @@
 #ifndef HEADER_FILE
 #define HEADER_FILE
 
+
+enum Role {
+    
+    Entraineur,
+    JoueurAutonome,
+    JoueurNonAutonome,
+    Manageur,
+    Secretaire,
+    Recruteur,
+    Infirmier
+}
+
 class Person
 {
 
 
 protected:
-    std:: string prenom;
-    std:: string nom;
+    std::string prenom;
+    std::string nom;
+    Role role;
 
 public:
 
@@ -56,6 +69,8 @@ public:
 
 
 }
+
+class Entraineur :Person
 
 
 
