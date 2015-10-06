@@ -1,9 +1,14 @@
 #ifndef HEADER_FILE
 #define HEADER_FILE
 
+//http://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum
+
+#include <list>
+
+typedef std::list<> name;
 
 enum Role {
-    
+
     Entraineur,
     JoueurAutonome,
     JoueurNonAutonome,
@@ -12,6 +17,8 @@ enum Role {
     Recruteur,
     Infirmier
 }
+
+
 
 class Person
 {
@@ -38,7 +45,7 @@ public:
         return std::string prenom;
     }
 
-    virtual std::string setFirstName = function(firstName){
+    virtual std::string setFirstName = function(std::firstName){
 
         std::string prenom = firstName;
 
@@ -50,7 +57,7 @@ public:
         return std::string nom;
     }
 
-    virtual std::string setLastName = function(lastName){
+    virtual std::string setLastName = function(std::lastName){
 
         std::string prenom = lastName;
 
@@ -68,12 +75,105 @@ protected:
 public:
 
 
+        std::string getFirstName = function(){
+
+            return std::string prenom;
+        }
+
+        std::string setFirstName = function(firstName){
+
+            std::string prenom = firstName;
+
+        }
+
+
+        std::string getLastName = function(){
+
+            return std::string nom;
+        }
+
+        std::string setLastName = function(lastName){
+
+            std::string prenom = lastName;
+
+        }
+
+        std::string getTaile = function(){
+
+            return taille;
+        }
+
+        std::string setTaile = function(float grandeur){
+
+            taille = grandeur;
+
+        }
+        std::string getPoids = function(){
+
+            return poids;
+        }
+
+        std::string setPoids = function(float grosseur){
+
+            poids = grosseur;
+
+        }
+        std::string getEmplacementNaissance = function(){
+
+            return std::string emplacementNaissance;
+        }
+
+        std::string setEmplacementNaissance = function(std::string birthDay){
+
+            std::string emplacementNaissance = birthDay;
+
+        }
+
+
 }
 
-class Entraineur :Person
+class Entraineur : public Person{
+
+protected:
+
+    std::string placeGrade;
+    std::string
 
 
 
 
+
+
+
+public:
+
+        std::string getFirstName = function(){
+
+            return std::string prenom;
+        }
+
+        std::string setFirstName = function(firstName){
+
+            std::string prenom = firstName;
+
+        }
+
+
+        std::string getLastName = function(){
+
+            return std::string nom;
+        }
+
+        std::string setLastName = function(lastName){
+
+            std::string prenom = lastName;
+
+        }
+
+
+
+
+
+}
 
 #endif

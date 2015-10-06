@@ -10,14 +10,14 @@ typedef set::vector <int> Date;
 
 class Club {
 
-private : 
+private :
 	std::string HistoireDuClub;
 	std::string CouleurDuClub;
 	Date AnneeDeCreation;
 	Joueur Effectif;
 	std::vector <Palmares> unPalmares;
 	std::string VilleDuClub;
-	std::vector <Person> StaffTechnique; 
+	std::vector <Person> StaffTechnique;
 
 public :
     Club();
