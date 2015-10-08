@@ -12,6 +12,7 @@ typedef set::vector <int> Date;
 // Classe Club
 class Club {
 
+<<<<<<< HEAD
 private : 
 	std::string 			histoireDuClub;
 	std::string 			couleurDuClub;
@@ -23,6 +24,16 @@ private :
 	std::vector <Contract> 	*contratsdEngagement;
 	std::vector <Rupture> 	*rupturesDeContrats;
 	Calendrier 				calendrier;
+=======
+private :
+	std::string HistoireDuClub;
+	std::string CouleurDuClub;
+	Date AnneeDeCreation;
+	Joueur Effectif;
+	std::vector <Palmares> unPalmares;
+	std::string VilleDuClub;
+	std::vector <Person> StaffTechnique;
+>>>>>>> f27d8bd691d5d0b5fdae7c69bc84cfb5d88bb9af
 
 public :
     Club();
