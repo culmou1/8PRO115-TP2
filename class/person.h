@@ -2,10 +2,11 @@
 #define HEADER_FILE
 
 //http://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum
+#include <ctime>
+#include list
 
-#include <list>
 
-typedef std::list<> name;
+typedef std::list<typeof> nameTitle;
 
 enum Role {
 
@@ -138,13 +139,7 @@ protected:
 
     std::string placeGrade;
     std::string
-
-
-
-
-
-
-
+    std::nameTitle(null)
 public:
 
         std::string getFirstName = function(){
