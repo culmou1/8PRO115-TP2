@@ -1,6 +1,7 @@
 #ifndef HEADER_FILE
 #define HEADER_FILE
 
+#include "club.h"
 #include "utils.h"
 
 typedef tm Date; // Date pour dd/mm/yy
@@ -14,6 +15,8 @@ class Palmares
 private:
     Date date; // Date
     TitreChoice titre; // titre
+    Club *club; // Ajout d'un Club
+
 
 public:
     Palmares();
@@ -44,23 +47,23 @@ public:
         return date.tm_year;
     }
 
-    void setDate function(all_date){
+    void setDate function(Date all_date){
 
         date.tm_mday = all_date.tm_day;
         date.tm_mon = all_date.tm_mon;
         date.tm_year = all_date.tm_year;
     }
-    void setDateDays function(day){
+    void setDateDays function(Date day){
 
         date.tm_mday = day.tm_day;
     }
 
-    void setDateMonth function(month){
+    void setDateMonth function(Date month){
 
         date.tm_mday = mouth.tm_mon;
     }
 
-    void setDateYear function(year){
+    void setDateYear function(Date year){
 
         date.tm_mday = year.tm_Year;
     }
@@ -75,7 +78,7 @@ public:
         }
     }
 
-    void setTitre function (choix){
+    void setTitre function (TitreChoice choix){
         if(choix){
             titre = Championat;
         }
@@ -84,6 +87,15 @@ public:
         }
     }
 
+    Club getClub function(){
+
+        return club;
+    }
+
+    void setClub function(){
+
+        
+    }
 
 };
 
