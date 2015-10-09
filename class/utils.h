@@ -18,6 +18,12 @@ struct tm {
   int tm_year;  // year since 1900
 };
 
+emum Titre {
+    Coupe,
+    Championat
+
+}
+
 
 
 

@@ -2,23 +2,10 @@
 #define HEADER_FILE
 
 //http://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum
-#include <ctime>
 #include list
+#include "palmares.h"
 
-
-typedef std::list<typeof> nameTitle;
-
-enum Role {
-
-    Entraineur,
-    JoueurAutonome,
-    JoueurNonAutonome,
-    Manageur,
-    Secretaire,
-    Recruteur,
-    Infirmier
-}
-
+typedef std::vector<Palmares> VectorPal; // Une ensemble de vecteur de type Palmares
 
 
 class Person
@@ -138,8 +125,7 @@ class Entraineur : public Person{
 protected:
 
     std::string placeGrade;
-    std::string
-    std::nameTitle(null)
+    VectorPal TitreGagne;
 public:
 
         void getFirstName(){
@@ -159,15 +145,20 @@ public:
             return std::string nom;
         }
 
-        std::string setLastName = function(lastName){
+        void setLastName = function(std::string lastName){
 
             std::string prenom = lastName;
 
         }
 
+        std::string getGrade = function(){
 
+            return std::string grade;
+        }
 
+        void setGrade = function(std::string Grade){
 
+            std::string placeGrade = Grade;
 
 };
 
