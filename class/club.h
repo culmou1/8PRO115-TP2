@@ -7,35 +7,25 @@
 #include "palmares.h"
 #include "contract.h"
 
-typedef set::vector <int> Date;
-
+typedef std::vector<Contract> 	VectorCon;
+typedef std::vector<Rupture> 	VectorRup;
+typedef std::vector <Person*>  	VectorPrs;
 // Classe Club
 class Club {
 
-<<<<<<< HEAD
-private : 
+private: 
 	std::string 			histoireDuClub;
 	std::string 			couleurDuClub;
 	Date 					anneeDeCreation;
-	std::vector <Joueur> 	*effectif;
-	std::vector <Palmares> 	*unPalmares;
+	VectorPrs				*effectif;
+	VectorPal			 	*unPalmares;
 	std::string 			villeDuClub;
-	std::vector <Person> 	*staffTechnique;
-	std::vector <Contract> 	*contratsdEngagement;
-	std::vector <Rupture> 	*rupturesDeContrats;
+	VectorPrs			 	*staffTechnique;
+	VectorCon 				*contratsdEngagement;
+	VectorRup 				*rupturesDeContrats;
 	Calendrier 				calendrier;
-=======
-private :
-	std::string HistoireDuClub;
-	std::string CouleurDuClub;
-	Date AnneeDeCreation;
-	Joueur Effectif;
-	std::vector <Palmares> unPalmares;
-	std::string VilleDuClub;
-	std::vector <Person> StaffTechnique;
->>>>>>> f27d8bd691d5d0b5fdae7c69bc84cfb5d88bb9af
 
-public :
+public:
     Club();
 
     ~Club();
@@ -72,13 +62,13 @@ public :
 	}
 
 //----------------------------------------------------------------- methods for Effectif
-	void getEffectif(std::vector <Joueur> &players) {
+	void getEffectif(VectorPrs &players) {
 		for (int i = 0; i < effectif->size(); i++) {
 			players[i] = effectif[i];
 		}
 	}
 
-	void setEffectif(std::vector <Joueur> *players) {
+	void setEffectif(VectorPrs *players) {
 		effectif->clear();
 		for (int i = 0; i < players->size(); i++) {
 			effectif->push_back(players[i]);
@@ -86,13 +76,13 @@ public :
 	}
 
 //----------------------------------------------------------------- methods for unPalmares
-	void getUnPalmares(std::vector <Palmares> &trophies) {
+	void getUnPalmares(VectorPal &trophies) {
 		for (int i = 0; i < unPalmares->size(); i++) {
 			trophies[i] = unPalmares[i];
 		}
 	}
 
-	void setPalmares(std::vector <Palmares> *trophies) {
+	void setUnPalmares(VectorPal *trophies) {
 		unPalmares->clear();
 		for (int i = 0; i < trophies->size(); i++) {
 			unPalmares->push_back(trophies[i]);
@@ -109,13 +99,13 @@ public :
 	} 
 
 //----------------------------------------------------------------- methods for StaffTechnique
-	void getStaffTechnique(std::vector <Person> &staff) {
+	void getStaffTechnique(VectorPrs &staff) {
 		for (int i = 0; i < staffTechnique->size(); i++) {
 			staff[i] = staffTechnique[i];
 		}
 	}
 
-	void setPalmares(std::vector <Person> *staff) {
+	void setStaffTechnique(VectorPrs *staff) {
 		staffTechnique->clear();
 		for (int i = 0; i < staff->size(); i++) {
 			staffTechnique->push_back(staff[i]);
@@ -123,13 +113,13 @@ public :
 	}
 
 //----------------------------------------------------------------- methods for ContratsdEngagement
-	void getContratsdEngagement(std::vector <Person> &contrats) {
+	void getContratsdEngagement(VectorCon &contrats) {
 		for (int i = 0; i < contratsdEngagement->size(); i++) {
 			contrats[i] = contratsdEngagement[i];
 		}
 	}
 
-	void setContratsdEngagement(std::vector <Person> *contrats) {
+	void setContratsdEngagement(VectorCon *contrats) {
 		contratsdEngagement->clear();
 		for (int i = 0; i < contrats->size(); i++) {
 			contratsdEngagement->push_back(contrats[i]);
@@ -137,13 +127,13 @@ public :
 	}
 
 //----------------------------------------------------------------- methods for RupturesDeContrats
-	void getRupturesDeContrats(std::vector <Person> &ruptures) {
+	void getRupturesDeContrats(VectorRup &ruptures) {
 		for (int i = 0; i < rupturesDeContrats.size(); i++) {
 			ruptures[i] = rupturesDeContrats[i];
 		}
 	}
 
-	void setRupturesDeContrats(std::vector <Person> *ruptures) {
+	void setRupturesDeContrats(VectorRup *ruptures) {
 		rupturesDeContrats->clear();
 		for (int i = 0; i < ruptures->size(); i++) {
 			rupturesDeContrats->push_back(ruptures[i]);

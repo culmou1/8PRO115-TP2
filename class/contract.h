@@ -85,13 +85,13 @@ public :
 
 class Rupture {
 
-private :
+private:
 	Joueur 			joueurRelaxant;
 	Club 			clubContractant;
 	std::string 	raisonsDuDepart;
 	float 			penalite;
 
-public :
+public:
 	Rupture();
 
     ~Rupture();

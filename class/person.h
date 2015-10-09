@@ -76,62 +76,62 @@ protected:
 public:
 
 
-        std::string getFirstName = function(){
+        std::string getFirstName(){
 
             return std::string prenom;
         }
 
-        std::string setFirstName = function(firstName){
+        void setFirstName(std::string firstName){
 
-            std::string prenom = firstName;
+            prenom = firstName;
 
         }
 
 
-        std::string getLastName = function(){
+        std::string getLastName(){
 
             return std::string nom;
         }
 
-        std::string setLastName = function(lastName){
+        void setLastName(lastName){
 
-            std::string prenom = lastName;
+           prenom = lastName;
 
         }
 
-        std::string getTaile = function(){
+        float getTaile(){
 
             return taille;
         }
 
-        std::string setTaile = function(float grandeur){
+        void setTaile(float grandeur){
 
             taille = grandeur;
 
         }
-        std::string getPoids = function(){
+        float getPoids = function(){
 
             return poids;
         }
 
-        std::string setPoids = function(float grosseur){
+        void setPoids(float grosseur){
 
             poids = grosseur;
 
         }
-        std::string getEmplacementNaissance = function(){
+        std::string getEmplacementNaissance(){
 
             return std::string emplacementNaissance;
         }
 
-        std::string setEmplacementNaissance = function(std::string birthDay){
+        void setEmplacementNaissance = function(std::string birthDay){
 
-            std::string emplacementNaissance = birthDay;
+            emplacementNaissance = birthDay;
 
         }
 
 
-}
+};
 
 class Entraineur : public Person{
 
@@ -142,19 +142,19 @@ protected:
     std::nameTitle(null)
 public:
 
-        std::string getFirstName = function(){
+        void getFirstName(){
 
             return std::string prenom;
         }
 
-        std::string setFirstName = function(firstName){
+        std::string setFirstName(std::string firstName){
 
-            std::string prenom = firstName;
+           prenom = firstName;
 
         }
 
 
-        std::string getLastName = function(){
+        void getLastName = function(){
 
             return std::string nom;
         }
@@ -169,6 +169,6 @@ public:
 
 
 
-}
+};
 
 #endif
