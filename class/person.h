@@ -1,55 +1,65 @@
-#ifndef HEADER_FILE
-#define HEADER_FILE
+#ifndef PERSON_H
+#define PERSON_H
 
 //http://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum
-#include list
+#include <vector>
 #include "palmares.h"
+#include "utils.h"
 
-typedef std::vector<Palmares> VectorPal; // Une ensemble de vecteur de type Palmares
-
-
-class Person
-{
-
+class Person {
 
 protected:
-    std::string _prenom;
-    std::string _nom;
-    Role _role;
+    std::string     _prenom;
+    std::string     _nom;
+    int             _age;
+    Role            _role;
+
 
 public:
+    Person(std::string prenom,std::string nom, int age,Role role): _prenom(prenom),_nom(nom),_age(age)_role(role){};
 
-    virtual Person();
-
-    virtual ~Person() = default;
-    virtual Person(const Person& other) = default;
-    virtual Person(Person&& other) = default;
-    virtual Person& operator=(const Person& other) = default;
-    virtual Person& operator=(Person&& other) = default;
+    virtual ~Person();
+    Person(const Person& other);
+    Person(Person&& other);
+    virtual Person& operator=(const Person& other);
+    virtual Person& operator=(Person&& other);
 
 
-    virtual std::string getFirstName(){
-
+//----------------------------------------------------------------- methods of prenom
+    std::string getFirstName(){
         return _prenom;
     }
 
-    virtual void setFirstName(std::string firstName){
-
-            _prenom = firstName;
-
+	std::string setFirstName(std::string firstName){
+		_prenom = firstName;
     }
 
-
-    virtual std::string getLastName(){
-
+//----------------------------------------------------------------- methods of nom
+    std::string getLastName(){
         return _nom;
     }
 
-    virtual void setLastName(std::lastName){
-
-        _prenom = lastName;
-
+    std::string setLastName(std::string lastName){
+		_nom = lastName;
     }
+
+//----------------------------------------------------------------- methods of age
+	int getAge() {
+		return _age;
+	}
+
+	void setAge(int nb){
+		_age = nb;
+	}
+
+//----------------------------------------------------------------- methods of role
+	Role getRole() {
+		return _role;
+	}
+
+	void setRole(Role choix){
+		_role = choix;
+	}
 
 };
 
@@ -61,8 +71,19 @@ protected:
     std::string _emplacementNaissance;
 
 public:
+	Joueur(std::string prenom,std::string nom, int age,Role role,float taille,float poids,std::string emplacementNaissance):
+        Person(prenom,nom,age,role),_taille(taille),_poids(poids),_emplacementNaissance(emplacementNaissance){};
+    Joueur(std::string prenom,std::string nom, int age,Role role):Person(prenom,nom,age,role){};
+
+    virtual ~Joueur();
+    Joueur(const Joueur& other);
+    Joueur(Joueur&& other);
+    virtual Joueur& operator=(const Joueur& other);
+    virtual Joueur& operator=(Joueur&& other);
 
 //----------------------------------------------------------------- methods for FirstName
+
+
 
         std::string getFirstName(){
 
@@ -99,37 +120,98 @@ public:
             _taille = grandeur;
 
         }
-        float getPoids(){
 
-            return _poids;
-        }
+//----------------------------------------------------------------- methods of poids
+    float getPoids(){
+        return _poids;
+    }
 
-        void setPoids(float grosseur){
+    void setPoids(float grosseur){
+        _poids = grosseur;
 
-            _poids = grosseur;
+    }
 
-        }
-        std::string getEmplacementNaissance(){
-
-            return std::string _emplacementNaissance;
-        }
-
-        void setEmplacementNaissance(std::string birthDay){
-
-            _emplacementNaissance = birthDay;
-
-        }
+//----------------------------------------------------------------- methods of emplacementNaissance
+    std::string getEmplacementNaissance(){
+        return _emplacementNaissance;
+    }
 
 
+    void setEmplacementNaissance(std::string birthPlace){
+        _semplacementNaissance = birthPlace;
+    }
 };
+
+
+class Joueur_Autonome : public Joueur{
+public:
+	Joueur_Autonome();
+    virtual ~Joueur_Autonome();
+    Joueur_Autonome(const Joueur_Autonome& other);
+    Joueur_Autonome(Joueur_Autonome&& other);
+    virtual Joueur_Autonome& operator=(const Joueur_Autonome& other);
+    virtual Joueur_Autonome& operator=(Joueur_Autonome&& other);
+
+//----------------------------------------------------------------- methods of Joueur_Autonome
+	void RompreSonContrat(Contrat* Contract){;
+        
+    }
+
+    std::string getEmplacementNaissance(){
+        return _emplacementNaissance;
+    }
+
+    void setEmplacementNaissance(std::string birthDay){
+
+        _emplacementNaissance = birthDay;
+    }
+
+}
+
+class Joueur_NonAutonome : public Joueur{
+
+private:
+	int    _anneeCumulee;
+	bool   _avisFavorable;
+
+public:
+    // Avec Avis Favorable
+	Joueur_NonAutonome(std::string prenom,std::string nom, int age,Role role,float taille,float poids,std::string emplacementNaissance,int anneecumulee,bool avisFavorable):
+        Person(prenom,nom,age,role),_taille(taille),_poids(poids),_emplacementNaissance(emplacementNaissance),_anneeCumulee(anneecumulee),_avisFavorable(avisFavorable){};
+    // Sans AvisFavorable
+	Joueur_NonAutonome(std::string prenom,std::string nom, int age,Role role,float taille,float poids,std::string emplacementNaissance,int anneecumulee):
+        Person(prenom,nom,age,role),_taille(taille),_poids(poids),_emplacementNaissance(emplacementNaissance),_anneeCumulee(anneecumulee)){};
+
+    virtual ~Joueur_NonAutonome();
+    Joueur_NonAutonome(const Joueur_NonAutonome& other);
+    Joueur_NonAutonome(Joueur_NonAutonome&& other);
+    virtual Joueur_NonAutonome& operator=(const Joueur_NonAutonome& other);
+    virtual Joueur_NonAutonome& operator=(Joueur_NonAutonome&& other);
+
+//----------------------------------------------------------------- methods of Joueur_NpnAutonome
+
+	bool DemandeDeTransfert(){
+        if (this._avisFavorable == True){
+            return true;
+        }
+        else return false;
+    }
+};
+
 
 class Entraineur : public Person{
 
 protected:
-
     std::string _placeGrade;
     VectorPal _TitreGagne;
 public:
+
+    	Entraineur();
+        virtual ~Entraineur();
+        Entraineur(const Entraineur& other);
+        Entraineur(Entraineur&& other);
+        virtual Entraineur& operator=(const Entraineur& other);
+        virtual Entraineur& operator=(Entraineur&& other);
 
         void getFirstName(){
 
@@ -141,7 +223,6 @@ public:
            _prenom = firstName;
 
         }
-
 
         void getLastName(){
 
@@ -162,6 +243,18 @@ public:
         void setGrade(std::string Grade){
 
             _placeGrade = Grade;
+        }
+
+//----------------------------------------------------------------- methods of placeGrade
+    std::string getPlaceGrade(){
+        return _placeGrade;
+    }
+
+    void setPlaceGrade(std::string Grade){
+		_placeGrade = Grade;
+	}
+
+//----------------------------------------------------------------- methods of TitresGagnes
 
 };
 

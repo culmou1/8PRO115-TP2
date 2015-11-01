@@ -6,16 +6,27 @@
 class Contract {
 
 private :
-	Joueur 	joueurContractant;
- 	Club 	clubContractant;
- 	Club 	clubLibere;
- 	int 	dureeContrat;
- 	Date 	datedEntree;
- 	Date 	dateDuContrat;
- 	float 	seuilTransfert;
+	Joueur 	*_joueurContractant;
+ 	Club 	*_clubContractant;
+ 	Club 	*_clubLibere;
+ 	int 	_dureeContrat;
+ 	Date 	_datedEntree;
+ 	Date 	_dateDuContrat;
+ 	float 	_seuilTransfert;
 
 public :
-	Contract();
+	Contract(Joueur *joueurContractant,Club *clubContractant,Club *clubLibere, int dureeContrat,
+				Date dateDuContrat,float seuilTransfert):
+					_joueurContractant(joueurContractant),_clubContractant(clubContractant), _clubLibere(NULL),_dureeContrat(duree),
+					_dateDuContrat(dateDuContrat),_seuilTransfert(seuilTransfert){
+						_datedEntree = new Date()
+						// Suppossons que les contrats sont réalisée le premiers Janvier 2015
+						_datedEntree.tm_day = 1;
+						_datedEntree.tm_month = 1;
+						_datedEntree.tm_year = 2015;
+
+						// Club liberer pendant la construction d'un object sert a rien
+					}
 
     ~Contract();
     Contract(const Contract& other) = default;
@@ -25,74 +36,83 @@ public :
 
 //----------------------------------------------------------------- methods for joueurContractant
     Joueur getJoueurContractant() {
-    	return joueurContractant;
+    	return _joueurContractant;
     }
 
-    void setJoueurContractant(Joueur newbie) {
-    	joueurContractant = newbie;
+    void setJoueurContractant(Joueur *newbie) {
+    	_joueurContractant = newbie;
     }
 
 //----------------------------------------------------------------- methods for clubContractant
     Club getClubContractant() {
-    	return clubContractant;
+    	return _clubContractant;
     }
 
-    void setClubContractant(Club new_club) {
-    	clubContractant = new_club;
+    void setClubContractant(Club *new_club) {
+    	_clubContractant = new_club;
     }
 
 //----------------------------------------------------------------- methods for clubLibere
     Club getClubLibere() {
-    	return clubLibere;
+    	return _clubLibere;
     }
 
-    void setClubLibere(Club old_club) {
-    	clubLibere = old_club;
+    void setClubLibere(Club *old_club) {
+    	_clubLibere = old_club;
     }
 
 //----------------------------------------------------------------- methods for dureeContrat
     int getDureeContrat() {
-    	return dureeContrat;
+    	return _dureeContrat;
     }
 
     void setDureeContrat(int duree) {
-    	dureeContrat = duree;
+    	_dureeContrat = duree;
     }
 
 //----------------------------------------------------------------- methods for datedEntree
     Date getDatedEntree() {
-    	return datedEntree;
+    	return _datedEntree;
     }
 
     void setDatedEntree(Date entree) {
-    	datedEntree = entree;
+    	_datedEntree = entree;
     }
 
 //----------------------------------------------------------------- methods for dateDuContrat
     Date getDateDuContrat() {
-    	return dateDuContrat;
+    	return _dateDuContrat;
     }
 
-    void setDateDuContrat(Date d_day) {
-    	dateDuContrat = d_day;
+    void setDateDuContrat(int d_day, int m_month,int y_year) {
+    	_dateDuContrat = New Date();
+		_dateDuContrat.tm_day = d_day;
+		_dateDuContrat.tm_month = m_month;
+		_dateDuContrat.tm_year = m_year;
     }
 
 //----------------------------------------------------------------- methods of Contract
-    void updateSeuilTransfert();
+    float getSeuilTransfert(){
+		return _seuilTransfert;
+	}
+    float setSeuilTransfert(float seuilTransfert){
+		 _seuilTransfert= seuilTransfert;
+	}
 };
 
 
 
 class Rupture {
 
-private:
-	Joueur 			joueurRelaxant;
-	Club 			clubContractant;
-	std::string 	raisonsDuDepart;
-	float 			penalite;
+private :
+	Joueur 			*_joueurRelaxant;
+	Club 			*_clubContractant;
+	std::string 	_raisonsDuDepart;
+	float 			_penalite;
 
-public:
-	Rupture();
+public :
+	Rupture(Joueur *joueurRelaxant,Cub *clubContractant,std::string raisonsDuDepart,float penalite):
+		_joueurRelaxant(joueurRelaxant),_clubContractant(clubContractant)_raisonsDuDepart(raisonsDuDepart),_penalite(penalite){};
 
     ~Rupture();
     Rupture(const Rupture& other) = default;
@@ -100,39 +120,39 @@ public:
     Rupture& operator=(const Rupture& other) = default;
     Rupture& operator=(Rupture&& other) = default;
 
-//----------------------------------------------------------------- methods for joueurRelaxant
+//----------------------------------------------------------------- methods for _joueurRelaxant
     Joueur getJoueurRelaxant() {
-    	return joueurRelaxant;
+    	return *_joueurRelaxant;
     }
 
-    void setJoueurRelaxant(Joueur newbie) {
-    	joueurRelaxant = newbie;
+    void setJoueurRelaxant(Joueur *newbie) {
+    	_joueurRelaxant = newbie;
     }
 
-//----------------------------------------------------------------- methods for clubContractant
+//----------------------------------------------------------------- methods for _clubContractant
     Club getClubContractant() {
-    	return clubContractant;
+    	return _clubContractant;
     }
 
-    void setClubContractant(Club new_club) {
-    	clubContractant = new_club;
+    void setClubContractant(Club *new_club) {
+    	_clubContractant = new_club;
     }
-//----------------------------------------------------------------- methods for raisonsDuDepart
+//----------------------------------------------------------------- methods for _raisonsDuDepart
     std::string getRaisonsDuDepart() {
-    	return raisonsDuDepart;
+    	return _raisonsDuDepart;
     }
 
     void setRaisonsDuDepart(std::string raisons) {
-    	raisonsDuDepart = raisons;
+    	_raisonsDuDepart = raisons;
     }
 
-//----------------------------------------------------------------- methods for penalite
+//----------------------------------------------------------------- methods for _penalite
     float getPenalite() {
-    	return penalite;
+    	return _penalite;
     }
 
     void setPenalite(float cost)  {
-    	penalite = cost;
+    	_penalite = cost;
     }
 
 };
