@@ -41,14 +41,14 @@ public:
 		periodesJouees->clear();
 		for (int i = 0; i < periodes->size(); i++) {
 			periodesJouees->push_back(periodes[i]);
-		}	
+		}
 	}
 
 //----------------------------------------------------------------- methods for periodesJouees
 	Resultat getResultatFinal() { return resultatFinal;}
 
 	void setResultatFinal(Resultat score) { resultatFinal = score;}
-	
+
 };
 
 #endif

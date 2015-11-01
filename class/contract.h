@@ -107,7 +107,7 @@ public:
 
     void setJoueurRelaxant(Joueur newbie) {
     	joueurRelaxant = newbie;
-    } 
+    }
 
 //----------------------------------------------------------------- methods for clubContractant
     Club getClubContractant() {

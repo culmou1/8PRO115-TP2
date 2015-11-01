@@ -13,7 +13,7 @@ typedef std::vector <Person*>  	VectorPrs;
 // Classe Club
 class Club {
 
-private: 
+private:
 	std::string 			histoireDuClub;
 	std::string 			couleurDuClub;
 	Date 					anneeDeCreation;
@@ -72,7 +72,7 @@ public:
 		effectif->clear();
 		for (int i = 0; i < players->size(); i++) {
 			effectif->push_back(players[i]);
-		}	
+		}
 	}
 
 //----------------------------------------------------------------- methods for unPalmares
@@ -86,7 +86,7 @@ public:
 		unPalmares->clear();
 		for (int i = 0; i < trophies->size(); i++) {
 			unPalmares->push_back(trophies[i]);
-		}	
+		}
 	}
 
 //----------------------------------------------------------------- methods for VilleDuClub
@@ -96,7 +96,7 @@ public:
 
 	void setVilleDuClub(std::string town) {
 		villeDuClub = town;
-	} 
+	}
 
 //----------------------------------------------------------------- methods for StaffTechnique
 	void getStaffTechnique(VectorPrs &staff) {
@@ -109,7 +109,7 @@ public:
 		staffTechnique->clear();
 		for (int i = 0; i < staff->size(); i++) {
 			staffTechnique->push_back(staff[i]);
-		}	
+		}
 	}
 
 //----------------------------------------------------------------- methods for ContratsdEngagement
@@ -123,7 +123,7 @@ public:
 		contratsdEngagement->clear();
 		for (int i = 0; i < contrats->size(); i++) {
 			contratsdEngagement->push_back(contrats[i]);
-		}	
+		}
 	}
 
 //----------------------------------------------------------------- methods for RupturesDeContrats
@@ -137,7 +137,7 @@ public:
 		rupturesDeContrats->clear();
 		for (int i = 0; i < ruptures->size(); i++) {
 			rupturesDeContrats->push_back(ruptures[i]);
-		}	
+		}
 	}
 
 //----------------------------------------------------------------- methods for Calendrier
