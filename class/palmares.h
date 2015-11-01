@@ -1,102 +1,70 @@
-#ifndef HEADER_FILE
-#define HEADER_FILE
+#ifndef PALMARES_H
+#define PALMARES_H
 
 #include "club.h"
 #include "utils.h"
 
-typedef tm Date; // Date pour dd/mm/yy
-
-typedef Titre TitreChoice; // Choisir entre Championat ou Coupe
-
-
-class Palmares
-{
+class Palmares{
 
 private:
     Date date; // Date
-    TitreChoice titre; // titre
-    Club *club; // Ajout d'un Club
+    Titre titre; // titre
 
 
 public:
-    Palmares();
+    Palmares(std::string day, Titre trophy) : 
+		date(To_Date(day)), titre(trophy) {}
 
-    ~Palmares() = default;
-    Palmares(const Palmares& other) = default;
-    Palmares(Palmares&& other) = default;
-    Palmares& operator=(const Palmares& other) = default;
-    Palmares& operator=(Palmares&& other) = default;
+    ~Palmares();
+    Palmares(const Palmares& other);
+    Palmares(Palmares&& other);
+    Palmares& operator=(const Palmares& other);
+    Palmares& operator=(Palmares&& other);
 
-    Date getDate function(){
-
+//----------------------------------------------------------------- methods of date
+    Date getDate(){
         return date;
     }
 
-    Date getDateDays function (){
-
-        return date.tm_mday;
+    void setDate(int day, int month, int year){
+        date.tm_day = day;
+        date.tm_month = month;
+        date.tm_year = year;
     }
 
-    Date getDateMonth function (){
-
-        return date.tm_mon;
+//----------------------------------------------------------------- methods of titre
+    Titre getTitre(){
+        return titre;
     }
 
-    Date getDateYear function (){
-
-        return date.tm_year;
+    void setTitre(Titre choix){
+		titre = choix;
     }
+};
 
-    void setDate function(Date all_date){
+class TitreGagne : public Palmares {
 
-        date.tm_mday = all_date.tm_day;
-        date.tm_mon = all_date.tm_mon;
-        date.tm_year = all_date.tm_year;
-    }
-    void setDateDays function(Date day){
+private:
+    Club  *club;
 
-        date.tm_mday = day.tm_day;
-    }
+public:
+    TitreGagne(Club *team, std::string day, Titre trophy) : 
+		club(team), Palmares(day, trophy) {}
 
-    void setDateMonth function(Date month){
+    ~TitreGagne();
+    TitreGagne(const TitreGagne& other);
+    TitreGagne(TitreGagne&& other);
+    TitreGagne& operator=(const TitreGagne& other);
+    TitreGagne& operator=(TitreGagne&& other);  
 
-        date.tm_mday = mouth.tm_mon;
-    }
-
-    void setDateYear function(Date year){
-
-        date.tm_mday = year.tm_Year;
-    }
-
-    TitreChoice getTitre function (){
-        if(titre == Coupe){
-            return Coupe ;
-        }
-
-        else {
-            return Championat;
-        }
-    }
-
-    void setTitre function (TitreChoice choix){
-        if(choix){
-            titre = Championat;
-        }
-        eles{
-            titre = Coupe;
-        }
-    }
-
-    Club getClub function(){
-
+//----------------------------------------------------------------- methods of club
+    Club *getClub() {
         return club;
     }
 
-    void setClub function(){
-
-        
+    void setClub(Club *other){
+        club = other;
     }
-
 };
 
 #endif

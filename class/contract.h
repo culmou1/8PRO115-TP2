@@ -1,52 +1,56 @@
-#ifdef CONTRAT_H
+#ifndef CONTRAT_H
 #define CONTRAT_H
 
 #include "club.h"
+#include "utils.h"
+#include "reglement.h"
 
 class Contract {
 
-private :
-	Joueur 	joueurContractant;
- 	Club 	clubContractant;
- 	Club 	clubLibere;
- 	int 	dureeContrat;
- 	Date 	datedEntree;
- 	Date 	dateDuContrat;
- 	float 	seuilTransfert;
+private:
+	Joueur 	    *joueurContractant;
+ 	Club 	    *clubContractant;
+ 	Club 	    *clubLibere;
+ 	int 	    dureeContrat;
+ 	Date 	    datedEntree;
+ 	Date 	    dateDuContrat;
+ 	Reglement	reglement;
 
-public :
-	Contract();
+public:
+	Contract(Joueur *player, Club *new_club, Club *old_club, int time, std::string enter, std::string day, Reglement rule) :
+		joueurContractant(player), clubContractant(new_club), clubLibere(old_club), dureeContrat(time), 
+		datedEntree(To_Date(enter)), dateDuContrat(To_Date(day)), reglement(rule) {}
 
     ~Contract();
-    Contract(const Contract& other) = default;
-    Contract(Contract&& other) = default;
-    Contract& operator=(const Contract& other) = default;
-    Contract& operator=(Contract&& other) = default;
+    Contract(const Contract& other);
+    Contract(Contract&& other);
+    Contract& operator=(const Contract& other);
+    Contract& operator=(Contract&& other);
 
 //----------------------------------------------------------------- methods for joueurContractant
-    Joueur getJoueurContractant() {
+    Joueur *getJoueurContractant() {
     	return joueurContractant;
     }
 
-    void setJoueurContractant(Joueur newbie) {
+    void setJoueurContractant(Joueur *newbie) {
     	joueurContractant = newbie;
     }
 
 //----------------------------------------------------------------- methods for clubContractant
-    Club getClubContractant() {
+    Club *getClubContractant() {
     	return clubContractant;
     }
 
-    void setClubContractant(Club new_club) {
+    void setClubContractant(Club *new_club) {
     	clubContractant = new_club;
     }
 
 //----------------------------------------------------------------- methods for clubLibere
-    Club getClubLibere() {
+    Club *getClubLibere() {
     	return clubLibere;
     }
 
-    void setClubLibere(Club old_club) {
+    void setClubLibere(Club *old_club) {
     	clubLibere = old_club;
     }
 
@@ -64,8 +68,10 @@ public :
     	return datedEntree;
     }
 
-    void setDatedEntree(Date entree) {
-    	datedEntree = entree;
+    void setDatedEntree(int day, int month, int year){
+        datedEntree.tm_day = day;
+        datedEntree.tm_month = month;
+        datedEntree.tm_year = year;
     }
 
 //----------------------------------------------------------------- methods for dateDuContrat
@@ -73,68 +79,24 @@ public :
     	return dateDuContrat;
     }
 
-    void setDateDuContrat(Date d_day) {
-    	dateDuContrat = d_day;
+    void setDateDuContrat(int day, int month, int year){
+        dateDuContrat.tm_day = day;
+        dateDuContrat.tm_month = month;
+        dateDuContrat.tm_year = year;
     }
+
+//----------------------------------------------------------------- methods for reglement
+	Reglement getReglement(){
+		return reglement;
+	}
+
+	void setReglement(Reglement other){
+		reglement = other;
+	}
 
 //----------------------------------------------------------------- methods of Contract
     void updateSeuilTransfert();
-};
-
-
-
-class Rupture {
-
-private:
-	Joueur 			joueurRelaxant;
-	Club 			clubContractant;
-	std::string 	raisonsDuDepart;
-	float 			penalite;
-
-public:
-	Rupture();
-
-    ~Rupture();
-    Rupture(const Rupture& other) = default;
-    Rupture(Rupture&& other) = default;
-    Rupture& operator=(const Rupture& other) = default;
-    Rupture& operator=(Rupture&& other) = default;
-
-//----------------------------------------------------------------- methods for joueurRelaxant
-    Joueur getJoueurRelaxant() {
-    	return joueurRelaxant;
-    }
-
-    void setJoueurRelaxant(Joueur newbie) {
-    	joueurRelaxant = newbie;
-    } 
-
-//----------------------------------------------------------------- methods for clubContractant
-    Club getClubContractant() {
-    	return clubContractant;
-    }
-
-    void setClubContractant(Club new_club) {
-    	clubContractant = new_club;
-    }
-//----------------------------------------------------------------- methods for raisonsDuDepart
-    std::string getRaisonsDuDepart() {
-    	return raisonsDuDepart;
-    }
-
-    void setRaisonsDuDepart(std::string raisons) {
-    	raisonsDuDepart = raisons;
-    }
-
-//----------------------------------------------------------------- methods for penalite
-    float getPenalite() {
-    	return penalite;
-    }
-
-    void setPenalite(float cost)  {
-    	penalite = cost;
-    }
-
+    
 };
 
 

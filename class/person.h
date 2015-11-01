@@ -1,55 +1,63 @@
-#ifndef HEADER_FILE
-#define HEADER_FILE
+#ifndef PERSON_H
+#define PERSON_H
 
 //http://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum
-#include list
+#include <vector>
 #include "palmares.h"
+#include "utils.h"
 
-typedef std::vector<Palmares> VectorPal; // Une ensemble de vecteur de type Palmares
-
-
-class Person
-{
-
+class Person {
 
 protected:
-    std::string prenom;
-    std::string nom;
-    Role role;
+    std::string     prenom;
+    std::string     nom;
+    int             age;
+    Role            role;
 
 public:
+    Person();
 
-    virtual Person();
+    virtual ~Person();
+    Person(const Person& other);
+    Person(Person&& other);
+    virtual Person& operator=(const Person& other);
+    virtual Person& operator=(Person&& other);
 
-    virtual ~Person() = default;
-    virtual Person(const Person& other) = default;
-    virtual Person(Person&& other) = default;
-    virtual Person& operator=(const Person& other) = default;
-    virtual Person& operator=(Person&& other) = default;
-
-
-    virtual std::string getFirstName = function(){
-
-        return std::string prenom;
+//----------------------------------------------------------------- methods of prenom
+    std::string getFirstName(){
+        return prenom;
+    }
+	
+	std::string setFirstName(std::string firstName){
+		prenom = firstName;
     }
 
-    virtual std::string setFirstName = function(std::firstName){
-
-        std::string prenom = firstName;
-
+//----------------------------------------------------------------- methods of nom
+    std::string getLastName(){
+        return nom;
     }
 
-
-    virtual std::string getLastName = function(){
-
-        return std::string nom;
+    std::string setLastName(std::string lastName){
+		prenom = lastName;
     }
 
-    virtual std::string setLastName = function(std::lastName){
+//----------------------------------------------------------------- methods of age
+	int getAge() { 
+		return age;
+	}
 
-        std::string prenom = lastName;
+	void setAge(int nb){
+		age = nb;
+	}
 
-    }
+//----------------------------------------------------------------- methods of role
+	Role getRole() {
+		return role;
+	}
+
+	void setRole(Role choix){
+		role = choix;
+	}
 
 };
 
@@ -61,104 +69,102 @@ protected:
     std::string emplacementNaissance;
 
 public:
+	Joueur();
 
+    virtual ~Joueur();
+    Joueur(const Joueur& other);
+    Joueur(Joueur&& other);
+    virtual Joueur& operator=(const Joueur& other);
+    virtual Joueur& operator=(Joueur&& other);
+//----------------------------------------------------------------- methods of taille
+    float getTaile(){
+        return taille;
+    }
 
-        std::string getFirstName(){
+    void setTaile(float grandeur){
+        taille = grandeur;
 
-            return std::string prenom;
-        }
+    }
 
-        void setFirstName(std::string firstName){
+//----------------------------------------------------------------- methods of poids
+    float getPoids(){
+        return poids;
+    }
 
-            prenom = firstName;
+    void setPoids(float grosseur){
+        poids = grosseur;
 
-        }
+    }
 
+//----------------------------------------------------------------- methods of emplacementNaissance
+    std::string getEmplacementNaissance(){
+        return emplacementNaissance;
+    }
 
-        std::string getLastName(){
+    void setEmplacementNaissance(std::string birthPlace){
+        emplacementNaissance = birthPlace;
+    }
+};
 
-            return std::string nom;
-        }
+class Joueur_Autonome : public Joueur{
+public: 
+	Joueur_Autonome();
 
-        void setLastName(lastName){
-
-           prenom = lastName;
-
-        }
-
-        float getTaile(){
-
-            return taille;
-        }
-
-        void setTaile(float grandeur){
-
-            taille = grandeur;
-
-        }
-        float getPoids = function(){
-
-            return poids;
-        }
-
-        void setPoids(float grosseur){
-
-            poids = grosseur;
-
-        }
-        std::string getEmplacementNaissance(){
-
-            return std::string emplacementNaissance;
-        }
-
-        void setEmplacementNaissance = function(std::string birthDay){
-
-            emplacementNaissance = birthDay;
-
-        }
-
+    virtual ~Joueur_Autonome();
+    Joueur_Autonome(const Joueur_Autonome& other);
+    Joueur_Autonome(Joueur_Autonome&& other);
+    virtual Joueur_Autonome& operator=(const Joueur_Autonome& other);
+    virtual Joueur_Autonome& operator=(Joueur_Autonome&& other);
+	
+//----------------------------------------------------------------- methods of Joueur_Autonome
+	void RompreSonContrat();
 
 };
+
+class Joueur_NonAutonome : public Joueur{
+
+private:
+	int anneeCumulee;
+	bool avisFavorable;
+
+public:
+	Joueur_NonAutonome();
+
+    virtual ~Joueur_NonAutonome();
+    Joueur_NonAutonome(const Joueur_NonAutonome& other);
+    Joueur_NonAutonome(Joueur_NonAutonome&& other);
+    virtual Joueur_NonAutonome& operator=(const Joueur_NonAutonome& other);
+    virtual Joueur_NonAutonome& operator=(Joueur_NonAutonome&& other);
+
+//----------------------------------------------------------------- methods of Joueur_NpnAutonome
+	void DemandeDeTransfert();
+};
+
 
 class Entraineur : public Person{
 
 protected:
-
     std::string placeGrade;
-    VectorPal TitreGagne;
+    VectorPal TitresGagnes;
+
 public:
+	Entraineur();
 
-        void getFirstName(){
+    virtual ~Entraineur();
+    Entraineur(const Entraineur& other);
+    Entraineur(Entraineur&& other);
+    virtual Entraineur& operator=(const Entraineur& other);
+    virtual Entraineur& operator=(Entraineur&& other);
+//----------------------------------------------------------------- methods of placeGrade
+    std::string getPlaceGrade(){
+        return placeGrade;
+    }
 
-            return std::string prenom;
-        }
+    void setPlaceGrade(std::string Grade){
+		placeGrade = Grade;
+	}
 
-        std::string setFirstName(std::string firstName){
-
-           prenom = firstName;
-
-        }
-
-
-        void getLastName = function(){
-
-            return std::string nom;
-        }
-
-        void setLastName = function(std::string lastName){
-
-            std::string prenom = lastName;
-
-        }
-
-        std::string getGrade = function(){
-
-            return std::string grade;
-        }
-
-        void setGrade = function(std::string Grade){
-
-            std::string placeGrade = Grade;
+//----------------------------------------------------------------- methods of TitresGagnes
 
 };
 

@@ -1,53 +1,78 @@
-#ifdef 	MATCH_H
-#define	MATCH_H
+#ifndef MATCH_H
+#define MATCH_H
 
-typedef std::vector<Periode> VectorPrd;
+#include "equipe.h"
+#include "periode.h"
 
-class Match
-{
+typedef std::vector<Periode*> 	VectorPer;
+
+class Match {
+
 private:
-	Equipe 					equipeLocale;
-	Equipe 					equipeInvitee;
-	VectorPrd			 	*periodesJouees;
-	Resultat 				resultatFinal;
+	Equipe		*locaux;
+	Equipe 		*visiteurs;
+	VectorPer	periodesJouees;
+	Resultat  	resultatFinal;
 
 public:
-    Match();
+	Match(Equipe *home, Equipe *visitor, Resultat score) : 
+		locaux(home), visiteurs(visitor), resultatFinal(score) {}
 
-    ~Match() = default;
-    Match(const Match& other) = default;
-    Match(Match&& other) = default;
-    Match& operator=(const Match& other) = default;
-    Match& operator=(Match&& other) = default;
+    ~Match();
+    Match(const Match& other);
+    Match(Match&& other);
+    Match& operator=(const Match& other);
+    Match& operator=(Match&& other);
 
-//----------------------------------------------------------------- methods for equipeLocale
-    Equipe getEquipeLocale() { return equipeLocale;}
+//----------------------------------------------------------------- methods for Locaux
+    Equipe *getLocaux(){
+    	return locaux;
+    }
 
-    void setEquipeLocale(Equipe localteam) { equipeLocale = localteam;}
+    void setLocaux(Equipe *home){
+    	locaux = home;
+    }
 
-//----------------------------------------------------------------- methods for equipeInvitee
-    Equipe getEquipeInvitee() { return equipeInvitee;}
+//----------------------------------------------------------------- methods for Locaux
+    Equipe *getVisiteurs(){
+    	return visiteurs;
+    }
 
-    void setEquipeInvitee(Equipe visitorteam) { equipeInvitee = localteam;}
+    void setVisiteurs(Equipe *stranger){
+    	visiteurs = stranger;
+    }
 
 //----------------------------------------------------------------- methods for periodesJouees
-	void getPeriodesJouees(VectorPrd &periodes) {
+	void getPeriodes(VectorPer &half) {
 		for (int i = 0; i < periodesJouees.size(); i++) {
-			periodes[i] = periodesJouees[i];
+			half[i] = periodesJouees[i];
 		}
 	}
 
-	void setPeriodesJouees(VectorPrd *periodes) {
-		periodesJouees->clear();
-		for (int i = 0; i < periodes->size(); i++) {
-			periodesJouees->push_back(periodes[i]);
+	void setPeriodes(VectorPer half) {
+		periodesJouees.clear();
+		for (int i = 0; i < half.size(); i++) {
+			periodesJouees.push_back(half[i]);
 		}	
 	}
 
-//----------------------------------------------------------------- methods for periodesJouees
-	Resultat getResultatFinal() { return resultatFinal;}
+//----------------------------------------------------------------- methods for resultat
+	Resultat getResultat(){
+		return resultatFinal;
+	}
 
-	void setResultatFinal(Resultat score) { resultatFinal = score;}
+	void setResulat(int home, int visitor) {
+		resultatFinal.butsLocaux = home;
+		resultatFinal.butsVisiteurs= visitor;
+	}
+
+//----------------------------------------------------------------- methods of Match
+	void ObtenirResulatFinal() {
+		for (int i = 0; i <periodesJouees.size(); i++) {
+			resultatFinal.butsLocaux += periodesJouees[i]->resultat.butsLocaux;
+			resultatFinal.butsVisiteurs += periodesJouees[i]->resultat.butsVisiteurs;
+		}
+	}
 	
 };
 
