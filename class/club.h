@@ -16,7 +16,7 @@ typedef std::vector<Person*>  	VectorPrs; // Une ensemble de vecteur de type Per
 // Classe Club
 class Club {
 
-private: 
+private:
 	std::string 			histoireDuClub;
 	std::string 			couleurDuClub;
 	std::string 			adresseDuClub;
@@ -100,7 +100,7 @@ public:
 
 	void setVilleDuClub(std::string town) {
 		villeDuClub = town;
-	} 
+	}
 
 //----------------------------------------------------------------- methods for VilleDuClub
 	std::string getAdresseDuClub() {

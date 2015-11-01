@@ -40,6 +40,22 @@ Date To_Date(std::string date) {
 	return convert;
 }
 
+enum Date {
+
+    Janvier,
+    Fevrier,
+    Mars,
+    Avril,
+    Mai,
+    Juin,
+    Juillet,
+    Aout,
+    Septembre,
+    Octobre,
+    Novembre,
+    Decembre
+}
+
 enum Titre {
     COUPE,
     CHAMPIONNAT

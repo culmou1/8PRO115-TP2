@@ -90,9 +90,60 @@ public:
 		return reglement;
 	}
 
+
 	void setReglement(Reglement other){
 		reglement = other;
 	}
+
+private:
+	Joueur 			joueurRelaxant;
+	Club 			clubContractant;
+	std::string 	raisonsDuDepart;
+	float 			penalite;
+
+public:
+	Rupture();
+
+    ~Rupture();
+    Rupture(const Rupture& other) = default;
+    Rupture(Rupture&& other) = default;
+    Rupture& operator=(const Rupture& other) = default;
+    Rupture& operator=(Rupture&& other) = default;
+
+//----------------------------------------------------------------- methods for joueurRelaxant
+    Joueur getJoueurRelaxant() {
+    	return joueurRelaxant;
+    }
+
+    void setJoueurRelaxant(Joueur newbie) {
+    	joueurRelaxant = newbie;
+    }
+
+//----------------------------------------------------------------- methods for clubContractant
+    Club getClubContractant() {
+    	return clubContractant;
+    }
+
+    void setClubContractant(Club new_club) {
+    	clubContractant = new_club;
+    }
+//----------------------------------------------------------------- methods for raisonsDuDepart
+    std::string getRaisonsDuDepart() {
+    	return raisonsDuDepart;
+    }
+
+    void setRaisonsDuDepart(std::string raisons) {
+    	raisonsDuDepart = raisons;
+    }
+
+//----------------------------------------------------------------- methods for penalite
+    float getPenalite() {
+    	return penalite;
+    }
+
+    void setPenalite(float cost)  {
+    	penalite = cost;
+    }
 
 //----------------------------------------------------------------- methods of Contract
     void updateSeuilTransfert();

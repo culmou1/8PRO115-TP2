@@ -72,8 +72,7 @@ public:
 			resultatFinal.butsLocaux += periodesJouees[i]->resultat.butsLocaux;
 			resultatFinal.butsVisiteurs += periodesJouees[i]->resultat.butsVisiteurs;
 		}
-	}
-	
+	}	
 };
 
 #endif
