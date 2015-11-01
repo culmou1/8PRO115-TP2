@@ -18,6 +18,8 @@ public:
     Joueur& operator=(const Joueur& other) = default;
     Joueur& operator=(Joueur&& other) = default;
 
+
+//----------------------------------------------------------------- methods for Name
     std::string getName = function(){
         return _nom;
     }
@@ -25,6 +27,7 @@ public:
     void setName = function(nom){
         _nom = nom;
     }
+//----------------------------------------------------------------- methods for Prenom
 
     std::string getPrenom = function(){
         return _prenom;
@@ -33,6 +36,7 @@ public:
     void setPrenom = function(prenom){
         _prenom = prenom;
     }
+//----------------------------------------------------------------- methods for Taille
 
     float getTaille = function(){
         return _taille;
@@ -41,6 +45,7 @@ public:
     void setTaille = function(taille){
         _taille = taille;
     }
+//----------------------------------------------------------------- methods for Poids
 
     float getPoids = function(){
         return _poids;
@@ -49,6 +54,7 @@ public:
     void setPoids = function(poids){
         _poids = poids;
     }
+//----------------------------------------------------------------- methods for villeNaissance
 
     float getVilleNaissance = function(){
         return _villeNaissance;

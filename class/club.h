@@ -6,6 +6,7 @@
 #include "person.h"
 #include "palmares.h"
 #include "contract.h"
+#include "utils.h" // Pour aller Chercher la structure de la date
 
 typedef std::vector<Contract> 	VectorCon;
 typedef std::vector<Rupture> 	VectorRup;
@@ -17,7 +18,7 @@ private:
 	std::string 			histoireDuClub;
 	std::string 			couleurDuClub;
 	Date 					anneeDeCreation;
-	VectorPrs				*effectif;
+	VectorPrs				*effectif; 
 	VectorPal			 	*unPalmares;
 	std::string 			villeDuClub;
 	VectorPrs			 	*staffTechnique;

@@ -13,9 +13,9 @@ class Person
 
 
 protected:
-    std::string prenom;
-    std::string nom;
-    Role role;
+    std::string _prenom;
+    std::string _nom;
+    Role _role;
 
 public:
 
@@ -28,26 +28,26 @@ public:
     virtual Person& operator=(Person&& other) = default;
 
 
-    virtual std::string getFirstName = function(){
+    virtual std::string getFirstName(){
 
-        return std::string prenom;
+        return _prenom;
     }
 
-    virtual std::string setFirstName = function(std::firstName){
+    virtual void setFirstName(std::string firstName){
 
-        std::string prenom = firstName;
+            _prenom = firstName;
 
     }
 
 
-    virtual std::string getLastName = function(){
+    virtual std::string getLastName(){
 
-        return std::string nom;
+        return _nom;
     }
 
-    virtual std::string setLastName = function(std::lastName){
+    virtual void setLastName(std::lastName){
 
-        std::string prenom = lastName;
+        _prenom = lastName;
 
     }
 
@@ -56,64 +56,67 @@ public:
 class Joueur : public Person {
 
 protected:
-    float taille;
-    float poids;
-    std::string emplacementNaissance;
+    float _taille;
+    float _poids;
+    std::string _emplacementNaissance;
 
 public:
 
+//----------------------------------------------------------------- methods for FirstName
 
         std::string getFirstName(){
 
-            return std::string prenom;
+            return _prenom;
         }
 
         void setFirstName(std::string firstName){
 
-            prenom = firstName;
+            _prenom = firstName;
 
         }
 
+//----------------------------------------------------------------- methods for LastName
 
         std::string getLastName(){
 
-            return std::string nom;
+            return std::string _nom;
         }
 
         void setLastName(lastName){
 
-           prenom = lastName;
+           _prenom = lastName;
 
         }
+//----------------------------------------------------------------- methods for Taille
 
-        float getTaile(){
+        float getTaille(){
 
-            return taille;
+            return _taille;
         }
 
-        void setTaile(float grandeur){
+        void setTaille(float grandeur){
 
-            taille = grandeur;
+            _taille = grandeur;
 
         }
-        float getPoids = function(){
+        float getPoids(){
 
-            return poids;
+            return _poids;
         }
 
         void setPoids(float grosseur){
 
-            poids = grosseur;
+            _poids = grosseur;
 
         }
         std::string getEmplacementNaissance(){
 
-            return std::string emplacementNaissance;
+            return std::string _emplacementNaissance;
         }
 
-        void setEmplacementNaissance = function(std::string birthDay){
+        void setEmplacementNaissance(std::string birthDay){
 
-            emplacementNaissance = birthDay;
+            _emplacementNaissance = birthDay;
 
         }
 
@@ -124,41 +127,41 @@ class Entraineur : public Person{
 
 protected:
 
-    std::string placeGrade;
-    VectorPal TitreGagne;
+    std::string _placeGrade;
+    VectorPal _TitreGagne;
 public:
 
         void getFirstName(){
 
-            return std::string prenom;
+            return _prenom;
         }
 
         std::string setFirstName(std::string firstName){
 
-           prenom = firstName;
+           _prenom = firstName;
 
         }
 
 
-        void getLastName = function(){
+        void getLastName(){
 
-            return std::string nom;
+            return _nom;
         }
 
-        void setLastName = function(std::string lastName){
+        void setLastName(std::string lastName){
 
-            std::string prenom = lastName;
+            _prenom = lastName;
 
         }
 
-        std::string getGrade = function(){
+        std::string getGrade(){
 
-            return std::string grade;
+            return _placeGrade;
         }
 
-        void setGrade = function(std::string Grade){
+        void setGrade(std::string Grade){
 
-            std::string placeGrade = Grade;
+            _placeGrade = Grade;
 
 };
 
