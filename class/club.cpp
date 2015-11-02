@@ -14,30 +14,30 @@ Club::~Club() {
 
 //----------------------------------------------------------------- methods of Club
 void Club::CreerJoueur(){
-	std::string nom, prenom, ville, dateContrat, dateEntree;
-	int dureeContrat;
+	std::string nom, prenom, ville, dateContrat, dateEntree, droit;
+	int dureeContrat, age;
 	float taille, poids, montant;
 	bool autonome(false);
 	std::cout << "*******************CREATION D'UN JOUEUR*******************" << std::endl
-	<< "//		Nom : "; std::cin >> nom;
-	std::cout << std::endl <<  "//		Prenom : "; std::cin >> prenom;
-	std::cout << std::endl << "//		Taille : "; std::cin >> taille;
-	std::cout << std::endl << "//		Poids : "; std::cin >> poids;
-	std::cout << std::endl << "//		Ville de Naissance : "; std::cin >> ville;
-	std::cout << std::endl << "//		Autonome(Oui = 1/Non = 0) : "; std::cin >> autonome;
+	<< "//		NOM : "; std::cin >> nom;
+	std::cout << std::endl <<  "//		PRENOM : "; std::cin >> prenom;
+	std::cout << std::endl <<  "//		AGE : "; std::cin >> age;
+	std::cout << std::endl << "//		TAILLE : "; std::cin >> taille;
+	std::cout << std::endl << "//		POIDS : "; std::cin >> poids;
+	std::cout << std::endl << "//		VILLE DE NAISSANCE : "; std::cin >> ville;
+	std::cout << std::endl << "//		AUTONOME(OUI = 1/NON = 0) : "; std::cin >> autonome;
 
 	if (autonome) {
-		//Joueur_Autonome New(nom, prenom, taille, poids, ville);
-		//effectif.push_back(New);
-		//Constructor Contract
-		//contratsdEngagement.push_back(NewContrat);
-
+		 Joueur* newbie = new Joueur_Autonome(prenom, nom, age, taille, poids, ville);
+		effectif.push_back(newbie);
+		Contrat* newContrat = new Contrat(newbie, this, dureeContrat, dateEntree, dateContrat, montant, droit);
+		contratsdEngagement.push_back(newContrat);
 	}
 	else {
-		//Joueur_NonAutonome New(nom, prenom, taille, poids, ville);
-		//effectif.push_back(New);
-		//Constructor Contract
-		//contratsdEngagement.push_back(NewContrat);
+		Joueur_NonAutonome *newbie = new Joueur_NonAutonome(prenom, nom, age, taille, poids, ville);
+		effectif.push_back(newbie);
+		Contrat* newContrat = new Contrat(newbie, this, dureeContrat, dateEntree, dateContrat, montant, droit);
+		contratsdEngagement.push_back(newContrat);
 	}
 }
 
@@ -66,7 +66,7 @@ void Club::AfficherCalendrier(){
 
 }
 
-void Club::TransfertJoueur(){
+void Club::TransfertJoueur(Contrat* leContrat){
 
 }
 
@@ -74,6 +74,6 @@ void Club::AfficherMontantTransferts(Date dateDonnee){
 	std::cout << "Les montants des transferts du " << dateDonnee.To_String() << " :/n";
 	for (int i = 0; i < contratsdEngagement.size(); i++){
 		if(contratsdEngagement[i]->getDateDuContrat().Compare(dateDonnee))
-			std::cout << "-  " << contratsdEngagement[i]->getReglement().getMontantDuTransfert() << std::endl;
+			std::cout << "-  " << contratsdEngagement[i]->getReglement()->getMontantDuTransfert() << std::endl;
 	}
 }

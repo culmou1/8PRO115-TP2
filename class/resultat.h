@@ -6,11 +6,11 @@ class Resultat {
 	friend class Match;
 
 private:
-	int butsLocaux;
-	int butsVisiteurs;
+	int _butsLocaux;
+	int _butsVisiteurs;
 
 public:
-	Resultat(int home, int visitor) : butsLocaux(home), butsVisiteurs(visitor) {}
+	Resultat(int home, int visitor) : _butsLocaux(home), _butsVisiteurs(visitor) {}
 
     ~Resultat();
     Resultat(const Resultat& other);
@@ -20,20 +20,20 @@ public:
 
 //----------------------------------------------------------------- methods for butsLocaux
 	int getButsLocaux() {
-		return butsLocaux;
+		return _butsLocaux;
 	}
 
 	void setButsLocaux(int goals) {
-		butsLocaux = goals;
+		_butsLocaux = goals;
 	}
 
 //----------------------------------------------------------------- methods for butsVisiteurs
 	int getButsVisiteurs() {
-		return butsVisiteurs;
+		return _butsVisiteurs;
 	}
 
 	void setButsVisiteurs(int goals) {
-		butsVisiteurs = goals;
+		_butsVisiteurs = goals;
 	}
 
 };

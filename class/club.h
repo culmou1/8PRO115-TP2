@@ -4,13 +4,13 @@
 #include <vector>
 #include "person.h"
 #include "palmares.h"
-#include "contract.h"
+#include "Contrat.h"
 
 #include "rupture.h"
 #include "utils.h"
 
 typedef std::vector<Palmares*>	VectorPal; // Une ensemble de vecteur de type Palmares
-typedef std::vector<Contract*> 	VectorCon; // Une ensemble de vecteur de type Contract
+typedef std::vector<Contrat*> 	VectorCon; // Une ensemble de vecteur de type Contrat
 typedef std::vector<Rupture*> 	VectorRup; // Une ensemble de vecteur de type Rupture
 typedef std::vector<Person*>  	VectorPrs; // Une ensemble de vecteur de type Person
 typedef std::vector<Equipe*>  	VectorEqui; // Une ensemble de vecteur de type Person
@@ -22,9 +22,6 @@ class Club {
 private:
 	std::string 			histoireDuClub;
 	std::string 			couleurDuClub;
-	Date 					anneeDeCreation;
-	VectorPrs				*effectif;
-	VectorPal			 	*unPalmares;
 	std::string 			adresseDuClub;
 	std::string 			villeDuClub;
 	Date 					anneeDeCreation;
@@ -187,7 +184,7 @@ public:
     void Club::SupprimerJoueur(std::string firstname, std::string lastname);
     void AfficherEffectif();
     void AfficherCalendrier();
-    void TransfertJoueur();
+    void TransfertJoueur(Contrat* leContrat);
 	void AfficherMontantTransferts(Date dateDonnee);
 
 };
