@@ -31,12 +31,12 @@ private:
 	VectorCon 				contratsdEngagement;
 	VectorRup 				rupturesDeContrats;
 	static VectorEqui		allClub;
+
+
 	//Calendrier 				calendrier;
 
 public:
-    Club(std::string history, std::string color, std::string address, std::string town, std::string year){
-		allClub.push_back(*this); // Faire la liste the Tout le Club
-	};
+    Club(std::string history, std::string color, std::string address, std::string town, std::string year){};
 
     ~Club();
     Club(const Club& other);
@@ -133,16 +133,24 @@ public:
 	}
 
 //----------------------------------------------------------------- methods for ContratsdEngagement
-	void getContratsdEngagement(VectorCon &contrats) {
+	void getContratsdEngagement(Contrat *contrats) {
+		lookUpContratdEngagement(contrats);
 		for (int i = 0; i < contratsdEngagement.size(); i++) {
 			contrats[i] = contratsdEngagement[i];
 		}
 	}
 
-	void setContratsdEngagement(VectorCon contrats) {
-		contratsdEngagement.clear();
-		for (int i = 0; i < contrats.size(); i++) {
-			contratsdEngagement.push_back(contrats[i]);
+	void addContratsdEngagement(Contrat *contrats) {
+		contratsdEngagement.push_back(contrats);
+	}
+
+	bool lookUpContratdEngagement(Contrat *contrats){
+		for(int i = 0; i < contratsdEngagement.size();i++){
+			if (ContratsdEngagement[i]= contrats){
+				return true;
+			}
+			else return false;
+
 		}
 	}
 
@@ -160,11 +168,30 @@ public:
 		}
 	}
 
-//----------------------------------------------------------------- methods for RupturesDeContrats
+//----------------------------------------------------------------- methods for getAllClub
 
 	Club getAllClub(){
 		for (int i = 0; i < VectorEqui.size();i++){
-			std::cout << allClub[i]->getHistoireDuClub() << endl;
+			std::cout << "Voici la Position du Club: " << i << " - "<< allClub[i]->getCouleurDuClub() << std::endl;
+		}
+	}
+
+	Club selectClub(int j){
+		for(int i = 0; i < VectorEqui.size();i++){
+			if (VectorEqui[j]==VectorEqui[i]){
+				return *VectorEqui[i];
+			}
+			else {
+				std::cout << "Le Club selectionne n\'existe pas" << std::endl;
+			}
+		}
+	}
+
+//-----------------------------------------------------------------
+
+	void getAllContratEngagement(){
+		for (int i = 0; i < VectorCon.size();i++){
+			std::cout << "Voici la Position du Club: " << i << " - " << VectorCon[]
 		}
 	}
 

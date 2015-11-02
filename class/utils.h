@@ -55,6 +55,11 @@ Date To_Date(std::string date) {
 	return convert;
 }
 
+Club getClub(int j){
+    Club::selectClub(j);
+
+}
+
 Equipe look_up_team(Equipe *team){
 
 

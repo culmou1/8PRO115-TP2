@@ -5,6 +5,7 @@
 Club::Club(std::string history, std::string color, std::string address, std::string town, std::string year) {
 	histoireDuClub = history; couleurDuClub = color; adresseDuClub = address;
 	villeDuClub = town; anneeDeCreation = To_Date(year);
+	allClub.push_back(this); // Faire la liste the Tout le Club
 }
 
 //----------------------------------------------------------------- Destructor

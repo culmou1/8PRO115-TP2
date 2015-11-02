@@ -147,27 +147,38 @@ public:
             // Peut-être initialisation d'un Pointeur de Joueur
 
             // Construction de la rupture
-            Rupture ruptureName (*this,leContrat->getClubContratant,raisonDuDepart,penalite);
+            Rupture ruptureName (this,leContrat->getClubContractant,raisonDuDepart,penalite);
 
 
-            // Le joueur n'est plus liée au Contrat
-            leContrat->setJoueurContratant(NULL);
+            // Le joueur n'est plus liée au Contract
 
-            int dureeDuContrat;
+
+            // Delete contract d'entende dans Club (recherche)
+            int dureeDuContract, choisirClub;
             std::string datedEntree, dateDuContrat;
             float seuilTransfert;
+
 
             std::cout << "*******************LE NOUVEAU CONTRAT DU JOUEUR*******************" << std::endl
             std::cout << std::endl <<  "//		DUREE DU Contrat : "; std::cin >> dureeDuContrat;
             std::cout << std::endl <<  "//		DATE D\'ENTREE DU JOUEUR : "; std::cin >> datedEntree;
             std::cout << std::endl <<  "//		QUELLE DATE FINI LE Contrat : "; std::cin >> dateDuContrat;
             std::cout << std::endl <<  "//		PRIX DU TRANSFERT : "; std::cin >> seuilTransfert;
-            std::string ContratName = rupture + getFirstName() + getLastName(); // Obtenir un Constructeur Différent
+            std::cout << std::endl <<  "//		CHOISIR NOUVELLE EQUIPE : " <<std::endl;
+            std::cout << std::endl << leContrat->getClubContractant()->getAllClub();  std::cin >> choisirClub;
 
-            Contrat ContratName(this,)
+            Club *club;
+
+            club = getClub(choisirClub);
+
+            std::string contractName = rupture + this.getFirstName() + this.getLastName(); // Obtenir un Constructeur Différent
+
+
+            Contract contractName(this,club,leContrat->getClubContractant,dureeDuContract,datedEntree,dateDuContrat,seuilTransfert);
         }
-
-        leContrat
+        else {
+            std::cout << "Le contrat n\'existe pas !" << std::endl;
+        }
     }
 };
 
