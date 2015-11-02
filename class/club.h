@@ -136,16 +136,24 @@ public:
 	}
 
 //----------------------------------------------------------------- methods for ContratsdEngagement
-	void getContratsdEngagement(VectorCon &contrats) {
+	void getContratsdEngagement(Contrat *contrats) {
+		lookUpContratdEngagement(contrats);
 		for (int i = 0; i < contratsdEngagement.size(); i++) {
 			contrats[i] = contratsdEngagement[i];
 		}
 	}
 
-	void setContratsdEngagement(VectorCon contrats) {
-		contratsdEngagement.clear();
-		for (int i = 0; i < contrats.size(); i++) {
-			contratsdEngagement.push_back(contrats[i]);
+	void addContratsdEngagement(Contrat *contrats) {
+		contratsdEngagement.push_back(contrats);
+	}
+
+	bool lookUpContratdEngagement(Contrat *contrats){
+		for(int i = 0; i < contratsdEngagement.size();i++){
+			if (ContratsdEngagement[i]= contrats){
+				return true;
+			}
+			else return false;
+
 		}
 	}
 
@@ -179,6 +187,14 @@ public:
 			else {
 				std::cout << "Le Club selectionne n\'existe pas" << std::endl;
 			}
+		}
+	}
+
+//-----------------------------------------------------------------
+
+	void getAllContratEngagement(){
+		for (int i = 0; i < VectorCon.size();i++){
+			std::cout << "Voici la Position du Club: " << i << " - " << VectorCon[]
 		}
 	}
 

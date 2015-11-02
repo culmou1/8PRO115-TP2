@@ -177,7 +177,6 @@ public:
 
 
             // Le joueur n'est plus liée au Contract
-            leContrat->setJoueurContractant(NULL);
 
 
             // Delete contract d'entende dans Club (recherche)
@@ -203,8 +202,9 @@ public:
 
             Contract contractName(this,club,leContrat->getClubContractant,dureeDuContract,datedEntree,dateDuContrat,seuilTransfert);
         }
-
-        leContrat
+        else {
+            std::cout << "Le contrat n\'existe pas !" << std::endl;
+        }
     }
 
     std::string getEmplacementNaissance(){
