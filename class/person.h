@@ -166,7 +166,7 @@ public:
         _emplacementNaissance = birthDay;
     }
 
-}
+};
 
 class Joueur_NonAutonome : public Joueur{
 
