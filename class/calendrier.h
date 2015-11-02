@@ -3,7 +3,7 @@
 
 #include "rencontre.h"
 
-typedef std::vector<Rencontre*> 	VectorRen; // Une ensemble de vecteur de type Contract
+typedef std::vector<Rencontre*> 	VectorRen; // Une ensemble de vecteur de type Contrat
 
 class Calendrier
 {
@@ -11,15 +11,15 @@ class Calendrier
 public:
     Calendrier();
 
-    ~Calendrier() = default;
-    Calendrier(const Calendrier& other) = default;
-    Calendrier(Calendrier&& other) = default;
-    Calendrier& operator=(const Calendrier& other) = default;
-    Calendrier& operator=(Calendrier&& other) = default;
+    ~Calendrier();
+    Calendrier(const Calendrier& other);
+    Calendrier(Calendrier&& other);
+    Calendrier& operator=(const Calendrier& other);
+    Calendrier& operator=(Calendrier&& other);
 
 
     VectorRen getRencontre(){
-        for(int i = 0;i > _rencontre.size();i++){
+        for(int i = 0;i > _rencontre->size();i++){
 
         }
 

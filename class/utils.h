@@ -2,9 +2,11 @@
 #define UTILS_H
 
 #include <string>
+#include <stdexcept>
 #include "equipe.h"
 
 enum Role {
+	JOUEUR,
     ENTRAINEUR,
     MANAGER,
     SECRETAIRE,
@@ -30,7 +32,7 @@ struct Date { // Format DD/MM/YYYY
 
   // Conversion de la date en une string
   std::string To_String() {
-    return std::to_string(tm_day) + "/" + std::to_string(tm_month) + "/" + std::to_string(tm_year);
+    return std::to_string(tm_day) + "-" + std::to_string(tm_month) + "-" + std::to_string(tm_year);
   }
 };
 
@@ -41,7 +43,7 @@ Date To_Date(std::string date) {
     	convert.tm_month = std::stoi(date.substr(3,2));
     	convert.tm_year = std::stoi(date.substr(6,4));
     }
-    catch(std::lenght_error& e){
+    catch(const std::length_error& e){
         std::cout<< e.what() << std::endl;
         std::cout << "You should Format the Date like this: \'dd-mm-year\'-\'01-01-2015\'" << std::endl;
 

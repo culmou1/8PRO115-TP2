@@ -9,14 +9,14 @@ typedef std::vector<Periode*> 	VectorPer;
 class Match {
 
 private:
-	Equipe		*locaux;
-	Equipe 		*visiteurs;
-	VectorPer	periodesJouees;
-	Resultat  	resultatFinal;
+	Equipe		const *_locaux;
+	Equipe 		const *_visiteurs;
+	VectorPer	_periodesJouees;
+	Resultat  	_resultatFinal;
 
 public:
 	Match(Equipe *home, Equipe *visitor, Resultat score) :
-		locaux(home), visiteurs(visitor), resultatFinal(score) {}
+		_locaux(home), _visiteurs(visitor), _resultatFinal(score) {}
 
     ~Match();
     Match(const Match& other);
@@ -25,52 +25,52 @@ public:
     Match& operator=(Match&& other);
 
 //----------------------------------------------------------------- methods for Locaux
-    Equipe *getLocaux(){
-    	return locaux;
+    const Equipe *getLocaux(){
+    	return _locaux;
     }
 
     void setLocaux(Equipe *home){
-    	locaux = home;
+    	_locaux = home;
     }
 
 //----------------------------------------------------------------- methods for Locaux
-    Equipe *getVisiteurs(){
-    	return visiteurs;
+    const Equipe *getVisiteurs(){
+    	return _visiteurs;
     }
 
     void setVisiteurs(Equipe *stranger){
-    	visiteurs = stranger;
+    	_visiteurs = stranger;
     }
 
 //----------------------------------------------------------------- methods for periodesJouees
 	void getPeriodes(VectorPer &half) {
-		for (int i = 0; i < periodesJouees.size(); i++) {
-			half[i] = periodesJouees[i];
+		for (int i = 0; i < _periodesJouees.size(); i++) {
+			half[i] = _periodesJouees[i];
 		}
 	}
 
 	void setPeriodes(VectorPer half) {
-		periodesJouees.clear();
+		_periodesJouees.clear();
 		for (int i = 0; i < half.size(); i++) {
-			periodesJouees.push_back(half[i]);
+			_periodesJouees.push_back(half[i]);
 		}
 	}
 
 //----------------------------------------------------------------- methods for resultat
 	Resultat getResultat(){
-		return resultatFinal;
+		return _resultatFinal;
 	}
 
 	void setResulat(int home, int visitor) {
-		resultatFinal.butsLocaux = home;
-		resultatFinal.butsVisiteurs= visitor;
+		_resultatFinal.butsLocaux = home;
+		_resultatFinal.butsVisiteurs= visitor;
 	}
 
 //----------------------------------------------------------------- methods of Match
-	void ObtenirResulatFinal() {
-		for (int i = 0; i <periodesJouees.size(); i++) {
-			resultatFinal.butsLocaux += periodesJouees[i]->resultat.butsLocaux;
-			resultatFinal.butsVisiteurs += periodesJouees[i]->resultat.butsVisiteurs;
+	void obtenirResulatFinal() {
+		for (int i = 0; i <_periodesJouees.size(); i++) {
+			_resultatFinal.butsLocaux += _periodesJouees[i]->resultat.butsLocaux;
+			_resultatFinal.butsVisiteurs += _periodesJouees[i]->resultat.butsVisiteurs;
 		}
 	}
 };

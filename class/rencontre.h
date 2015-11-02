@@ -7,11 +7,11 @@
 class Rencontre {
 
 private: 
-	Match	*match;
-	Date	dateDeRencontre;
+	Match	*_match;
+	Date	_dateDeRencontre;
 
 public:
-	Rencontre(Match *game, std::string date) : match(game), dateDeRencontre(To_Date(date)) {}
+	Rencontre(Match *game, std::string date) : _match(game), _dateDeRencontre(To_Date(date)) {}
 
     ~Rencontre();
     Rencontre(const Rencontre& other);
@@ -21,22 +21,22 @@ public:
 
 //----------------------------------------------------------------- methods for match
     Match* getMatch() {
-    	return match;
+    	return _match;
     }
 
     void setMatch(Match *game){
-    	match = game;
+    	_match = game;
     }
 
 //----------------------------------------------------------------- methods for dateDeRencontre
     Date getDate(){
-    	return dateDeRencontre;
+    	return _dateDeRencontre;
     }
 
 	void setDate(int day, int month, int year){
-	    dateDeRencontre.tm_day = day;
-	    dateDeRencontre.tm_month = month;
-	    dateDeRencontre.tm_year = year;
+	    _dateDeRencontre.tm_day = day;
+	    _dateDeRencontre.tm_month = month;
+	    _dateDeRencontre.tm_year = year;
 	}
 
 };

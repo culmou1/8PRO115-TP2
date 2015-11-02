@@ -6,14 +6,14 @@
 class Rupture {
 
 private:
-	Joueur 			*joueurRelaxant;
-	Club 			*clubContractant;
-	Raison	        raisonsDuDepart;
-	float 			penalite;
+	Joueur 			const *_joueurRelaxant;
+	Club 			const *_clubContratant;
+	Raison	        _raisonsDuDepart;
+	float 			_penalite;
 
 public:
 	Rupture(Joueur *player, Club *new_club, Raison why, float money) : 
-		joueurRelaxant(player), clubContractant(new_club), raisonsDuDepart(why), penalite(money) {}
+		_joueurRelaxant(player), _clubContratant(new_club), _raisonsDuDepart(why), _penalite(money) {}
 
     ~Rupture();
     Rupture(const Rupture& other);
@@ -22,38 +22,38 @@ public:
     Rupture& operator=(Rupture&& other);
 
 //----------------------------------------------------------------- methods for joueurRelaxant
-    Joueur *getJoueurRelaxant() {
-    	return joueurRelaxant;
+    const Joueur *getJoueurRelaxant() {
+    	return _joueurRelaxant;
     }
 
     void setJoueurRelaxant(Joueur *newbie) {
-    	joueurRelaxant = newbie;
+    	_joueurRelaxant = newbie;
     } 
 
-//----------------------------------------------------------------- methods for clubContractant
-    Club *getClubContractant() {
-    	return clubContractant;
+//----------------------------------------------------------------- methods for clubContratant
+    const Club *getClubContratant() {
+    	return _clubContratant;
     }
 
-    void setClubContractant(Club *new_club) {
-    	clubContractant = new_club;
+    void setClubContratant(Club *new_club) {
+    	_clubContratant = new_club;
     }
 //----------------------------------------------------------------- methods for raisonsDuDepart
     Raison getRaisonsDuDepart() {
-    	return raisonsDuDepart;
+    	return _raisonsDuDepart;
     }
 
     void setRaisonsDuDepart(Raison raisons) {
-    	raisonsDuDepart = raisons;
+    	_raisonsDuDepart = raisons;
     }
 
 //----------------------------------------------------------------- methods for penalite
     float getPenalite() {
-    	return penalite;
+    	return _penalite;
     }
 
     void setPenalite(float cost)  {
-    	penalite = cost;
+    	_penalite = cost;
     }
 
 };

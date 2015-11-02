@@ -7,14 +7,14 @@
 class Equipe {
 
 private:
-	Club 	*club;
-	int 	nbrJoueurs;
-	int 	nbrGardiens;
-	Joueur 	*capitaine;
+	Club 	const *_club;
+	int 	_nbrJoueurs;
+	int 	_nbrGardiens;
+	Joueur 	const *_capitaine;
 
 public:
     Equipe(Club *team, int players, int goals, Joueur *capt) :
-		club(team), nbrJoueurs(players), nbrGardiens(goals), capitaine(capt) {}
+		_club(team), _nbrJoueurs(players), _nbrGardiens(goals), _capitaine(capt) {}
 
     ~Equipe();
     Equipe(const Equipe& other);
@@ -23,39 +23,39 @@ public:
     Equipe& operator=(Equipe&& other);
 
 //----------------------------------------------------------------- methods for club
-    Club *getClub(){
-    	return club;
+    const Club *getClub(){
+    	return _club;
     }
 
     void setClub(Club *team){
-    	club = team;
+    	_club = team;
     }
 
 //----------------------------------------------------------------- methods for nbrJoueurs
 	int getNbrJoueur(){
-		return nbrJoueurs;
+		return _nbrJoueurs;
 	}
 
 	void setNbrJoueur(int nbr){
-		nbrJoueurs = nbr;
+		_nbrJoueurs = nbr;
 	}
 
 //----------------------------------------------------------------- methods for nbrGardiens
 	int getNbrGardiens(){
-		return nbrGardiens;
+		return _nbrGardiens;
 	}
 
 	void setNbrGardiens(int nbr){
-		nbrGardiens = nbr;
+		_nbrGardiens = nbr;
 	}
 
 //----------------------------------------------------------------- methods for nbrGardiens
-	Joueur *getCapitaine(){
-		return capitaine;
+	const Joueur *getCapitaine(){
+		return _capitaine;
 	}
 
 	void setCapitaine(Joueur *capt){
-		capitaine = capt;
+		_capitaine = capt;
 	}
 };
 

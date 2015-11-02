@@ -2,18 +2,20 @@
 #define REGLEMENT_H
 
 #include <string>
+const float pourcentJoueur = 0.002;
 
 class Reglement {
 
 private:
-	const float 	seuilDeTransfert;
-	std::string		droitDuJoueur;
-	float			montantDuTransfert;
-	float			montantAncienClub;
-	float			montantJoueur;
+	const float 	_seuilDeTransfert;
+	std::string		_droitDuJoueur;
+	float			_montantDuTransfert;
+	float			_montantAncienClub;
+	float			_montantJoueur;
 
 public:
-	Reglement();
+	Reglement(float montant, std::string droit) : 
+		_droitDuJoueur(droit), _montantDuTransfert(montant), _montantAncienClub(montant), _montantJoueur(montant*pourcentJoueur) {}
 
     ~Reglement();
     Reglement(const Reglement& other);
@@ -23,38 +25,38 @@ public:
 
 //----------------------------------------------------------------- methods for droitDuJoueur
     std::string getDroitDuJoueur() {
-    	return  droitDuJoueur;
+    	return  _droitDuJoueur;
     }
 
     void setDroitDuJoueur(std::string right) {
-    	droitDuJoueur = right;
+    	_droitDuJoueur = right;
     }
 
 //----------------------------------------------------------------- methods for montantDuTransfert
     float getMontantDuTransfert() {
-    	return  montantDuTransfert;
+    	return  _montantDuTransfert;
     }
 
     void setMontantDuTransfert(float somme){
-    	montantDuTransfert = somme;
+    	_montantDuTransfert = somme;
     }
 
 //----------------------------------------------------------------- methods for montantAncienClub
     float getMontantAncienClub() {
-    	return  montantAncienClub;
+    	return  _montantAncienClub;
     }
 
     void setMontantAncienClub(float somme){
-    	montantAncienClub = somme;
+    	_montantAncienClub = somme;
     }
 
 //----------------------------------------------------------------- methods for montantJoueur
     float getMontantJoueur() {
-    	return  montantJoueur;
+    	return  _montantJoueur;
     }
 
     void setMontantJoueur(float somme){
-    	montantJoueur = somme;
+    	_montantJoueur = somme;
     }
     
 };
