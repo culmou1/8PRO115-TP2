@@ -4,7 +4,7 @@
 //http://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum
 #include <vector>
 #include "palmares.h"
-#include "Contrat.h"
+#include "contract.h"
 #include "utils.h"
 
 class Person {
@@ -17,7 +17,7 @@ protected:
 
 
 public:
-    Person(std::string prenom,std::string nom, int age,Role role): _prenom(prenom),_nom(nom),_age(age),_role(role){};
+    Person(std::string prenom,std::string nom, int age,Role role): _prenom(prenom),_nom(nom),_age(age)_role(role){};
 
     virtual ~Person();
     Person(const Person& other);
@@ -62,13 +62,7 @@ public:
 		_role = choix;
 	}
 
-//----------------------------------------------------------------- methods for Person
-	std::string obtenirNP() {
-		return _prenom+" "+_nom;
-	}
 };
-
-
 
 class Joueur : public Person {
 
@@ -78,10 +72,9 @@ protected:
     std::string _emplacementNaissance;
 
 public:
-	Joueur(std::string prenom,std::string nom, int age,float taille,float poids,std::string emplacementNaissance):
-        Person(prenom,nom,age,JOUEUR),_taille(taille),_poids(poids),_emplacementNaissance(emplacementNaissance){};
-
-    Joueur(std::string prenom,std::string nom, int age):Person(prenom,nom,age,JOUEUR){};
+	Joueur(std::string prenom,std::string nom, int age,Role role,float taille,float poids,std::string emplacementNaissance):
+        Person(prenom,nom,age,role),_taille(taille),_poids(poids),_emplacementNaissance(emplacementNaissance){};
+    Joueur(std::string prenom,std::string nom, int age,Role role):Person(prenom,nom,age,role){};
 
     virtual ~Joueur();
     Joueur(const Joueur& other);
@@ -89,14 +82,45 @@ public:
     virtual Joueur& operator=(const Joueur& other);
     virtual Joueur& operator=(Joueur&& other);
 
-//----------------------------------------------------------------- methods for Taille
-    float getTaille(){
-        return _taille;
-    }
+//----------------------------------------------------------------- methods for FirstName
 
-    void setTaille(float grandeur){
-        _taille = grandeur;
-    }
+
+
+        std::string getFirstName(){
+
+            return _prenom;
+        }
+
+        void setFirstName(std::string firstName){
+
+            _prenom = firstName;
+
+        }
+
+//----------------------------------------------------------------- methods for LastName
+
+        std::string getLastName(){
+
+            return std::string _nom;
+        }
+
+        void setLastName(lastName){
+
+           _prenom = lastName;
+
+        }
+//----------------------------------------------------------------- methods for Taille
+
+        float getTaille(){
+
+            return _taille;
+        }
+
+        void setTaille(float grandeur){
+
+            _taille = grandeur;
+
+        }
 
 //----------------------------------------------------------------- methods of poids
     float getPoids(){
@@ -105,6 +129,7 @@ public:
 
     void setPoids(float grosseur){
         _poids = grosseur;
+
     }
 
 //----------------------------------------------------------------- methods of emplacementNaissance
@@ -120,11 +145,8 @@ public:
 
 
 class Joueur_Autonome : public Joueur{
-
 public:
-	Joueur_Autonome(std::string prenom,std::string nom, int age,float taille,float poids,std::string emplacementNaissance):
-		Joueur(prenom, nom, age, taille, poids, emplacementNaissance) {}
-
+	Joueur_Autonome();
     virtual ~Joueur_Autonome();
     Joueur_Autonome(const Joueur_Autonome& other);
     Joueur_Autonome(Joueur_Autonome&& other);
@@ -134,7 +156,7 @@ public:
 //----------------------------------------------------------------- methods of Joueur_Autonome
 	void RompreSonContrat(Contrat* leContrat){
 
-        if(&this == leContrat->&getJoueurContratant){
+        if(&this == leContrat->&getJoueurContractant){
             std::string raisonDuDepart,
             float penalite;
 
@@ -144,14 +166,17 @@ public:
 
             std::string rupture =  "rupture";
 
-            std::string Contrat = "Contrat"
+            std::string contract = "contract"
 
             std::string ruptureName = rupture + this.getFirstName() + this.getLastName(); // Obtenir un different constructeur de Rupture
 
-            // Peut-être initialisation d'un Pointeur de Joueur
-
             // Construction de la rupture
             Rupture ruptureName (this,leContrat->getClubContractant,raisonDuDepart,penalite);
+
+            // Supprimer le contrat du joueur
+            leContrat->getClubContractant->deleteContratsdEngagement(leContrat);
+
+
 
 
             // Le joueur n'est plus liée au Contract
@@ -164,9 +189,9 @@ public:
 
 
             std::cout << "*******************LE NOUVEAU CONTRAT DU JOUEUR*******************" << std::endl
-            std::cout << std::endl <<  "//		DUREE DU Contrat : "; std::cin >> dureeDuContrat;
+            std::cout << std::endl <<  "//		DUREE DU CONTRACT : "; std::cin >> dureeDuContract;
             std::cout << std::endl <<  "//		DATE D\'ENTREE DU JOUEUR : "; std::cin >> datedEntree;
-            std::cout << std::endl <<  "//		QUELLE DATE FINI LE Contrat : "; std::cin >> dateDuContrat;
+            std::cout << std::endl <<  "//		QUELLE DATE FINI LE CONTRACT : "; std::cin >> dateDuContrat;
             std::cout << std::endl <<  "//		PRIX DU TRANSFERT : "; std::cin >> seuilTransfert;
             std::cout << std::endl <<  "//		CHOISIR NOUVELLE EQUIPE : " <<std::endl;
             std::cout << std::endl << leContrat->getClubContractant()->getAllClub();  std::cin >> choisirClub;
@@ -181,10 +206,20 @@ public:
             Contract contractName(this,club,leContrat->getClubContractant,dureeDuContract,datedEntree,dateDuContrat,seuilTransfert);
         }
         else {
-            std::cout << "Le contrat n\'existe pas !" << std::endl;
+            std::cout << "Le contrat n\'existe pas pour le joueur !" << std::endl;
         }
     }
-};
+
+    std::string getEmplacementNaissance(){
+        return _emplacementNaissance;
+    }
+
+    void setEmplacementNaissance(std::string birthDay){
+
+        _emplacementNaissance = birthDay;
+    }
+
+}
 
 class Joueur_NonAutonome : public Joueur{
 
@@ -194,11 +229,11 @@ private:
 
 public:
     // Avec Avis Favorable
-	Joueur_NonAutonome(std::string prenom,std::string nom, int age,float taille,float poids,std::string emplacementNaissance,int anneecumulee,bool avisFavorable):
-        Joueur(prenom, nom, age, taille, poids, emplacementNaissance),_anneeCumulee(anneecumulee),_avisFavorable(avisFavorable) {}
+	Joueur_NonAutonome(std::string prenom,std::string nom, int age,Role role,float taille,float poids,std::string emplacementNaissance,int anneecumulee,bool avisFavorable):
+        Person(prenom,nom,age,role),_taille(taille),_poids(poids),_emplacementNaissance(emplacementNaissance),_anneeCumulee(anneecumulee),_avisFavorable(avisFavorable){};
     // Sans AvisFavorable
-	Joueur_NonAutonome(std::string prenom,std::string nom, int age,float taille,float poids,std::string emplacementNaissance):
-        Joueur(prenom, nom, age, taille, poids, emplacementNaissance), _anneeCumulee(0),_avisFavorable(false) {}
+	Joueur_NonAutonome(std::string prenom,std::string nom, int age,Role role,float taille,float poids,std::string emplacementNaissance,int anneecumulee):
+        Person(prenom,nom,age,role),_taille(taille),_poids(poids),_emplacementNaissance(emplacementNaissance),_anneeCumulee(anneecumulee)){};
 
     virtual ~Joueur_NonAutonome();
     Joueur_NonAutonome(const Joueur_NonAutonome& other);
@@ -206,26 +241,14 @@ public:
     virtual Joueur_NonAutonome& operator=(const Joueur_NonAutonome& other);
     virtual Joueur_NonAutonome& operator=(Joueur_NonAutonome&& other);
 
-//----------------------------------------------------------------- methods for AnneeCumulee
-	int getAnneeCumulee() {
-		return _anneeCumulee;
-	}
+//----------------------------------------------------------------- methods of Joueur_NpnAutonome
 
-	void setAnneeCumulee(int annee) {
-		_anneeCumulee = annee;
-	}
-
-//----------------------------------------------------------------- methods for avisFavorable
-	bool getAvisFavorable(){
-		return _avisFavorable;
+	bool DemandeDeTransfert(){
+        if (this._avisFavorable == True){
+            return true;
+        }
+        else return false;
     }
-
-	void getAvisFavorable(bool avis) {
-		_avisFavorable = avis;
-	}
-
-//----------------------------------------------------------------- methods of Joueur_NonAutonome
-
 };
 
 
@@ -233,17 +256,47 @@ class Entraineur : public Person{
 
 protected:
     std::string _placeGrade;
-    VectorPal	_TitreGagne;
-
+    VectorPal _TitreGagne;
 public:
-    Entraineur(std::string prenom,std::string nom, int age, std::string place) :
-		Person(prenom, nom, age, ENTRAINEUR), _placeGrade(place) {}
 
-    virtual ~Entraineur();
-    Entraineur(const Entraineur& other);
-    Entraineur(Entraineur&& other);
-    virtual Entraineur& operator=(const Entraineur& other);
-    virtual Entraineur& operator=(Entraineur&& other);
+    	Entraineur();
+        virtual ~Entraineur();
+        Entraineur(const Entraineur& other);
+        Entraineur(Entraineur&& other);
+        virtual Entraineur& operator=(const Entraineur& other);
+        virtual Entraineur& operator=(Entraineur&& other);
+
+        void getFirstName(){
+
+            return _prenom;
+        }
+
+        std::string setFirstName(std::string firstName){
+
+           _prenom = firstName;
+
+        }
+
+        void getLastName(){
+
+            return _nom;
+        }
+
+        void setLastName(std::string lastName){
+
+            _prenom = lastName;
+
+        }
+
+        std::string getGrade(){
+
+            return _placeGrade;
+        }
+
+        void setGrade(std::string Grade){
+
+            _placeGrade = Grade;
+        }
 
 //----------------------------------------------------------------- methods of placeGrade
     std::string getPlaceGrade(){

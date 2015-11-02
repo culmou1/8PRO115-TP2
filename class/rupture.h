@@ -12,7 +12,7 @@ private:
 	float 			_penalite;
 
 public:
-	Rupture(Joueur *player, Club *new_club, Raison why, float money) : 
+	Rupture(Joueur *player, Club *new_club, Raison why, float money) :
 		_joueurRelaxant(player), _clubContratant(new_club), _raisonsDuDepart(why), _penalite(money) {}
 
     ~Rupture();
@@ -28,7 +28,7 @@ public:
 
     void setJoueurRelaxant(Joueur *newbie) {
     	_joueurRelaxant = newbie;
-    } 
+    }
 
 //----------------------------------------------------------------- methods for clubContratant
     const Club *getClubContratant() {

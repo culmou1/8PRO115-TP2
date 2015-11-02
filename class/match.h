@@ -29,10 +29,6 @@ public:
     	return _locaux;
     }
 
-    void setLocaux(Equipe *home){
-    	_locaux = home;
-    }
-
 //----------------------------------------------------------------- methods for Locaux
     const Equipe *getVisiteurs(){
     	return _visiteurs;

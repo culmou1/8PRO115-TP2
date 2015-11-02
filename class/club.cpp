@@ -102,7 +102,7 @@ void Club::TransfertJoueur(Joueur* joueur){
 
 		// Supprime le contrat du vector du club libéré
 		delete contratsdEngagement[contratID];
-		contratsdEngagement.erase(contratsdEngagement.begin() + contratID); 
+		contratsdEngagement.erase(contratsdEngagement.begin() + contratID);
 
 		//supprime le joueur de leffectif du club libere
 		for (unsigned int i=0; i < effectif.size(); i++) {
@@ -112,7 +112,7 @@ void Club::TransfertJoueur(Joueur* joueur){
 			}
 		}
 	}
-	else 
+	else
 		std::cout << "Le contrat du joueur " << joueur->obtenirNP() << " n'existe pas." << std::endl;
 }
 

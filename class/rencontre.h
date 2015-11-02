@@ -6,7 +6,7 @@
 
 class Rencontre {
 
-private: 
+private:
 	Match	*_match;
 	Date	_dateDeRencontre;
 
@@ -37,6 +37,10 @@ public:
 	    _dateDeRencontre.tm_day = day;
 	    _dateDeRencontre.tm_month = month;
 	    _dateDeRencontre.tm_year = year;
+	}
+
+	void getMatchAndGame(){
+		std::cout << getDate.To_String() << " " << getMatch << std::endl 
 	}
 
 };

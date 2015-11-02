@@ -5,6 +5,7 @@
 #include "person.h"
 #include "palmares.h"
 #include "Contrat.h"
+#include "calendrier.h"
 
 #include "rupture.h"
 #include "utils.h"
@@ -18,6 +19,7 @@ typedef std::vector<Equipe*>  	VectorEqui; // Une ensemble de vecteur de type Pe
 
 // Classe Club
 class Club {
+friend class Calendrier;
 
 private:
 	std::string 			histoireDuClub;
@@ -31,9 +33,6 @@ private:
 	VectorCon 				contratsdEngagement;
 	VectorRup 				rupturesDeContrats;
 	static VectorEqui		allClub;
-
-
-	//Calendrier 				calendrier;
 
 public:
     Club(std::string history, std::string color, std::string address, std::string town, std::string year){};
@@ -143,16 +142,20 @@ public:
 		contratsdEngagement.push_back(contrats);
 	}
 
-	// to do faire un swap avec le dernier element
-
-	// aller revoir dans person autonome les ruptures
-
+	void deleteContratsdEngagement(Contrat *contrats){
+		for (int i = 0; i< contratsdEngagement.size();i++){
+			if (contratsdEngagement[i]== contrats){
+				contratsdEngagement[i].swap(contratsdEngagement.back())
+				contratsdEngagement.pop_back();
+			}
+		}
+	}
 	// transfert Joueur envoyer le contrat
 
 	Contrat lookUpContratdEngagement(Contrat *contrats){
 		for(int i = 0; i < contratsdEngagement.size();i++){
-			if (ContratsdEngagement[i]= contrats){
-				return ContratsdEngagement[i];
+			if (contratsdEngagement[i]== contrats){
+				return contratsdEngagement[i];
 			}
 			else {
 				std::cout << " Le contrat n\'existe pas ! " << std::endl;

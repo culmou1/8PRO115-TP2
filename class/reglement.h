@@ -14,7 +14,7 @@ private:
 	float			_montantJoueur;
 
 public:
-	Reglement(float montant, std::string droit) : 
+	Reglement(float montant, std::string droit) :
 		_droitDuJoueur(droit), _montantDuTransfert(montant), _montantAncienClub(montant), _montantJoueur(montant*pourcentJoueur) {}
 
     ~Reglement();
@@ -58,7 +58,7 @@ public:
     void setMontantJoueur(float somme){
     	_montantJoueur = somme;
     }
-    
+
 };
 
 #endif
