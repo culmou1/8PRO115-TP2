@@ -47,13 +47,14 @@ Date To_Date(std::string date) {
 
     }
     catch(const std::exception& e){
-        std::cout<< e.what();
+        std::cout<< e.what()<<std::endl;
     }
 
 	return convert;
 }
 
-Equipe look_up_team(){
+Equipe look_up_team(Equipe *team){
+
 
 }
 

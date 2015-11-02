@@ -2,6 +2,7 @@
 #define CONTRAT_H
 
 #include "club.h"
+#include "utils.h"
 
 class Contract {
 
@@ -16,18 +17,18 @@ private :
 
 public :
 	Contract(Joueur *joueurContractant,Club *clubContractant,Club *clubLibere, int dureeContrat,
-				Date dateDuContrat,float seuilTransfert):
-					_joueurContractant(joueurContractant),_clubContractant(clubContractant), _clubLibere(NULL),_dureeContrat(duree),
-					_dateDuContrat(dateDuContrat),_seuilTransfert(seuilTransfert){
-						_datedEntree = new Date()
-						// Suppossons que les contrats sont réalisée le premiers Janvier 2015
-						_datedEntree.tm_day = 1;
-						_datedEntree.tm_month = 1;
-						_datedEntree.tm_year = 2015;
-
-						// Club liberer pendant la construction d'un object sert a rien
+				std::string datedEntree,std::string dateDuContrat,float seuilTransfert):
+					_joueurContractant(joueurContractant),_clubContractant(clubContractant), _clubLibere(clubLibere),_dureeContrat(duree),
+					_datedEntree(To_Date(datedEntree)),_dateDuContrat(To_Date(dateDuContrat)),_seuilTransfert(seuilTransfert){
 					}
+	// Constructeur lorsque le Joueur n'a pas d'ancienne Équipe. Nous Donnons un Pointeur Null au Club libere.
+	// Pas Besoin d'envoyer un Pointeur NUll. Il va le faire automatiquement
 
+	Contract(Joueur *joueurContractant,Club *clubContractant, int dureeContrat,
+				std::string datedEntree,std::string dateDuContrat,float seuilTransfert):
+					_joueurContractant(joueurContractant),_clubContractant(clubContractant), _clubLibere(NULL),_dureeContrat(duree),
+					_datedEntree(To_Date(datedEntree)),_dateDuContrat(To_Date(dateDuContrat)),_seuilTransfert(seuilTransfert){
+					}
     ~Contract();
     Contract(const Contract& other) = default;
     Contract(Contract&& other) = default;
@@ -110,7 +111,7 @@ private :
 	float 			_penalite;
 
 public :
-	Rupture(Joueur *joueurRelaxant,Cub *clubContractant,std::string raisonsDuDepart,float penalite):
+	Rupture(Joueur *joueurRelaxant,Club *clubContractant,std::string raisonsDuDepart,float penalite):
 		_joueurRelaxant(joueurRelaxant),_clubContractant(clubContractant)_raisonsDuDepart(raisonsDuDepart),_penalite(penalite){};
 
     ~Rupture();
