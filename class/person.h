@@ -4,6 +4,7 @@
 //http://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum
 #include <vector>
 #include "palmares.h"
+#include "contract.h"
 #include "utils.h"
 
 class Person {
@@ -153,7 +154,53 @@ public:
     virtual Joueur_Autonome& operator=(Joueur_Autonome&& other);
 
 //----------------------------------------------------------------- methods of Joueur_Autonome
-	void RompreSonContrat(Contrat* leContrat){;
+	void RompreSonContrat(Contrat* leContrat){
+
+        if(&this == leContrat->&getJoueurContractant){
+            std::string raisonDuDepart,
+            float penalite;
+
+            std::cout << "*******************ROMPRE LE CONTRAT DU JOUEUR*******************" << std::endl
+            std::cout << std::endl <<  "//		RAISON DU DEPART : "; std::cin >> raisonDuDepart;
+            std::cout << std::endl <<  "//		PENALITE DE DEPART : "; std::cin >> penalite;
+
+            std::string rupture =  "rupture";
+
+            std::string contract = "contract"
+
+            std::string ruptureName = rupture + this.getFirstName() + this.getLastName(); // Obtenir un different constructeur de Rupture
+
+            // Peut-être initialisation d'un Pointeur de Joueur
+
+            // Construction de la rupture
+            Rupture ruptureName (*this,leContrat->getClubContractant,raisonDuDepart,penalite);
+
+
+            // Le joueur n'est plus liée au Contract
+            leContrat->setJoueurContractant(NULL);
+
+            int dureeDuContract;
+            std::string datedEntree, dateDuContrat;
+            float seuilTransfert;
+
+            std::cout << "*******************LE NOUVEAU CONTRAT DU JOUEUR*******************" << std::endl
+            std::cout << std::endl <<  "//		DUREE DU CONTRACT : "; std::cin >> dureeDuContract;
+            std::cout << std::endl <<  "//		DATE D\'ENTREE DU JOUEUR : "; std::cin >> datedEntree;
+            std::cout << std::endl <<  "//		QUELLE DATE FINI LE CONTRACT : "; std::cin >> dateDuContrat;
+            std::cout << std::endl <<  "//		PRIX DU TRANSFERT : "; std::cin >> seuilTransfert;
+            std::string contractName = rupture + this.getFirstName() + this.getLastName(); // Obtenir un Constructeur Différent
+
+            Contract contractName(this,)
+
+
+
+
+
+
+
+
+
+        }
 
         leContrat
     }
