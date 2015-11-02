@@ -34,12 +34,12 @@ private:
 	VectorCon 				contratsdEngagement;
 	VectorRup 				rupturesDeContrats;
 	static VectorEqui		allClub;
+
+
 	//Calendrier 				calendrier;
 
 public:
-    Club(std::string history, std::string color, std::string address, std::string town, std::string year){
-		allClub.push_back(*this); // Faire la liste the Tout le Club
-	};
+    Club(std::string history, std::string color, std::string address, std::string town, std::string year){};
 
     ~Club();
     Club(const Club& other);
@@ -163,11 +163,22 @@ public:
 		}
 	}
 
-//----------------------------------------------------------------- methods for RupturesDeContrats
+//----------------------------------------------------------------- methods for getAllClub
 
 	Club getAllClub(){
 		for (int i = 0; i < VectorEqui.size();i++){
-			std::cout << allClub[i]->getHistoireDuClub() << endl;
+			std::cout << "Voici la Position du Club: " << i << " - "<< allClub[i]->getCouleurDuClub() << std::endl;
+		}
+	}
+
+	Club selectClub(int j){
+		for(int i = 0; i < VectorEqui.size();i++){
+			if (VectorEqui[j]==VectorEqui[i]){
+				return *VectorEqui[i];
+			}
+			else {
+				std::cout << "Le Club selectionne n\'existe pas" << std::endl;
+			}
 		}
 	}
 

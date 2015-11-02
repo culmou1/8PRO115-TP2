@@ -173,33 +173,35 @@ public:
             // Peut-être initialisation d'un Pointeur de Joueur
 
             // Construction de la rupture
-            Rupture ruptureName (*this,leContrat->getClubContractant,raisonDuDepart,penalite);
+            Rupture ruptureName (this,leContrat->getClubContractant,raisonDuDepart,penalite);
 
 
             // Le joueur n'est plus liée au Contract
             leContrat->setJoueurContractant(NULL);
 
-            int dureeDuContract;
+
+            // Delete contract d'entende dans Club (recherche)
+            int dureeDuContract, choisirClub;
             std::string datedEntree, dateDuContrat;
             float seuilTransfert;
+
 
             std::cout << "*******************LE NOUVEAU CONTRAT DU JOUEUR*******************" << std::endl
             std::cout << std::endl <<  "//		DUREE DU CONTRACT : "; std::cin >> dureeDuContract;
             std::cout << std::endl <<  "//		DATE D\'ENTREE DU JOUEUR : "; std::cin >> datedEntree;
             std::cout << std::endl <<  "//		QUELLE DATE FINI LE CONTRACT : "; std::cin >> dateDuContrat;
             std::cout << std::endl <<  "//		PRIX DU TRANSFERT : "; std::cin >> seuilTransfert;
+            std::cout << std::endl <<  "//		CHOISIR NOUVELLE EQUIPE : " <<std::endl;
+            std::cout << std::endl << leContrat->getClubContractant()->getAllClub();  std::cin >> choisirClub;
+
+            Club *club;
+
+            club = getClub(choisirClub);
+
             std::string contractName = rupture + this.getFirstName() + this.getLastName(); // Obtenir un Constructeur Différent
 
-            Contract contractName(this,)
 
-
-
-
-
-
-
-
-
+            Contract contractName(this,club,leContrat->getClubContractant,dureeDuContract,datedEntree,dateDuContrat,seuilTransfert);
         }
 
         leContrat

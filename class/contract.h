@@ -46,7 +46,7 @@ public :
 
 //----------------------------------------------------------------- methods for clubContractant
     Club getClubContractant() {
-    	return _clubContractant;
+    	return *_clubContractant;
     }
 
     void setClubContractant(Club *new_club) {
