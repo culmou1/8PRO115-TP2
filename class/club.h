@@ -136,8 +136,7 @@ public:
 	}
 
 //----------------------------------------------------------------- methods for ContratsdEngagement
-	void getContratsdEngagement(Contrat *contrats) {
-		lookUpContratdEngagement(contrats);
+	void getContratsdEngagement(VectorCon &contrats) {
 		for (int i = 0; i < contratsdEngagement.size(); i++) {
 			contrats[i] = contratsdEngagement[i];
 		}
@@ -147,12 +146,20 @@ public:
 		contratsdEngagement.push_back(contrats);
 	}
 
-	bool lookUpContratdEngagement(Contrat *contrats){
+	// to do faire un swap avec le dernier element
+
+	// aller revoir dans person autonome les ruptures
+
+	// transfert Joueur envoyer le contrat
+
+	Contrat lookUpContratdEngagement(Contrat *contrats){
 		for(int i = 0; i < contratsdEngagement.size();i++){
 			if (ContratsdEngagement[i]= contrats){
-				return true;
+				return ContratsdEngagement[i];
 			}
-			else return false;
+			else {
+				std::cout << " Le contrat n\'existe pas ! " << std::endl;
+			}
 
 		}
 	}
