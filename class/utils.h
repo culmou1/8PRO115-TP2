@@ -2,6 +2,7 @@
 #define UTILS_H
 
 #include <string>
+#include "equipe.h"
 
 enum Role {
     ENTRAINEUR,
@@ -50,6 +51,10 @@ Date To_Date(std::string date) {
     }
 
 	return convert;
+}
+
+Equipe look_up_team(){
+
 }
 
 

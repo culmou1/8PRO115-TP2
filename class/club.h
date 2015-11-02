@@ -13,6 +13,8 @@ typedef std::vector<Palmares*>	VectorPal; // Une ensemble de vecteur de type Pal
 typedef std::vector<Contract*> 	VectorCon; // Une ensemble de vecteur de type Contract
 typedef std::vector<Rupture*> 	VectorRup; // Une ensemble de vecteur de type Rupture
 typedef std::vector<Person*>  	VectorPrs; // Une ensemble de vecteur de type Person
+typedef std::vector<Equipe*>  	VectorEqui; // Une ensemble de vecteur de type Person
+
 
 // Classe Club
 class Club {
@@ -31,10 +33,13 @@ private:
 	VectorPrs			 	staffTechnique;
 	VectorCon 				contratsdEngagement;
 	VectorRup 				rupturesDeContrats;
+	static VectorEqui		allClub;
 	//Calendrier 				calendrier;
 
 public:
-    Club(std::string history, std::string color, std::string address, std::string town, std::string year);
+    Club(std::string history, std::string color, std::string address, std::string town, std::string year){
+		allClub.push_back(*this); // Faire la liste the Tout le Club
+	};
 
     ~Club();
     Club(const Club& other);
@@ -71,8 +76,9 @@ public:
 
 //----------------------------------------------------------------- methods for Effectif
 	void getEffectif(VectorPrs &players) {
-		for (int i = 0; i < effectif.size(); i++) {
+		for (int i = 0; i < this.effectif.size(); i++) {
 			players[i] = effectif[i];
+			std::cout << players[i].getLastName << " "<< players[i].getFirstName << endl;
 		}
 	}
 
@@ -156,6 +162,15 @@ public:
 			rupturesDeContrats.push_back(ruptures[i]);
 		}
 	}
+
+//----------------------------------------------------------------- methods for RupturesDeContrats
+
+	Club getAllClub(){
+		for (int i = 0; i < VectorEqui.size();i++){
+			std::cout << allClub[i]->getHistoireDuClub() << endl;
+		}
+	}
+
 
 /*----------------------------------------------------------------- methods for Calendrier
 	Calendrier getCalendrier() {
