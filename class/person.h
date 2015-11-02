@@ -62,6 +62,10 @@ public:
 		_role = choix;
 	}
 
+//----------------------------------------------------------------- methods for Person
+	std::string obtenirNP() {
+		return _prenom+" "+_nom;
+	}
 };
 
 

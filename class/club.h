@@ -211,7 +211,7 @@ public:
     void Club::SupprimerJoueur(std::string firstname, std::string lastname);
     void AfficherEffectif();
     void AfficherCalendrier();
-    void TransfertJoueur(Contrat* leContrat);
+    void TransfertJoueur(Joueur* joueur);
 	void AfficherMontantTransferts(Date dateDonnee);
 
 };
