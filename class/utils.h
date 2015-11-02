@@ -35,9 +35,20 @@ struct Date { // Format DD/MM/YYYY
 
 Date To_Date(std::string date) {
 	Date convert;
-	convert.tm_day = std::stoi(date.substr(0,2));
-	convert.tm_month = std::stoi(date.substr(3,2));
-	convert.tm_year = std::stoi(date.substr(6,4));
+    //Date Show Be like that: 01-01-2015
+    try{	convert.tm_day = std::stoi(date.substr(0,2));
+    	convert.tm_month = std::stoi(date.substr(3,2));
+    	convert.tm_year = std::stoi(date.substr(6,4));
+    }
+    catch(std::lenght_error& e){
+        std::cout<< e.what() << std::endl;
+        std::cout << "You should Format the Date like this: \'dd-mm-year\'-\'01-01-2015\'" << std::endl;
+
+    }
+    catch(const std::exception& e){
+        std::cout<< e.what();
+    }
+
 	return convert;
 }
 

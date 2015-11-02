@@ -85,7 +85,6 @@ public :
     }
 
     void setDateDuContrat(int d_day, int m_month,int y_year) {
-    	_dateDuContrat = New Date();
 		_dateDuContrat.tm_day = d_day;
 		_dateDuContrat.tm_month = m_month;
 		_dateDuContrat.tm_year = m_year;
@@ -96,7 +95,7 @@ public :
 		return _seuilTransfert;
 	}
     float setSeuilTransfert(float seuilTransfert){
-		 _seuilTransfert= seuilTransfert;
+		 _seuilTransfert = seuilTransfert;
 	}
 };
 
