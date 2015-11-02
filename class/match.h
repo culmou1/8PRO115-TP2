@@ -69,6 +69,13 @@ public:
 			_resultatFinal.butsVisiteurs += _periodesJouees[i]->resultat.butsVisiteurs;
 		}
 	}
+//----------------------------------------------------------------- methods of Teams
+
+	Equipe getLocalAndAway(){
+		return
+
+	}
+
 };
 
 #endif
