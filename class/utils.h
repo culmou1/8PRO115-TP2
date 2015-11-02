@@ -53,7 +53,8 @@ Date To_Date(std::string date) {
 	return convert;
 }
 
-Equipe look_up_team(){
+Equipe look_up_team(Equipe *team){
+    
 
 }
 

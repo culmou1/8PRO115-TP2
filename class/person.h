@@ -153,8 +153,9 @@ public:
     virtual Joueur_Autonome& operator=(Joueur_Autonome&& other);
 
 //----------------------------------------------------------------- methods of Joueur_Autonome
-	void RompreSonContrat(Contrat* Contract){;
-        
+	void RompreSonContrat(Contrat* leContrat){;
+
+        leContrat
     }
 
     std::string getEmplacementNaissance(){
