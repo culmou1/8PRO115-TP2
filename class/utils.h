@@ -4,6 +4,7 @@
 #include <string>
 #include <stdexcept>
 #include "equipe.h"
+#include "club.h"
 
 enum Role {
 	JOUEUR,
@@ -60,11 +61,6 @@ Club getClub(int j){
 
 }
 
-Equipe look_up_team(Equipe *team){
-
-
-}
-
 
 bool lookForDate(std::string date, Date dateComparer){
 
@@ -75,7 +71,7 @@ bool lookForDate(std::string date, Date dateComparer){
 		if(dateComparer.tm_month <= dateEchance.tm_month){
 			if(dateComparer.tm_day <= dateEchance.tm_day){
 				dateDepaser = false;
-				return dateDepaser
+				return dateDepaser;
 			}
 			dateDepaser = true;
 		}

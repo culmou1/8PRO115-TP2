@@ -17,7 +17,7 @@ protected:
 
 
 public:
-    Person(std::string prenom,std::string nom, int age,Role role): _prenom(prenom),_nom(nom),_age(age)_role(role){};
+    Person(std::string prenom,std::string nom, int age,Role role): _prenom(prenom),_nom(nom),_age(age),_role(role){};
 
     virtual ~Person();
     Person(const Person& other);
@@ -101,10 +101,10 @@ public:
 
         std::string getLastName(){
 
-            return std::string _nom;
+            return _nom;
         }
 
-        void setLastName(lastName){
+        void setLastName(std::string lastName){
 
            _prenom = lastName;
 
@@ -139,7 +139,7 @@ public:
 
 
     void setEmplacementNaissance(std::string birthPlace){
-        _semplacementNaissance = birthPlace;
+        _emplacementNaissance = birthPlace;
     }
 };
 
@@ -156,19 +156,19 @@ public:
 //----------------------------------------------------------------- methods of Joueur_Autonome
 	void RompreSonContrat(Contrat* leContrat){
 
-        if(&this == leContrat->&getJoueurContractant){
-            std::string raisonDuDepart,
+        if(this == leContrat->getJoueurContractant){
+            std::string raisonDuDepart;
             float penalite;
 
-            std::cout << "*******************ROMPRE LE CONTRAT DU JOUEUR*******************" << std::endl
+            std::cout << "*******************ROMPRE LE CONTRAT DU JOUEUR*******************" << std::endl;
             std::cout << std::endl <<  "//		RAISON DU DEPART : "; std::cin >> raisonDuDepart;
             std::cout << std::endl <<  "//		PENALITE DE DEPART : "; std::cin >> penalite;
 
             std::string rupture =  "rupture";
 
-            std::string contract = "contract"
+            std::string contract = "contract";
 
-            std::string ruptureName = rupture + this.getFirstName() + this.getLastName(); // Obtenir un different constructeur de Rupture
+            std::string ruptureName = rupture + this->getFirstName() + this->getLastName(); // Obtenir un different constructeur de Rupture
 
             // Construction de la rupture
             Rupture ruptureName (this,leContrat->getClubContractant,raisonDuDepart,penalite);
@@ -188,7 +188,7 @@ public:
             float seuilTransfert;
 
 
-            std::cout << "*******************LE NOUVEAU CONTRAT DU JOUEUR*******************" << std::endl
+            std::cout << "*******************LE NOUVEAU CONTRAT DU JOUEUR*******************" << std::endl;
             std::cout << std::endl <<  "//		DUREE DU CONTRACT : "; std::cin >> dureeDuContract;
             std::cout << std::endl <<  "//		DATE D\'ENTREE DU JOUEUR : "; std::cin >> datedEntree;
             std::cout << std::endl <<  "//		QUELLE DATE FINI LE CONTRACT : "; std::cin >> dateDuContrat;
@@ -200,7 +200,7 @@ public:
 
             club = getClub(choisirClub);
 
-            std::string contractName = rupture + this.getFirstName() + this.getLastName(); // Obtenir un Constructeur Différent
+            std::string contractName = rupture + this->getFirstName() + this->getLastName(); // Obtenir un Constructeur Différent
 
 
             Contract contractName(this,club,leContrat->getClubContractant,dureeDuContract,datedEntree,dateDuContrat,seuilTransfert);
@@ -218,8 +218,7 @@ public:
 
         _emplacementNaissance = birthDay;
     }
-
-}
+};
 
 class Joueur_NonAutonome : public Joueur{
 
