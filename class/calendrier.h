@@ -29,6 +29,10 @@ public:
             if(_rencontre[i]->getMatch()->getVisiteurs()== club){
                 _rencontre[i]->getMatchAndGame();
             }
+            else {
+                throw std::exception("Il n\'y a aucune Rencontre Pour ce Club en tant que Visiteur");
+
+            }
         }
     }
 
@@ -36,6 +40,9 @@ public:
         for(int i=0;i<_rencontre->size();i++){
             if(_rencontre[i]->getMatch()->getLocaux()== club){
                 _rencontre[i]->getMatchAndGame();
+            }
+            else {
+                throw std::exception("Il n\'y a aucune Rencontre Pour ce Club en tant que Visiteur");
             }
         }
     }
@@ -48,17 +55,14 @@ public:
         catch (const std::exception &e)
         {
             std::cerr << e.what() << std::endl;
-            std::cerr << "Il n\'y a aucune Rencontre pour ce Club en tant que Locale" << std::endl;
         }
         try
         {
             getAllRencontreForAwayClub(club);
-            throw std::logic_error("Il n\'y a aucune Rencontre Pour ce Club en tant que Visiteur")
         }
         catch (const std::exception & e)
         {
             std::cerr << e.what() <<std::endl;
-            std::cerr << "Il n\'y a aucune Rencontre Pour ce Club en tant que Visiteur" << std::en
         }
     }
 };

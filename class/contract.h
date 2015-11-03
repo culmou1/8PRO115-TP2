@@ -10,7 +10,7 @@ private :
 	Joueur 	*_joueurContractant;
  	Club 	*_clubContractant;
  	Club 	*_clubLibere;
- 	int 	_dureeContrat;
+ 	int 	_dureeContrat; // En jours
  	Date 	_datedEntree;
  	Date 	_dateDuContrat;
  	float 	_seuilTransfert;
@@ -95,11 +95,29 @@ public :
     float getSeuilTransfert(){
 		return _seuilTransfert;
 	}
-    float setSeuilTransfert(float seuilTransfert){
+    void setSeuilTransfert(float seuilTransfert){
 		 _seuilTransfert = seuilTransfert;
 	}
 };
 
+//----------------------------------------------------------------- methods Of Echeance
+	void lookForEcheance(std::string date){
+
+		Date dateEchance = To_Date(date);// Obtien la date a partire de la string
+		bool dateDepaser = true;
+
+		if (_dateDuContrat.tm_year <= dateEchance.tm_year){
+			if(_dateDuContrat.tm_month <= dateEchance.tm_month){
+				if(_dateDuContrat.tm_day <= dateEchance.tm_day){
+					dateDepaser = false;
+					return dateDepaser
+				}
+				dateDepaser = true;
+			}
+			dateDepaser = true;
+		}
+		return dateDepaser;
+	}
 
 
 class Rupture {
