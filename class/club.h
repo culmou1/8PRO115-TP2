@@ -2,6 +2,7 @@
 #define CLUB_H
 
 #include <vector>
+#include "ligue.h"
 #include "person.h"
 #include "palmares.h"
 #include "contrat.h"
@@ -14,7 +15,7 @@ typedef std::vector<Palmares*>	VectorPal; // Une ensemble de vecteur de type Pal
 typedef std::vector<Contrat*> 	VectorCon; // Une ensemble de vecteur de type Contrat
 typedef std::vector<Rupture*> 	VectorRup; // Une ensemble de vecteur de type Rupture
 typedef std::vector<Person*>  	VectorPrs; // Une ensemble de vecteur de type Person
-typedef std::vector<Equipe*>  	VectorEqui; // Une ensemble de vecteur de type Person
+typedef std::vector<Club*>  	VectorEqui; // Une ensemble de vecteur de type Person
 
 
 // Classe Club
@@ -35,7 +36,7 @@ private:
 	static VectorEqui		allClub;
 
 public:
-    Club(std::string history, std::string color, std::string address, std::string town, std::string year){};
+    Club(std::string history, std::string color, std::string address, std::string town, std::string year);
 
     ~Club();
     Club(const Club& other);
@@ -141,30 +142,39 @@ public:
 	}
 
 	void deleteContratsdEngagement(Contrat *contrats){
-		for (int i = 0; i< contratsdEngagement.size();i++){
+		for (unsigned int i = 0; i< contratsdEngagement.size();i++){
 			if (contratsdEngagement[i]== contrats){
-				contratsdEngagement[i].swap(contratsdEngagement.back())
-				contratsdEngagement.pop_back();
+				delete contratsdEngagement[i];
+				contratsdEngagement.erase(contratsdEngagement.begin()+i);
 			}
 		}
 	}
 	// transfert Joueur envoyer le contrat
 
-	Contrat lookUpContratdEngagement(Contrat *contrats){
-		for(int i = 0; i < contratsdEngagement.size();i++){
-			if (contratsdEngagement[i]== contrats){
-				return contratsdEngagement[i];
+	bool lookUpContratdEngagement(Joueur *joueur, Contrat* contrat){
+		for(unsigned int i = 0; i < contratsdEngagement.size();i++){
+			if (contratsdEngagement[i]->getJoueurContractant() == joueur){
+				contrat = contratsdEngagement[i];
 			}
-			else {
-				std::cout << " Le contrat n\'existe pas ! " << std::endl;
-			}
-
 		}
 	}
 
 //----------------------------------------------------------------- methods for RupturesDeContrats
 	VectorRup getRupturesDeContrats() {
 		return rupturesDeContrats;
+	}
+
+	void addRupturesDeContrats(Rupture *ruptures) {
+		rupturesDeContrats.push_back(ruptures);
+	}
+
+	void deleteRupturesDeContrats(Rupture *ruptures){
+		for (unsigned int i = 0; i< rupturesDeContrats.size();i++){
+			if (rupturesDeContrats[i]== ruptures){
+				delete rupturesDeContrats[i];
+				rupturesDeContrats.erase(rupturesDeContrats.begin()+i);
+			}
+		}
 	}
 
 	void setRupturesDeContrats(VectorRup ruptures) {
@@ -230,9 +240,11 @@ public:
 //----------------------------------------------------------------- methods of Club
     void CreerJoueur();
     void ModifierJoueur();
-    void Club::SupprimerJoueur(std::string firstname, std::string lastname);
+    void SupprimerJoueur(std::string name);
     void AfficherEffectif();
+
     void AfficherCalendrier();
+
     void TransfertJoueur(Joueur* joueur, Club* club);
 	void AfficherMontantTransferts(std::string date);
 

@@ -46,9 +46,9 @@ void Club::ModifierJoueur(){
 
 }
 
-void Club::SupprimerJoueur(std::string firstname, std::string lastname){
+void Club::SupprimerJoueur(std::string name){
 	for (int i = 0; i < effectif.size(); i++){
-		if (effectif[i]->obtenirNP() == (firstname+' '+lastname)){
+		if (effectif[i]->obtenirNP() == name){
 			std::cout << "Le joueur " << effectif[i]->obtenirNP() << " a été supprimé.";
 			delete effectif[i];
 			effectif.erase(effectif.begin()+i);
@@ -68,17 +68,8 @@ void Club::AfficherCalendrier(){
 }
 
 void Club::TransfertJoueur(Joueur* joueur, Club* club){
-	Contrat *leContrat; int contratID;
 
-	//Retrouver le contrat du joueur
-	for (unsigned int i=0; i < contratsdEngagement.size(); i++) {
-		if(contratsdEngagement[i]->getJoueurContractant() == joueur) {
-			leContrat = contratsdEngagement[i];
-			contratID = i;
-		}
-	}
-
-	if (leContrat != NULL) { //Si le joueur avait déjà un contrat
+		//Si le joueur avait déjà un contrat
 		int dureeDuContrat;
 		std::string datedEntree, dateDuContrat, choisirClub, droit;
 		float montant;
@@ -98,19 +89,10 @@ void Club::TransfertJoueur(Joueur* joueur, Club* club){
 		club->effectif.push_back(joueur);
 
 		// Supprime le contrat du vector du club libéré
-		delete contratsdEngagement[contratID];
-		contratsdEngagement.erase(contratsdEngagement.begin() + contratID);
+		//deleteContratsdEngagement(leContrat);
 
 		//supprime le joueur de leffectif du club libere
-		for (unsigned int i=0; i < effectif.size(); i++) {
-			if(effectif[i] == joueur) {
-				delete effectif[i];
-				effectif.erase(effectif.begin() + i);
-			}
-		}
-	}
-	else
-		std::cout << "Le contrat du joueur " << joueur->obtenirNP() << " n'existe pas." << std::endl;
+		SupprimerJoueur(joueur->obtenirNP());
 }
 
 void Club::AfficherMontantTransferts(std::string date){

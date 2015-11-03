@@ -6,8 +6,8 @@
 class Rupture {
 
 private:
-	Joueur 			const *_joueurRelaxant;
-	Club 			const *_clubContractant;
+	Joueur 			*_joueurRelaxant;
+	Club 			*_clubContractant;
 	Raison	        _raisonsDuDepart;
 	float 			_penalite;
 
@@ -22,7 +22,7 @@ public:
     Rupture& operator=(Rupture&& other);
 
 //----------------------------------------------------------------- methods for joueurRelaxant
-    const Joueur *getJoueurRelaxant() {
+    Joueur *getJoueurRelaxant() {
     	return _joueurRelaxant;
     }
 
@@ -31,7 +31,7 @@ public:
     }
 
 //----------------------------------------------------------------- methods for clubContractant
-    const Club *getClubContractant() {
+    Club *getClubContractant() {
     	return _clubContractant;
     }
 

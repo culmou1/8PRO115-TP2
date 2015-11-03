@@ -20,12 +20,12 @@ public:
 
 
     VectorRen getAllRencontre(){
-        for(int i = 0;i < _rencontre->size();i++){
+        for(int i = 0;i < _rencontre.size();i++){
             std::cout << _rencontre[i]->getMatch() << std::endl;
         }
     }
     void getAllRencontreForAwayClub(Club *club){
-        for(int i=0;i<_rencontre->size();i++){
+        for(int i=0;i<_rencontre.size();i++){
             if(_rencontre[i]->getMatch()->getVisiteurs()== club){
                 _rencontre[i]->getMatchAndGame();
             }
@@ -37,7 +37,7 @@ public:
     }
 
     void getAllRencontreForHomeClub(Club *club){
-        for(int i=0;i<_rencontre->size();i++){
+        for(int i=0;i<_rencontre.size();i++){
             if(_rencontre[i]->getMatch()->getLocaux()== club){
                 _rencontre[i]->getMatchAndGame();
             }

@@ -7,10 +7,10 @@
 class Equipe {
 
 private:
-	Club 	const *_club;
+	Club* 	_club;
 	int 	_nbrJoueurs;
 	int 	_nbrGardiens;
-	Joueur 	const *_capitaine;
+	Joueur 	*_capitaine;
 
 public:
     Equipe(Club *team, int players, int goals, Joueur *capt) :
@@ -23,7 +23,7 @@ public:
     Equipe& operator=(Equipe&& other);
 
 //----------------------------------------------------------------- methods for club
-    const Club *getClub(){
+    Club *getClub(){
     	return _club;
     }
 
@@ -50,7 +50,7 @@ public:
 	}
 
 //----------------------------------------------------------------- methods for nbrGardiens
-	const Joueur *getCapitaine(){
+	Joueur *getCapitaine(){
 		return _capitaine;
 	}
 

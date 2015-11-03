@@ -9,8 +9,8 @@ typedef std::vector<Periode*> 	VectorPer;
 class Match {
 
 private:
-	Equipe		const *_locaux;
-	Equipe 		const *_visiteurs;
+	Equipe		*_locaux;
+	Equipe 		*_visiteurs;
 	VectorPer	_periodesJouees;
 	Resultat  	_resultatFinal;
 
@@ -25,12 +25,12 @@ public:
     Match& operator=(Match&& other);
 
 //----------------------------------------------------------------- methods for Locaux
-    const Equipe *getLocaux(){
+    Equipe *getLocaux(){
     	return _locaux;
     }
 
 //----------------------------------------------------------------- methods for Locaux
-    const Equipe *getVisiteurs(){
+    Equipe *getVisiteurs(){
     	return _visiteurs;
     }
 
