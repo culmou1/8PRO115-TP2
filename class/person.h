@@ -243,7 +243,7 @@ public:
 //----------------------------------------------------------------- methods of Joueur_NpnAutonome
 
 	bool DemandeDeTransfert(){
-        if (this._avisFavorable == True){
+        if (this->_avisFavorable == True){
             return true;
         }
         else return false;
@@ -251,7 +251,7 @@ public:
 };
 
 
-class Entraineur : public Person{
+class Entraineur : protected Person{
 
 protected:
     std::string _placeGrade;
