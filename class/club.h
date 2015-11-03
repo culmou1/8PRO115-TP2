@@ -181,7 +181,7 @@ public:
 //----------------------------------------------------------------- methods for getAllClub
 
 	Club getAllClub(){
-		for (int i = 0; i < VectorEqui.size();i++){
+		for (int i = 0; i < allClub.size();i++){
 			std::cout << "Voici la Position du Club: " << i << " - "<< allClub[i]->getCouleurDuClub() << std::endl;
 		}
 	}
@@ -195,6 +195,20 @@ public:
 				std::cout << "Le Club selectionne n\'existe pas" << std::endl;
 			}
 		}
+	}
+
+	void getEntraineurLePlusTitre(){
+		int nbTitre = 0;
+		Entraineur *entraineurLePlusTitre;
+		for (int i = 0; i < allClub.size();i++){
+			for(int j = 0; j < allClub[i]->staffTechnique.size();i++){
+				if(allClub[i]->staffTechnique[j]->getNumberOfTitre() > nbTitre){
+					nbTitre = allClub[i]->staffTechnique[j]->getNumberOfTitre();
+					entraineurLePlusTitre = allClub[i]->staffTechnique[j]
+				}
+			}
+		}
+		std::cout << "Voici l\'entraineur: " << entraineurLePlusTitre->getFirstName() << "il a gagner " << nbtitre << " titre" <<std::endl;
 	}
 
 //-----------------------------------------------------------------

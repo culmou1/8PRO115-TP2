@@ -256,7 +256,7 @@ class Entraineur : public Person{
 
 protected:
     std::string _placeGrade;
-    VectorPal _TitreGagne;
+    VectorPal *_TitreGagne;
 public:
 
     	Entraineur();
@@ -308,6 +308,36 @@ public:
 	}
 
 //----------------------------------------------------------------- methods of TitresGagnes
+
+
+    VectorPal getTitreGagne(){
+        for (int i = 0; i < _TitreGagne.size();i++){
+            std::cout << "Voici la Position du TitreGagne: " << i << " - "<< _TitreGagne[i]->getTitre() << std::endl;
+        }
+    }
+
+    Titre selectTitreGagne(int j){
+        for(int i = 0; i < _TitreGagne.size();i++){
+            if (_TitreGagne[j]==_TitreGagne[i]){
+                return *_TitreGagne[i];
+            }
+            else {
+                std::cout << "Le Titre selectionne n\'existe pas" << std::endl;
+            }
+        }
+    }
+
+    int getNumberOfTitre(){
+        int nbTitre;
+
+        for(int i = 0;i<_TitreGagne.size();i++){
+            nbTitre++;
+        }
+
+        return nbTitre;
+    }
+
+
 
 };
 
