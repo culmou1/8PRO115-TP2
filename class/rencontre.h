@@ -40,8 +40,21 @@ public:
 	}
 
 	void getMatchAndGame(){
-		std::cout << getDate.To_String() << " " << getMatch << std::endl 
+		std::cout << getDate.To_String() << " " << getMatch << std::endl
 	}
+
+//----------------------------------------------------------------- methods for Add Match
+
+/* Ajout des matchs Entre des Équipes */
+
+//----------------------------------------------------------------- methods for affichage
+
+	float resultatAUneDateDonne(std::string date){
+		if (lookForDate(date,_dateDeRencontre)){
+			_match->getResultat();
+		}
+	}
+
 
 };
 

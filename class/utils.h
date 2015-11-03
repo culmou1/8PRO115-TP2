@@ -66,6 +66,25 @@ Equipe look_up_team(Equipe *team){
 }
 
 
+bool lookForDate(std::string date, Date dateComparer){
+
+	Date dateEchance = To_Date(date);// Obtien la date a partire de la string
+	bool dateDepaser = true;
+
+	if (dateComparer.tm_year <= dateEchance.tm_year){
+		if(dateComparer.tm_month <= dateEchance.tm_month){
+			if(dateComparer.tm_day <= dateEchance.tm_day){
+				dateDepaser = false;
+				return dateDepaser
+			}
+			dateDepaser = true;
+		}
+		dateDepaser = true;
+	}
+	return dateDepaser;
+}
+
+
 enum Titre {
     COUPE,
     CHAMPIONNAT
