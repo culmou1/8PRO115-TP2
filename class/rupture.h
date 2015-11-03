@@ -7,13 +7,13 @@ class Rupture {
 
 private:
 	Joueur 			const *_joueurRelaxant;
-	Club 			const *_clubContratant;
+	Club 			const *_clubContractant;
 	Raison	        _raisonsDuDepart;
 	float 			_penalite;
 
 public:
 	Rupture(Joueur *player, Club *new_club, Raison why, float money) :
-		_joueurRelaxant(player), _clubContratant(new_club), _raisonsDuDepart(why), _penalite(money) {}
+		_joueurRelaxant(player), _clubContractant(new_club), _raisonsDuDepart(why), _penalite(money) {}
 
     ~Rupture();
     Rupture(const Rupture& other);
@@ -30,13 +30,13 @@ public:
     	_joueurRelaxant = newbie;
     }
 
-//----------------------------------------------------------------- methods for clubContratant
-    const Club *getClubContratant() {
-    	return _clubContratant;
+//----------------------------------------------------------------- methods for clubContractant
+    const Club *getClubContractant() {
+    	return _clubContractant;
     }
 
-    void setClubContratant(Club *new_club) {
-    	_clubContratant = new_club;
+    void setClubContractant(Club *new_club) {
+    	_clubContractant = new_club;
     }
 //----------------------------------------------------------------- methods for raisonsDuDepart
     Raison getRaisonsDuDepart() {

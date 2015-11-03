@@ -7,7 +7,7 @@ const float pourcentJoueur = 0.002;
 class Reglement {
 
 private:
-	const float 	_seuilDeTransfert;
+	static float 	_seuilDeTransfert;
 	std::string		_droitDuJoueur;
 	float			_montantDuTransfert;
 	float			_montantAncienClub;
@@ -60,5 +60,8 @@ public:
     }
 
 };
+
+float Reglement::_seuilDeTransfert = 86000000000.875;
+
 
 #endif

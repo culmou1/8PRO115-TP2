@@ -4,7 +4,7 @@
 #include <vector>
 #include "person.h"
 #include "palmares.h"
-#include "Contrat.h"
+#include "contrat.h"
 #include "calendrier.h"
 
 #include "rupture.h"
@@ -132,10 +132,8 @@ public:
 	}
 
 //----------------------------------------------------------------- methods for ContratsdEngagement
-	void getContratsdEngagement(VectorCon &contrats) {
-		for (int i = 0; i < contratsdEngagement.size(); i++) {
-			contrats[i] = contratsdEngagement[i];
-		}
+	VectorCon getContratsdEngagement(VectorCon &contrats) {
+		return contratsdEngagement;
 	}
 
 	void addContratsdEngagement(Contrat *contrats) {
@@ -165,10 +163,8 @@ public:
 	}
 
 //----------------------------------------------------------------- methods for RupturesDeContrats
-	void getRupturesDeContrats(VectorRup &ruptures) {
-		for (int i = 0; i < rupturesDeContrats.size(); i++) {
-			ruptures[i] = rupturesDeContrats[i];
-		}
+	VectorRup getRupturesDeContrats() {
+		return rupturesDeContrats;
 	}
 
 	void setRupturesDeContrats(VectorRup ruptures) {
@@ -237,8 +233,8 @@ public:
     void Club::SupprimerJoueur(std::string firstname, std::string lastname);
     void AfficherEffectif();
     void AfficherCalendrier();
-    void TransfertJoueur(Joueur* joueur);
-	void AfficherMontantTransferts(Date dateDonnee);
+    void TransfertJoueur(Joueur* joueur, Club* club);
+	void AfficherMontantTransferts(std::string date);
 
 };
 
