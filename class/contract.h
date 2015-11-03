@@ -101,7 +101,7 @@ public :
 };
 
 //----------------------------------------------------------------- methods Of Echeance
-	void lookForEcheance(std::string date){
+	bool lookForEcheance(std::string date){
 
 		Date dateEchance = To_Date(date);// Obtien la date a partire de la string
 		bool dateDepaser = true;
@@ -118,6 +118,12 @@ public :
 		}
 		return dateDepaser;
 	}
+	void nouveauContrat(std::string date){
+		if(!lookForEcheance(date)){
+			/* Ajout d\'un nouveau transfert */
+		}
+	}
+
 
 
 class Rupture {
