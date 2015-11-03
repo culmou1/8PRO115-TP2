@@ -187,9 +187,9 @@ public:
 	}
 
 	Club selectClub(int j){
-		for(int i = 0; i < VectorEqui.size();i++){
-			if (VectorEqui[j]==VectorEqui[i]){
-				return *VectorEqui[i];
+		for(int i = 0; i < allClub.size();i++){
+			if (allClub[j]==allClub[i]){
+				return *allClub[i];
 			}
 			else {
 				std::cout << "Le Club selectionne n\'existe pas" << std::endl;
@@ -200,9 +200,25 @@ public:
 //-----------------------------------------------------------------
 
 	void getAllContratEngagement(){
-		for (int i = 0; i < VectorCon.size();i++){
-			std::cout << "Voici la Position du Club: " << i << " - " << VectorCon[]
+		for (int i = 0; i < contratsdEngagement.size();i++){
+			std::cout << "Voici la Position du Club: " << i << " - " << contratsdEngagement[i] << std::endl;
 		}
+	}
+
+//-----------------------------------------------------------------
+
+	void montantEncaisseDepuisUneDate(std::string date){
+
+		float sommeTotal;
+
+		for (int i = 0;i< contratsdEngagement.size();i++){
+			if (contratsdEngagement[i]->lookForEcheance(date)){
+				sommeTotal += contratsdEngagement->getSeuilTransfert();
+			}
+
+			else continue;
+		}
+		return sommeTotal;
 	}
 
 
