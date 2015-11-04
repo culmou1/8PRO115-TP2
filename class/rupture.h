@@ -1,3 +1,4 @@
+/*
 #ifndef RUPTURE_H
 #define RUPTURE_H
 class Joueur;
@@ -60,3 +61,4 @@ public:
 };
 
 #endif
+*\

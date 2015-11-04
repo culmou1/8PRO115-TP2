@@ -3,10 +3,12 @@
 
 //http://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum
 //http://stackoverflow.com/questions/18026877/does-not-name-a-type-error-but-class-pointer-already-has-forward-declaration
+#include "palmares.h"
 #include "contract.h"
-#include "rupture.h"
-class Palmares;
+#include "club.h"
 class Contract;
+class Palmares;
+class Club;
 
 typedef std::vector<Palmares*>	VectorPal; // Une ensemble de vecteur de type Palmares
 
@@ -162,7 +164,7 @@ public:
     virtual Joueur_Autonome& operator=(Joueur_Autonome&& other);
 
 //----------------------------------------------------------------- methods of Joueur_Autonome
-	void RompreSonContrat(Contract* leContrat){
+	void RompreSonContrat(Contract *leContrat){
 		std::string raisonDuDepart, choisirClub;
         float penalite;
 
@@ -183,7 +185,7 @@ public:
             Rupture newRuptureName(this,leContrat->getClubContractant(),raisonDuDepart,penalite);
 
             // Supprimer le contrat du joueur
-            leContrat->getClubContractant->deleteContratsdEngagement(leContrat);
+            leContrat->getClubContractant()->deleteContratsdEngagement(leContrat);
 
             // Le joueur n'est plus liée au Contract
 
@@ -203,12 +205,12 @@ public:
 
             Club *club;
 
-            *club = Club::getClub(choisirClub);
+            club = club->selectClub(choisirClub);
 
             std::string contractName = rupture + this->getFirstName() + this->getLastName(); // Obtenir un Constructeur Différent
 
 
-            Contract newContractName(this,club,leContrat->getClubContractant,dureeDuContract,datedEntree,dateDuContrat,seuilTransfert);
+            Contract newContractName(this,club,leContrat->getClubContractant(),dureeDuContract,datedEntree,dateDuContrat,seuilTransfert);
         }
         else {
             std::cout << "Le contrat n\'existe pas pour le joueur !" << std::endl;
@@ -293,7 +295,7 @@ public:
 };
 
 
-class Entraineur : protected Person{
+class Entraineur : public Person{
 
 protected:
     std::string _placeGrade;

@@ -1,7 +1,5 @@
 #ifndef CALENDRIER_H
 #define CALENDRIER_H
-
-#include "rencontre.h"
 #include <stdexcept>
 
 typedef std::vector<Rencontre*> 	VectorRen; // Une ensemble de vecteur de type Contrat

@@ -1,7 +1,6 @@
 #ifndef PERIODE_H
 #define PERIODE_H
 
-class Resultat;
 class Periode {
 	friend class Match;
 

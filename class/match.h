@@ -1,8 +1,6 @@
 #ifndef MATCH_H
 #define MATCH_H
 
-#include "equipe.h"
-#include "periode.h"
 
 typedef std::vector<Periode*> 	VectorPer;
 

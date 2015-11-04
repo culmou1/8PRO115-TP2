@@ -1,9 +1,6 @@
 #ifndef EQUIPE_H
 #define EQUIPE_H
 
-#include "club.h"
-#include "person.h"
-
 class Equipe {
 
 private:

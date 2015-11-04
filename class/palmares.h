@@ -1,7 +1,10 @@
 #ifndef PALMARES_H
 #define PALMARES_H
 
+#include "utils.h"
+
 class Club;
+
 
 class Palmares{
 

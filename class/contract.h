@@ -1,8 +1,10 @@
-#ifdef CONTRAT_H
+#ifndef CONTRAT_H
 #define CONTRAT_H
 
-#include "club.h"
 #include "utils.h"
+#include "person.h"
+#include "club.h"
+class Club;
 class Joueur;
 
 class Contract {
@@ -19,7 +21,7 @@ private :
 public :
 	Contract(Joueur *joueurContractant,Club *clubContractant,Club *clubLibere, int dureeContrat,
 				std::string datedEntree,std::string dateDuContrat,float seuilTransfert):
-					_joueurContractant(joueurContractant),_clubContractant(clubContractant), _clubLibere(clubLibere),_dureeContrat(duree),
+					_joueurContractant(joueurContractant),_clubContractant(clubContractant), _clubLibere(clubLibere),_dureeContrat(dureeContrat),
 					_datedEntree(To_Date(datedEntree)),_dateDuContrat(To_Date(dateDuContrat)),_seuilTransfert(seuilTransfert){
 					}
 	// Constructeur lorsque le Joueur n'a pas d'ancienne Équipe. Nous Donnons un Pointeur Null au Club libere.
@@ -27,7 +29,7 @@ public :
 
 	Contract(Joueur *joueurContractant,Club *clubContractant, int dureeContrat,
 				std::string datedEntree,std::string dateDuContrat,float seuilTransfert):
-					_joueurContractant(joueurContractant),_clubContractant(clubContractant), _clubLibere(NULL),_dureeContrat(duree),
+					_joueurContractant(joueurContractant),_clubContractant(clubContractant), _clubLibere(NULL),_dureeContrat(dureeContrat),
 					_datedEntree(To_Date(datedEntree)),_dateDuContrat(To_Date(dateDuContrat)),_seuilTransfert(seuilTransfert){
 					}
     ~Contract();
@@ -37,7 +39,7 @@ public :
     Contract& operator=(Contract&& other) = default;
 
 //----------------------------------------------------------------- methods for joueurContractant
-    Joueur getJoueurContractant() {
+    Joueur *getJoueurContractant() {
     	return _joueurContractant;
     }
 
@@ -46,8 +48,8 @@ public :
     }
 
 //----------------------------------------------------------------- methods for clubContractant
-    Club getClubContractant() {
-    	return *_clubContractant;
+    Club *getClubContractant() {
+    	return _clubContractant;
     }
 
     void setClubContractant(Club *new_club) {
@@ -55,7 +57,7 @@ public :
     }
 
 //----------------------------------------------------------------- methods for clubLibere
-    Club getClubLibere() {
+    Club *getClubLibere() {
     	return _clubLibere;
     }
 
@@ -89,7 +91,7 @@ public :
     void setDateDuContrat(int d_day, int m_month,int y_year) {
 		_dateDuContrat.tm_day = d_day;
 		_dateDuContrat.tm_month = m_month;
-		_dateDuContrat.tm_year = m_year;
+		_dateDuContrat.tm_year = y_year;
     }
 
 //----------------------------------------------------------------- methods of Contract
@@ -110,7 +112,7 @@ public :
 			if(_dateDuContrat.tm_month <= dateEchance.tm_month){
 				if(_dateDuContrat.tm_day <= dateEchance.tm_day){
 					dateDepaser = false;
-					return dateDepaser
+					return dateDepaser;
 				}
 				dateDepaser = true;
 			}
@@ -137,7 +139,7 @@ private :
 
 public :
 	Rupture(Joueur *joueurRelaxant,Club *clubContractant,std::string raisonsDuDepart,float penalite):
-		_joueurRelaxant(joueurRelaxant),_clubContractant(clubContractant)_raisonsDuDepart(raisonsDuDepart),_penalite(penalite){};
+		_joueurRelaxant(joueurRelaxant),_clubContractant(clubContractant),_raisonsDuDepart(raisonsDuDepart),_penalite(penalite){};
 
     ~Rupture();
     Rupture(const Rupture& other) = default;
@@ -146,8 +148,8 @@ public :
     Rupture& operator=(Rupture&& other) = default;
 
 //----------------------------------------------------------------- methods for _joueurRelaxant
-    Joueur getJoueurRelaxant() {
-    	return *_joueurRelaxant;
+    Joueur *getJoueurRelaxant() {
+    	return _joueurRelaxant;
     }
 
     void setJoueurRelaxant(Joueur *newbie) {
@@ -155,7 +157,7 @@ public :
     }
 
 //----------------------------------------------------------------- methods for _clubContractant
-    Club getClubContractant() {
+    Club *getClubContractant() {
     	return _clubContractant;
     }
 

@@ -2,13 +2,12 @@
 #define CLUB_H
 
 #include <vector>
-#include "utils.h"
+#include "palmares.h"
 #include "person.h"
-class Palmares;
 class Contract;
+class Palmares;
 class Rupture;
-class Person;
-class Club;
+class Joueur;
 typedef std::vector<Palmares*>	VectorPal; // Une ensemble de vecteur de type Palmares
 typedef std::vector<Contract*> 	VectorCon; // Une ensemble de vecteur de type Contract
 typedef std::vector<Rupture*> 	VectorRup; // Une ensemble de vecteur de type Rupture
@@ -73,7 +72,7 @@ public:
 	void getEffectif(VectorPrs &players) {
 		for (int i = 0; i < effectif.size(); i++) {
 			players[i] = effectif[i];
-			std::cout << players[i].getLastName << " "<< players[i].getFirstName << std::endl;
+			std::cout << players[i]->getLastName << " "<< players[i]->getFirstName << std::endl;
 		}
 	}
 
@@ -158,7 +157,7 @@ public:
 	}
 
 //----------------------------------------------------------------- methods for RupturesDeContracts
-	VectorRup getRupturesDeContracts() {
+	VectorRup *getRupturesDeContracts() {
 		return rupturesDeContracts;
 	}
 
@@ -206,8 +205,9 @@ public:
 		Entraineur *entraineurLePlusTitre;
 		for (int i = 0; i < allClub.size();i++){
 			for(int j = 0; j < allClub[i]->staffTechnique.size();i++){
-				if(allClub[i]->staffTechnique[j]->getNumberOfTitre() > nbTitre){
-					nbTitre = allClub[i]->staffTechnique[j]->getNumberOfTitre();
+				int currentNumber = allClub[i]->staffTechnique[j]->getNumberOfTitre();
+				if(currentNumber > nbTitre){
+					nbTitre = currentNumber;
 					entraineurLePlusTitre = allClub[i]->staffTechnique[j]
 				}
 			}
