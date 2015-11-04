@@ -24,10 +24,6 @@ public:
     	return _club;
     }
 
-	std::string getCouleur() {
-		return _club->getCouleurDuClub();
-	}
-
     void setClub(Club *team){
     	_club = team;
     }

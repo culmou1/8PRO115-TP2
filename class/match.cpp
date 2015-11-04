@@ -1,33 +1,33 @@
 #include "match.h"
-Match(Equipe *home, Equipe *visitor, Resultat score) :
+#include "rencontre.h"
+#include "periode.h"
+#include "equipe.h"
+
+Match::Match(Equipe *home, Equipe *visitor, Resultat score) :
     _locaux(home), _visiteurs(visitor), _resultatFinal(score) {}
 
-~Match();
-Match(const Match& other);
-Match(Match&& other);
-Match& operator=(const Match& other);
-Match& operator=(Match&& other);
+Match::~Match(){};
 
 //----------------------------------------------------------------- methods for Locaux
-Equipe *getLocaux(){
+Equipe* Match::getLocaux(){
     return _locaux;
 }
 
 //----------------------------------------------------------------- methods for Locaux
-Equipe *getVisiteurs(){
+Equipe* Match::getVisiteurs(){
     return _visiteurs;
 }
 
-void setVisiteurs(Equipe *stranger){
+void Match::setVisiteurs(Equipe *stranger){
     _visiteurs = stranger;
 }
 
 //----------------------------------------------------------------- methods for periodesJouees
-VectorPer getPeriodes() {
+VectorPer Match::getPeriodes() {
     return _periodesJouees;
 }
 
-void setPeriodes(VectorPer half) {
+void Match::setPeriodes(VectorPer half) {
     _periodesJouees.clear();
     for (unsigned int i = 0; i < half.size(); i++) {
         _periodesJouees.push_back(half[i]);
@@ -35,26 +35,22 @@ void setPeriodes(VectorPer half) {
 }
 
 //----------------------------------------------------------------- methods for resultat
-Resultat getResultat(){
+Resultat Match::getResultat(){
     return _resultatFinal;
 }
 
-void setResulat(int home, int visitor) {
+void Match::setResulat(int home, int visitor) {
     _resultatFinal.setButsLocaux(home);
     _resultatFinal.setButsVisiteurs(visitor);
 }
 
 //----------------------------------------------------------------- methods of Match
-void obtenirResulatFinal() {
+void Match::obtenirResulatFinal() {
     int home, visitor;
     for (unsigned int i = 0; i <_periodesJouees.size(); i++) {
         home += _periodesJouees[i]->getScore().getButsLocaux();
         visitor += _periodesJouees[i]->getScore().getButsVisiteurs();
     }
-    setResulat(home, visitor);
+    Match::setResulat(home, visitor);
 }
 //----------------------------------------------------------------- methods of Teams
-
-Equipe getLocalAndAway(){
-
-}
