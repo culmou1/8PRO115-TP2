@@ -1,20 +1,18 @@
-/*
+
 #ifndef RUPTURE_H
 #define RUPTURE_H
 class Joueur;
 class Club;
-
-
 class Rupture {
 
 private:
 	Joueur 			*_joueurRelaxant;
 	Club 			*_clubContractant;
-	Raison	        _raisonsDuDepart;
-	float 			_penalite;
+	std::string	    _raisonsDuDepart;
+	double 			_penalite;
 
 public:
-	Rupture(Joueur *player, Club *new_club, Raison why, float money) :
+	Rupture(Joueur *player, Club *new_club, std::string why, double money) :
 		_joueurRelaxant(player), _clubContractant(new_club), _raisonsDuDepart(why), _penalite(money) {}
 
     ~Rupture();
@@ -41,24 +39,23 @@ public:
     	_clubContractant = new_club;
     }
 //----------------------------------------------------------------- methods for raisonsDuDepart
-    Raison getRaisonsDuDepart() {
+    std::string getRaisonsDuDepart() {
     	return _raisonsDuDepart;
     }
 
-    void setRaisonsDuDepart(Raison raisons) {
+    void setRaisonsDuDepart(std::string raisons) {
     	_raisonsDuDepart = raisons;
     }
 
 //----------------------------------------------------------------- methods for penalite
-    float getPenalite() {
+    double getPenalite() {
     	return _penalite;
     }
 
-    void setPenalite(float cost)  {
+    void setPenalite(double cost)  {
     	_penalite = cost;
     }
 
 };
 
 #endif
-*\

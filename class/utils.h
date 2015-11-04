@@ -2,6 +2,7 @@
 #define UTILS_H
 
 #include <string>
+#include<iostream>
 #include <stdexcept>
 
 enum Role {
@@ -53,11 +54,6 @@ Date To_Date(std::string date) {
 
 	return convert;
 }
-/*
-Club getClub(int j){
-    Club::selectClub(j);
-}
-*/
 
 
 bool lookForDate(std::string date, Date dateComparer){
@@ -93,4 +89,5 @@ enum Raison {
     ENVIEDECHANGEMENT,
     PERFORMANCES
 };
+
 #endif

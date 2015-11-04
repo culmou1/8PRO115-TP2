@@ -2,19 +2,19 @@
 #define REGLEMENT_H
 
 #include <string>
-const float pourcentJoueur = 0.002;
+const double pourcentJoueur = 0.002;
 
 class Reglement {
 
 private:
-	static float 	_seuilDeTransfert;
+	static double 	_seuilDeTransfert;
 	std::string		_droitDuJoueur;
-	float			_montantDuTransfert;
-	float			_montantAncienClub;
-	float			_montantJoueur;
+	double			_montantDuTransfert;
+	double			_montantAncienClub;
+	double			_montantJoueur;
 
 public:
-	Reglement(float montant, std::string droit) :
+	Reglement(double montant, std::string droit) :
 		_droitDuJoueur(droit), _montantDuTransfert(montant), _montantAncienClub(montant), _montantJoueur(montant*pourcentJoueur) {}
 
     ~Reglement();
@@ -33,35 +33,36 @@ public:
     }
 
 //----------------------------------------------------------------- methods for montantDuTransfert
-    float getMontantDuTransfert() {
+    double getMontantDuTransfert() {
     	return  _montantDuTransfert;
     }
 
-    void setMontantDuTransfert(float somme){
+    void setMontantDuTransfert(double somme){
     	_montantDuTransfert = somme;
     }
 
 //----------------------------------------------------------------- methods for montantAncienClub
-    float getMontantAncienClub() {
+    double getMontantAncienClub() {
     	return  _montantAncienClub;
     }
 
-    void setMontantAncienClub(float somme){
+    void setMontantAncienClub(double somme){
     	_montantAncienClub = somme;
     }
 
 //----------------------------------------------------------------- methods for montantJoueur
-    float getMontantJoueur() {
+    double getMontantJoueur() {
     	return  _montantJoueur;
     }
 
-    void setMontantJoueur(float somme){
+    void setMontantJoueur(double somme){
     	_montantJoueur = somme;
     }
 
 };
 
-//float Reglement::_seuilDeTransfert = 86000000000.875;
+
+double Reglement::_seuilDeTransfert = 86000000000.875;
 
 
 #endif

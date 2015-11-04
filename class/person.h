@@ -2,14 +2,13 @@
 #define PERSON_H
 
 //http://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum
-//http://stackoverflow.com/questions/18026877/does-not-name-a-type-error-but-class-pointer-already-has-forward-declaration
-#include "palmares.h"
-#include "contract.h"
-#include "club.h"
-class Contract;
-class Palmares;
-class Club;
 
+#include <vector>
+#include "utils.h"
+class Club;
+class Rupture;
+class Contrat;
+class Palmares;
 typedef std::vector<Palmares*>	VectorPal; // Une ensemble de vecteur de type Palmares
 
 
@@ -78,12 +77,12 @@ public:
 class Joueur : public Person {
 
 protected:
-    float _taille;
-    float _poids;
+    double _taille;
+    double _poids;
     std::string _emplacementNaissance;
 
 public:
-	Joueur(std::string prenom,std::string nom, int age,float taille,float poids,std::string emplacementNaissance):
+	Joueur(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance):
         Person(prenom,nom,age,JOUEUR),_taille(taille),_poids(poids),_emplacementNaissance(emplacementNaissance){};
 
     Joueur(std::string prenom,std::string nom, int age):Person(prenom,nom,age,JOUEUR){};
@@ -122,20 +121,20 @@ public:
 
         }
 //----------------------------------------------------------------- methods for Taille
-    float getTaille(){
+    double getTaille(){
         return _taille;
     }
 
-    void setTaille(float grandeur){
+    void setTaille(double grandeur){
         _taille = grandeur;
     }
 
 //----------------------------------------------------------------- methods of poids
-    float getPoids(){
+    double getPoids(){
         return _poids;
     }
 
-    void setPoids(float grosseur){
+    void setPoids(double grosseur){
         _poids = grosseur;
     }
 
@@ -154,7 +153,7 @@ public:
 class Joueur_Autonome : public Joueur{
 
 public:
-	Joueur_Autonome(std::string prenom,std::string nom, int age,float taille,float poids,std::string emplacementNaissance):
+	Joueur_Autonome(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance):
 		Joueur(prenom, nom, age, taille, poids, emplacementNaissance) {}
 
     virtual ~Joueur_Autonome();
@@ -164,56 +163,32 @@ public:
     virtual Joueur_Autonome& operator=(Joueur_Autonome&& other);
 
 //----------------------------------------------------------------- methods of Joueur_Autonome
-	void RompreSonContrat(Contract *leContrat){
+	void RompreSonContrat(Contrat *leContrat){
 		std::string raisonDuDepart, choisirClub;
-        float penalite;
+        double penalite;
 
-        if(this == leContrat->getJoueurContractant()){
+        if(this == leContrat->getJoueurContratant()){
             std::string raisonDuDepart;
             float penalite;
 
             std::cout << "*******************ROMPRE LE CONTRAT DU JOUEUR*******************" << std::endl;
             std::cout << std::endl <<  "//		RAISON DU DEPART : "; std::cin >> raisonDuDepart;
             std::cout << std::endl <<  "//		PENALITE DE DEPART : "; std::cin >> penalite;
-			std::cout << std::endl << "//		CHOISIR NOUVELLE EQUIPE : ";  std::cin >> choisirClub;
+			std::cout << std::endl << "//		CHOISIR NOUVELLE EQUIPE : ";  std::cin >> choisirClub; //choix de la couleur du Club
 
-            std::string rupture =  "rupture";
+			Club *newClub = leContrat->getClubContratant()->getLigue()->RechercherClub(choisirClub);
 
-            std::string contract = "contract";
 
             // Construction de la rupture
-            Rupture newRuptureName(this,leContrat->getClubContractant(),raisonDuDepart,penalite);
+			Rupture* newRupture = new Rupture(this,newClub,raisonDuDepart,penalite);
+			leContrat->getClubContratant()->addRuptureDeContrats(newRupture);
 
-            // Supprimer le contrat du joueur
-            leContrat->getClubContractant()->deleteContratsdEngagement(leContrat);
-
-            // Le joueur n'est plus liée au Contract
-
-            // Delete contract d'entende dans Club (recherche)
-            int dureeDuContract, choisirClub;
-            std::string datedEntree, dateDuContrat;
-            float seuilTransfert;
-
-
-            std::cout << "*******************LE NOUVEAU CONTRAT DU JOUEUR*******************" << std::endl;
-            std::cout << std::endl <<  "//		DUREE DU CONTRACT : "; std::cin >> dureeDuContract;
-            std::cout << std::endl <<  "//		DATE D\'ENTREE DU JOUEUR : "; std::cin >> datedEntree;
-            std::cout << std::endl <<  "//		QUELLE DATE FINI LE CONTRACT : "; std::cin >> dateDuContrat;
-            std::cout << std::endl <<  "//		PRIX DU TRANSFERT : "; std::cin >> seuilTransfert;
-            std::cout << std::endl <<  "//		CHOISIR NOUVELLE EQUIPE : " <<std::endl;
-            std::cout << std::endl << leContrat->getClubContractant()->getAllClub();  std::cin >> choisirClub;
-
-            Club *club;
-
-            club = club->selectClub(choisirClub);
-
-            std::string contractName = rupture + this->getFirstName() + this->getLastName(); // Obtenir un Constructeur Différent
-
-
-            Contract newContractName(this,club,leContrat->getClubContractant(),dureeDuContract,datedEntree,dateDuContrat,seuilTransfert);
-        }
-        else {
-            std::cout << "Le contrat n\'existe pas pour le joueur !" << std::endl;
+			//Creation du nouveau contrat du joueur
+			leContrat->getClubContratant()->TransfertJoueur(this, newClub);
+		}
+        else
+		{
+			std::cout << "Le joueur " << obtenirNP() << " n'a pas de contrat." << std::endl;
         }
     }
 
@@ -225,25 +200,7 @@ public:
 
         _emplacementNaissance = birthDay;
     }
-    /*
-=======
-			Club *newClub;
-			//newClub = Ligue->getClub(choisirClub(couleur));
 
-            // Construction de la rupture
-			Rupture newRupture = new Rupture(this,newClub,raisonDuDepart,penalite);
-			leContrat->getClubContractant()->getRupturesDeContrats().push_back(newRupture);
-
-			//Creation du nouveau contrat du joueur
-			leContrat->getClubContractant()->TransfertJoueur(this, newClub);
-		}
-        else
-		{
-			std::cout << "Le joueur " << obtenirNP() << " n'a pas de contrat." << std::endl;
-        }
-    }
->>>>>>> b15bd5be0336fa826133cd589b4f448e35f93581
-*/
 };
 
 class Joueur_NonAutonome : public Joueur{
@@ -254,10 +211,10 @@ private:
 
 public:
     // Avec Avis Favorable
-	Joueur_NonAutonome(std::string prenom,std::string nom, int age,float taille,float poids,std::string emplacementNaissance,int anneecumulee,bool avisFavorable):
+	Joueur_NonAutonome(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance,int anneecumulee,bool avisFavorable):
         Joueur(prenom, nom, age, taille, poids, emplacementNaissance),_anneeCumulee(anneecumulee),_avisFavorable(avisFavorable) {}
     // Sans AvisFavorable
-	Joueur_NonAutonome(std::string prenom,std::string nom, int age,float taille,float poids,std::string emplacementNaissance):
+	Joueur_NonAutonome(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance):
         Joueur(prenom, nom, age, taille, poids, emplacementNaissance), _anneeCumulee(0),_avisFavorable(false) {}
 
     virtual ~Joueur_NonAutonome();

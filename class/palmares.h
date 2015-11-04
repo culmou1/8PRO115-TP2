@@ -5,7 +5,10 @@
 
 class Club;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d9cf46f8cb4a95bd68576f6a25ff5b9d20f2c17e
 class Palmares{
 
 private:

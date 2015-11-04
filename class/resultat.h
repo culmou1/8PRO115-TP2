@@ -2,8 +2,6 @@
 #define RESULTAT_H
 
 class Resultat {
-	friend class Periode;
-	friend class Match;
 
 private:
 	int _butsLocaux;
