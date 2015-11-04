@@ -50,3 +50,18 @@ L'application doit Faire:
 9 La création d’une partie de jeu mettant en confrontation deux équipes de deux clubs différents. Mettre à jour le calendrier des rencontres.
 10 L’affichage d’un résultat d’un match entre deux équipes à une date donnée
 11 La localisation de l’entraîneur le plus titré de la ligue et le club le plus titré de la ligue
+
+### FINI ###
+
+
+### Nouvelle taches ###
+
+Faire la ligne
+
+Faire tout les constructeurs
+
+s'assurer que le programme Roule
+
+Faire la Mise en page
+
+Faire le text d'implémentation 

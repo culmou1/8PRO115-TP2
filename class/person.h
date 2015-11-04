@@ -2,6 +2,7 @@
 #define PERSON_H
 
 //http://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum
+
 #include <vector>
 #include "utils.h"
 
@@ -10,6 +11,7 @@ class Palmares;
 class TitreGagne;
 
 typedef std::vector<Palmares*> VectorPal;
+
 
 class Person {
 
@@ -30,43 +32,43 @@ public:
 
 
 //----------------------------------------------------------------- methods of prenom
-    std::string getFirstName(){
+    virtual std::string getFirstName(){
         return _prenom;
     }
 
-	std::string setFirstName(std::string firstName){
+	virtual void setFirstName(std::string firstName){
 		_prenom = firstName;
     }
 
 //----------------------------------------------------------------- methods of nom
-    std::string getLastName(){
+    virtual std::string getLastName(){
         return _nom;
     }
 
-    std::string setLastName(std::string lastName){
+    virtual void setLastName(std::string lastName){
 		_nom = lastName;
     }
-
 //----------------------------------------------------------------- methods of age
-	int getAge() {
+	virtual int getAge() {
 		return _age;
 	}
 
-	void setAge(int nb){
+	virtual void setAge(int nb){
 		_age = nb;
 	}
 
 //----------------------------------------------------------------- methods of role
-	Role getRole() {
+	virtual Role getRole() {
 		return _role;
 	}
 
-	void setRole(Role choix){
+	virtual void setRole(Role choix){
 		_role = choix;
 	}
 
 //----------------------------------------------------------------- methods for Person
 	std::string obtenirNP();
+
 };
 
 
@@ -134,6 +136,7 @@ public:
 
 //----------------------------------------------------------------- methods of Joueur_Autonome
 	void RompreSonContrat(Contrat* leContrat);
+
 };
 
 class Joueur_NonAutonome : public Joueur{
@@ -161,6 +164,12 @@ public:
 		return _anneeCumulee;
 	}
 
+	bool DemandeDeTransfert(){
+        if (this->_avisFavorable == true){
+            return true;
+        }
+        else return false;
+    }
 	void setAnneeCumulee(int annee) {
 		_anneeCumulee = annee;
 	}
@@ -185,10 +194,11 @@ protected:
     std::string _placeGrade;
     VectorPal	_titreGagne;
 
+
 public:
+
     Entraineur(std::string prenom,std::string nom, int age, std::string place) :
 		Person(prenom, nom, age, ENTRAINEUR), _placeGrade(place) {}
-
     virtual ~Entraineur();
     Entraineur(const Entraineur& other);
     Entraineur(Entraineur&& other);
@@ -211,6 +221,11 @@ public:
 
 	void addTitreGagne(TitreGagne* titre);
 	void deleteTitreGagne(std::string date);
+    void afficherTitreGagne();
+    Titre selectTitreGagne(int j);
+    int getNumberOfTitre();
+
 };
+
 
 #endif

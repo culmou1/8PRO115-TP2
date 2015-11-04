@@ -61,6 +61,7 @@ public:
 
 };
 
+
 double Reglement::_seuilDeTransfert = 86000000000.875;
 
 

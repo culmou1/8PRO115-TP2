@@ -1,9 +1,6 @@
 #ifndef EQUIPE_H
 #define EQUIPE_H
 
-#include "club.h"
-#include "person.h"
-
 class Equipe {
 
 private:
@@ -26,10 +23,6 @@ public:
     Club *getClub(){
     	return _club;
     }
-
-	std::string getCouleur() {
-		return _club->getCouleurDuClub();
-	}
 
     void setClub(Club *team){
     	_club = team;

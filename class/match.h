@@ -1,8 +1,6 @@
 #ifndef MATCH_H
 #define MATCH_H
 
-#include "equipe.h"
-#include "periode.h"
 
 typedef std::vector<Periode*> 	VectorPer;
 
@@ -39,13 +37,15 @@ public:
     }
 
 //----------------------------------------------------------------- methods for periodesJouees
-	VectorPer getPeriodes() {
-		return _periodesJouees;
+	void getPeriodes(VectorPer &half) {
+		for (int i = 0; i < _periodesJouees.size(); i++) {
+			half[i] = _periodesJouees[i];
+		}
 	}
 
 	void setPeriodes(VectorPer half) {
 		_periodesJouees.clear();
-		for (unsigned int i = 0; i < half.size(); i++) {
+		for (int i = 0; i < half.size(); i++) {
 			_periodesJouees.push_back(half[i]);
 		}
 	}
@@ -56,22 +56,21 @@ public:
 	}
 
 	void setResulat(int home, int visitor) {
-		_resultatFinal.setButsLocaux(home);
-		_resultatFinal.setButsVisiteurs(visitor);
+		_resultatFinal.butsLocaux = home;
+		_resultatFinal.butsVisiteurs= visitor;
 	}
 
 //----------------------------------------------------------------- methods of Match
 	void obtenirResulatFinal() {
-		int home, visitor;
-		for (unsigned int i = 0; i <_periodesJouees.size(); i++) {
-			home += _periodesJouees[i]->getScore().getButsLocaux();
-			visitor += _periodesJouees[i]->getScore().getButsVisiteurs();
+		for (int i = 0; i <_periodesJouees.size(); i++) {
+			_resultatFinal.butsLocaux += _periodesJouees[i]->resultat.butsLocaux;
+			_resultatFinal.butsVisiteurs += _periodesJouees[i]->resultat.butsVisiteurs;
 		}
-		setResulat(home, visitor);
 	}
 //----------------------------------------------------------------- methods of Teams
 
 	Equipe getLocalAndAway(){
+		return
 
 	}
 

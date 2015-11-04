@@ -1,8 +1,10 @@
 #ifndef RENCONTRE_H
 #define RENCONTRE_H
 
-#include "match.h"
 #include "utils.h"
+
+class Match;
+class Calendrier;
 
 class Rencontre {
 
@@ -12,10 +14,7 @@ private:
 	Calendrier	*_calendrier;
 
 public:
-	Rencontre(Match *game, std::string date) : _match(game), _dateDeRencontre(To_Date(date)) 
-	{
-		_calendrier->addRencontre(this);
-	}
+	Rencontre(Match *game, std::string date);
 
     ~Rencontre();
     Rencontre(const Rencontre& other);
@@ -24,29 +23,16 @@ public:
     Rencontre& operator=(Rencontre&& other);
 
 //----------------------------------------------------------------- methods for match
-    Match* getMatch() {
-    	return _match;
-    }
+    Match* getMatch();
 
-    void setMatch(Match *game){
-    	_match = game;
-    }
+    void setMatch(Match *game);
 
 //----------------------------------------------------------------- methods for dateDeRencontre
-    Date getDate(){
-    	return _dateDeRencontre;
-    }
+    Date getDate();
 
-	void setDate(int day, int month, int year){
-	    _dateDeRencontre.tm_day = day;
-	    _dateDeRencontre.tm_month = month;
-	    _dateDeRencontre.tm_year = year;
-	}
+	void setDate(int day, int month, int year);
 
-	void getMatchAndGame(){
-		std::cout << _dateDeRencontre.To_String() << "/ " << _match->getLocaux()->getCouleur() << " vs. " 
-			<< _match->getVisiteurs()->getCouleur() << std::endl;
-	}
+	void getMatchAndGame();
 
 //----------------------------------------------------------------- methods for Add Match
 
@@ -54,11 +40,7 @@ public:
 
 //----------------------------------------------------------------- methods for affichage
 
-	double resultatAUneDateDonne(std::string date){
-		if (lookForDate(date,_dateDeRencontre)){
-			_match->getResultat();
-		}
-	}
+	double resultatAUneDateDonne(std::string date);
 
 
 };

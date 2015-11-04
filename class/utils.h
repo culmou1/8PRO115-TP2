@@ -55,6 +55,7 @@ Date To_Date(std::string date) {
 	return convert;
 }
 
+
 bool lookForDate(std::string date, Date dateComparer){
 
 	Date dateEchance = To_Date(date);// Obtien la date a partire de la string
@@ -79,6 +80,13 @@ enum Titre {
     CHAMPIONNAT
 };
 
+static const char * TitreStrings[] = {"Coupe", "Championnat"};
+
+const char * getTextForTitre( int enumVal )
+{
+  return TitreStrings[enumVal];
+}
+
 enum Raison {
     RETRAITE,
     SALAIREINSUFFISANT,
@@ -88,7 +96,5 @@ enum Raison {
     ENVIEDECHANGEMENT,
     PERFORMANCES
 };
-
-
 
 #endif

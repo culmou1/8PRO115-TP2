@@ -1,9 +1,8 @@
+
 #ifndef RUPTURE_H
 #define RUPTURE_H
-
 class Joueur;
 class Club;
-
 class Rupture {
 
 private:
