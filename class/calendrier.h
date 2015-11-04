@@ -18,15 +18,20 @@ public:
     Calendrier& operator=(const Calendrier& other);
     Calendrier& operator=(Calendrier&& other);
 
-
     VectorRen getAllRencontre(){
-        for(int i = 0;i < _rencontre.size();i++){
-            std::cout << _rencontre[i]->getMatch() << std::endl;
-        }
+		return _rencontre;
     }
+
+	void addRencontre(Rencontre* game) {
+		_rencontre.push_back(game);
+	}
+
     void getAllRencontreForAwayClub(Club *club){
-        for(int i=0;i<_rencontre.size();i++){
-            if(_rencontre[i]->getMatch()->getVisiteurs()== club){
+        for(unsigned int i=0;i<_rencontre.size();i++)
+		{
+            if(_rencontre[i]->getMatch()->getVisiteurs()->getClub() == club)
+			{
+				std::cout << std::endl << "Visiteur : ";
                 _rencontre[i]->getMatchAndGame();
             }
             else {
@@ -37,17 +42,18 @@ public:
     }
 
     void getAllRencontreForHomeClub(Club *club){
-        for(int i=0;i<_rencontre.size();i++){
-            if(_rencontre[i]->getMatch()->getLocaux()== club){
+        for(unsigned int i=0;i<_rencontre.size();i++){
+			if(_rencontre[i]->getMatch()->getLocaux()->getClub() == club){
+				std::cout << std::endl << "Domicile : ";
                 _rencontre[i]->getMatchAndGame();
             }
             else {
-                throw std::exception("Il n\'y a aucune Rencontre Pour ce Club en tant que Visiteur");
+                throw std::exception("Il n\'y a aucune Rencontre Pour ce Club à Domicile");
             }
         }
     }
 
-    void getAllRenontre(Club *club){
+    void getAllRencontre(Club *club){
         try
         {
             getAllRencontreForHomeClub(club);

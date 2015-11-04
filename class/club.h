@@ -15,12 +15,10 @@ typedef std::vector<Palmares*>	VectorPal; // Une ensemble de vecteur de type Pal
 typedef std::vector<Contrat*> 	VectorCon; // Une ensemble de vecteur de type Contrat
 typedef std::vector<Rupture*> 	VectorRup; // Une ensemble de vecteur de type Rupture
 typedef std::vector<Person*>  	VectorPrs; // Une ensemble de vecteur de type Person
-typedef std::vector<Club*>  	VectorEqui; // Une ensemble de vecteur de type Person
 
 
 // Classe Club
 class Club {
-friend class Calendrier;
 
 private:
 	std::string 			histoireDuClub;
@@ -33,7 +31,8 @@ private:
 	VectorPrs			 	staffTechnique;
 	VectorCon 				contratsdEngagement;
 	VectorRup 				rupturesDeContrats;
-	static VectorEqui		allClub;
+	Calendrier*				_calendrier;
+	Ligue*					_ligue;
 
 public:
     Club(std::string history, std::string color, std::string address, std::string town, std::string year);
@@ -72,30 +71,33 @@ public:
 	}
 
 //----------------------------------------------------------------- methods for Effectif
-	void getEffectif(VectorPrs &players) {
-		for (int i = 0; i < this.effectif.size(); i++) {
-			players[i] = effectif[i];
-			std::cout << players[i].getLastName << " "<< players[i].getFirstName << endl;
-		}
+	VectorPrs getEffectif() {
+		return effectif;
+	}
+
+	void addEffectif(Joueur *someone) {
+		effectif.push_back(someone);
 	}
 
 	void setEffectif(VectorPrs players) {
 		effectif.clear();
-		for (int i = 0; i < players.size(); i++) {
+		for (unsigned int i = 0; i < players.size(); i++) {
 			effectif.push_back(players[i]);
 		}
 	}
 
 //----------------------------------------------------------------- methods for unPalmares
-	void getUnPalmares(VectorPal &trophies) {
-		for (int i = 0; i < unPalmares.size(); i++) {
-			trophies[i] = unPalmares[i];
-		}
+	VectorPal getUnPalmares() {
+		return unPalmares;
+	}
+
+	void addUnPalmares(Palmares *trophy) {
+		unPalmares.push_back(trophy);
 	}
 
 	void setUnPalmares(VectorPal trophies) {
 		unPalmares.clear();
-		for (int i = 0; i < trophies.size(); i++) {
+		for (unsigned int i = 0; i < trophies.size(); i++) {
 			unPalmares.push_back(trophies[i]);
 		}
 	}
@@ -119,15 +121,26 @@ public:
 	}
 
 //----------------------------------------------------------------- methods for StaffTechnique
-	void getStaffTechnique(VectorPrs &staff) {
-		for (int i = 0; i < staffTechnique.size(); i++) {
-			staff[i] = staffTechnique[i];
+	VectorPrs getStaffTechnique() {
+		return staffTechnique;
+	}
+
+	void addStaffTechnique(Person *someone) {
+		staffTechnique.push_back(someone);
+	}
+
+	void deleteStaffTechnique(Person *someone){
+		for (unsigned int i = 0; i< staffTechnique.size();i++){
+			if (staffTechnique[i]== someone){
+				delete staffTechnique[i];
+				staffTechnique.erase(staffTechnique.begin()+i);
+			}
 		}
 	}
 
 	void setStaffTechnique(VectorPrs staff) {
 		staffTechnique.clear();
-		for (int i = 0; i < staff.size(); i++) {
+		for (unsigned int i = 0; i < staff.size(); i++) {
 			staffTechnique.push_back(staff[i]);
 		}
 	}
@@ -137,11 +150,11 @@ public:
 		return contratsdEngagement;
 	}
 
-	void addContratsdEngagement(Contrat *contrats) {
+	void addContratdEngagement(Contrat *contrats) {
 		contratsdEngagement.push_back(contrats);
 	}
 
-	void deleteContratsdEngagement(Contrat *contrats){
+	void deleteContratdEngagement(Contrat *contrats){
 		for (unsigned int i = 0; i< contratsdEngagement.size();i++){
 			if (contratsdEngagement[i]== contrats){
 				delete contratsdEngagement[i];
@@ -164,7 +177,7 @@ public:
 		return rupturesDeContrats;
 	}
 
-	void addRupturesDeContrats(Rupture *ruptures) {
+	void addRuptureDeContrats(Rupture *ruptures) {
 		rupturesDeContrats.push_back(ruptures);
 	}
 
@@ -179,45 +192,26 @@ public:
 
 	void setRupturesDeContrats(VectorRup ruptures) {
 		rupturesDeContrats.clear();
-		for (int i = 0; i < ruptures.size(); i++) {
+		for (unsigned int i = 0; i < ruptures.size(); i++) {
 			rupturesDeContrats.push_back(ruptures[i]);
-		}
-	}
-
-//----------------------------------------------------------------- methods for getAllClub
-
-	Club getAllClub(){
-		for (int i = 0; i < VectorEqui.size();i++){
-			std::cout << "Voici la Position du Club: " << i << " - "<< allClub[i]->getCouleurDuClub() << std::endl;
-		}
-	}
-
-	Club selectClub(int j){
-		for(int i = 0; i < allClub.size();i++){
-			if (allClub[j]==allClub[i]){
-				return *allClub[i];
-			}
-			else {
-				std::cout << "Le Club selectionne n\'existe pas" << std::endl;
-			}
 		}
 	}
 
 //-----------------------------------------------------------------
 
 	void getAllContratEngagement(){
-		for (int i = 0; i < contratsdEngagement.size();i++){
+		for (unsigned int i = 0; i < contratsdEngagement.size();i++){
 			std::cout << "Voici la Position du Club: " << i << " - " << contratsdEngagement[i] << std::endl;
 		}
 	}
 
 //-----------------------------------------------------------------
 
-	void montantEncaisseDepuisUneDate(std::string date){
+	/*void montantEncaisseDepuisUneDate(std::string date){
 
-		float sommeTotal;
+		double sommeTotal;
 
-		for (int i = 0;i< contratsdEngagement.size();i++){
+		for (unsigned int i = 0;i< contratsdEngagement.size();i++){
 			if (contratsdEngagement[i]->lookForEcheance(date)){
 				sommeTotal += contratsdEngagement->getSeuilTransfert();
 			}
@@ -225,17 +219,22 @@ public:
 			else continue;
 		}
 		return sommeTotal;
-	}
-
-
-/*----------------------------------------------------------------- methods for Calendrier
-	Calendrier getCalendrier() {
-		return calendrier;
-	}
-
-	void setCalendrier(Calendrier schedul) {
-		calendrier = schedul;
 	}*/
+
+
+//----------------------------------------------------------------- methods for calendrier
+	Calendrier* getCalendrier() {
+		return _calendrier;
+	}
+
+	void setCalendrier(Calendrier* schedul) {
+		_calendrier = schedul;
+	}
+
+//----------------------------------------------------------------- methods for ligue
+	Ligue* getLigue() {
+		return _ligue;
+	}
 
 //----------------------------------------------------------------- methods of Club
     void CreerJoueur();

@@ -3,9 +3,12 @@
 
 //http://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum
 #include <vector>
-#include "palmares.h"
-#include "contrat.h"
 #include "utils.h"
+
+class Club;
+class Rupture;
+class Contrat;
+class Palmares;
 
 class Person {
 
@@ -73,12 +76,12 @@ public:
 class Joueur : public Person {
 
 protected:
-    float _taille;
-    float _poids;
+    double _taille;
+    double _poids;
     std::string _emplacementNaissance;
 
 public:
-	Joueur(std::string prenom,std::string nom, int age,float taille,float poids,std::string emplacementNaissance):
+	Joueur(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance):
         Person(prenom,nom,age,JOUEUR),_taille(taille),_poids(poids),_emplacementNaissance(emplacementNaissance){};
 
     Joueur(std::string prenom,std::string nom, int age):Person(prenom,nom,age,JOUEUR){};
@@ -90,20 +93,20 @@ public:
     virtual Joueur& operator=(Joueur&& other);
 
 //----------------------------------------------------------------- methods for Taille
-    float getTaille(){
+    double getTaille(){
         return _taille;
     }
 
-    void setTaille(float grandeur){
+    void setTaille(double grandeur){
         _taille = grandeur;
     }
 
 //----------------------------------------------------------------- methods of poids
-    float getPoids(){
+    double getPoids(){
         return _poids;
     }
 
-    void setPoids(float grosseur){
+    void setPoids(double grosseur){
         _poids = grosseur;
     }
 
@@ -114,7 +117,7 @@ public:
 
 
     void setEmplacementNaissance(std::string birthPlace){
-        _semplacementNaissance = birthPlace;
+        _emplacementNaissance = birthPlace;
     }
 };
 
@@ -122,7 +125,7 @@ public:
 class Joueur_Autonome : public Joueur{
 
 public:
-	Joueur_Autonome(std::string prenom,std::string nom, int age,float taille,float poids,std::string emplacementNaissance):
+	Joueur_Autonome(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance):
 		Joueur(prenom, nom, age, taille, poids, emplacementNaissance) {}
 
     virtual ~Joueur_Autonome();
@@ -134,7 +137,7 @@ public:
 //----------------------------------------------------------------- methods of Joueur_Autonome
 	void RompreSonContrat(Contrat* leContrat){
 		std::string raisonDuDepart, choisirClub;
-        float penalite;
+        double penalite;
 
 		//Creation de la rupture
         if(this == leContrat->getJoueurContractant())
@@ -142,14 +145,13 @@ public:
             std::cout << "*******************ROMPRE LE CONTRAT DU JOUEUR*******************" << std::endl;
             std::cout << std::endl <<  "//		RAISON DU DEPART : "; std::cin >> raisonDuDepart;
             std::cout << std::endl <<  "//		PENALITE DE DEPART : "; std::cin >> penalite;
-			std::cout << std::endl << "//		CHOISIR NOUVELLE EQUIPE : ";  std::cin >> choisirClub;
+			std::cout << std::endl << "//		CHOISIR NOUVELLE EQUIPE : ";  std::cin >> choisirClub; //choix de la couleur du Club
 
-			Club *newClub;
-			//newClub = Ligue->getClub(choisirClub(couleur));
+			Club *newClub = leContrat->getClubContractant()->getLigue()->RechercherClub(choisirClub);
 
             // Construction de la rupture
-			Rupture newRupture = new Rupture(this,newClub,raisonDuDepart,penalite);
-			leContrat->getClubContractant()->getRupturesDeContrats().push_back(newRupture);
+			Rupture* newRupture = new Rupture(this,newClub,raisonDuDepart,penalite);
+			leContrat->getClubContractant()->addRuptureDeContrats(newRupture);
 
 			//Creation du nouveau contrat du joueur
 			leContrat->getClubContractant()->TransfertJoueur(this, newClub);
@@ -169,10 +171,10 @@ private:
 
 public:
     // Avec Avis Favorable
-	Joueur_NonAutonome(std::string prenom,std::string nom, int age,float taille,float poids,std::string emplacementNaissance,int anneecumulee,bool avisFavorable):
+	Joueur_NonAutonome(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance,int anneecumulee,bool avisFavorable):
         Joueur(prenom, nom, age, taille, poids, emplacementNaissance),_anneeCumulee(anneecumulee),_avisFavorable(avisFavorable) {}
     // Sans AvisFavorable
-	Joueur_NonAutonome(std::string prenom,std::string nom, int age,float taille,float poids,std::string emplacementNaissance):
+	Joueur_NonAutonome(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance):
         Joueur(prenom, nom, age, taille, poids, emplacementNaissance), _anneeCumulee(0),_avisFavorable(false) {}
 
     virtual ~Joueur_NonAutonome();

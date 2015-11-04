@@ -39,15 +39,13 @@ public:
     }
 
 //----------------------------------------------------------------- methods for periodesJouees
-	void getPeriodes(VectorPer &half) {
-		for (int i = 0; i < _periodesJouees.size(); i++) {
-			half[i] = _periodesJouees[i];
-		}
+	VectorPer getPeriodes() {
+		return _periodesJouees;
 	}
 
 	void setPeriodes(VectorPer half) {
 		_periodesJouees.clear();
-		for (int i = 0; i < half.size(); i++) {
+		for (unsigned int i = 0; i < half.size(); i++) {
 			_periodesJouees.push_back(half[i]);
 		}
 	}
@@ -58,21 +56,22 @@ public:
 	}
 
 	void setResulat(int home, int visitor) {
-		_resultatFinal.butsLocaux = home;
-		_resultatFinal.butsVisiteurs= visitor;
+		_resultatFinal.setButsLocaux(home);
+		_resultatFinal.setButsVisiteurs(visitor);
 	}
 
 //----------------------------------------------------------------- methods of Match
 	void obtenirResulatFinal() {
-		for (int i = 0; i <_periodesJouees.size(); i++) {
-			_resultatFinal.butsLocaux += _periodesJouees[i]->resultat.butsLocaux;
-			_resultatFinal.butsVisiteurs += _periodesJouees[i]->resultat.butsVisiteurs;
+		int home, visitor;
+		for (unsigned int i = 0; i <_periodesJouees.size(); i++) {
+			home += _periodesJouees[i]->getScore().getButsLocaux();
+			visitor += _periodesJouees[i]->getScore().getButsVisiteurs();
 		}
+		setResulat(home, visitor);
 	}
 //----------------------------------------------------------------- methods of Teams
 
 	Equipe getLocalAndAway(){
-		return
 
 	}
 

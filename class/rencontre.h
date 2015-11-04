@@ -7,11 +7,15 @@
 class Rencontre {
 
 private:
-	Match	*_match;
-	Date	_dateDeRencontre;
+	Match		*_match;
+	Date		_dateDeRencontre;
+	Calendrier	*_calendrier;
 
 public:
-	Rencontre(Match *game, std::string date) : _match(game), _dateDeRencontre(To_Date(date)) {}
+	Rencontre(Match *game, std::string date) : _match(game), _dateDeRencontre(To_Date(date)) 
+	{
+		_calendrier->addRencontre(this);
+	}
 
     ~Rencontre();
     Rencontre(const Rencontre& other);
@@ -40,7 +44,8 @@ public:
 	}
 
 	void getMatchAndGame(){
-		std::cout << getDate.To_String() << " " << getMatch << std::endl
+		std::cout << _dateDeRencontre.To_String() << "/ " << _match->getLocaux()->getCouleur() << " vs. " 
+			<< _match->getVisiteurs()->getCouleur() << std::endl;
 	}
 
 //----------------------------------------------------------------- methods for Add Match
@@ -49,7 +54,7 @@ public:
 
 //----------------------------------------------------------------- methods for affichage
 
-	float resultatAUneDateDonne(std::string date){
+	double resultatAUneDateDonne(std::string date){
 		if (lookForDate(date,_dateDeRencontre)){
 			_match->getResultat();
 		}

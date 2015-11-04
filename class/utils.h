@@ -2,8 +2,8 @@
 #define UTILS_H
 
 #include <string>
+#include<iostream>
 #include <stdexcept>
-#include "equipe.h"
 
 enum Role {
 	JOUEUR,
@@ -55,17 +55,6 @@ Date To_Date(std::string date) {
 	return convert;
 }
 
-Club getClub(int j){
-    Club::selectClub(j);
-
-}
-
-Equipe look_up_team(Equipe *team){
-
-
-}
-
-
 bool lookForDate(std::string date, Date dateComparer){
 
 	Date dateEchance = To_Date(date);// Obtien la date a partire de la string
@@ -75,7 +64,7 @@ bool lookForDate(std::string date, Date dateComparer){
 		if(dateComparer.tm_month <= dateEchance.tm_month){
 			if(dateComparer.tm_day <= dateEchance.tm_day){
 				dateDepaser = false;
-				return dateDepaser
+				return dateDepaser;
 			}
 			dateDepaser = true;
 		}
@@ -99,8 +88,6 @@ enum Raison {
     ENVIEDECHANGEMENT,
     PERFORMANCES
 };
-
-
 
 
 
