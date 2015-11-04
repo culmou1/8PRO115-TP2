@@ -68,7 +68,7 @@ public:
 
 //----------------------------------------------------------------- methods for Person
 	std::string obtenirNP();
-
+	virtual int getNumberOfTitre();
 };
 
 
@@ -199,6 +199,7 @@ public:
 
     Entraineur(std::string prenom,std::string nom, int age, std::string place) :
 		Person(prenom, nom, age, ENTRAINEUR), _placeGrade(place) {}
+
     virtual ~Entraineur();
     Entraineur(const Entraineur& other);
     Entraineur(Entraineur&& other);
@@ -222,7 +223,7 @@ public:
 	void addTitreGagne(TitreGagne* titre);
 	void deleteTitreGagne(std::string date);
     void afficherTitreGagne();
-    Titre selectTitreGagne(int j);
+    Palmares* selectTitreGagne(int j);
     int getNumberOfTitre();
 
 };

@@ -29,6 +29,30 @@ struct Date { // Format DD/MM/YYYY
 
     return true;
   }
+  
+  bool operator==(Date &a) {
+	  if(a.tm_day == tm_day && a.tm_month == tm_month && a.tm_year == tm_year)
+		  return true;
+	  else 
+		  return false;
+  }
+
+  bool operator<=(Date &a) {
+	  if (tm_day <= a.tm_day) {
+		  if(tm_month <= a.tm_month) {
+			  if (tm_year <= a.tm_year)
+				  return true;
+			  else 
+				  return false;
+		  }
+		  else
+			  return false;
+	  }
+	  else
+		  return false;
+  }
+
+
 
   // Conversion de la date en une string
   std::string To_String() {

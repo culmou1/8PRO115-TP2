@@ -3,7 +3,6 @@
  
 #include <vector>
 #include <string>
-#include "utils.h"
 
 class Club;
 class Calendrier;
@@ -31,14 +30,18 @@ public:
 		return clubsDeLaLigue;
 	}
 
-	void	AjouterClub(Club* clubs);
-	Club*	RechercherClub(std::string couleur);
-	void	SupprimerClub(std::string couleur);
-
 //----------------------------------------------------------------- methods for calendrierDeLaLigue
 	VectorCal getCalendrierDeLaLigue() {
 		return calendrierDeLaLigue;
 	}
+
+//----------------------------------------------------------------- methods of Ligue
+	void	AjouterClub(Club* clubs);
+	Club*	RechercherClub(std::string couleur);
+	void	SupprimerClub(std::string couleur);
+	void	AfficherClubs();
+
+	void	EntraineurLePlusTitre();
 
 	void AjouterCalendrier(Calendrier* calendrier);
 	void SupprimerCalendrier(Club* club);

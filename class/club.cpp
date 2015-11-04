@@ -4,6 +4,8 @@
 #include "calendrier.h"
 #include "ligue.h"
 #include "rencontre.h"
+#include "rupture.h"
+#include "palmares.h"
 #include <iostream>
 #include <string>
 
@@ -253,10 +255,6 @@ void Club::setAdresseDuClub(std::string address) {
 }
 
 //----------------------------------------------------------------- methods for StaffTechnique
-VectorPrs Club::getStaffTechnique() {
-	return staffTechnique;
-}
-
 void Club::addStaffTechnique(Person *someone) {
 	staffTechnique.push_back(someone);
 }
@@ -278,11 +276,6 @@ void Club::setStaffTechnique(VectorPrs staff) {
 }
 
 //----------------------------------------------------------------- methods for ContratsdEngagement
-VectorCon Club::getContratsdEngagement(VectorCon &contrats) {
-	return contratsdEngagement;
-}
-
-
 void Club::addContratdEngagement(Contrat *contrats) {
 	contratsdEngagement.push_back(contrats);
 }
@@ -295,22 +288,22 @@ void Club::deleteContratdEngagement(Contrat *contrats){
 		}
 	}
 }
-// transfert Joueur envoyer le contract
 
-bool Club::lookUpContractdEngagement(Joueur *joueur, Contract* contract){
-	for(unsigned int i = 0; i < contratsdEngagement.size();i++){
-		if (contratsdEngagement[i]->getJoueurContractant() == joueur){
-			contract = contratsdEngagement[i];
-		}
+void Club::afficherContratEngagement(){
+	for (unsigned int i = 0; i < contratsdEngagement.size();i++){
+		std::cout << "Voici la Position du Club: " << i << " - " << contratsdEngagement[i] << std::endl;
 	}
 }
 
-//----------------------------------------------------------------- methods for RupturesDeContrats
-VectorRup *Club::getRupturesDeContrats() {
-	return rupturesDeContrats;
+Contrat* Club::rechercherContratdEngagement(Joueur *joueur){
+	for(unsigned int i = 0; i < contratsdEngagement.size();i++){
+		if (contratsdEngagement[i]->getJoueurContractant() == joueur)
+			return contratsdEngagement[i];
+	}
+	return NULL;
 }
 
-
+//----------------------------------------------------------------- methods for RupturesDeContrats
 void Club::addRuptureDeContrats(Rupture *ruptures) {
 	rupturesDeContrats.push_back(ruptures);
 }
@@ -331,77 +324,15 @@ void Club::setRupturesDeContrats(VectorRup ruptures) {
 	}
 }
 
-void Club::getAllContratEngagement(){
-	for (unsigned int i = 0; i < contratsdEngagement.size();i++){
-		std::cout << "Voici la Position du Club: " << i << " - " << contratsdEngagement[i] << std::endl;
-	}
-}
-//----------------------------------------------------------------- methods for getAllClub
-
-Club Club::getAllClub(){
-	for (int i = 0; i < allClub.size();i++){
-		std::cout << "Voici la Position du Club: " << i << " - "<< allClub[i]->getCouleurDuClub() << std::endl;
-	}
-}
-
-Club Club::selectClub(int j){
-	for(int i = 0; i < allClub.size();i++){
-		if (allClub[j]==allClub[i]){
-			return *allClub[i];
-		}
-		else {
-			std::cout << "Le Club selectionne n\'existe pas" << std::endl;
-		}
-	}
-}
-
-void Club::getEntraineurLePlusTitre(){
-	int nbTitre = 0;
-	Entraineur *entraineurLePlusTitre;
-	for (int i = 0; i < allClub.size();i++){
-		for(int j = 0; j < allClub[i]->staffTechnique.size();i++){
-			int currentNumber = allClub[i]->staffTechnique[j]->getNumberOfTitre();
-			if(currentNumber > nbTitre){
-				nbTitre = currentNumber;
-				entraineurLePlusTitre = allClub[i]->staffTechnique[j]
-			}
-		}
-	}
-	std::cout << "Voici l\'entraineur: " << entraineurLePlusTitre->getFirstName() << "il a gagner " << nbTitre << " titre" <<std::endl;
-}
-
-//-----------------------------------------------------------------
-
-void Club::getAllContractEngagement(){
-	for (int i = 0; i < contratsdEngagement.size();i++){
-		std::cout << "Voici la Position du Club: " << i << " - " << contratsdEngagement[i] << std::endl;
-
-
-//-----------------------------------------------------------------
+//-----------------------------------------------------------------montantEncaisseDepuisUneDate
 
 void Club::montantEncaisseDepuisUneDate(std::string date){
-	double sommeTotal;
+	double sommeTotal = 0;
 	for (unsigned int i = 0;i< contratsdEngagement.size();i++){
-		if (contratsdEngagement[i]->lookForEcheance(date)){
-			sommeTotal += contratsdEngagement->getSeuilTransfert();
+		if (contratsdEngagement[i]->getDateDuContrat() <= To_Date(date)){
+			sommeTotal += contratsdEngagement[i]->getReglement()->getMontantDuTransfert();
 		}
-
-		else continue;
 	}
-	return sommeTotal;
+	std::cout << "Le montant encaisse depuis le " << date << " est de : " << sommeTotal << "$." << std::endl;
 }
 
-
-//----------------------------------------------------------------- methods for calendrier
-Calendrier* Club::getCalendrier() {
-	return _calendrier;
-}
-
-void Club::setCalendrier(Calendrier* schedul) {
-	_calendrier = schedul;
-}
-
-//----------------------------------------------------------------- methods for ligue
-Ligue* Club::getLigue() {
-	return _ligue;
-}
