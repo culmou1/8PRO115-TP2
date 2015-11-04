@@ -1,13 +1,15 @@
 #ifndef PALMARES_H
 #define PALMARES_H
 
+#include <string>
 #include "utils.h"
+
 
 class Club;
 
-class Palmares{
+class Palmares {
 
-private:
+protected:
     Date date; // Date
     Titre titre; // titre
 

@@ -5,10 +5,11 @@
 #include <vector>
 #include "utils.h"
 
-class Club;
-class Rupture;
 class Contrat;
 class Palmares;
+class TitreGagne;
+
+typedef std::vector<Palmares*> VectorPal;
 
 class Person {
 
@@ -17,7 +18,6 @@ protected:
     std::string     _nom;
     int             _age;
     Role            _role;
-
 
 public:
     Person(std::string prenom,std::string nom, int age,Role role): _prenom(prenom),_nom(nom),_age(age),_role(role){};
@@ -66,9 +66,7 @@ public:
 	}
 
 //----------------------------------------------------------------- methods for Person
-	std::string obtenirNP() {
-		return _prenom+" "+_nom;
-	}
+	std::string obtenirNP();
 };
 
 
@@ -135,32 +133,7 @@ public:
     virtual Joueur_Autonome& operator=(Joueur_Autonome&& other);
 
 //----------------------------------------------------------------- methods of Joueur_Autonome
-	void RompreSonContrat(Contrat* leContrat){
-		std::string raisonDuDepart, choisirClub;
-        double penalite;
-
-		//Creation de la rupture
-        if(this == leContrat->getJoueurContractant())
-		{
-            std::cout << "*******************ROMPRE LE CONTRAT DU JOUEUR*******************" << std::endl;
-            std::cout << std::endl <<  "//		RAISON DU DEPART : "; std::cin >> raisonDuDepart;
-            std::cout << std::endl <<  "//		PENALITE DE DEPART : "; std::cin >> penalite;
-			std::cout << std::endl << "//		CHOISIR NOUVELLE EQUIPE : ";  std::cin >> choisirClub; //choix de la couleur du Club
-
-			Club *newClub = leContrat->getClubContractant()->getLigue()->RechercherClub(choisirClub);
-
-            // Construction de la rupture
-			Rupture* newRupture = new Rupture(this,newClub,raisonDuDepart,penalite);
-			leContrat->getClubContractant()->addRuptureDeContrats(newRupture);
-
-			//Creation du nouveau contrat du joueur
-			leContrat->getClubContractant()->TransfertJoueur(this, newClub);
-		}
-        else 
-		{
-			std::cout << "Le joueur " << obtenirNP() << " n'a pas de contrat." << std::endl;
-        }
-    }
+	void RompreSonContrat(Contrat* leContrat);
 };
 
 class Joueur_NonAutonome : public Joueur{
@@ -210,7 +183,7 @@ class Entraineur : public Person{
 
 protected:
     std::string _placeGrade;
-    VectorPal	_TitreGagne;
+    VectorPal	_titreGagne;
 
 public:
     Entraineur(std::string prenom,std::string nom, int age, std::string place) :
@@ -232,7 +205,12 @@ public:
 	}
 
 //----------------------------------------------------------------- methods of TitresGagnes
+	VectorPal getTitreGagne() {
+		return _titreGagne;
+	}
 
+	void addTitreGagne(TitreGagne* titre);
+	void deleteTitreGagne(std::string date);
 };
 
 #endif

@@ -3,9 +3,10 @@
  
 #include <vector>
 #include <string>
-#include "club.h"
-#include "calendrier.h"
 #include "utils.h"
+
+class Club;
+class Calendrier;
 
 typedef std::vector<Club*>			VectorClub;
 typedef std::vector<Calendrier*>	VectorCal;
@@ -30,45 +31,17 @@ public:
 		return clubsDeLaLigue;
 	}
 
-	void AjouterClub(Club* clubs) {
-		clubsDeLaLigue.push_back(clubs);
-		//creer calendrier du club
-	}
-
-	Club* RechercherClub(std::string couleur) {
-		for (unsigned int i=0; i<clubsDeLaLigue.size(); i++) {
-			if(clubsDeLaLigue[i]->getCouleurDuClub() == couleur)
-				return clubsDeLaLigue[i];
-		}
-		return NULL;
-	}
-
-	void SupprimerClub(std::string couleur) {
-		for (unsigned int i=0; i<clubsDeLaLigue.size(); i++) {
-			if(clubsDeLaLigue[i]->getCouleurDuClub() == couleur) {
-				delete clubsDeLaLigue[i];
-				clubsDeLaLigue.erase(clubsDeLaLigue.begin()+i);
-				SupprimerCalendrier(clubsDeLaLigue[i]);
-			}
-		}
-	}
+	void	AjouterClub(Club* clubs);
+	Club*	RechercherClub(std::string couleur);
+	void	SupprimerClub(std::string couleur);
 
 //----------------------------------------------------------------- methods for calendrierDeLaLigue
 	VectorCal getCalendrierDeLaLigue() {
 		return calendrierDeLaLigue;
 	}
 
-	void AjouterCalendrier(Calendrier* calendrier) {
-		calendrierDeLaLigue.push_back(calendrier);
-	}
-
-	void SupprimerCalendrier(Club* club) {
-		for (unsigned int i=0; i<clubsDeLaLigue.size(); i++) {
-			if(clubsDeLaLigue[i] == club) {
-				delete clubsDeLaLigue[i]->getCalendrier();
-			}
-		}
-	}
+	void AjouterCalendrier(Calendrier* calendrier);
+	void SupprimerCalendrier(Club* club);
 };
 
 
