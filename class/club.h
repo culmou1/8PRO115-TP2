@@ -2,19 +2,18 @@
 #define CLUB_H
 
 #include <vector>
-#include "person.h"
-#include "palmares.h"
-#include "Contrat.h"
-#include "calendrier.h"
-
-#include "rupture.h"
 #include "utils.h"
-
+#include "person.h"
+class Palmares;
+class Contract;
+class Rupture;
+class Person;
+class Club;
 typedef std::vector<Palmares*>	VectorPal; // Une ensemble de vecteur de type Palmares
-typedef std::vector<Contrat*> 	VectorCon; // Une ensemble de vecteur de type Contrat
+typedef std::vector<Contract*> 	VectorCon; // Une ensemble de vecteur de type Contract
 typedef std::vector<Rupture*> 	VectorRup; // Une ensemble de vecteur de type Rupture
 typedef std::vector<Person*>  	VectorPrs; // Une ensemble de vecteur de type Person
-typedef std::vector<Equipe*>  	VectorEqui; // Une ensemble de vecteur de type Person
+typedef std::vector<Club*>  	VectorEqui; // Une ensemble de vecteur de type Person
 
 
 // Classe Club
@@ -30,12 +29,12 @@ private:
 	VectorPrs				effectif;
 	VectorPal			 	unPalmares;
 	VectorPrs			 	staffTechnique;
-	VectorCon 				contratsdEngagement;
-	VectorRup 				rupturesDeContrats;
+	VectorCon 				contractsdEngagement;
+	VectorRup 				rupturesDeContracts;
 	static VectorEqui		allClub;
 
 public:
-    Club(std::string history, std::string color, std::string address, std::string town, std::string year){};
+    Club(std::string history, std::string color, std::string address, std::string town, std::string year);
 
     ~Club();
     Club(const Club& other);
@@ -72,9 +71,9 @@ public:
 
 //----------------------------------------------------------------- methods for Effectif
 	void getEffectif(VectorPrs &players) {
-		for (int i = 0; i < this.effectif.size(); i++) {
+		for (int i = 0; i < effectif.size(); i++) {
 			players[i] = effectif[i];
-			std::cout << players[i].getLastName << " "<< players[i].getFirstName << endl;
+			std::cout << players[i].getLastName << " "<< players[i].getFirstName << std::endl;
 		}
 	}
 
@@ -131,50 +130,55 @@ public:
 		}
 	}
 
-//----------------------------------------------------------------- methods for ContratsdEngagement
-	void getContratsdEngagement(VectorCon &contrats) {
-		for (int i = 0; i < contratsdEngagement.size(); i++) {
-			contrats[i] = contratsdEngagement[i];
-		}
+//----------------------------------------------------------------- methods for ContractsdEngagement
+	VectorCon getContractsdEngagement(VectorCon &contracts) {
+		return contractsdEngagement;
 	}
 
-	void addContratsdEngagement(Contrat *contrats) {
-		contratsdEngagement.push_back(contrats);
+	void addContractsdEngagement(Contract *contracts) {
+		contractsdEngagement.push_back(contracts);
 	}
 
-	void deleteContratsdEngagement(Contrat *contrats){
-		for (int i = 0; i< contratsdEngagement.size();i++){
-			if (contratsdEngagement[i]== contrats){
-				contratsdEngagement[i].swap(contratsdEngagement.back())
-				contratsdEngagement.pop_back();
+	void deleteContractsdEngagement(Contract *contracts){
+		for (unsigned int i = 0; i< contractsdEngagement.size();i++){
+			if (contractsdEngagement[i]== contracts){
+				delete contractsdEngagement[i];
+				contractsdEngagement.erase(contractsdEngagement.begin()+i);
 			}
 		}
 	}
-	// transfert Joueur envoyer le contrat
+	// transfert Joueur envoyer le contract
 
-	Contrat lookUpContratdEngagement(Contrat *contrats){
-		for(int i = 0; i < contratsdEngagement.size();i++){
-			if (contratsdEngagement[i]== contrats){
-				return contratsdEngagement[i];
+	bool lookUpContractdEngagement(Joueur *joueur, Contract* contract){
+		for(unsigned int i = 0; i < contractsdEngagement.size();i++){
+			if (contractsdEngagement[i]->getJoueurContractant() == joueur){
+				contract = contractsdEngagement[i];
 			}
-			else {
-				std::cout << " Le contrat n\'existe pas ! " << std::endl;
-			}
-
 		}
 	}
 
-//----------------------------------------------------------------- methods for RupturesDeContrats
-	void getRupturesDeContrats(VectorRup &ruptures) {
-		for (int i = 0; i < rupturesDeContrats.size(); i++) {
-			ruptures[i] = rupturesDeContrats[i];
+//----------------------------------------------------------------- methods for RupturesDeContracts
+	VectorRup getRupturesDeContracts() {
+		return rupturesDeContracts;
+	}
+
+	void addRupturesDeContracts(Rupture *ruptures) {
+		rupturesDeContracts.push_back(ruptures);
+	}
+
+	void deleteRupturesDeContracts(Rupture *ruptures){
+		for (unsigned int i = 0; i< rupturesDeContracts.size();i++){
+			if (rupturesDeContracts[i]== ruptures){
+				delete rupturesDeContracts[i];
+				rupturesDeContracts.erase(rupturesDeContracts.begin()+i);
+			}
 		}
 	}
 
-	void setRupturesDeContrats(VectorRup ruptures) {
-		rupturesDeContrats.clear();
+	void setRupturesDeContracts(VectorRup ruptures) {
+		rupturesDeContracts.clear();
 		for (int i = 0; i < ruptures.size(); i++) {
-			rupturesDeContrats.push_back(ruptures[i]);
+			rupturesDeContracts.push_back(ruptures[i]);
 		}
 	}
 
@@ -208,14 +212,14 @@ public:
 				}
 			}
 		}
-		std::cout << "Voici l\'entraineur: " << entraineurLePlusTitre->getFirstName() << "il a gagner " << nbtitre << " titre" <<std::endl;
+		std::cout << "Voici l\'entraineur: " << entraineurLePlusTitre->getFirstName() << "il a gagner " << nbTitre << " titre" <<std::endl;
 	}
 
 //-----------------------------------------------------------------
 
-	void getAllContratEngagement(){
-		for (int i = 0; i < contratsdEngagement.size();i++){
-			std::cout << "Voici la Position du Club: " << i << " - " << contratsdEngagement[i] << std::endl;
+	void getAllContractEngagement(){
+		for (int i = 0; i < contractsdEngagement.size();i++){
+			std::cout << "Voici la Position du Club: " << i << " - " << contractsdEngagement[i] << std::endl;
 		}
 	}
 
@@ -225,9 +229,9 @@ public:
 
 		float sommeTotal;
 
-		for (int i = 0;i< contratsdEngagement.size();i++){
-			if (contratsdEngagement[i]->lookForEcheance(date)){
-				sommeTotal += contratsdEngagement->getSeuilTransfert();
+		for (int i = 0;i< contractsdEngagement.size();i++){
+			if (contractsdEngagement[i]->lookForEcheance(date)){
+				sommeTotal += contractsdEngagement->getSeuilTransfert();
 			}
 
 			else continue;
@@ -248,11 +252,13 @@ public:
 //----------------------------------------------------------------- methods of Club
     void CreerJoueur();
     void ModifierJoueur();
-    void Club::SupprimerJoueur(std::string firstname, std::string lastname);
+    void SupprimerJoueur(std::string name);
     void AfficherEffectif();
+
     void AfficherCalendrier();
-    void TransfertJoueur(Joueur* joueur);
-	void AfficherMontantTransferts(Date dateDonnee);
+
+    void TransfertJoueur(Joueur* joueur, Club* club);
+	void AfficherMontantTransferts(std::string date);
 
 };
 

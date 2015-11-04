@@ -3,8 +3,6 @@
 
 #include <string>
 #include <stdexcept>
-#include "equipe.h"
-#include "club.h"
 
 enum Role {
 	JOUEUR,
@@ -55,11 +53,11 @@ Date To_Date(std::string date) {
 
 	return convert;
 }
-
+/*
 Club getClub(int j){
     Club::selectClub(j);
-
 }
+*/
 
 
 bool lookForDate(std::string date, Date dateComparer){
@@ -95,9 +93,4 @@ enum Raison {
     ENVIEDECHANGEMENT,
     PERFORMANCES
 };
-
-
-
-
-
 #endif

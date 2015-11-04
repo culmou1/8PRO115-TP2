@@ -3,6 +3,7 @@
 
 #include "club.h"
 #include "utils.h"
+class Joueur;
 
 class Contract {
 
@@ -98,7 +99,6 @@ public :
     void setSeuilTransfert(float seuilTransfert){
 		 _seuilTransfert = seuilTransfert;
 	}
-};
 
 //----------------------------------------------------------------- methods Of Echeance
 	bool lookForEcheance(std::string date){
@@ -123,6 +123,7 @@ public :
 			/* Ajout d\'un nouveau transfert */
 		}
 	}
+};
 
 
 
@@ -178,7 +179,6 @@ public :
     void setPenalite(float cost)  {
     	_penalite = cost;
     }
-
 };
 
 
