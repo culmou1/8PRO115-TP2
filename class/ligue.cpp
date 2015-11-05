@@ -26,9 +26,9 @@ void Ligue::CreerClub() {
 	std::cin.ignore(1);
 	std::cout << std::endl <<  "//		ADDRESSE : "; getline(std::cin, adresseDuClub);
 	std::cout << std::endl <<  "//		VILLE : "; std::cin >> villeDuClub;
+	std::cout << std::endl << "//		DATE DE CREATION : "; std::cin >> anneeDeCreation;
 	std::cin.ignore(1);
-	std::cout << std::endl << "//		DATE DE CREATION : "; getline(std::cin,anneeDeCreation);
-	std::cout << std::endl << "//		HISTOIRE: "; std::cin >> histoireDuClub;
+	std::cout << std::endl << "//		HISTOIRE: " ; getline(std::cin,histoireDuClub);
 
 	Club* newClub = new Club(histoireDuClub, couleurDuClub, adresseDuClub, villeDuClub, anneeDeCreation, this);
 	AjouterClub(newClub);
@@ -62,6 +62,7 @@ void Ligue::SupprimerClub(std::string couleur) {
 
 //----------------------------------------------------------------- AfficherClub
 void Ligue::AfficherClubs(){
+	std::cout << "/n*******************AFFICHAGE LISTE DES CLUBS*******************" << std::endl;
 	for (unsigned int i = 0; i < clubsDeLaLigue.size();i++){
 		std::cout << "Voici la Position du Club: " << i << " - "<< clubsDeLaLigue[i]->getCouleurDuClub() << std::endl;
 	}
@@ -94,5 +95,19 @@ void Ligue::EntraineurLePlusTitre(){
 			}
 		}
 	}
-	std::cout << "Voici l\'entraineur: " << entraineurLePlusTitre->obtenirNP() << ", il a gagne " << nbTitre << " titre(s)." <<std::endl;
+	std::cout << "Voici l\'entraineur le plsu titre: " << entraineurLePlusTitre->obtenirNP() << ", il a gagne " << nbTitre << " titre(s)." <<std::endl;
+}
+
+//-----------------------------------------------------------------EntraineurLePlusTitre
+void Ligue::ClubLePlusTitre(){
+	int nbTitre = 0;
+	Club *clubLePlusTitre = NULL;
+	for (unsigned int i = 0; i < clubsDeLaLigue.size();i++){
+		int currentNumber = clubsDeLaLigue[i]->getNumberOfTitre();
+		if(currentNumber > nbTitre){
+			nbTitre = currentNumber;
+			clubLePlusTitre = clubsDeLaLigue[i];
+		}
+	}
+	std::cout << "Voici le club le plus titre: " << clubLePlusTitre->getCouleurDuClub() << ", il a gagne " << nbTitre << " titre(s)." <<std::endl;
 }

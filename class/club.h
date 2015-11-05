@@ -70,6 +70,8 @@ public:
 	void addUnPalmares(Palmares *trophy);
 
 	void setUnPalmares(VectorPal trophies);
+	
+	int getNumberOfTitre();
 
 //----------------------------------------------------------------- methods for VilleDuClub
 	std::string getVilleDuClub();

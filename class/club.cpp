@@ -237,6 +237,10 @@ void Club::setUnPalmares(VectorPal trophies) {
 	}
 }
 
+int Club::getNumberOfTitre() {
+	return (int)unPalmares.size();
+}
+
 //----------------------------------------------------------------- methods for VilleDuClub
 std::string Club::getVilleDuClub() {
 	return villeDuClub;

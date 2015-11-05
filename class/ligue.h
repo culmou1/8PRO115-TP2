@@ -46,6 +46,7 @@ public:
 	void	AfficherClubs();
 
 	void	EntraineurLePlusTitre();
+	void	ClubLePlusTitre();
 
 	void AjouterCalendrier(Calendrier* calendrier);
 	void SupprimerCalendrier(Club* club);

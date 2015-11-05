@@ -62,7 +62,7 @@ Palmares* Entraineur::selectTitreGagne(int j){
 
 //-----------------------------------------------------------------getNumberOfTitre
 int Entraineur::getNumberOfTitre(){
-    return _titreGagne.size();
+    return (int)_titreGagne.size();
 }
 
 //-----------------------------------------------------------------deleteTitreGagne
