@@ -20,6 +20,8 @@ public:// Format DD/MM/YYYY
   int tm_month;   // month of year from 1 to 12
   int tm_year;  // year since 1900
 
+  void Create(int d, int m, int y) { tm_day=d; tm_month=m; tm_year=y;};
+
   bool Compare(Date out){
     if(tm_day != out.tm_day)
         return false;
@@ -54,21 +56,21 @@ public:// Format DD/MM/YYYY
   }
 
 
-  bool operator<=(Date &a) {
-	  if (tm_day <= a.tm_day) {
-		  if(tm_month <= a.tm_month) {
-			  if (tm_year <= a.tm_year)
-				  return true;
-			  else
+
+    bool operator<=(Date &a) {
+	  if (tm_year >= a.tm_year) {
+		  if(tm_month >= a.tm_month) {
+			  if (tm_day >= a.tm_day)
 				  return false;
+			  else
+				  return true;
 		  }
 		  else
-			  return false;
+			  return true;
 	  }
 	  else
-		  return false;
+		  return true;
   }
-
 
 
   // Conversion de la date en une string

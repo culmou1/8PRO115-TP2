@@ -1,9 +1,19 @@
+#include <iostream>
+#include <string>
 #include "person.h"
 #include "club.h"
 #include "rupture.h"
 #include "contrat.h"
 #include "palmares.h"
 #include "ligue.h"
+
+
+Joueur()::~Joueur(){
+	std::cout << obtenirNP << std::endl;
+	std::cout << _age << std::endl;
+	std::cout << _taille << std::endl;
+	std::cout << _poids << std::endl;	
+}
 
 //----------------------------------------------------------------- obtenirNP
 std::string Person::obtenirNP() {
@@ -32,7 +42,7 @@ void Joueur_Autonome::RompreSonContrat(Contrat* leContrat){
 		//Creation du nouveau contrat du joueur
 		leContrat->getClubContractant()->TransfertJoueur(this, newClub);
 	}
-    else 
+    else
 	{
 		std::cout << "Le joueur " << obtenirNP() << " n'a pas de contrat." << std::endl;
     }

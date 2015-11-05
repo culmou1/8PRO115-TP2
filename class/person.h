@@ -90,18 +90,18 @@ public:
 
     Joueur(std::string prenom,std::string nom, int age):Person(prenom,nom,age,JOUEUR){ }
 
-	virtual ~Joueur() {}
-	Joueur(const Joueur& other) : 
+	virtual ~Joueur();
+	Joueur(const Joueur& other) :
 		Person(other), _taille(other._taille), _poids(other._poids), _emplacementNaissance(other._emplacementNaissance) {}
 
-    virtual Joueur& operator=(Joueur& other) { 
+    virtual Joueur& operator=(Joueur& other) {
 		Person *a, *b;
-		a = this; 
-		b = &other; 
+		a = this;
+		b = &other;
 		*a = *b; _taille = other._taille; _poids = other._poids; _emplacementNaissance = other._emplacementNaissance;
 		return *this;
 	}
-		
+
 
 
 //----------------------------------------------------------------- methods for Taille
@@ -145,10 +145,10 @@ public:
 	Joueur_Autonome(const Joueur_Autonome& other) : Joueur(other) {}
 
     virtual Joueur_Autonome& operator=(Joueur_Autonome& other) {
-		Joueur *a, *b; 
-		a = this; 
-		b = &other; 
-		*a = *b; 
+		Joueur *a, *b;
+		a = this;
+		b = &other;
+		*a = *b;
 		return *this;
 	}
 
@@ -175,13 +175,13 @@ public:
 
     virtual ~Joueur_NonAutonome() {}
 
-	Joueur_NonAutonome(const Joueur_NonAutonome& other) : 
+	Joueur_NonAutonome(const Joueur_NonAutonome& other) :
 		Joueur(other), _anneeCumulee(other._anneeCumulee), _avisFavorable(other._avisFavorable) {}
 
     virtual Joueur_NonAutonome& operator=(Joueur_NonAutonome& other) {
-		Joueur *a, *b; 
-		a = this; 
-		b = &other; 
+		Joueur *a, *b;
+		a = this;
+		b = &other;
 		*a = *b; _anneeCumulee = other._anneeCumulee; _avisFavorable= other._avisFavorable;
 		return *this;
 	}
@@ -229,14 +229,14 @@ public:
 
     virtual ~Entraineur() {}
 
-    Entraineur(const Entraineur& other) : 
+    Entraineur(const Entraineur& other) :
 		Person(other), _placeGrade(other._placeGrade), _titreGagne(other._titreGagne) {}
 
     virtual Entraineur& operator=(Entraineur& other) {
 		Person *a, *b;
-		a = this; 
-		b = &other; 
-		*a = *b; _placeGrade = other._placeGrade; _titreGagne = other._titreGagne; 
+		a = this;
+		b = &other;
+		*a = *b; _placeGrade = other._placeGrade; _titreGagne = other._titreGagne;
 		return *this;
 	}
 
