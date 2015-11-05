@@ -12,6 +12,10 @@ int main(){
 	ligue->CreerClub();
 	ligue->CreerClub();
 	ligue->AfficherClubs();
+
+	Date currentDate = new Date;
+
+	cout << currentDate.To_String << endl;
     system("pause");
 
     return 0;

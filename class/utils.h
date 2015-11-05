@@ -30,20 +30,36 @@ public:// Format DD/MM/YYYY
 
     return true;
   }
-  
+
   bool operator==(Date &a) {
 	  if(a.tm_day == tm_day && a.tm_month == tm_month && a.tm_year == tm_year)
 		  return true;
-	  else 
+	  else
 		  return false;
   }
+
+  bool operator>=(Date &a) {
+	  if (tm_day >= a.tm_day) {
+		  if(tm_month >= a.tm_month) {
+			  if (tm_year >= a.tm_year)
+				  return true;
+			  else
+				  return false;
+		  }
+		  else
+			  return false;
+	  }
+	  else
+		  return false;
+  }
+
 
   bool operator<=(Date &a) {
 	  if (tm_day <= a.tm_day) {
 		  if(tm_month <= a.tm_month) {
 			  if (tm_year <= a.tm_year)
 				  return true;
-			  else 
+			  else
 				  return false;
 		  }
 		  else
@@ -64,7 +80,7 @@ public:// Format DD/MM/YYYY
 Date To_Date(std::string date);
 const char * getTextForTitre( int enumVal );
 
-/*bool lookForDate(std::string date, Date dateComparer){
+bool lookForDate(std::string date, Date dateComparer){
 
 	Date dateEchance = To_Date(date);// Obtien la date a partire de la string
 	bool dateDepaser = true;
@@ -80,7 +96,7 @@ const char * getTextForTitre( int enumVal );
 		dateDepaser = true;
 	}
 	return dateDepaser;
-}*/
+}
 
 
 enum Titre {

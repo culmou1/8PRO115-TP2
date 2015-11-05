@@ -1,6 +1,6 @@
 #ifndef LIGUE_H
 #define LIGUE_H
- 
+
 #include <vector>
 #include <string>
 

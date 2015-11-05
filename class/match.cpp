@@ -9,7 +9,7 @@ Match::Match(Equipe *home, Equipe *visitor, Resultat score) :
 
 //----------------------------------------------------------------- Destructeur
 Match::~Match() {
-	delete _locaux; 
+	delete _locaux;
 	delete _visiteurs;
 }
 
@@ -18,6 +18,8 @@ Match::Match(const Match& other) :
 	_locaux(other._locaux), _visiteurs(other._visiteurs), _periodesJouees(other._periodesJouees), _resultatFinal(other._resultatFinal) {}
 
 //----------------------------------------------------------------- Operateur d'affectation
+
+
 Match& Match::operator=(Match&& other) {
 	_locaux=other._locaux; _visiteurs=other._visiteurs; _periodesJouees=other._periodesJouees; _resultatFinal=other._resultatFinal;
 	return *this;
