@@ -11,7 +11,6 @@ class Joueur;
 class Person;
 class Calendrier;
 class Ligue;
-struct Date;
 
 
 typedef std::vector<Palmares*>	VectorPal; // Une ensemble de vecteur de type Palmares
@@ -39,12 +38,12 @@ private:
 
 
 public:
-    Club(std::string history, std::string color, std::string address, std::string town, std::string year);
+    Club(std::string history, std::string color, std::string address, std::string town, std::string year, Ligue* league);
 
     ~Club();
+
     Club(const Club& other);
-    Club(Club&& other);
-    Club& operator=(const Club& other);
+
     Club& operator=(Club&& other);
 
 //----------------------------------------------------------------- methods for HistoireDuClub

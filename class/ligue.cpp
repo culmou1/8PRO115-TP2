@@ -3,7 +3,7 @@
 #include "calendrier.h"
 #include "person.h"
 
-//----------------------------------------------------------------- Destructor
+//----------------------------------------------------------------- Destructeur
 Ligue::~Ligue() {
 	//Suppression des clubs de la Ligue
 	for (unsigned int i=0; i <clubsDeLaLigue.size(); i++) {
@@ -18,6 +18,21 @@ Ligue::~Ligue() {
 	calendrierDeLaLigue.clear();
 }
 
+//----------------------------------------------------------------- CreerClub
+void Ligue::CreerClub() {
+	std::string histoireDuClub,	couleurDuClub, adresseDuClub, villeDuClub, anneeDeCreation;
+	std::cout << "*******************CREATION D'UN CLUB*******************" << std::endl
+	<< "//		COULEUR : "; std::cin >> couleurDuClub;
+	std::cin.ignore(1);
+	std::cout << std::endl <<  "//		ADDRESSE : "; getline(std::cin, adresseDuClub);
+	std::cout << std::endl <<  "//		VILLE : "; std::cin >> villeDuClub;
+	std::cin.ignore(1);
+	std::cout << std::endl << "//		DATE DE CREATION : "; getline(std::cin,anneeDeCreation);
+	std::cout << std::endl << "//		HISTOIRE: "; std::cin >> histoireDuClub;
+
+	Club* newClub = new Club(histoireDuClub, couleurDuClub, adresseDuClub, villeDuClub, anneeDeCreation, this);
+	AjouterClub(newClub);
+}
 
 //----------------------------------------------------------------- AjouterClub
 void Ligue::AjouterClub(Club* clubs) {

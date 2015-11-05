@@ -6,16 +6,17 @@
 #include "rencontre.h"
 #include "rupture.h"
 #include "palmares.h"
+#include "reglement.h"
 #include <iostream>
 #include <string>
 
 //----------------------------------------------------------------- Constructor
-Club::Club(std::string history, std::string color, std::string address, std::string town, std::string year) {
+Club::Club(std::string history, std::string color, std::string address, std::string town, std::string year, Ligue* league) {
 	histoireDuClub = history; couleurDuClub = color; adresseDuClub = address;
 	villeDuClub = town; anneeDeCreation = To_Date(year);
 
 	//Ajout du club a la ligue
-	_ligue->AjouterClub(this);
+	_ligue = league;
 }
 
 //----------------------------------------------------------------- Destructor
@@ -128,7 +129,7 @@ void Club::AfficherEffectif(){
 //----------------------------------------------------------------- AfficherCalendrier
 void Club::AfficherCalendrier(){
 	std::cout << "*******************CALENDRIER DES RENCONTRES DU CLUB******************* : /n";
-	_calendrier->getAllRencontre(this);
+	_calendrier->AfficherRencontre(this);
 
 }
 
@@ -169,7 +170,7 @@ void Club::AfficherMontantTransferts(std::string date){
 	{
 		//Si la date correspond alors il affiche
 		if(contratsdEngagement[i]->getDateDuContrat().Compare(dateDonnee))
-			std::cout << "-  " << contratsdEngagement[i]->getReglement()->getMontantDuTransfert() << std::endl;
+			std::cout << "-  " << contratsdEngagement[i]->getReglement().getMontantDuTransfert() << std::endl;
 	}
 }
 
@@ -330,7 +331,7 @@ void Club::montantEncaisseDepuisUneDate(std::string date){
 	double sommeTotal = 0;
 	for (unsigned int i = 0;i< contratsdEngagement.size();i++){
 		if (contratsdEngagement[i]->getDateDuContrat() <= To_Date(date)){
-			sommeTotal += contratsdEngagement[i]->getReglement()->getMontantDuTransfert();
+			sommeTotal += contratsdEngagement[i]->getReglement().getMontantDuTransfert();
 		}
 	}
 	std::cout << "Le montant encaisse depuis le " << date << " est de : " << sommeTotal << "$." << std::endl;

@@ -4,8 +4,12 @@
 
 using namespace std;
 
+
+
 int main(){
 	Ligue* ligue = new Ligue();
+	ligue->CreerClub();
+	ligue->AfficherClubs();
     system("pause");
 
     return 0;

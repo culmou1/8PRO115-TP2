@@ -24,11 +24,15 @@ protected:
 public:
     Person(std::string prenom,std::string nom, int age,Role role): _prenom(prenom),_nom(nom),_age(age),_role(role){};
 
-    virtual ~Person();
-    Person(const Person& other);
-    Person(Person&& other);
-    virtual Person& operator=(const Person& other);
-    virtual Person& operator=(Person&& other);
+    virtual ~Person() {}
+
+    Person(const Person& other) : _prenom(other._prenom), _nom(other._nom), _age(other._age), _role(other._role) {}
+
+    virtual Person& operator=(Person& other) {
+		_prenom=other._prenom; _nom=other._nom; _age=other._age; _role=other._role;
+		return *this;
+	}
+
 
 
 //----------------------------------------------------------------- methods of prenom
@@ -68,7 +72,7 @@ public:
 
 //----------------------------------------------------------------- methods for Person
 	std::string obtenirNP();
-	virtual int getNumberOfTitre();
+	virtual int getNumberOfTitre() {return 0;}
 };
 
 
@@ -82,15 +86,23 @@ protected:
 
 public:
 	Joueur(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance):
-        Person(prenom,nom,age,JOUEUR),_taille(taille),_poids(poids),_emplacementNaissance(emplacementNaissance){};
+        Person(prenom,nom,age,JOUEUR),_taille(taille),_poids(poids),_emplacementNaissance(emplacementNaissance) {}
 
-    Joueur(std::string prenom,std::string nom, int age):Person(prenom,nom,age,JOUEUR){};
+    Joueur(std::string prenom,std::string nom, int age):Person(prenom,nom,age,JOUEUR){ }
 
-    virtual ~Joueur();
-    Joueur(const Joueur& other);
-    Joueur(Joueur&& other);
-    virtual Joueur& operator=(const Joueur& other);
-    virtual Joueur& operator=(Joueur&& other);
+	virtual ~Joueur() {}
+	Joueur(const Joueur& other) : 
+		Person(other), _taille(other._taille), _poids(other._poids), _emplacementNaissance(other._emplacementNaissance) {}
+
+    virtual Joueur& operator=(Joueur& other) { 
+		Person *a, *b;
+		a = this; 
+		b = &other; 
+		*a = *b; _taille = other._taille; _poids = other._poids; _emplacementNaissance = other._emplacementNaissance;
+		return *this;
+	}
+		
+
 
 //----------------------------------------------------------------- methods for Taille
     double getTaille(){
@@ -128,11 +140,18 @@ public:
 	Joueur_Autonome(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance):
 		Joueur(prenom, nom, age, taille, poids, emplacementNaissance) {}
 
-    virtual ~Joueur_Autonome();
-    Joueur_Autonome(const Joueur_Autonome& other);
-    Joueur_Autonome(Joueur_Autonome&& other);
-    virtual Joueur_Autonome& operator=(const Joueur_Autonome& other);
-    virtual Joueur_Autonome& operator=(Joueur_Autonome&& other);
+    virtual ~Joueur_Autonome() {}
+
+	Joueur_Autonome(const Joueur_Autonome& other) : Joueur(other) {}
+
+    virtual Joueur_Autonome& operator=(Joueur_Autonome& other) {
+		Joueur *a, *b; 
+		a = this; 
+		b = &other; 
+		*a = *b; 
+		return *this;
+	}
+
 
 //----------------------------------------------------------------- methods of Joueur_Autonome
 	void RompreSonContrat(Contrat* leContrat);
@@ -149,15 +168,23 @@ public:
     // Avec Avis Favorable
 	Joueur_NonAutonome(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance,int anneecumulee,bool avisFavorable):
         Joueur(prenom, nom, age, taille, poids, emplacementNaissance),_anneeCumulee(anneecumulee),_avisFavorable(avisFavorable) {}
+
     // Sans AvisFavorable
 	Joueur_NonAutonome(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance):
         Joueur(prenom, nom, age, taille, poids, emplacementNaissance), _anneeCumulee(0),_avisFavorable(false) {}
 
-    virtual ~Joueur_NonAutonome();
-    Joueur_NonAutonome(const Joueur_NonAutonome& other);
-    Joueur_NonAutonome(Joueur_NonAutonome&& other);
-    virtual Joueur_NonAutonome& operator=(const Joueur_NonAutonome& other);
-    virtual Joueur_NonAutonome& operator=(Joueur_NonAutonome&& other);
+    virtual ~Joueur_NonAutonome() {}
+
+	Joueur_NonAutonome(const Joueur_NonAutonome& other) : 
+		Joueur(other), _anneeCumulee(other._anneeCumulee), _avisFavorable(other._avisFavorable) {}
+
+    virtual Joueur_NonAutonome& operator=(Joueur_NonAutonome& other) {
+		Joueur *a, *b; 
+		a = this; 
+		b = &other; 
+		*a = *b; _anneeCumulee = other._anneeCumulee; _avisFavorable= other._avisFavorable;
+		return *this;
+	}
 
 //----------------------------------------------------------------- methods for AnneeCumulee
 	int getAnneeCumulee() {
@@ -200,11 +227,18 @@ public:
     Entraineur(std::string prenom,std::string nom, int age, std::string place) :
 		Person(prenom, nom, age, ENTRAINEUR), _placeGrade(place) {}
 
-    virtual ~Entraineur();
-    Entraineur(const Entraineur& other);
-    Entraineur(Entraineur&& other);
-    virtual Entraineur& operator=(const Entraineur& other);
-    virtual Entraineur& operator=(Entraineur&& other);
+    virtual ~Entraineur() {}
+
+    Entraineur(const Entraineur& other) : 
+		Person(other), _placeGrade(other._placeGrade), _titreGagne(other._titreGagne) {}
+
+    virtual Entraineur& operator=(Entraineur& other) {
+		Person *a, *b;
+		a = this; 
+		b = &other; 
+		*a = *b; _placeGrade = other._placeGrade; _titreGagne = other._titreGagne; 
+		return *this;
+	}
 
 //----------------------------------------------------------------- methods of placeGrade
     std::string getPlaceGrade(){

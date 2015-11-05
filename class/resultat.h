@@ -10,11 +10,14 @@ private:
 public:
 	Resultat(int home, int visitor) : _butsLocaux(home), _butsVisiteurs(visitor) {}
 
-    ~Resultat();
-    Resultat(const Resultat& other);
-    Resultat(Resultat&& other);
-    Resultat& operator=(const Resultat& other);
-    Resultat& operator=(Resultat&& other);
+	~Resultat() {}
+
+	Resultat(const Resultat& other) : _butsLocaux(other._butsLocaux), _butsVisiteurs(other._butsVisiteurs) {}
+
+    Resultat& operator=(Resultat&& other) {
+		_butsLocaux=other._butsLocaux; _butsVisiteurs=other._butsVisiteurs;
+		return *this;
+	}
 
 //----------------------------------------------------------------- methods for butsLocaux
 	int getButsLocaux() {
