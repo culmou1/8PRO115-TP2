@@ -2,7 +2,6 @@
 #define PERIODE_H
 
 class Periode {
-	friend class Match;
 
 private:
 	int 		dureePeriode;
@@ -32,8 +31,8 @@ public:
 	}
 
 	void setResulat(int home, int visitor) {
-		resultat.butsLocaux = home;
-		resultat.butsVisiteurs = visitor;
+		resultat.setButsLocaux(home);
+		resultat.setButsVisiteurs(visitor);
 	}
 };
 
