@@ -146,7 +146,7 @@ void Club::TransfertJoueur(Joueur* joueur, Club* club){
 		std::cout << std::endl << "//		DATE DU CONTRAT : "; std::cin >> dateDuContrat;
 		std::cout << std::endl << "//		PRIX DU TRANSFERT : "; std::cin >> montant;
 		std::cout << std::endl << "//		DROITS DU JOUEUR : "; std::cin >> droit;
-
+ 
 		//Cree le nouveau contrat du joueur puis l'ajoute aux contratsdEngagement du nouveau club
 		Contrat* newContrat = new Contrat(joueur, club, this, dureeDuContrat, datedEntree, dateDuContrat, montant, droit);
 		club->addContratdEngagement(newContrat);

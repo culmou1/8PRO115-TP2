@@ -19,6 +19,8 @@ public:// Format DD/MM/YYYY
   int tm_day;  // day of month from 1 to 31
   int tm_month;   // month of year from 1 to 12
   int tm_year;  // year since 1900
+  
+  void Create(int d, int m, int y) { tm_day=d; tm_month=m; tm_year=y;};
 
   bool Compare(Date out){
     if(tm_day != out.tm_day)
@@ -38,10 +40,10 @@ public:// Format DD/MM/YYYY
 		  return false;
   }
 
-  bool operator<=(Date &a) {
-	  if (tm_day <= a.tm_day) {
-		  if(tm_month <= a.tm_month) {
-			  if (tm_year <= a.tm_year)
+  bool operator>=(Date &a) {
+	  if (tm_year >= a.tm_year) {
+		  if(tm_month >= a.tm_month) {
+			  if (tm_day >= a.tm_day)
 				  return true;
 			  else 
 				  return false;
@@ -53,6 +55,20 @@ public:// Format DD/MM/YYYY
 		  return false;
   }
 
+    bool operator<=(Date &a) {
+	  if (tm_year >= a.tm_year) {
+		  if(tm_month >= a.tm_month) {
+			  if (tm_day >= a.tm_day)
+				  return false;
+			  else 
+				  return true;
+		  }
+		  else
+			  return true;
+	  }
+	  else
+		  return true;
+  }
 
 
   // Conversion de la date en une string
