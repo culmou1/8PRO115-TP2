@@ -3,7 +3,6 @@
  
 #include <vector>
 #include <string>
-#include "utils.h"
 
 class Club;
 class Calendrier;
@@ -18,27 +17,35 @@ private:
 	VectorCal		calendrierDeLaLigue;
 
 public:
-	Ligue();
+	Ligue() {}
 
     ~Ligue();
-    Ligue(const Ligue& other);
-    Ligue(Ligue&& other);
-    Ligue& operator=(const Ligue& other);
-    Ligue& operator=(Ligue&& other);
+
+	Ligue(const Ligue& other) : clubsDeLaLigue(other.clubsDeLaLigue), calendrierDeLaLigue(other.calendrierDeLaLigue) {}
+
+    Ligue& operator=(Ligue&& other) {
+		clubsDeLaLigue=other.clubsDeLaLigue; calendrierDeLaLigue=other.calendrierDeLaLigue;
+		return *this;
+	}
 
 //----------------------------------------------------------------- methods for clubsDeLaLigue
 	VectorClub getClubsDeLaLigue() {
 		return clubsDeLaLigue;
 	}
 
-	void	AjouterClub(Club* clubs);
-	Club*	RechercherClub(std::string couleur);
-	void	SupprimerClub(std::string couleur);
-
 //----------------------------------------------------------------- methods for calendrierDeLaLigue
 	VectorCal getCalendrierDeLaLigue() {
 		return calendrierDeLaLigue;
 	}
+
+//----------------------------------------------------------------- methods of Ligue
+	void	CreerClub();
+	void	AjouterClub(Club* clubs);
+	Club*	RechercherClub(std::string couleur);
+	void	SupprimerClub(std::string couleur);
+	void	AfficherClubs();
+
+	void	EntraineurLePlusTitre();
 
 	void AjouterCalendrier(Calendrier* calendrier);
 	void SupprimerCalendrier(Club* club);

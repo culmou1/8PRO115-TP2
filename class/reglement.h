@@ -17,11 +17,15 @@ public:
 	Reglement(double montant, std::string droit) :
 		_droitDuJoueur(droit), _montantDuTransfert(montant), _montantAncienClub(montant), _montantJoueur(montant*pourcentJoueur) {}
 
-    ~Reglement();
-    Reglement(const Reglement& other);
-    Reglement(Reglement&& other);
-    Reglement& operator=(const Reglement& other);
-    Reglement& operator=(Reglement&& other);
+    ~Reglement() {}
+
+    Reglement(const Reglement& other) : 
+		_droitDuJoueur(other._droitDuJoueur), _montantDuTransfert(other._montantDuTransfert), _montantAncienClub(other._montantAncienClub), _montantJoueur(other._montantJoueur) {}
+
+    Reglement& operator=(Reglement&& other) {
+		_droitDuJoueur=other._droitDuJoueur; _montantDuTransfert=other._montantDuTransfert; _montantAncienClub=other._montantAncienClub; _montantJoueur=other._montantJoueur;
+		return *this;
+	}
 
 //----------------------------------------------------------------- methods for droitDuJoueur
     std::string getDroitDuJoueur() {
@@ -60,9 +64,6 @@ public:
     }
 
 };
-
-
-double Reglement::_seuilDeTransfert = 86000000000.875;
 
 
 #endif

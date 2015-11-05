@@ -1,56 +1,44 @@
 #include "match.h"
-#include "rencontre.h"
 #include "periode.h"
 #include "equipe.h"
+#include "club.h"
 
+//----------------------------------------------------------------- Constructeur
 Match::Match(Equipe *home, Equipe *visitor, Resultat score) :
     _locaux(home), _visiteurs(visitor), _resultatFinal(score) {}
 
-Match::~Match(){};
-
-//----------------------------------------------------------------- methods for Locaux
-Equipe* Match::getLocaux(){
-    return _locaux;
+//----------------------------------------------------------------- Destructeur
+Match::~Match() {
+	delete _locaux; 
+	delete _visiteurs;
 }
 
-//----------------------------------------------------------------- methods for Locaux
-Equipe* Match::getVisiteurs(){
-    return _visiteurs;
-}
+//----------------------------------------------------------------- Constructeur de recopie
+Match::Match(const Match& other) :
+	_locaux(other._locaux), _visiteurs(other._visiteurs), _periodesJouees(other._periodesJouees), _resultatFinal(other._resultatFinal) {}
 
-void Match::setVisiteurs(Equipe *stranger){
-    _visiteurs = stranger;
-}
-
-//----------------------------------------------------------------- methods for periodesJouees
-VectorPer Match::getPeriodes() {
-    return _periodesJouees;
-}
-
-void Match::setPeriodes(VectorPer half) {
-    _periodesJouees.clear();
-    for (unsigned int i = 0; i < half.size(); i++) {
-        _periodesJouees.push_back(half[i]);
-    }
+//----------------------------------------------------------------- Operateur d'affectation
+Match& Match::operator=(Match&& other) {
+	_locaux=other._locaux; _visiteurs=other._visiteurs; _periodesJouees=other._periodesJouees; _resultatFinal=other._resultatFinal;
+	return *this;
 }
 
 //----------------------------------------------------------------- methods for resultat
-Resultat Match::getResultat(){
-    return _resultatFinal;
-}
-
 void Match::setResulat(int home, int visitor) {
     _resultatFinal.setButsLocaux(home);
     _resultatFinal.setButsVisiteurs(visitor);
 }
 
 //----------------------------------------------------------------- methods of Match
+std::string Match::getCouleurClub(Equipe* team) {
+	return team->getClub()->getCouleurDuClub();
+}
+
 void Match::obtenirResulatFinal() {
-    int home, visitor;
+    int home=0, visitor=0;
     for (unsigned int i = 0; i <_periodesJouees.size(); i++) {
         home += _periodesJouees[i]->getScore().getButsLocaux();
         visitor += _periodesJouees[i]->getScore().getButsVisiteurs();
     }
-    Match::setResulat(home, visitor);
+    setResulat(home, visitor);
 }
-//----------------------------------------------------------------- methods of Teams

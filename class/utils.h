@@ -14,7 +14,8 @@ enum Role {
     INFIRMIER
 };
 
-struct Date { // Format DD/MM/YYYY
+struct Date {
+public:// Format DD/MM/YYYY
   int tm_day;  // day of month from 1 to 31
   int tm_month;   // month of year from 1 to 12
   int tm_year;  // year since 1900
@@ -29,6 +30,30 @@ struct Date { // Format DD/MM/YYYY
 
     return true;
   }
+  
+  bool operator==(Date &a) {
+	  if(a.tm_day == tm_day && a.tm_month == tm_month && a.tm_year == tm_year)
+		  return true;
+	  else 
+		  return false;
+  }
+
+  bool operator<=(Date &a) {
+	  if (tm_day <= a.tm_day) {
+		  if(tm_month <= a.tm_month) {
+			  if (tm_year <= a.tm_year)
+				  return true;
+			  else 
+				  return false;
+		  }
+		  else
+			  return false;
+	  }
+	  else
+		  return false;
+  }
+
+
 
   // Conversion de la date en une string
   std::string To_String() {
@@ -36,27 +61,10 @@ struct Date { // Format DD/MM/YYYY
   }
 };
 
-Date To_Date(std::string date) {
-	Date convert;
-    //Date Show Be like that: 01-01-2015
-    try{	convert.tm_day = std::stoi(date.substr(0,2));
-    	convert.tm_month = std::stoi(date.substr(3,2));
-    	convert.tm_year = std::stoi(date.substr(6,4));
-    }
-    catch(const std::length_error& e){
-        std::cout<< e.what() << std::endl;
-        std::cout << "You should Format the Date like this: \'dd-mm-year\'-\'01-01-2015\'" << std::endl;
+Date To_Date(std::string date);
+const char * getTextForTitre( int enumVal );
 
-    }
-    catch(const std::exception& e){
-        std::cout<< e.what()<<std::endl;
-    }
-
-	return convert;
-}
-
-
-bool lookForDate(std::string date, Date dateComparer){
+/*bool lookForDate(std::string date, Date dateComparer){
 
 	Date dateEchance = To_Date(date);// Obtien la date a partire de la string
 	bool dateDepaser = true;
@@ -72,7 +80,7 @@ bool lookForDate(std::string date, Date dateComparer){
 		dateDepaser = true;
 	}
 	return dateDepaser;
-}
+}*/
 
 
 enum Titre {
@@ -80,12 +88,9 @@ enum Titre {
     CHAMPIONNAT
 };
 
-static const char * TitreStrings[] = {"Coupe", "Championnat"};
 
-const char * getTextForTitre( int enumVal )
-{
-  return TitreStrings[enumVal];
-}
+
+
 
 enum Raison {
     RETRAITE,

@@ -43,6 +43,28 @@ void Entraineur::addTitreGagne(TitreGagne* titre) {
 	_titreGagne.push_back(titre);
 }
 
+//-----------------------------------------------------------------afficherTitreGagne
+void Entraineur::afficherTitreGagne(){
+    for (unsigned int i = 0; i < _titreGagne.size();i++){
+		std::cout << "Voici la Position du TitreGagne: " << i << " - "<< getTextForTitre(_titreGagne[i]->getTitre()) << std::endl;
+    }
+}
+
+//-----------------------------------------------------------------selectTitreGagne
+Palmares* Entraineur::selectTitreGagne(int j){
+    for(unsigned int i = 0; i < _titreGagne.size();i++){
+        if (_titreGagne[j]==_titreGagne[i])
+            return _titreGagne[i];
+    }
+	std::cout << "Le Titre selectionne n\'existe pas" << std::endl;
+	return NULL;
+}
+
+//-----------------------------------------------------------------getNumberOfTitre
+int Entraineur::getNumberOfTitre(){
+    return _titreGagne.size();
+}
+
 //-----------------------------------------------------------------deleteTitreGagne
 void Entraineur::deleteTitreGagne(std::string date) {
 	for(unsigned int i=0; i<_titreGagne.size(); i++) {

@@ -4,68 +4,76 @@
 #include <string>
 #include "utils.h"
 
-
 class Club;
 
 class Palmares {
 
 protected:
-    Date date; // Date
-    Titre titre; // titre
+    Date _date; // Date
+    Titre _titre; // titre
 
 
 public:
     Palmares(std::string day, Titre trophy) :
-		date(To_Date(day)), titre(trophy) {}
+		_date(To_Date(day)), _titre(trophy) {}
 
-    ~Palmares();
-    Palmares(const Palmares& other);
-    Palmares(Palmares&& other);
-    Palmares& operator=(const Palmares& other);
-    Palmares& operator=(Palmares&& other);
+	~Palmares() {}
+
+	Palmares(const Palmares& other) : _date(other._date), _titre(other._titre) {}
+
+    Palmares& operator=(Palmares&& other) {
+		_date=other._date; _titre=other._titre; 
+		return *this;
+	}
 
 //----------------------------------------------------------------- methods of date
     Date getDate(){
-        return date;
+        return _date;
     }
 
     void setDate(int day, int month, int year){
-        date.tm_day = day;
-        date.tm_month = month;
-        date.tm_year = year;
+        _date.tm_day = day;
+        _date.tm_month = month;
+        _date.tm_year = year;
     }
 
 //----------------------------------------------------------------- methods of titre
     Titre getTitre(){
-        return titre;
+        return _titre;
     }
 
     void setTitre(Titre choix){
-		titre = choix;
+		_titre = choix;
     }
 };
 
 class TitreGagne : public Palmares {
 
 private:
-    Club  *club;
+    Club  *_club;
 
 public:
     TitreGagne(Club *team, std::string day, Titre trophy) :
-		club(team), Palmares(day, trophy) {}
+		_club(team), Palmares(day, trophy) {}
+	
+	~TitreGagne() { delete _club;}
 
-    ~TitreGagne();
-    TitreGagne(const TitreGagne& other);
-    TitreGagne(TitreGagne&& other);
-    TitreGagne& operator=(const TitreGagne& other);
-    TitreGagne& operator=(TitreGagne&& other);
+    TitreGagne(const TitreGagne& other) : Palmares(other), _club(other._club) {}
+
+    TitreGagne& operator=(TitreGagne&& other) {
+		Palmares *a, *b;
+		a = this; 
+		b = &other; 
+		*a = *b; _club = other._club;
+		return *this;
+	}
 
 //----------------------------------------------------------------- methods of club
     Club *getClub() {
-        return club;
+        return _club;
     }
     void setClub(Club *other){
-        club = other;
+        _club = other;
     }
 };
 

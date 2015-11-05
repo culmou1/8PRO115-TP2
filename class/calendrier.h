@@ -1,6 +1,6 @@
 #ifndef CALENDRIER_H
 #define CALENDRIER_H
-#include <stdexcept>
+
 #include <vector>
 
 class Rencontre;
@@ -10,25 +10,26 @@ typedef std::vector<Rencontre*> 	VectorRen; // Une ensemble de vecteur de type C
 
 class Calendrier
 {
-    VectorRen _rencontre;
+    VectorRen _rencontres;
 public:
     Calendrier();
 
     ~Calendrier();
     Calendrier(const Calendrier& other);
-    Calendrier(Calendrier&& other);
-    Calendrier& operator=(const Calendrier& other);
     Calendrier& operator=(Calendrier&& other);
 
-    VectorRen getAllRencontre();
+//----------------------------------------------------------------- methods for rencontres
+    VectorRen Calendrier::getAllRencontre(){
+		return _rencontres;
+	}
 
 	void addRencontre(Rencontre* game);
 
-    void getAllRencontreForAwayClub(Club *club);
+    void AfficherRencontreForAwayClub(Club *club);
 
-    void getAllRencontreForHomeClub(Club *club);
+    void AfficherRencontreForHomeClub(Club *club);
 
-    void getAllRencontre(Club *club);
+    void AfficherRencontre(Club *club);
 };
 
 

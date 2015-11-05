@@ -16,33 +16,20 @@ private :
  	int 		_dureeContrat;
  	Date 		_datedEntree;
  	Date 		_dateDuContrat;
-	Reglement	*_reglement;
+	Reglement	_reglement;
 
 public :
 	Contrat(Joueur *joueurContractant,Club *clubContractant,Club *clubLibere, int duree,
-			std::string datedEntree,std::string dateDuContrat,double montant, std::string droit):
-					_joueurContractant(joueurContractant),_clubContractant(clubContractant), _clubLibere(clubLibere),_dureeContrat(duree),
-					_datedEntree(To_Date(datedEntree)),_dateDuContrat(To_Date(dateDuContrat)) 
-					{
-						_reglement = new Reglement(montant, droit);
-					}
+			std::string datedEntree,std::string dateDuContrat,double montant, std::string droit);
 
 	// Constructeur lorsque le Joueur n'a pas d'ancienne Équipe. Nous Donnons un Pointeur Null au Club libere.
 	// Pas Besoin d'envoyer un Pointeur NUll. Il va le faire automatiquement
 	Contrat(Joueur *joueurContractant,Club *clubContractant, int duree,
-				std::string datedEntree,std::string dateDuContrat,double montant, std::string droit):
-					_joueurContractant(joueurContractant),_clubContractant(clubContractant), _clubLibere(NULL),_dureeContrat(duree),
-					_datedEntree(To_Date(datedEntree)),_dateDuContrat(To_Date(dateDuContrat))
-					{
-						_reglement = new Reglement(montant, droit);
-					}
+				std::string datedEntree,std::string dateDuContrat,double montant, std::string droit);
 
-    ~Contrat();
+	~Contrat();
     Contrat(const Contrat& other);
-    Contrat(Contrat&& other);
-    Contrat& operator=(const Contrat& other);
     Contrat& operator=(Contrat&& other);
-
 //----------------------------------------------------------------- methods for joueurContractant
     Joueur *getJoueurContractant() {
     	return _joueurContractant;
@@ -93,20 +80,14 @@ public :
     	return _dateDuContrat;
     }
 
-    void setDateDuContrat(int d_day, int m_month,int y_year) {
-		_dateDuContrat.tm_day = d_day;
-		_dateDuContrat.tm_month = m_month;
-		_dateDuContrat.tm_year = y_year;
-    }
+    void setDateDuContrat(int d_day, int m_month,int y_year);
 
 //----------------------------------------------------------------- methods of reglement
-	Reglement* getReglement() {
+	Reglement getReglement() {
 		return _reglement;
 	}
 
-	void setReglement(double montantT, std::string droit) {
-		_reglement = new Reglement(montantT, droit);
-	}
+	void setReglement(double montantT, std::string droit);
 };
 
 

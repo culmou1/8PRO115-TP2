@@ -11,7 +11,6 @@ class Joueur;
 class Person;
 class Calendrier;
 class Ligue;
-struct Date;
 
 
 typedef std::vector<Palmares*>	VectorPal; // Une ensemble de vecteur de type Palmares
@@ -39,12 +38,12 @@ private:
 
 
 public:
-    Club(std::string history, std::string color, std::string address, std::string town, std::string year);
+    Club(std::string history, std::string color, std::string address, std::string town, std::string year, Ligue* league);
 
     ~Club();
+
     Club(const Club& other);
-    Club(Club&& other);
-    Club& operator=(const Club& other);
+
     Club& operator=(Club&& other);
 
 //----------------------------------------------------------------- methods for HistoireDuClub
@@ -81,7 +80,9 @@ public:
 	void setAdresseDuClub(std::string address);
 
 //----------------------------------------------------------------- methods for StaffTechnique
-	VectorPrs getStaffTechnique();
+	VectorPrs getStaffTechnique() {
+		return staffTechnique;
+	}
 
 	void addStaffTechnique(Person *someone);
 
@@ -90,47 +91,45 @@ public:
 	void setStaffTechnique(VectorPrs staff);
 
 //----------------------------------------------------------------- methods for ContratsdEngagement
-	VectorCon getContratsdEngagement(VectorCon &contrats);
+	VectorCon getContratsdEngagement(VectorCon &contrats) {
+		return contratsdEngagement;
+	}
 
 	void addContratdEngagement(Contrat *contrats);
 
 	void deleteContratdEngagement(Contrat *contrats);
-	// transfert Joueur envoyer le contrat
 
-	bool lookUpContratdEngagement(Joueur *joueur, Contrat* contrat);
+	void afficherContratEngagement();
+
+	Contrat* rechercherContratdEngagement(Joueur *joueur);
 
 //----------------------------------------------------------------- methods for RupturesDeContrats
-	VectorRup *getRupturesDeContrats();
+	VectorRup getRupturesDeContrats() {
+		return rupturesDeContrats;
+	}
 
 	void addRuptureDeContrats(Rupture *ruptures);
+
 	void deleteRupturesDeContrats(Rupture *ruptures);
 
-
-//----------------------------------------------------------------- methods for getAllClub
-
-	Club getAllClub();
-
-	Club selectClub(int j);
-	void getEntraineurLePlusTitre();
-
-//----------------------------------------------------------------- methods for contrat
-
-	void getAllContratEngagement();
 	void setRupturesDeContrats(VectorRup ruptures);
 
-
 //----------------------------------------------------------------- methods for Montant
-
 	void montantEncaisseDepuisUneDate(std::string date);
 
 
 //----------------------------------------------------------------- methods for calendrier
-	Calendrier* getCalendrier();
+	Calendrier* getCalendrier() {
+		return _calendrier;
+	}
 
-	void setCalendrier(Calendrier* schedul);
-
+	void setCalendrier(Calendrier* schedul) {
+		_calendrier = schedul;
+	}
 //----------------------------------------------------------------- methods for ligue
-	Ligue* getLigue();
+	Ligue* getLigue() {
+		return _ligue;
+	}
 
 //----------------------------------------------------------------- methods of Club
     void CreerJoueur();

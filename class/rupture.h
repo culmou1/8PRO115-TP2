@@ -15,11 +15,15 @@ public:
 	Rupture(Joueur *player, Club *new_club, std::string why, double money) :
 		_joueurRelaxant(player), _clubContractant(new_club), _raisonsDuDepart(why), _penalite(money) {}
 
-    ~Rupture();
-    Rupture(const Rupture& other);
-    Rupture(Rupture&& other);
-    Rupture& operator=(const Rupture& other);
-    Rupture& operator=(Rupture&& other);
+	~Rupture() {delete _joueurRelaxant; delete _clubContractant;}
+
+    Rupture(const Rupture& other) : 
+		_joueurRelaxant(other._joueurRelaxant), _clubContractant(other._clubContractant), _raisonsDuDepart(other._raisonsDuDepart), _penalite(other._penalite) {}
+
+    Rupture& operator=(Rupture&& other) {
+		_joueurRelaxant=other._joueurRelaxant; _clubContractant=other._clubContractant; _raisonsDuDepart=other._raisonsDuDepart; _penalite=other._penalite;
+		return *this;
+	}
 
 //----------------------------------------------------------------- methods for joueurRelaxant
     Joueur *getJoueurRelaxant() {

@@ -1,6 +1,9 @@
 #ifndef EQUIPE_H
 #define EQUIPE_H
 
+#include "person.h"
+#include "club.h"
+
 class Equipe {
 
 private:
@@ -13,11 +16,15 @@ public:
     Equipe(Club *team, int players, int goals, Joueur *capt) :
 		_club(team), _nbrJoueurs(players), _nbrGardiens(goals), _capitaine(capt) {}
 
-    ~Equipe();
-    Equipe(const Equipe& other);
-    Equipe(Equipe&& other);
-    Equipe& operator=(const Equipe& other);
-    Equipe& operator=(Equipe&& other);
+	~Equipe() {delete _club; delete _capitaine;}
+
+	Equipe(const Equipe& other) : 
+		_club(other._club), _nbrJoueurs(other._nbrJoueurs), _nbrGardiens(other._nbrGardiens), _capitaine(other._capitaine) {}
+
+    Equipe& operator=(Equipe&& other) {
+		_club=other._club; _nbrJoueurs=other._nbrJoueurs; _nbrGardiens=other._nbrGardiens; _capitaine=other._capitaine;
+		return *this;
+	}
 
 //----------------------------------------------------------------- methods for club
     Club *getClub(){
