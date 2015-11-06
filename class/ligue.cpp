@@ -122,7 +122,7 @@ void Ligue::SupprimerCalendrier(std::string couleur) {
 //-----------------------------------------------------------------EntraineurLePlusTitre
 void Ligue::EntraineurLePlusTitre(){
 	int nbTitre = 0;
-	Person *entraineurLePlusTitre;
+	Person *entraineurLePlusTitre = NULL;
 
 	std::cout << std::endl <<"*******************L\'ENTRAINEUR LE PLUS TITRE******************* " << std::endl;
 	
@@ -141,7 +141,7 @@ void Ligue::EntraineurLePlusTitre(){
 //-----------------------------------------------------------------ClubLePlusTitre
 void Ligue::ClubLePlusTitre(){
 	int nbTitre = 0;
-	Club *clubLePlusTitre;
+	Club *clubLePlusTitre = NULL;
 
 	std::cout << std::endl <<"*******************LE CLUB LE PLUS TITRE******************* " << std::endl;
 

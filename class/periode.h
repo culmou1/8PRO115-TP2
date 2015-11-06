@@ -13,10 +13,13 @@ public:
 	Periode(int time, Resultat score) : dureePeriode(time), resultat(score) {}
 
     ~Periode();
-    Periode(const Periode& other);
-    Periode(Periode&& other);
-    Periode& operator=(const Periode& other);
-    Periode& operator=(Periode&& other);
+
+	Periode(const Periode& other) : dureePeriode(other.dureePeriode), resultat(other.resultat) {}
+
+    Periode& operator=(Periode&& other) {
+		dureePeriode=other.dureePeriode, resultat=other.resultat;
+		return *this;
+	}
 
 //----------------------------------------------------------------- methods for dureePeriode
 	int getDureePeriode() {
