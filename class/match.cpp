@@ -39,7 +39,7 @@ std::string Match::getCouleurClub(Equipe* team) {
 
 void Match::obtenirResulatFinal() {
     int home=0, visitor=0;
-    for (unsigned int i = 0; i <_periodesJouees.size(); i++) {
+    for (unsigned int i = 0; i <_periodesJouees.size(); i++) { // Regarde tout les periodes et additionne les resultats
         home += _periodesJouees[i]->getScore().getButsLocaux();
         visitor += _periodesJouees[i]->getScore().getButsVisiteurs();
     }

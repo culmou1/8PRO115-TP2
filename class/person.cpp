@@ -7,7 +7,7 @@
 #include "palmares.h"
 #include "ligue.h"
 
-
+//----------------------------------------------------------------- Constructeur de Joueur
 Joueur::~Joueur(){
 	std::cout << "CARACTERISTIQUES DU JOUEUR " << obtenirNP() << " : " << std::endl;
 	std::cout << "-		AGE : " << _age << " ans" << std::endl;
@@ -51,7 +51,7 @@ void Joueur_Autonome::RompreSonContrat(Contrat* leContrat){
 }
 //----------------------------------------------------------------- DemandeDeTransfert
 bool Joueur_NonAutonome::DemandeDeTransfert(){
-		if (_anneeCumulee >= 3){
+		if (_anneeCumulee >= 3){ // Retourne vrai si la joueur a joué plus de 3 ans
 			_avisFavorable = true;
 			return _avisFavorable;
         }
@@ -106,7 +106,7 @@ void Entraineur::afficherTitreGagne(){
 
 //-----------------------------------------------------------------selectTitreGagne
 Palmares* Entraineur::selectTitreGagne(int j){
-    for(unsigned int i = 0; i < _titreGagne.size();i++){
+    for(unsigned int i = 0; i < _titreGagne.size();i++){ //
         if (_titreGagne[j]==_titreGagne[i])
             return _titreGagne[i];
     }
@@ -116,14 +116,14 @@ Palmares* Entraineur::selectTitreGagne(int j){
 
 //-----------------------------------------------------------------getNumberOfTitre
 int Entraineur::getNumberOfTitre(){
-    return (int)_titreGagne.size();
+    return (int)_titreGagne.size(); // Retourne le nombre de titre
 }
 
 //-----------------------------------------------------------------deleteTitreGagne
 void Entraineur::deleteTitreGagne(std::string date) {
 
 	Date currentDate = To_Date(date);
-	for(unsigned int i=0; i<_titreGagne.size(); i++) {
+	for(unsigned int i=0; i<_titreGagne.size(); i++) {// Regarde la grandeur 
 		if (_titreGagne[i]->getDate() == currentDate) {
 			delete _titreGagne[i];
 			_titreGagne.erase(_titreGagne.begin()+i);

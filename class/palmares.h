@@ -22,7 +22,7 @@ public:
 	Palmares(const Palmares& other) : _date(other._date), _titre(other._titre) {}
 
     Palmares& operator=(Palmares&& other) {
-		_date=other._date; _titre=other._titre; 
+		_date=other._date; _titre=other._titre;
 		return *this;
 	}
 
@@ -55,15 +55,15 @@ private:
 public:
     TitreGagne(Club *team, std::string day, Titre trophy) :
 		_club(team), Palmares(day, trophy) {}
-	
+
 	~TitreGagne() { delete _club;}
 
     TitreGagne(const TitreGagne& other) : Palmares(other), _club(other._club) {}
 
     TitreGagne& operator=(TitreGagne&& other) {
 		Palmares *a, *b;
-		a = this; 
-		b = &other; 
+		a = this;
+		b = &other;
 		*a = *b; _club = other._club;
 		return *this;
 	}
