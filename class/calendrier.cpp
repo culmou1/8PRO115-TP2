@@ -33,14 +33,23 @@ void Calendrier::addRencontre(Rencontre* game) {
     _rencontres.push_back(game);
 }
 
+//----------------------------------------------------------------- rechercherAfficherResultat
+void Calendrier::AfficherResultat(Club *club, std::string date) {
+    for(unsigned int i=0;i<_rencontres.size();i++)
+    {
+		if(_rencontres[i]->getMatch()->getLocaux()->getClub() == club || _rencontres[i]->getMatch()->getVisiteurs()->getClub() == club)
+			std::cout << "Resultat : ";  _rencontres[i]->resultatAUneDateDonne(date);
+    }
+}
+
 //----------------------------------------------------------------- AfficherRencontreForAwayClub
 void Calendrier::AfficherRencontreForAwayClub(Club *club){
     for(unsigned int i=0;i<_rencontres.size();i++)
     {
         if(_rencontres[i]->getMatch()->getVisiteurs()->getClub() == club)
         {
-            std::cout << std::endl << "Visiteur : ";
-            _rencontres[i]->getMatchAndGame();
+            std::cout << "Visiteur : ";
+            _rencontres[i]->getMatchAndGame() ;
         }
     }
 }
@@ -51,7 +60,7 @@ void Calendrier::AfficherRencontreForHomeClub(Club *club){
 	{
         if(_rencontres[i]->getMatch()->getLocaux()->getClub() == club)
 		{
-            std::cout << std::endl << "Domicile : ";
+            std::cout << "Domicile : ";
             _rencontres[i]->getMatchAndGame();
         }
     }

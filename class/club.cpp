@@ -10,7 +10,7 @@
 #include <iostream>
 #include <string>
 
-//----------------------------------------------------------------- Constructor
+//----------------------------------------------------------------- Constructeur
 Club::Club(std::string history, std::string color, std::string address, std::string town, std::string year, Ligue* league) {
 	histoireDuClub = history; couleurDuClub = color; adresseDuClub = address;
 	villeDuClub = town; anneeDeCreation = To_Date(year);
@@ -19,7 +19,7 @@ Club::Club(std::string history, std::string color, std::string address, std::str
 	_ligue = league; _calendrier = new Calendrier();
 }
 
-//----------------------------------------------------------------- Destructor
+//----------------------------------------------------------------- Destructeur
 Club::~Club() {
 	std::cout << "CARACTERISTIQUES DU CLUB " << couleurDuClub << " : " << std::endl;
 	std::cout << "-		HISTOIRE : " << histoireDuClub << std::endl;
@@ -112,12 +112,13 @@ void Club::ModifierJoueur(std::string joueur){
 	double taille, poids;
 	bool autonome(false);
 
-	if(aModifier != NULL) {
+	if(aModifier != NULL) {//Si le joueur existe
 		std::cout << std::endl << "*******************MODIFICATION D'UN JOUEUR*******************" << std::endl;
 		std::cout << std::endl <<  "//		AGE : "; std::cin >> age;
 		std::cout << std::endl << "//		TAILLE : "; std::cin >> taille;
 		std::cout << std::endl << "//		POIDS : "; std::cin >> poids;
 
+		//Set les caracteristiques
 		aModifier->setAge(age); aModifier->setTaille(taille); aModifier->setPoids(poids);
 		std::cout << "Le joueur " << joueur << " a ete modifie." << std::endl; 
 	}
@@ -131,12 +132,12 @@ void Club::SupprimerJoueur(std::string name){
 
 	std::cout << std::endl << "*******************SUPPRESSION D'UN JOUEUR*******************" << std::endl;
 	Person* aSupprimer = rechercherJoueur(name);
-	if(aSupprimer != NULL) {
+	if(aSupprimer != NULL) {//Si le joueur existe
 		//Itere dans l'effectif du club
 		for (unsigned int i = 0; i < effectif.size(); i++)
 		{
 			if (aSupprimer == effectif[i])
-			{//Si le joueur est trouve
+			{
 				delete effectif[i];
 				effectif.erase(effectif.begin()+i);
 			}
@@ -147,7 +148,7 @@ void Club::SupprimerJoueur(std::string name){
 		std::cerr << "Le joueur " << name << " n\'existe pas." << std::endl; 
 }
 
-//----------------------------------------------------------------- CreerJoueur
+//----------------------------------------------------------------- CreerEntraineur
 void Club::CreerEntraineur(){
 	std::string nom, prenom, placeGrade;
 	int age;
@@ -158,6 +159,7 @@ void Club::CreerEntraineur(){
 	std::cout << std::endl <<  "//		AGE : "; std::cin >> age;
 	std::cout << std::endl << "//		LIEU D\'OBTENTION DU GRADE : "; std::cin >> placeGrade;
 
+	//Cree le nouveau entrainer et l'ajoute au staff du club
 	Person* trainer = new Entraineur(prenom, nom, age, placeGrade);
 	addStaffTechnique(trainer);
 	std::cout << "L\'entraineur " << trainer->obtenirNP() << " a ete cree et ajoute au staff du club " << couleurDuClub << "." << std::endl;
@@ -166,7 +168,7 @@ void Club::CreerEntraineur(){
 //----------------------------------------------------------------- AfficherEffectif
 void Club::AfficherEffectif(){
 	std::cout << std::endl << "*******************LISTE DES JOUEURS DU CLUB******************* " << std::endl;
-	//Itere dans l'effectif du club
+	//Itere dans l'effectif du club et affiche le nom et prenom dun joueur
 	for (unsigned int i = 0; i < effectif.size(); i++)
 	{
 		std::cout << effectif[i]->obtenirNP() << ", ";
@@ -176,10 +178,10 @@ void Club::AfficherEffectif(){
 //----------------------------------------------------------------- AfficherStaff
 void Club::AfficherStaff(){
 	std::cout << std::endl << "*******************LISTE DU STAFF DU CLUB******************* " << std::endl;
-	//Itere dans l'effectif du club
+	//Itere dans le staff du club et affiche le nom et prenom du personnel
 	for (unsigned int i = 0; i < staffTechnique.size(); i++)
 	{
-		std::cerr << staffTechnique[i]->obtenirNP() << ", ";
+		std::cout << staffTechnique[i]->obtenirNP() << ", ";
 	}
 }
 
@@ -187,20 +189,22 @@ void Club::AfficherStaff(){
 void Club::TransfertJoueur(std::string joueur, Club* club){
 
 		Joueur* aTransferer = rechercherJoueur(joueur);
-		if (aTransferer != NULL) {
+		if (aTransferer != NULL) {// Si le joueur existe
 			Contrat* newContrat = rechercherContratdEngagement(aTransferer);
 			int dureeDuContrat;
 			std::string datedEntree, dateDuContrat, droit;
 			double montant;
 			
 			std::cout << std::endl << "*******************TRANSFERT DU JOUEUR*******************" << std::endl;
-			std::cout << std::endl << "//		DUREE DU CONTRAT : "; std::cin >> dureeDuContrat;
+			std::cout << "//		DUREE DU CONTRAT : "; std::cin >> dureeDuContrat;
 			std::cout << std::endl << "//		DATE D\'ENTREE DU JOUEUR : "; std::cin >> datedEntree;
 			std::cout << std::endl << "//		DATE DU CONTRAT : "; std::cin >> dateDuContrat;
 			std::cout << std::endl << "//		PRIX DU TRANSFERT : "; std::cin >> montant;
 			std::cout << std::endl << "//		DROITS DU JOUEUR : "; std::cin >> droit;
 
+			//Si la date d'echeance est inferieure a la date du contrat ou que le joueur a rompu son contrat
 			if(newContrat->lookForEcheance(dateDuContrat) || rechercherRupturesDeContrats(aTransferer) != NULL) {
+				//Si le seuil est respecte
 				//if (montant <= newContrat->getReglement().getSeuilDeTransert()) {
 					//Cree le nouveau contrat du joueur puis l'ajoute aux contratsdEngagement du nouveau club
 					newContrat = new Contrat(aTransferer, club, this, dureeDuContrat, datedEntree, dateDuContrat, montant, droit);
@@ -224,11 +228,11 @@ void Club::TransfertJoueur(std::string joueur, Club* club){
 
 //----------------------------------------------------------------- AfficherMontantTransferts
 void Club::AfficherMontantTransferts(std::string date){
-	std::cout << std::endl << "******************* MONTANTS ENCAISSES DEPUIS LE " << date << " ******************* " << std::endl;
 	//Convertit en Date
 	Date dateDonnee = To_Date(date);
-	std::cout << std::endl << "Les montants des transferts par le club " << couleurDuClub << " sont :" << std::endl;
 
+	std::cout << std::endl << "******************* MONTANTS ENCAISSES DEPUIS LE " << date << " ******************* " << std::endl;
+	std::cout <<  "Les montants des transferts encaisses par le club " << couleurDuClub << " sont :" << std::endl;
 	//Itere dans les contratsdEngagement
 	for (unsigned int i = 0; i < contratsdEngagement.size(); i++)
 	{
@@ -236,6 +240,22 @@ void Club::AfficherMontantTransferts(std::string date){
 		if(contratsdEngagement[i]->getDateDuContrat() <= dateDonnee)
 			std::cout << "-  " << contratsdEngagement[i]->getReglement().getMontantDuTransfert() << std::endl;
 	}
+}
+
+//-----------------------------------------------------------------montantEncaisseDepuisUneDate
+void Club::montantEncaisseDepuisUneDate(std::string date){
+	double sommeTotal = 0;
+
+	std::cout << std::endl << "******************* MONTANT ENCAISSE DEPUIS LE " << date << " ******************* " << std::endl;
+	//Itere dans les contratsdEngagement
+	for (unsigned int i = 0;i< contratsdEngagement.size();i++)
+	{
+		//Si la date est inferieure il ajoute a la sommeTotal
+		if (contratsdEngagement[i]->getDateDuContrat() <= To_Date(date)){
+			sommeTotal += contratsdEngagement[i]->getReglement().getMontantDuTransfert();
+		}
+	}
+	std::cout << "Le montant encaisse par le club " << couleurDuClub << " est de : " << sommeTotal << "$." << std::endl;
 }
 
 //----------------------------------------------------------------- methods for HistoireDuClub
@@ -409,17 +429,4 @@ Rupture* Club::rechercherRupturesDeContrats(Joueur *joueur){
 	return NULL;
 }
 
-//-----------------------------------------------------------------montantEncaisseDepuisUneDate
-
-void Club::montantEncaisseDepuisUneDate(std::string date){
-	double sommeTotal = 0;
-
-	std::cout << std::endl << "******************* MONTANT ENCAISSE DEPUIS LE " << date << " ******************* " << std::endl;
-	for (unsigned int i = 0;i< contratsdEngagement.size();i++){
-		if (contratsdEngagement[i]->getDateDuContrat() <= To_Date(date)){
-			sommeTotal += contratsdEngagement[i]->getReglement().getMontantDuTransfert();
-		}
-	}
-	std::cout << "Le montant encaisse par le club " << couleurDuClub << " est de : " << sommeTotal << "$." << std::endl;
-}
 

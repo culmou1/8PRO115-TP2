@@ -22,17 +22,6 @@ public:// Format DD/MM/YYYY
 
   void Create(int d, int m, int y) { tm_day=d; tm_month=m; tm_year=y;};
 
-  bool Compare(Date out){
-    if(tm_day != out.tm_day)
-        return false;
-    if(tm_month != out.tm_month)
-        return false;
-    if(tm_year != out.tm_year)
-        return false;
-
-    return true;
-  }
-
   bool operator==(Date &a) {
 	  if(a.tm_day == tm_day && a.tm_month == tm_month && a.tm_year == tm_year)
 		  return true;
@@ -55,9 +44,7 @@ public:// Format DD/MM/YYYY
 		  return false;
   }
 
-
-
-    bool operator<=(Date &a) {
+  bool operator<=(Date &a) {
 	  if (tm_year >= a.tm_year) {
 		  if(tm_month >= a.tm_month) {
 			  if (tm_day >= a.tm_day)
@@ -82,42 +69,9 @@ public:// Format DD/MM/YYYY
 Date To_Date(std::string date);
 const char * getTextForTitre( int enumVal );
 
-/*bool lookForDate(std::string date, Date dateComparer){
-
-	Date dateEchance = To_Date(date);// Obtien la date a partire de la string
-	bool dateDepaser = true;
-
-	if (dateComparer.tm_year <= dateEchance.tm_year){
-		if(dateComparer.tm_month <= dateEchance.tm_month){
-			if(dateComparer.tm_day <= dateEchance.tm_day){
-				dateDepaser = false;
-				return dateDepaser;
-			}
-			dateDepaser = true;
-		}
-		dateDepaser = true;
-	}
-	return dateDepaser;
-}*/
-
-
 enum Titre {
     COUPE,
     CHAMPIONNAT
-};
-
-
-
-
-
-enum Raison {
-    RETRAITE,
-    SALAIREINSUFFISANT,
-    TEMPSDEJEU,
-    CONFLITSVESTIAIRE,
-    FAMILLE,
-    ENVIEDECHANGEMENT,
-    PERFORMANCES
 };
 
 #endif

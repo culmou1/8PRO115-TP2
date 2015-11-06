@@ -49,6 +49,7 @@ public:
 	void	ClubLePlusTitre();
 
 	void AfficherRencontre(Club *club);
+	void AfficherResultat(std::string couleur, std::string date);
 	void AjouterCalendrier(Calendrier* calendrier);
 	Calendrier* RechercherCalendrier(std::string couleur);
 	void AjouterRencontre(Club* home, Club* away, std::string date);

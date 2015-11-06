@@ -40,14 +40,10 @@ public:
 		_dateDeRencontre.tm_year = year;
 	}
 
+//----------------------------------------------------------------- methods of Rencontre
 	void getMatchAndGame();
-
-//----------------------------------------------------------------- methods for Add Match
 	Match* CreerMatch(Club* home, Club* away);
-
-//----------------------------------------------------------------- methods for affichage
-
-	//double resultatAUneDateDonne(std::string date);s
+	void resultatAUneDateDonne(std::string date);
 
 
 };

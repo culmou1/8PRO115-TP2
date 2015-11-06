@@ -1,6 +1,7 @@
 #include "rencontre.h"
 #include "match.h"
 #include "equipe.h"
+#include "resultat.h"
 #include "utils.h"
 
 //----------------------------------------------------------------- Constructeur
@@ -27,8 +28,7 @@ void Rencontre::getMatchAndGame(){
         << _match->getCouleurClub(_match->getVisiteurs()) << std::endl;
 }
 
-//----------------------------------------------------------------- methods for Add Match
-
+//----------------------------------------------------------------- CreerMatch
 /* Ajout des matchs Entre des Équipes */
 Match* Rencontre::CreerMatch(Club* home, Club* away) {
 		Equipe* locaux = new Equipe(home, 18, 2, home->getEffectif()[0]);
@@ -38,10 +38,10 @@ Match* Rencontre::CreerMatch(Club* home, Club* away) {
 		return newMatch;
 	}
 
-//----------------------------------------------------------------- methods for affichage
-
-/*double Rencontre::resultatAUneDateDonne(std::string date){
-    if (To_Date(date) == _dateDeRencontre)){
-        _match->getResultat();
+//----------------------------------------------------------------- resultatAUneDateDonne
+void Rencontre::resultatAUneDateDonne(std::string date){
+    if (To_Date(date) == _dateDeRencontre){
+		std::cout << _match->getCouleurClub(_match->getLocaux()) << _match->getResultat().getButsLocaux() 
+			<< " - " << _match->getCouleurClub(_match->getVisiteurs()) << _match->getResultat().getButsVisiteurs() << std::endl;
     }
-}*/
+}

@@ -33,8 +33,6 @@ public:
 		return *this;
 	}
 
-
-
 //----------------------------------------------------------------- methods of prenom
     virtual std::string getFirstName(){
         return _prenom;
@@ -127,7 +125,6 @@ public:
         return _emplacementNaissance;
     }
 
-
     void setEmplacementNaissance(std::string birthPlace){
         _emplacementNaissance = birthPlace;
     }
@@ -154,7 +151,6 @@ public:
 		*a = *b;
 		return *this;
 	}
-
 
 //----------------------------------------------------------------- methods of Joueur_Autonome
 	void RompreSonContrat(Contrat* leContrat);

@@ -63,9 +63,14 @@ public:
     	_montantJoueur = somme;
     }
 
+//----------------------------------------------------------------- methods for seuilDeTransfert
 	double getSeuilDeTransert() {
 		return _seuilDeTransfert;
 	}
+
+	 void setSeuilDeTransfert(double somme){
+    	_seuilDeTransfert = somme;
+    }
 
 };
 

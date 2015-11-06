@@ -24,9 +24,8 @@ public:
 	}
 
 	void addRencontre(Rencontre* game);
-
+	void AfficherResultat(Club *club, std::string date);
     void AfficherRencontreForAwayClub(Club *club);
-
     void AfficherRencontreForHomeClub(Club *club);
 
 

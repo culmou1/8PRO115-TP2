@@ -1,5 +1,6 @@
 #include "utils.h"
 
+//----------------------------------------------------------------- convert string to Date
 Date To_Date(std::string date) {
 	Date convert;
     //Date Show Be like that: 01-01-2015
@@ -19,6 +20,7 @@ Date To_Date(std::string date) {
 	return convert;
 }
 
+//----------------------------------------------------------------- convert enum to string
 static const char * TitreStrings[] = {"Coupe", "Championnat"};
 const char * getTextForTitre( int enumVal )
 {

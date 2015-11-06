@@ -31,7 +31,7 @@ public:
     	return _locaux;
     }
 
-//----------------------------------------------------------------- methods for Locaux
+//----------------------------------------------------------------- methods for Visiteurs
     Equipe *getVisiteurs(){
     	return _visiteurs;
     }
