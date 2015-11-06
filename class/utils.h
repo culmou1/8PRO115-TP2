@@ -19,7 +19,7 @@ public:// Format DD/MM/YYYY
   int tm_day;  // day of month from 1 to 31
   int tm_month;   // month of year from 1 to 12
   int tm_year;  // year since 1900
-  
+
   void Create(int d, int m, int y) { tm_day=d; tm_month=m; tm_year=y;};
 
   bool Compare(Date out){
@@ -32,20 +32,20 @@ public:// Format DD/MM/YYYY
 
     return true;
   }
-  
+
   bool operator==(Date &a) {
 	  if(a.tm_day == tm_day && a.tm_month == tm_month && a.tm_year == tm_year)
 		  return true;
-	  else 
+	  else
 		  return false;
   }
 
   bool operator>=(Date &a) {
-	  if (tm_year >= a.tm_year) {
+	  if (tm_day >= a.tm_day) {
 		  if(tm_month >= a.tm_month) {
-			  if (tm_day >= a.tm_day)
+			  if (tm_year >= a.tm_year)
 				  return true;
-			  else 
+			  else
 				  return false;
 		  }
 		  else
@@ -55,12 +55,14 @@ public:// Format DD/MM/YYYY
 		  return false;
   }
 
+
+
     bool operator<=(Date &a) {
 	  if (tm_year >= a.tm_year) {
 		  if(tm_month >= a.tm_month) {
 			  if (tm_day >= a.tm_day)
 				  return false;
-			  else 
+			  else
 				  return true;
 		  }
 		  else
@@ -80,7 +82,7 @@ public:// Format DD/MM/YYYY
 Date To_Date(std::string date);
 const char * getTextForTitre( int enumVal );
 
-/*bool lookForDate(std::string date, Date dateComparer){
+bool lookForDate(std::string date, Date dateComparer){
 
 	Date dateEchance = To_Date(date);// Obtien la date a partire de la string
 	bool dateDepaser = true;
@@ -96,7 +98,7 @@ const char * getTextForTitre( int enumVal );
 		dateDepaser = true;
 	}
 	return dateDepaser;
-}*/
+}
 
 
 enum Titre {
