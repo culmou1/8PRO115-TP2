@@ -60,22 +60,4 @@ void Calendrier::AfficherRencontreForHomeClub(Club *club){
     }
 }
 
-//----------------------------------------------------------------- AfficherRencontre
-void Calendrier::AfficherRencontre(Club *club){
-    try
-    {
-       AfficherRencontreForHomeClub(club);
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
-    try
-    {
-        AfficherRencontreForAwayClub(club);
-    }
-    catch (const std::exception & e)
-    {
-        std::cerr << e.what() <<std::endl;
-    }
-}
+

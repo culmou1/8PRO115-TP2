@@ -2,6 +2,7 @@
 #include "club.h"
 #include "calendrier.h"
 #include "person.h"
+#include "rencontre.h"
 
 //----------------------------------------------------------------- Destructeur
 Ligue::~Ligue() {
@@ -32,6 +33,7 @@ void Ligue::CreerClub() {
 
 	Club* newClub = new Club(histoireDuClub, couleurDuClub, adresseDuClub, villeDuClub, anneeDeCreation, this);
 	AjouterClub(newClub);
+
 }
 
 //----------------------------------------------------------------- AjouterClub
@@ -110,4 +112,32 @@ void Ligue::ClubLePlusTitre(){
 		}
 	}
 	std::cout << "Voici le club le plus titre: " << clubLePlusTitre->getCouleurDuClub() << ", il a gagne " << nbTitre << " titre(s)." <<std::endl;
+}
+
+//-----------------------------------------------------------------AjouterRencontre
+void Ligue::AjouterRencontre(Club* home, Club* away, std::string date) {
+	Rencontre* newRencontre = new Rencontre(home, away, date);
+	home->getCalendrier()->addRencontre(newRencontre);
+	away->getCalendrier()->addRencontre(newRencontre);
+}
+
+//----------------------------------------------------------------- AfficherRencontre
+void Ligue::AfficherRencontre(Club *club){
+	std::cout << "*******************CALENDRIER DES RENCONTRES DU CLUB******************* :";
+    try
+    {
+		club->getCalendrier()->AfficherRencontreForHomeClub(club);
+    }
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << std::endl;
+    }
+    try
+    {
+        club->getCalendrier()->AfficherRencontreForAwayClub(club);
+    }
+    catch (const std::exception & e)
+    {
+        std::cerr << e.what() <<std::endl;
+    }
 }
