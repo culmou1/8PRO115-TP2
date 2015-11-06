@@ -23,10 +23,7 @@ public:
 
 	Ligue(const Ligue& other) : clubsDeLaLigue(other.clubsDeLaLigue), calendrierDeLaLigue(other.calendrierDeLaLigue) {}
 
-    Ligue& operator=(Ligue&& other) {
-		clubsDeLaLigue=other.clubsDeLaLigue; calendrierDeLaLigue=other.calendrierDeLaLigue;
-		return *this;
-	}
+    Ligue& operator=(Ligue&& other);
 
 //----------------------------------------------------------------- methods for clubsDeLaLigue
 	VectorClub getClubsDeLaLigue() {

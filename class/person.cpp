@@ -12,7 +12,7 @@ Joueur::~Joueur(){
 	std::cout << "CARACTERISTIQUES DU JOUEUR " << obtenirNP() << " : " << std::endl;
 	std::cout << "-		AGE : " << _age << " ans" << std::endl;
 	std::cout << "-		TAILLE : "<< _taille << "m" << std::endl;
-	std::cout << "-		POIDS : "<< _poids << "kg" << std::endl;	
+	std::cout << "-		POIDS : "<< _poids << "kg" << std::endl;
 }
 
 //----------------------------------------------------------------- obtenirNP
@@ -42,7 +42,7 @@ void Joueur_Autonome::RompreSonContrat(Contrat* leContrat){
 
 		//Creation du nouveau contrat du joueur
 		leContrat->getClubContractant()->TransfertJoueur(this->obtenirNP(), newClub);
-		
+
 	}
     else
 	{
@@ -80,7 +80,7 @@ void Joueur_NonAutonome::RompreSonContrat(Contrat* leContrat){
 
 			//Creation du nouveau contrat du joueur
 			leContrat->getClubContractant()->TransfertJoueur(this->obtenirNP(), newClub);
-		
+
 		}
 		else
 		{
@@ -121,8 +121,10 @@ int Entraineur::getNumberOfTitre(){
 
 //-----------------------------------------------------------------deleteTitreGagne
 void Entraineur::deleteTitreGagne(std::string date) {
+
+	Date currentDate = To_Date(date);
 	for(unsigned int i=0; i<_titreGagne.size(); i++) {
-		if (_titreGagne[i]->getDate() == To_Date(date)) {
+		if (_titreGagne[i]->getDate() == currentDate) {
 			delete _titreGagne[i];
 			_titreGagne.erase(_titreGagne.begin()+i);
 		}

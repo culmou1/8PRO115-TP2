@@ -14,11 +14,7 @@ public:
 
 	Resultat(const Resultat& other) : _butsLocaux(other._butsLocaux), _butsVisiteurs(other._butsVisiteurs) {}
 
-    Resultat& operator=(Resultat&& other) {
-		_butsLocaux=other._butsLocaux; _butsVisiteurs=other._butsVisiteurs;
-		return *this;
-	}
-
+    Resultat& operator=(Resultat&& other) = default;
 //----------------------------------------------------------------- methods for butsLocaux
 	int getButsLocaux() {
 		return _butsLocaux;

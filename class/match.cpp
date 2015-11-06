@@ -23,10 +23,7 @@ Match::Match(const Match& other) :
 //----------------------------------------------------------------- Operateur d'affectation
 
 
-Match& Match::operator=(Match&& other) {
-	_locaux=other._locaux; _visiteurs=other._visiteurs; _periodesJouees=other._periodesJouees; _resultatFinal=other._resultatFinal;
-	return *this;
-}
+Match& Match::operator=(Match&& other) = default;
 
 //----------------------------------------------------------------- methods for resultat
 void Match::setResulat(int home, int visitor) {

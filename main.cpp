@@ -2,17 +2,29 @@
 #include <string>
 #include "class\contrat.h"
 #include "class/ligue.h"
+<<<<<<< HEAD
+#include "class/utils.h"
+=======
 #include "class\utils.h"
 #include "class\club.h"
 #include "class\person.h"
 #include "class\calendrier.h"
 #include "class\palmares.h"
+>>>>>>> b44a4983423945be435aeb0c8cda677f7ca4f82e
 
 using namespace std;
 
 
 
 int main(){
+<<<<<<< HEAD
+	//Ligue* ligue = new Ligue();
+
+	//ligue->CreerClub();
+	//ligue->CreerClub();
+	//ligue->CreerClub();
+	//ligue->AfficherClubs();
+=======
 	Ligue* ligue = new Ligue();
 	Club* A = new Club("aaaaaaa", "jaune", "888 aaaa", "A-Town", "01-01-1900", ligue);
 	Club* B = new Club("bbbbbbb", "bleu", "888 bbbb", "B-Town", "01-01-1928", ligue);
@@ -87,6 +99,7 @@ int main(){
 
 	//A->ModifierJoueur("A Joueur_0");
 	//A->SupprimerJoueur("A Joueur_5");
+>>>>>>> b44a4983423945be435aeb0c8cda677f7ca4f82e
 
 	//Joueur* rompu = A->rechercherJoueur("A Joueur_2");
 	//rompu->RompreSonContrat(A->rechercherContratdEngagement(rompu));
@@ -96,6 +109,11 @@ int main(){
 	ligue->SupprimerClub("vert");
 	ligue->AfficherResultat("jaune","01-02-1995");
 
+<<<<<<< HEAD
+	cout << curentDate.To_String() << ">=" << previousDate.To_String() << "= " << x;
+	cout << endl << curentDate.To_String() << "<=" << previousDate.To_String() << "= " << y << endl;
+=======
+>>>>>>> b44a4983423945be435aeb0c8cda677f7ca4f82e
     system("pause");
 
     return 0;

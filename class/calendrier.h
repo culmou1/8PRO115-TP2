@@ -19,9 +19,7 @@ public:
     Calendrier& operator=(Calendrier&& other);
 
 //----------------------------------------------------------------- methods for rencontres
-    VectorRen Calendrier::getAllRencontre(){
-		return _rencontres;
-	}
+    VectorRen getAllRencontre();
 
 	void addRencontre(Rencontre* game);
 	void AfficherResultat(Club *club, std::string date);

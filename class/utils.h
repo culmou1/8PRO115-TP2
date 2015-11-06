@@ -23,7 +23,7 @@ public:// Format DD/MM/YYYY
   void Create(int d, int m, int y) { tm_day=d; tm_month=m; tm_year=y;};
 
   bool operator==(Date &a) {
-	  if(a.tm_day == tm_day && a.tm_month == tm_month && a.tm_year == tm_year)
+	  if(tm_day == a.tm_day && tm_month == a.tm_month && tm_year == a.tm_year)
 		  return true;
 	  else
 		  return false;

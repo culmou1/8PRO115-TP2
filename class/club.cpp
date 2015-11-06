@@ -24,7 +24,7 @@ Club::~Club() {
 	std::cout << "CARACTERISTIQUES DU CLUB " << couleurDuClub << " : " << std::endl;
 	std::cout << "-		HISTOIRE : " << histoireDuClub << std::endl;
 	std::cout << "-		ANNEE DE CREATION : "<< anneeDeCreation.To_String() << std::endl;
-	std::cout << "-		ADDRESSE : "<< adresseDuClub << ", " << villeDuClub << std::endl;	
+	std::cout << "-		ADDRESSE : "<< adresseDuClub << ", " << villeDuClub << std::endl;
 	std::cout << "-		NOMBRE DE TITRE(S) GAGNE(S) : "<< unPalmares.size() << std::endl;
 	std::cout << "-		TAILLE DE L\'EFFECTIF : "<< effectif.size() << std::endl;
 	std::cout << "-		TAILLE DU STAFF TECHNIQUE : "<< staffTechnique.size() << std::endl;
@@ -120,10 +120,10 @@ void Club::ModifierJoueur(std::string joueur){
 
 		//Set les caracteristiques
 		aModifier->setAge(age); aModifier->setTaille(taille); aModifier->setPoids(poids);
-		std::cout << "Le joueur " << joueur << " a ete modifie." << std::endl; 
+		std::cout << "Le joueur " << joueur << " a ete modifie." << std::endl;
 	}
-	else 
-		std::cerr << "Le joueur " << joueur << " n\'existe pas." << std::endl; 
+	else
+		std::cerr << "Le joueur " << joueur << " n\'existe pas." << std::endl;
 
 }
 
@@ -142,10 +142,10 @@ void Club::SupprimerJoueur(std::string name){
 				effectif.erase(effectif.begin()+i);
 			}
 		}
-		std::cout << "Le joueur " << name << " a ete supprime de l'effectif du club " << couleurDuClub << "." << std::endl; 
+		std::cout << "Le joueur " << name << " a ete supprime de l'effectif du club " << couleurDuClub << "." << std::endl;
 	}
-	else 
-		std::cerr << "Le joueur " << name << " n\'existe pas." << std::endl; 
+	else
+		std::cerr << "Le joueur " << name << " n\'existe pas." << std::endl;
 }
 
 //----------------------------------------------------------------- CreerEntraineur
@@ -194,7 +194,7 @@ void Club::TransfertJoueur(std::string joueur, Club* club){
 			int dureeDuContrat;
 			std::string datedEntree, dateDuContrat, droit;
 			double montant;
-			
+
 			std::cout << std::endl << "*******************TRANSFERT DU JOUEUR*******************" << std::endl;
 			std::cout << "//		DUREE DU CONTRAT : "; std::cin >> dureeDuContrat;
 			std::cout << std::endl << "//		DATE D\'ENTREE DU JOUEUR : "; std::cin >> datedEntree;
@@ -216,14 +216,14 @@ void Club::TransfertJoueur(std::string joueur, Club* club){
 					//supprime le joueur de l'effectif du club libere
 					SupprimerJoueur(joueur);
 				//}
-					std::cout << "Le joueur " << joueur << " a ete transfere du club " << couleurDuClub 
-										<< " au club " << club->getCouleurDuClub() << "." << std::endl; 
+					std::cout << "Le joueur " << joueur << " a ete transfere du club " << couleurDuClub
+										<< " au club " << club->getCouleurDuClub() << "." << std::endl;
 			}
 			else
 				std::cout << "Creation du nouveau contrat impossible (voir date d'echeance, existence de rupture ou seuil de transfert)." << std::endl;
 		}
-		else 
-			std::cerr << "Le joueur " << joueur << " n\'existe pas." << std::endl; 
+		else
+			std::cerr << "Le joueur " << joueur << " n\'existe pas." << std::endl;
 }
 
 //----------------------------------------------------------------- AfficherMontantTransferts
@@ -429,4 +429,16 @@ Rupture* Club::rechercherRupturesDeContrats(Joueur *joueur){
 	return NULL;
 }
 
+//-----------------------------------------------------------------montantEncaisseDepuisUneDate
 
+void Club::montantEncaisseDepuisUneDate(std::string date){
+	double sommeTotal = 0;
+
+	std::cout << std::endl << "******************* MONTANT ENCAISSE DEPUIS LE " << date << " ******************* " << std::endl;
+	for (unsigned int i = 0;i< contratsdEngagement.size();i++){
+		if (contratsdEngagement[i]->getDateDuContrat() <= To_Date(date)){
+			sommeTotal += contratsdEngagement[i]->getReglement().getMontantDuTransfert();
+		}
+	}
+	std::cout << "Le montant encaisse par le club " << couleurDuClub << " est de : " << sommeTotal << "$." << std::endl;
+}

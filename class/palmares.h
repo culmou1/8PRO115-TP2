@@ -60,14 +60,7 @@ public:
 
     TitreGagne(const TitreGagne& other) : Palmares(other), _club(other._club) {}
 
-    TitreGagne& operator=(TitreGagne&& other) {
-		Palmares *a, *b;
-		a = this; 
-		b = &other; 
-		*a = *b; _club = other._club;
-		return *this;
-	}
-
+    TitreGagne& operator=(TitreGagne&& other)= default;
 //----------------------------------------------------------------- methods of club
     Club *getClub() {
         return _club;

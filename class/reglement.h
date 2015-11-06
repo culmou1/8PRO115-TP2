@@ -22,11 +22,7 @@ public:
     Reglement(const Reglement& other) : 
 		_droitDuJoueur(other._droitDuJoueur), _montantDuTransfert(other._montantDuTransfert), _montantAncienClub(other._montantAncienClub), _montantJoueur(other._montantJoueur) {}
 
-    Reglement& operator=(Reglement&& other) {
-		_droitDuJoueur=other._droitDuJoueur; _montantDuTransfert=other._montantDuTransfert; _montantAncienClub=other._montantAncienClub; _montantJoueur=other._montantJoueur;
-		return *this;
-	}
-
+    Reglement& operator=(Reglement&& other) = default;
 //----------------------------------------------------------------- methods for droitDuJoueur
     std::string getDroitDuJoueur() {
     	return  _droitDuJoueur;
