@@ -18,6 +18,11 @@ Ligue::~Ligue() {
 	calendrierDeLaLigue.clear();
 }
 
+Ligue& Ligue::operator=(Ligue&& other) {
+	clubsDeLaLigue=other.clubsDeLaLigue; calendrierDeLaLigue=other.calendrierDeLaLigue;
+	return *this;
+}
+
 //----------------------------------------------------------------- CreerClub
 void Ligue::CreerClub() {
 	std::string histoireDuClub,	couleurDuClub, adresseDuClub, villeDuClub, anneeDeCreation;

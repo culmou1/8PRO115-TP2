@@ -79,3 +79,8 @@ void Calendrier::AfficherRencontre(Club *club){
         std::cerr << e.what() <<std::endl;
     }
 }
+
+
+VectorRen Calendrier::getAllRencontre(){
+    return _rencontres;
+}

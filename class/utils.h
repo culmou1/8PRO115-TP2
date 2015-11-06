@@ -34,7 +34,7 @@ public:// Format DD/MM/YYYY
   }
 
   bool operator==(Date &a) {
-	  if(a.tm_day == tm_day && a.tm_month == tm_month && a.tm_year == tm_year)
+	  if(tm_day == a.tm_day && tm_month == a.tm_month && tm_year == a.tm_year)
 		  return true;
 	  else
 		  return false;
@@ -54,7 +54,6 @@ public:// Format DD/MM/YYYY
 	  else
 		  return false;
   }
-
 
 
     bool operator<=(Date &a) {

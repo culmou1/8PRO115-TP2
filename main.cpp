@@ -1,24 +1,15 @@
 #include <iostream>
 #include <string>
 #include "class/ligue.h"
-#include "class\utils.h"
+#include "class/utils.h"
 
 using namespace std;
 
 
 
 int main(){
-	Ligue* ligue = new Ligue();
-<<<<<<< HEAD
-	ligue->CreerClub();
-	ligue->CreerClub();
-	ligue->CreerClub();
-	ligue->AfficherClubs();
+	//Ligue* ligue = new Ligue();
 
-	Date currentDate = new Date;
-
-	cout << currentDate.To_String << endl;
-=======
 	//ligue->CreerClub();
 	//ligue->CreerClub();
 	//ligue->CreerClub();
@@ -30,9 +21,8 @@ int main(){
 	bool x = curentDate>=previousDate;
 	bool y = curentDate<=previousDate;
 
-	cout << curentDate.To_String() << ">=" << previousDate.To_String() << "= " << x; 
-	cout << endl << curentDate.To_String() << "<=" << previousDate.To_String() << "= " << y << endl; 
->>>>>>> 0228e8b70690f17b8cf8250d65dd7e5e84825ed2
+	cout << curentDate.To_String() << ">=" << previousDate.To_String() << "= " << x;
+	cout << endl << curentDate.To_String() << "<=" << previousDate.To_String() << "= " << y << endl;
     system("pause");
 
     return 0;

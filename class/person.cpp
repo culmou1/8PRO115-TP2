@@ -8,8 +8,8 @@
 #include "ligue.h"
 
 
-Joueur()::~Joueur(){
-	std::cout << obtenirNP << std::endl;
+Joueur::~Joueur(){
+	std::cout << obtenirNP() << std::endl;
 	std::cout << _age << std::endl;
 	std::cout << _taille << std::endl;
 	std::cout << _poids << std::endl;	
@@ -77,8 +77,10 @@ int Entraineur::getNumberOfTitre(){
 
 //-----------------------------------------------------------------deleteTitreGagne
 void Entraineur::deleteTitreGagne(std::string date) {
+
+	Date currentDate = To_Date(date);
 	for(unsigned int i=0; i<_titreGagne.size(); i++) {
-		if (_titreGagne[i]->getDate() == To_Date(date)) {
+		if (_titreGagne[i]->getDate() == currentDate) {
 			delete _titreGagne[i];
 			_titreGagne.erase(_titreGagne.begin()+i);
 		}

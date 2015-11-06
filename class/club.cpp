@@ -330,7 +330,7 @@ void Club::setRupturesDeContrats(VectorRup ruptures) {
 }
 
 //-----------------------------------------------------------------montantEncaisseDepuisUneDate
-
+/*
 void Club::montantEncaisseDepuisUneDate(std::string date){
 	double sommeTotal = 0;
 	for (unsigned int i = 0;i< contratsdEngagement.size();i++){
@@ -340,4 +340,4 @@ void Club::montantEncaisseDepuisUneDate(std::string date){
 	}
 	std::cout << "Le montant encaisse depuis le " << date << " est de : " << sommeTotal << "$." << std::endl;
 }
-
+*/
