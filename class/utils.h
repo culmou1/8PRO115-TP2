@@ -82,7 +82,7 @@ public:// Format DD/MM/YYYY
 Date To_Date(std::string date);
 const char * getTextForTitre( int enumVal );
 
-bool lookForDate(std::string date, Date dateComparer){
+/*bool lookForDate(std::string date, Date dateComparer){
 
 	Date dateEchance = To_Date(date);// Obtien la date a partire de la string
 	bool dateDepaser = true;
@@ -98,7 +98,7 @@ bool lookForDate(std::string date, Date dateComparer){
 		dateDepaser = true;
 	}
 	return dateDepaser;
-}
+}*/
 
 
 enum Titre {

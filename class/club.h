@@ -144,10 +144,9 @@ public:
     void AfficherEffectif();
 
 	void CreerEntraineur();
+	void AfficherStaff();
 
-    void AfficherCalendrier();
-
-    void TransfertJoueur(Joueur* joueur, Club* club);
+	void TransfertJoueur(std::string joueur, Club* club);
 	void AfficherMontantTransferts(std::string date);
 
 };

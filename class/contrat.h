@@ -102,12 +102,6 @@ public :
 	}
 };
 
-//----------------------------------------------------------------- methods of Date
-
-	bool lookForEcheance(std::string data){
-		To_Date(date);
-
-	}
 
 
 

@@ -8,11 +8,11 @@
 #include "ligue.h"
 
 
-Joueur()::~Joueur(){
-	std::cout << obtenirNP << std::endl;
-	std::cout << _age << std::endl;
-	std::cout << _taille << std::endl;
-	std::cout << _poids << std::endl;	
+Joueur::~Joueur(){
+	std::cout << "CARACTERISTIQUES DU JOUEUR " << obtenirNP() << " : " << std::endl;
+	std::cout << "-		AGE : " << _age << " ans" << std::endl;
+	std::cout << "-		TAILLE : "<< _taille << "m" << std::endl;
+	std::cout << "-		POIDS : "<< _poids << "kg" << std::endl;	
 }
 
 //----------------------------------------------------------------- obtenirNP
@@ -26,7 +26,7 @@ void Joueur_Autonome::RompreSonContrat(Contrat* leContrat){
     double penalite;
 
 	//Creation de la rupture
-    if(this == leContrat->getJoueurContractant())
+	if(leContrat != NULL)
 	{
         std::cout << "*******************ROMPRE LE CONTRAT DU JOUEUR*******************" << std::endl;
         std::cout << std::endl <<  "//		RAISON DU DEPART : "; std::cin >> raisonDuDepart;
@@ -38,14 +38,57 @@ void Joueur_Autonome::RompreSonContrat(Contrat* leContrat){
         // Construction de la rupture
 		Rupture* newRupture = new Rupture(this,newClub,raisonDuDepart,penalite);
 		leContrat->getClubContractant()->addRuptureDeContrats(newRupture);
+		std::cout << "Le joueur " << obtenirNP() << " a rompu son contrat." << std::endl;
 
 		//Creation du nouveau contrat du joueur
-		leContrat->getClubContractant()->TransfertJoueur(this, newClub);
+		leContrat->getClubContractant()->TransfertJoueur(this->obtenirNP(), newClub);
+		
 	}
     else
 	{
 		std::cout << "Le joueur " << obtenirNP() << " n'a pas de contrat." << std::endl;
     }
+}
+//----------------------------------------------------------------- DemandeDeTransfert
+bool Joueur_NonAutonome::DemandeDeTransfert(){
+		if (_anneeCumulee >= 3){
+			_avisFavorable = true;
+			return _avisFavorable;
+        }
+        else return false;
+    }
+
+//----------------------------------------------------------------- RompreSonContrat
+void Joueur_NonAutonome::RompreSonContrat(Contrat* leContrat){
+	std::string raisonDuDepart, choisirClub;
+    double penalite;
+	std::cout << "*******************ROMPRE LE CONTRAT DU JOUEUR*******************" << std::endl;
+	if(DemandeDeTransfert()){ //Verifie l'avis Favorable en fonction des annees cumulees
+		//Creation de la rupture
+		if(leContrat != NULL)
+		{
+			std::cout << std::endl <<  "//		RAISON DU DEPART : "; std::cin >> raisonDuDepart;
+			std::cout << std::endl <<  "//		PENALITE DE DEPART : "; std::cin >> penalite;
+			std::cout << std::endl << "//		CHOISIR NOUVELLE EQUIPE : ";  std::cin >> choisirClub; //choix de la couleur du Club
+
+			Club *newClub = leContrat->getClubContractant()->getLigue()->RechercherClub(choisirClub);
+
+			// Construction de la rupture
+			Rupture* newRupture = new Rupture(this,newClub,raisonDuDepart,penalite);
+			leContrat->getClubContractant()->addRuptureDeContrats(newRupture);
+			std::cout << "Le joueur " << obtenirNP() << " a rompu son contrat." << std::endl;
+
+			//Creation du nouveau contrat du joueur
+			leContrat->getClubContractant()->TransfertJoueur(this->obtenirNP(), newClub);
+		
+		}
+		else
+		{
+			std::cout << "Le joueur " << obtenirNP() << " n'a pas de contrat." << std::endl;
+		}
+	}
+	else
+		std::cout << "Le joueur " << obtenirNP() << " n'a pas d'avis favorable." << std::endl;
 }
 
 //-----------------------------------------------------------------addTitreGagne
@@ -55,6 +98,7 @@ void Entraineur::addTitreGagne(TitreGagne* titre) {
 
 //-----------------------------------------------------------------afficherTitreGagne
 void Entraineur::afficherTitreGagne(){
+	std::cout << std::endl <<"*******************LISTE DES TITRES DE L\'ENTRAINEUR******************* " << std::endl;
     for (unsigned int i = 0; i < _titreGagne.size();i++){
 		std::cout << "Voici la Position du TitreGagne: " << i << " - "<< getTextForTitre(_titreGagne[i]->getTitre()) << std::endl;
     }

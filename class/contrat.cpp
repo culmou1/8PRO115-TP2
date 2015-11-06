@@ -17,11 +17,7 @@ Contrat::Contrat(Joueur *joueurContractant,Club *clubContractant, int duree,
 					_datedEntree(To_Date(datedEntree)),_dateDuContrat(To_Date(dateDuContrat)), _reglement(montant, droit) {}
 
 //----------------------------------------------------------------- Destructeur
-Contrat::~Contrat() {
-	delete _joueurContractant;
-	delete _clubContractant;
-	delete _clubLibere;
-}
+Contrat::~Contrat() {}
 
 //----------------------------------------------------------------- Constructeur de recopie
 Contrat::Contrat(const Contrat& other) : 

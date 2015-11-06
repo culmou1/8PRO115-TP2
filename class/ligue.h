@@ -50,8 +50,9 @@ public:
 
 	void AfficherRencontre(Club *club);
 	void AjouterCalendrier(Calendrier* calendrier);
+	Calendrier* RechercherCalendrier(std::string couleur);
 	void AjouterRencontre(Club* home, Club* away, std::string date);
-	void SupprimerCalendrier(Club* club);
+	void SupprimerCalendrier(std::string couleur);
 };
 
 
