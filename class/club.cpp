@@ -95,7 +95,8 @@ void Club::CreerJoueur(){
 	std::cout << std::endl << "//		DATE D\'ENTREE DU JOUEUR : "; std::cin >> datedEntree;
 	std::cout << std::endl << "//		DATE DU CONTRAT : "; std::cin >> dateDuContrat;
 	std::cout << std::endl << "//		PRIX DU TRANSFERT : "; std::cin >> montant;
-	std::cout << std::endl << "//		DROITS DU JOUEUR : "; std::cin >> droit;
+	std::cin.ignore(1);
+	std::cout << std::endl << "//		DROITS DU JOUEUR : "; getline(std::cin,droit);
 
 	Joueur* newbie;
 	if (autonome) {//S'il est autonome
@@ -214,7 +215,8 @@ void Club::TransfertJoueur(std::string joueur, Club* club){
 			std::cout << std::endl << "//		DATE D\'ENTREE DU JOUEUR : "; std::cin >> datedEntree;
 			std::cout << std::endl << "//		DATE DU CONTRAT : "; std::cin >> dateDuContrat;
 			std::cout << std::endl << "//		PRIX DU TRANSFERT : "; std::cin >> montant;
-			std::cout << std::endl << "//		DROITS DU JOUEUR : "; std::cin >> droit;
+			std::cin.ignore(1);
+			std::cout << std::endl << "//		DROITS DU JOUEUR : "; getline(std::cin,droit);
 
 			//Si la date d'echeance est inferieure a la date du contrat ou que le joueur a rompu son contrat
 			if(newContrat->lookForEcheance(dateDuContrat) || rechercherRupturesDeContrats(aTransferer) != NULL) {

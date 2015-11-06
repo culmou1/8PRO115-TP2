@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
 #include "person.h"
 #include "club.h"
 #include "rupture.h"
@@ -25,13 +26,14 @@ void Joueur_Autonome::RompreSonContrat(Contrat* leContrat){
 	std::string raisonDuDepart, choisirClub;
     double penalite;
 
+	std::cout << std::endl << "*******************ROMPRE LE CONTRAT DU JOUEUR*******************" << std::endl;
+
 	//Creation de la rupture
 	if(leContrat != NULL)
 	{
-        std::cout << "*******************ROMPRE LE CONTRAT DU JOUEUR*******************" << std::endl;
-        std::cout << std::endl <<  "//		RAISON DU DEPART : "; std::cin >> raisonDuDepart;
+        std::cout << std::endl <<  "//		RAISON DU DEPART : "; getline(std::cin,raisonDuDepart);
         std::cout << std::endl <<  "//		PENALITE DE DEPART : "; std::cin >> penalite;
-		std::cout << std::endl << "//		CHOISIR NOUVELLE EQUIPE : ";  std::cin >> choisirClub; //choix de la couleur du Club
+		std::cout << std::endl << "//		CHOISIR NOUVELLE EQUIPE (ecrire en minuscule): ";  std::cin >> choisirClub; //choix de la couleur du Club
 
 		Club *newClub = leContrat->getClubContractant()->getLigue()->RechercherClub(choisirClub);
 
@@ -41,7 +43,7 @@ void Joueur_Autonome::RompreSonContrat(Contrat* leContrat){
 		std::cout << "Le joueur " << obtenirNP() << " a rompu son contrat." << std::endl;
 
 		//Creation du nouveau contrat du joueur
-		leContrat->getClubContractant()->TransfertJoueur(this->obtenirNP(), newClub);
+		leContrat->getClubContractant()->TransfertJoueur(obtenirNP(), newClub);
 
 	}
     else
@@ -62,14 +64,14 @@ bool Joueur_NonAutonome::DemandeDeTransfert(){
 void Joueur_NonAutonome::RompreSonContrat(Contrat* leContrat){
 	std::string raisonDuDepart, choisirClub;
     double penalite;
-	std::cout << "*******************ROMPRE LE CONTRAT DU JOUEUR*******************" << std::endl;
+	std::cout << std::endl << "*******************ROMPRE LE CONTRAT DU JOUEUR*******************" << std::endl;
 	if(DemandeDeTransfert()){ //Verifie l'avis Favorable en fonction des annees cumulees
 		//Creation de la rupture
 		if(leContrat != NULL)
 		{
-			std::cout << std::endl <<  "//		RAISON DU DEPART : "; std::cin >> raisonDuDepart;
+			std::cout << std::endl <<  "//		RAISON DU DEPART : "; getline(std::cin,raisonDuDepart);
 			std::cout << std::endl <<  "//		PENALITE DE DEPART : "; std::cin >> penalite;
-			std::cout << std::endl << "//		CHOISIR NOUVELLE EQUIPE : ";  std::cin >> choisirClub; //choix de la couleur du Club
+			std::cout << std::endl << "//		CHOISIR NOUVELLE EQUIPE (ecrire en minuscule): ";  std::cin >> choisirClub;//choix de la couleur du Club
 
 			Club *newClub = leContrat->getClubContractant()->getLigue()->RechercherClub(choisirClub);
 

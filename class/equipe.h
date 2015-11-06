@@ -16,7 +16,7 @@ public:
     Equipe(Club *team, int players, int goals, Joueur *capt) :
 		_club(team), _nbrJoueurs(players), _nbrGardiens(goals), _capitaine(capt) {}
 
-	~Equipe() {delete _club; delete _capitaine;}
+	~Equipe() {}
 
 	Equipe(const Equipe& other) :
 		_club(other._club), _nbrJoueurs(other._nbrJoueurs), _nbrGardiens(other._nbrGardiens), _capitaine(other._capitaine) {}
