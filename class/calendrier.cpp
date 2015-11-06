@@ -42,21 +42,18 @@ void Calendrier::AfficherRencontreForAwayClub(Club *club){
             std::cout << std::endl << "Visiteur : ";
             _rencontres[i]->getMatchAndGame();
         }
-        else
-			std::cerr<< "Il n\'y a aucune Rencontre Pour ce Club en tant que Visiteur" << std::endl;
     }
 }
 
 //----------------------------------------------------------------- AfficherRencontreForHomeClub
 void Calendrier::AfficherRencontreForHomeClub(Club *club){
-    for(unsigned int i=0;i<_rencontres.size();i++){
+    for(unsigned int i=0;i<_rencontres.size();i++)
+	{
         if(_rencontres[i]->getMatch()->getLocaux()->getClub() == club)
 		{
             std::cout << std::endl << "Domicile : ";
             _rencontres[i]->getMatchAndGame();
         }
-        else 
-            std::cerr<<"Il n\'y a aucune Rencontre Pour ce Club a Domicile" << std::endl;
     }
 }
 

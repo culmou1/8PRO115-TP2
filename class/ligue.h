@@ -45,8 +45,11 @@ public:
 	void	EntraineurLePlusTitre();
 	void	ClubLePlusTitre();
 
+	void AfficherRencontre(Club *club);
 	void AjouterCalendrier(Calendrier* calendrier);
-	void SupprimerCalendrier(Club* club);
+	Calendrier* RechercherCalendrier(std::string couleur);
+	void AjouterRencontre(Club* home, Club* away, std::string date);
+	void SupprimerCalendrier(std::string couleur);
 };
 
 

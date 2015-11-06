@@ -17,6 +17,7 @@ typedef std::vector<Palmares*>	VectorPal; // Une ensemble de vecteur de type Pal
 typedef std::vector<Contrat*> 	VectorCon; // Une ensemble de vecteur de type Contrat
 typedef std::vector<Rupture*> 	VectorRup; // Une ensemble de vecteur de type Rupture
 typedef std::vector<Person*>  	VectorPrs; // Une ensemble de vecteur de type Person
+typedef std::vector<Joueur*>  	VectorJou; // Une ensemble de vecteur de type Joueur
 
 
 // Classe Club
@@ -28,7 +29,7 @@ private:
 	std::string 			adresseDuClub;
 	std::string 			villeDuClub;
 	Date 					anneeDeCreation;
-	VectorPrs				effectif;
+	VectorJou				effectif;
 	VectorPal			 	unPalmares;
 	VectorPrs			 	staffTechnique;
 	VectorCon 				contratsdEngagement;
@@ -60,9 +61,10 @@ public:
 
 //----------------------------------------------------------------- methods for Effectif
 
-	VectorPrs getEffectif();
+	VectorJou getEffectif();
 	void addEffectif(Joueur *someone);
-	void setEffectif(VectorPrs players);
+	void setEffectif(VectorJou players);
+	Joueur* rechercherJoueur(std::string joueur);
 
 //----------------------------------------------------------------- methods for unPalmares
 	VectorPal getUnPalmares();
@@ -116,6 +118,8 @@ public:
 
 	void setRupturesDeContrats(VectorRup ruptures);
 
+	Rupture* rechercherRupturesDeContrats(Joueur* joueur);
+
 //----------------------------------------------------------------- methods for Montant
 	void montantEncaisseDepuisUneDate(std::string date);
 
@@ -135,13 +139,14 @@ public:
 
 //----------------------------------------------------------------- methods of Club
     void CreerJoueur();
-    void ModifierJoueur();
+    void ModifierJoueur(std::string joueur);
     void SupprimerJoueur(std::string name);
     void AfficherEffectif();
 
-    void AfficherCalendrier();
+	void CreerEntraineur();
+	void AfficherStaff();
 
-    void TransfertJoueur(Joueur* joueur, Club* club);
+	void TransfertJoueur(std::string joueur, Club* club);
 	void AfficherMontantTransferts(std::string date);
 
 };

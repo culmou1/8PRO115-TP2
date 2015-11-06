@@ -27,7 +27,7 @@ public:
 
     void AfficherRencontreForHomeClub(Club *club);
 
-    void AfficherRencontre(Club *club);
+
 };
 
 

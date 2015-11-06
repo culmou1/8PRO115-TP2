@@ -131,6 +131,9 @@ public:
     void setEmplacementNaissance(std::string birthPlace){
         _emplacementNaissance = birthPlace;
     }
+
+	virtual void RompreSonContrat(Contrat* leContrat) = 0;
+
 };
 
 
@@ -165,11 +168,11 @@ private:
 	bool   _avisFavorable;
 
 public:
-    // Avec Avis Favorable
-	Joueur_NonAutonome(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance,int anneecumulee,bool avisFavorable):
-        Joueur(prenom, nom, age, taille, poids, emplacementNaissance),_anneeCumulee(anneecumulee),_avisFavorable(avisFavorable) {}
+    // Avec AnneeCumulee
+	Joueur_NonAutonome(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance,int anneecumulee):
+        Joueur(prenom, nom, age, taille, poids, emplacementNaissance),_anneeCumulee(anneecumulee),_avisFavorable(false) {}
 
-    // Sans AvisFavorable
+    // Sans AnneeCumulee
 	Joueur_NonAutonome(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance):
         Joueur(prenom, nom, age, taille, poids, emplacementNaissance), _anneeCumulee(0),_avisFavorable(false) {}
 
@@ -191,12 +194,8 @@ public:
 		return _anneeCumulee;
 	}
 
-	bool DemandeDeTransfert(){
-        if (this->_avisFavorable == true){
-            return true;
-        }
-        else return false;
-    }
+	bool DemandeDeTransfert();
+
 	void setAnneeCumulee(int annee) {
 		_anneeCumulee = annee;
 	}
@@ -211,7 +210,7 @@ public:
 	}
 
 //----------------------------------------------------------------- methods of Joueur_NonAutonome
-
+	void RompreSonContrat(Contrat* leContrat);
 };
 
 

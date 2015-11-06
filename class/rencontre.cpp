@@ -1,28 +1,23 @@
 #include "rencontre.h"
-#include "calendrier.h"
 #include "match.h"
 #include "equipe.h"
 #include "utils.h"
 
 //----------------------------------------------------------------- Constructeur
-Rencontre::Rencontre(Match *game, std::string date) : _match(game), _dateDeRencontre(To_Date(date))
-{
-    _calendrier->addRencontre(this);
-}
+Rencontre::Rencontre(Club* home, Club* away, std::string date) : _match(CreerMatch(home,away)), _dateDeRencontre(To_Date(date)) {}
 
 //----------------------------------------------------------------- Destructeur
 Rencontre::~Rencontre() {
 	delete _match; 
-	delete _calendrier;
 }
 
 //----------------------------------------------------------------- Constructeur de recopie
 Rencontre::Rencontre(const Rencontre& other) : 
-	_match(other._match), _dateDeRencontre(other._dateDeRencontre), _calendrier(other._calendrier) {}
+	_match(other._match), _dateDeRencontre(other._dateDeRencontre) {}
 
 //----------------------------------------------------------------- Operateur d'affectation
 Rencontre& Rencontre::operator=(Rencontre&& other) {
-	_match=other._match; _dateDeRencontre=other._dateDeRencontre; _calendrier=other._calendrier;
+	_match=other._match; _dateDeRencontre=other._dateDeRencontre;
 	return *this;
 }
 
@@ -35,6 +30,13 @@ void Rencontre::getMatchAndGame(){
 //----------------------------------------------------------------- methods for Add Match
 
 /* Ajout des matchs Entre des Équipes */
+Match* Rencontre::CreerMatch(Club* home, Club* away) {
+		Equipe* locaux = new Equipe(home, 18, 2, home->getEffectif()[0]);
+		Equipe* visiteurs = new Equipe(away, 18, 2, away->getEffectif()[0]);
+
+		Match* newMatch = new Match(locaux, visiteurs);
+		return newMatch;
+	}
 
 //----------------------------------------------------------------- methods for affichage
 

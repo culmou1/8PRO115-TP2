@@ -7,7 +7,7 @@ const double pourcentJoueur = 0.002;
 class Reglement {
 
 private:
-	static double 	_seuilDeTransfert;
+	double 			_seuilDeTransfert;
 	std::string		_droitDuJoueur;
 	double			_montantDuTransfert;
 	double			_montantAncienClub;
@@ -58,6 +58,10 @@ public:
     void setMontantJoueur(double somme){
     	_montantJoueur = somme;
     }
+
+	double getSeuilDeTransert() {
+		return _seuilDeTransfert;
+	}
 
 };
 

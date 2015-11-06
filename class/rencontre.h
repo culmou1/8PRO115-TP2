@@ -2,6 +2,8 @@
 #define RENCONTRE_H
 
 #include "utils.h"
+#include "match.h"
+#include "equipe.h"
 
 class Match;
 class Calendrier;
@@ -11,10 +13,9 @@ class Rencontre {
 private:
 	Match		*_match;
 	Date		_dateDeRencontre;
-	Calendrier	*_calendrier;
 
 public:
-	Rencontre(Match *game, std::string date);
+	Rencontre(Club* home, Club* away, std::string date);
 	~Rencontre();
 	Rencontre(const Rencontre& other);
     Rencontre& operator=(Rencontre&& other);
@@ -42,8 +43,7 @@ public:
 	void getMatchAndGame();
 
 //----------------------------------------------------------------- methods for Add Match
-
-/* Ajout des matchs Entre des Équipes */
+	Match* CreerMatch(Club* home, Club* away);
 
 //----------------------------------------------------------------- methods for affichage
 

@@ -19,7 +19,8 @@ private:
 	Resultat  	_resultatFinal;
 
 public:
-	Match(Equipe *home, Equipe *visitor, Resultat score);
+	Match(Equipe *home, Equipe *visitor);
+	Match(Equipe *home, Equipe *visitor, int butL, int butV);
 
     ~Match();
     Match(const Match& other);

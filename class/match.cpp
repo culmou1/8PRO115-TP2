@@ -4,8 +4,11 @@
 #include "club.h"
 
 //----------------------------------------------------------------- Constructeur
-Match::Match(Equipe *home, Equipe *visitor, Resultat score) :
-    _locaux(home), _visiteurs(visitor), _resultatFinal(score) {}
+Match::Match(Equipe *home, Equipe *visitor) :
+	_locaux(home), _visiteurs(visitor), _resultatFinal(0,0) {}
+
+Match::Match(Equipe *home, Equipe *visitor, int butL, int butV) :
+	_locaux(home), _visiteurs(visitor), _resultatFinal(butL,butV) {}
 
 //----------------------------------------------------------------- Destructeur
 Match::~Match() {
