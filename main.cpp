@@ -80,10 +80,10 @@ int main(){
 	//B->AfficherMontantTransferts("01-05-2010");
 	//B->montantEncaisseDepuisUneDate("01-05-2010");
 
-	/*ligue->AjouterRencontre(A,B,"01-02-1995");
+	ligue->AjouterRencontre(A,B,"01-02-1995");
 	ligue->AjouterRencontre(B,A,"01-02-1995");
 	ligue->AfficherRencontre(A);
-	ligue->AfficherRencontre(B);*/
+	ligue->AfficherRencontre(B);
 
 	//A->ModifierJoueur("A Joueur_0");
 	//A->SupprimerJoueur("A Joueur_5");
@@ -94,6 +94,7 @@ int main(){
 	ligue->ClubLePlusTitre();
 
 	ligue->SupprimerClub("vert");
+	ligue->AfficherResultat("jaune","01-02-1995");
 
     system("pause");
 
