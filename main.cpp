@@ -2,15 +2,11 @@
 #include <string>
 #include "class\contrat.h"
 #include "class/ligue.h"
-<<<<<<< HEAD
-#include "class/utils.h"
-=======
 #include "class\utils.h"
 #include "class\club.h"
 #include "class\person.h"
 #include "class\calendrier.h"
 #include "class\palmares.h"
->>>>>>> b44a4983423945be435aeb0c8cda677f7ca4f82e
 
 using namespace std;
 
@@ -43,7 +39,7 @@ int main(){
 		A->addEffectif(player);
 		A->addContratdEngagement(contrat);
 	}
-	
+
 	for(int i=2; i<6;i++) {
 		staff = new Person(name, "Staff_"+to_string(i), 40, static_cast<Role>(i));
 		A->addStaffTechnique(staff);
@@ -77,7 +73,7 @@ int main(){
 		B->addStaffTechnique(staff);
 	}
 	trainer = new Entraineur(name, "Trainer_1", 50, "Burnout");
-	
+
 	for(int i=0;i<5;i++) {
 		titre = new Palmares ("18-06-2010",CHAMPIONNAT);
 		itt = new TitreGagne(B, "18-06-2010", CHAMPIONNAT);
@@ -92,22 +88,21 @@ int main(){
 	//B->AfficherMontantTransferts("01-05-2010");
 	//B->montantEncaisseDepuisUneDate("01-05-2010");
 
-	ligue->AjouterRencontre(A,B,"01-02-1995");
+	/*ligue->AjouterRencontre(A,B,"01-02-1995");
 	ligue->AjouterRencontre(B,A,"01-02-1995");
 	ligue->AfficherRencontre(A);
-	ligue->AfficherRencontre(B);
+	ligue->AfficherRencontre(B);*/
 
 	//A->ModifierJoueur("A Joueur_0");
 	//A->SupprimerJoueur("A Joueur_5");
 >>>>>>> b44a4983423945be435aeb0c8cda677f7ca4f82e
 
-	//Joueur* rompu = A->rechercherJoueur("A Joueur_2");
-	//rompu->RompreSonContrat(A->rechercherContratdEngagement(rompu));
+	Joueur* rompu = A->rechercherJoueur("A Joueur_2");
+	rompu->RompreSonContrat(A->rechercherContratdEngagement(rompu));
 	ligue->EntraineurLePlusTitre();
 	ligue->ClubLePlusTitre();
 
 	ligue->SupprimerClub("vert");
-	ligue->AfficherResultat("jaune","01-02-1995");
 
 <<<<<<< HEAD
 	cout << curentDate.To_String() << ">=" << previousDate.To_String() << "= " << x;

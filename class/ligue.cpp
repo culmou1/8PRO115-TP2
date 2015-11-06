@@ -27,7 +27,6 @@ Ligue& Ligue::operator=(Ligue&& other) {
 //----------------------------------------------------------------- CreerClub
 void Ligue::CreerClub() {
 	std::string histoireDuClub,	couleurDuClub, adresseDuClub, villeDuClub, anneeDeCreation;
-
 	std::cout << "*******************CREATION D'UN CLUB*******************" << std::endl
 	<< "//		COULEUR : "; std::cin >> couleurDuClub;
 	std::cin.ignore(1);
@@ -37,7 +36,6 @@ void Ligue::CreerClub() {
 	std::cin.ignore(1);
 	std::cout << std::endl << "//		HISTOIRE: " ; getline(std::cin,histoireDuClub);
 
-	//Cree le nouveau club et l'ajoute aux clubs de la ligue
 	Club* newClub = new Club(histoireDuClub, couleurDuClub, adresseDuClub, villeDuClub, anneeDeCreation, this);
 	AjouterClub(newClub);
 
@@ -45,9 +43,9 @@ void Ligue::CreerClub() {
 
 //----------------------------------------------------------------- AjouterClub
 void Ligue::AjouterClub(Club* clubs) {
-	//ajoute un club et son calendrier a la ligue
 	clubsDeLaLigue.push_back(clubs);
 	calendrierDeLaLigue.push_back(clubs->getCalendrier());
+	//creer calendrier du club
 }
 
 //----------------------------------------------------------------- RechercherClub
@@ -61,11 +59,10 @@ Club* Ligue::RechercherClub(std::string couleur) {
 
 //----------------------------------------------------------------- SupprimerClub
 void Ligue::SupprimerClub(std::string couleur) {
+	std::cout << std::endl << "*******************SUPPRESSION D'UN CLUB*******************" << std::endl;
 	Club* aSupprimer = RechercherClub(couleur);
 
-	std::cout << std::endl << "*******************SUPPRESSION D'UN CLUB*******************" << std::endl;
-
-	if(aSupprimer != NULL) {// Si le club existe
+	if(aSupprimer != NULL) {
 		for (unsigned int i=0; i<clubsDeLaLigue.size(); i++) {
 			if(clubsDeLaLigue[i] == aSupprimer) {
 				SupprimerCalendrier(couleur);
@@ -76,10 +73,10 @@ void Ligue::SupprimerClub(std::string couleur) {
 		std::cout << "Le club " << couleur << " a ete supprime de la ligue." << std::endl;
 	}
 	else
-		std::cerr << "Le club " << couleur << " n\'existe pas." << std::endl; 
+		std::cerr << "Le club " << couleur << " n\'existe pas." << std::endl;
 }
 
-//----------------------------------------------------------------- AfficherClubs
+//----------------------------------------------------------------- AfficherClub
 void Ligue::AfficherClubs(){
 	std::cout << "*******************AFFICHAGE LISTE DES CLUBS*******************" << std::endl;
 	for (unsigned int i = 0; i < clubsDeLaLigue.size();i++){
@@ -102,34 +99,26 @@ Calendrier* Ligue::RechercherCalendrier(std::string couleur) {
 
 //-----------------------------------------------------------------SupprimerCalendrier
 void Ligue::SupprimerCalendrier(std::string couleur) {
-	Calendrier* aSupprimer = RechercherCalendrier(couleur);
-
 	std::cout << std::endl << "*******************SUPPRESSION D\'UN CALENDRIER*******************" << std::endl;
-
-	if(aSupprimer != NULL) {// Si le calendrier existe
-		for (unsigned int i=0; i<calendrierDeLaLigue.size(); i++) {
-			if(calendrierDeLaLigue[i] == aSupprimer) {
-				delete calendrierDeLaLigue[i];
-				calendrierDeLaLigue.erase(calendrierDeLaLigue.begin()+i);
-			}
+	Calendrier* aSupprimer = RechercherCalendrier(couleur);
+	for (unsigned int i=0; i<calendrierDeLaLigue.size(); i++) {
+		if(calendrierDeLaLigue[i] == aSupprimer) {
+			delete calendrierDeLaLigue[i];
+			calendrierDeLaLigue.erase(calendrierDeLaLigue.begin()+i);
 		}
-		std::cout << "Le calendrier du club " << couleur << " a ete supprime de la ligue." << std::endl;
 	}
-	else 
-		std::cerr << "Le club " << couleur << " n\'existe pas." << std::endl; 
+	std::cout << "Le calendrier du club " << couleur << " a ete supprime de la ligue." << std::endl;
 }
 
 //-----------------------------------------------------------------EntraineurLePlusTitre
 void Ligue::EntraineurLePlusTitre(){
-	int nbTitre = 0;
-	Person *entraineurLePlusTitre;
-
 	std::cout << std::endl <<"*******************L\'ENTRAINEUR LE PLUS TITRE******************* " << std::endl;
-	
-	for (unsigned int i = 0; i < clubsDeLaLigue.size();i++){//Itere dans les clubs de la ligue
-		for(unsigned int j = 0; j < clubsDeLaLigue[i]->getStaffTechnique().size();j++){//Itere dans le staff d'un club
+	int nbTitre = 0;
+	Person *entraineurLePlusTitre = NULL;
+	for (unsigned int i = 0; i < clubsDeLaLigue.size();i++){
+		for(unsigned int j = 0; j < clubsDeLaLigue[i]->getStaffTechnique().size();j++){
 			int currentNumber = clubsDeLaLigue[i]->getStaffTechnique()[j]->getNumberOfTitre();
-			if(currentNumber > nbTitre){// Si le nombre de titre de l'entraineur du club est plus grand
+			if(currentNumber > nbTitre){
 				nbTitre = currentNumber;
 				entraineurLePlusTitre = clubsDeLaLigue[i]->getStaffTechnique()[j];
 			}
@@ -138,16 +127,14 @@ void Ligue::EntraineurLePlusTitre(){
 	std::cout << "Voici l\'entraineur le plsu titre: " << entraineurLePlusTitre->obtenirNP() << ", il a gagne " << nbTitre << " titre(s)." <<std::endl;
 }
 
-//-----------------------------------------------------------------ClubLePlusTitre
+//-----------------------------------------------------------------EntraineurLePlusTitre
 void Ligue::ClubLePlusTitre(){
-	int nbTitre = 0;
-	Club *clubLePlusTitre;
-
 	std::cout << std::endl <<"*******************LE CLUB LE PLUS TITRE******************* " << std::endl;
-
-	for (unsigned int i = 0; i < clubsDeLaLigue.size();i++){//Itere dans les clubs de la ligue
+	int nbTitre = 0;
+	Club *clubLePlusTitre = NULL;
+	for (unsigned int i = 0; i < clubsDeLaLigue.size();i++){
 		int currentNumber = clubsDeLaLigue[i]->getNumberOfTitre();
-		if(currentNumber > nbTitre){// Si le nombre de titre du club est plus grand
+		if(currentNumber > nbTitre){
 			nbTitre = currentNumber;
 			clubLePlusTitre = clubsDeLaLigue[i];
 		}
@@ -165,37 +152,20 @@ void Ligue::AjouterRencontre(Club* home, Club* away, std::string date) {
 //----------------------------------------------------------------- AfficherRencontre
 void Ligue::AfficherRencontre(Club *club){
 	std::cout << std::endl << "*******************CALENDRIER DES RENCONTRES DU CLUB******************* " << std::endl;
-    try
+    try // Fait la fonction
     {
 		club->getCalendrier()->AfficherRencontreForHomeClub(club);
     }
-    catch (const std::exception &e)
+    catch (const std::exception &e) // Si une Erreur est survenu
     {
-        std::cerr << e.what() << std::endl;
+        std::cerr << e.what() << std::endl; // Description de l'erreur
     }
-    try
+    try // Fait la fonction
     {
         club->getCalendrier()->AfficherRencontreForAwayClub(club);
     }
-    catch (const std::exception & e)
+    catch (const std::exception & e) // Si une erreur survient
     {
-        std::cerr << e.what() <<std::endl;
+        std::cerr << e.what() <<std::endl; // Description de l'erreur
     }
-}
-
-//----------------------------------------------------------------- AfficherResultat
-void Ligue::AfficherResultat(std::string couleur, std::string date) {
-	Club* club = RechercherClub(couleur);
-
-	std::cout << std::endl << "*******************RESULTAT DU MATCH DU " << date << "******************* " << std::endl;
-
-	if(club != NULL) {// Si le club existe
-		if(club->getCalendrier()->getAllRencontre().empty() != NULL) {// Si le calendrier est pas vide
-			club->getCalendrier()->AfficherResultat(club, date);
-		}
-		else 
-			std::cerr << "Le calendrier du club " << couleur << " n\'existe pas." << std::endl; 
-	}
-	else 
-			std::cerr << "Le club " << couleur << " n\'existe pas." << std::endl; 
 }
