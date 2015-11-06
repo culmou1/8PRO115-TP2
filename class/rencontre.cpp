@@ -8,11 +8,11 @@ Rencontre::Rencontre(Club* home, Club* away, std::string date) : _match(CreerMat
 
 //----------------------------------------------------------------- Destructeur
 Rencontre::~Rencontre() {
-	delete _match; 
+	delete _match;
 }
 
 //----------------------------------------------------------------- Constructeur de recopie
-Rencontre::Rencontre(const Rencontre& other) : 
+Rencontre::Rencontre(const Rencontre& other) :
 	_match(other._match), _dateDeRencontre(other._dateDeRencontre) {}
 
 //----------------------------------------------------------------- Operateur d'affectation
