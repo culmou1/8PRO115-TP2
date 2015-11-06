@@ -42,9 +42,7 @@ public:
     Club(std::string history, std::string color, std::string address, std::string town, std::string year, Ligue* league);
 
     ~Club();
-
     Club(const Club& other);
-
     Club& operator=(Club&& other);
 
 //----------------------------------------------------------------- methods for HistoireDuClub

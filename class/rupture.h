@@ -17,7 +17,7 @@ public:
 
 	~Rupture() {}
 
-    Rupture(const Rupture& other) : 
+    Rupture(const Rupture& other) :
 		_joueurRelaxant(other._joueurRelaxant), _clubContractant(other._clubContractant), _raisonsDuDepart(other._raisonsDuDepart), _penalite(other._penalite) {}
 
     Rupture& operator=(Rupture&& other) {

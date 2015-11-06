@@ -25,7 +25,11 @@ Contrat::Contrat(const Contrat& other) :
 	_dureeContrat(other._dureeContrat), _datedEntree(other._datedEntree), _dateDuContrat(other._dateDuContrat), _reglement(other._reglement) {}
 
 //----------------------------------------------------------------- Operateur d'affectation
-Contrat& Contrat::operator=(Contrat&& other) = default;
+Contrat& Contrat::operator=(Contrat&& other) {
+	_joueurContractant=other._joueurContractant; _clubContractant=other._clubContractant; _clubLibere=other._clubLibere;
+	_dureeContrat=other._dureeContrat; _datedEntree=other._datedEntree; _dateDuContrat=other._dateDuContrat; _reglement=other._reglement; 
+	return *this;
+}
 
 //----------------------------------------------------------------- methods of dateDuContrat
 void Contrat::setDateDuContrat(int d_day, int m_month,int y_year) {

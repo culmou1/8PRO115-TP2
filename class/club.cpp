@@ -60,6 +60,20 @@ Club::~Club() {
 	rupturesDeContrats.clear();
 }
 
+//----------------------------------------------------------------- Constructeur de recopie
+Club::Club(const Club& other) : histoireDuClub(other.histoireDuClub), couleurDuClub(other.couleurDuClub), adresseDuClub(other.adresseDuClub),
+	villeDuClub(other.villeDuClub), anneeDeCreation(other.anneeDeCreation), effectif(other.effectif), staffTechnique(other.staffTechnique),
+	unPalmares(other.unPalmares), contratsdEngagement(other.contratsdEngagement), rupturesDeContrats(other.rupturesDeContrats), _ligue(other._ligue),
+	_calendrier(other._calendrier) {}
+
+//----------------------------------------------------------------- Operateur d'affectation
+Club& Club::operator=(Club&& other) {
+	villeDuClub=other.villeDuClub; anneeDeCreation=other.anneeDeCreation; effectif=other.effectif; staffTechnique=other.staffTechnique;
+	unPalmares=other.unPalmares; contratsdEngagement=other.contratsdEngagement; rupturesDeContrats=other.rupturesDeContrats; _ligue=other._ligue;
+	_calendrier=other._calendrier;
+	return *this;
+}
+
 //----------------------------------------------------------------- CreerJoueur
 void Club::CreerJoueur(){
 	std::string nom, prenom, ville, dateDuContrat, datedEntree, droit;
@@ -427,18 +441,4 @@ Rupture* Club::rechercherRupturesDeContrats(Joueur *joueur){
 			return rupturesDeContrats[i];
 	}
 	return NULL;
-}
-
-//-----------------------------------------------------------------montantEncaisseDepuisUneDate
-
-void Club::montantEncaisseDepuisUneDate(std::string date){
-	double sommeTotal = 0;
-
-	std::cout << std::endl << "******************* MONTANT ENCAISSE DEPUIS LE " << date << " ******************* " << std::endl;
-	for (unsigned int i = 0;i< contratsdEngagement.size();i++){
-		if (contratsdEngagement[i]->getDateDuContrat() <= To_Date(date)){
-			sommeTotal += contratsdEngagement[i]->getReglement().getMontantDuTransfert();
-		}
-	}
-	std::cout << "Le montant encaisse par le club " << couleurDuClub << " est de : " << sommeTotal << "$." << std::endl;
 }

@@ -112,9 +112,12 @@ void Ligue::SupprimerCalendrier(std::string couleur) {
 
 //-----------------------------------------------------------------EntraineurLePlusTitre
 void Ligue::EntraineurLePlusTitre(){
-	std::cout << std::endl <<"*******************L\'ENTRAINEUR LE PLUS TITRE******************* " << std::endl;
+
 	int nbTitre = 0;
 	Person *entraineurLePlusTitre = NULL;
+
+	std::cout << std::endl <<"*******************L\'ENTRAINEUR LE PLUS TITRE******************* " << std::endl;
+
 	for (unsigned int i = 0; i < clubsDeLaLigue.size();i++){
 		for(unsigned int j = 0; j < clubsDeLaLigue[i]->getStaffTechnique().size();j++){
 			int currentNumber = clubsDeLaLigue[i]->getStaffTechnique()[j]->getNumberOfTitre();
@@ -129,9 +132,11 @@ void Ligue::EntraineurLePlusTitre(){
 
 //-----------------------------------------------------------------EntraineurLePlusTitre
 void Ligue::ClubLePlusTitre(){
-	std::cout << std::endl <<"*******************LE CLUB LE PLUS TITRE******************* " << std::endl;
+
 	int nbTitre = 0;
 	Club *clubLePlusTitre = NULL;
+	std::cout << std::endl <<"*******************LE CLUB LE PLUS TITRE******************* " << std::endl;
+
 	for (unsigned int i = 0; i < clubsDeLaLigue.size();i++){
 		int currentNumber = clubsDeLaLigue[i]->getNumberOfTitre();
 		if(currentNumber > nbTitre){

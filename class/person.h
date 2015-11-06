@@ -1,8 +1,5 @@
 #ifndef PERSON_H
 #define PERSON_H
-
-//http://stackoverflow.com/questions/18335861/why-is-enum-class-preferred-over-plain-enum
-
 #include <vector>
 #include "utils.h"
 
@@ -32,6 +29,8 @@ public:
 		_prenom=other._prenom; _nom=other._nom; _age=other._age; _role=other._role;
 		return *this;
 	}
+
+
 
 //----------------------------------------------------------------- methods of prenom
     virtual std::string getFirstName(){
@@ -125,6 +124,7 @@ public:
         return _emplacementNaissance;
     }
 
+
     void setEmplacementNaissance(std::string birthPlace){
         _emplacementNaissance = birthPlace;
     }
@@ -151,6 +151,7 @@ public:
 		*a = *b;
 		return *this;
 	}
+
 
 //----------------------------------------------------------------- methods of Joueur_Autonome
 	void RompreSonContrat(Contrat* leContrat);

@@ -18,7 +18,7 @@ public:
 
 	~Equipe() {delete _club; delete _capitaine;}
 
-	Equipe(const Equipe& other) : 
+	Equipe(const Equipe& other) :
 		_club(other._club), _nbrJoueurs(other._nbrJoueurs), _nbrGardiens(other._nbrGardiens), _capitaine(other._capitaine) {}
 
     Equipe& operator=(Equipe&& other) {

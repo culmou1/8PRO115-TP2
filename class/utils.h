@@ -44,7 +44,8 @@ public:// Format DD/MM/YYYY
 		  return false;
   }
 
-  bool operator<=(Date &a) {
+
+    bool operator<=(Date &a) {
 	  if (tm_year >= a.tm_year) {
 		  if(tm_month >= a.tm_month) {
 			  if (tm_day >= a.tm_day)
@@ -72,6 +73,17 @@ const char * getTextForTitre( int enumVal );
 enum Titre {
     COUPE,
     CHAMPIONNAT
+};
+
+
+enum Raison {
+    RETRAITE,
+    SALAIREINSUFFISANT,
+    TEMPSDEJEU,
+    CONFLITSVESTIAIRE,
+    FAMILLE,
+    ENVIEDECHANGEMENT,
+    PERFORMANCES
 };
 
 #endif

@@ -88,14 +88,6 @@ public :
 	}
 
 	void setReglement(double montantT, std::string droit);
-<<<<<<< HEAD
-
-
-};
-
-//----------------------------------------------------------------- methods of Date
-
-=======
 
 //----------------------------------------------------------------- methods for Contrat 
 	//Calcule la date d'echeance du Contrat
@@ -109,8 +101,6 @@ public :
 		return getDatedEncheance() <= To_Date(date); //Vrai si cest ok 
 	}
 };
-
->>>>>>> b44a4983423945be435aeb0c8cda677f7ca4f82e
 
 
 

@@ -41,7 +41,7 @@ Match* Rencontre::CreerMatch(Club* home, Club* away) {
 //----------------------------------------------------------------- resultatAUneDateDonne
 void Rencontre::resultatAUneDateDonne(std::string date){
     if (To_Date(date) == _dateDeRencontre){
-		std::cout << _match->getCouleurClub(_match->getLocaux()) << _match->getResultat().getButsLocaux() 
+		std::cout << _match->getCouleurClub(_match->getLocaux()) << _match->getResultat().getButsLocaux()
 			<< " - " << _match->getCouleurClub(_match->getVisiteurs()) << _match->getResultat().getButsVisiteurs() << std::endl;
     }
 }
