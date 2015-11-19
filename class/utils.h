@@ -86,4 +86,15 @@ enum Raison {
     PERFORMANCES
 };
 
+template <typename T>
+
+template <typename T, typename U>
+T getOneArgv(){
+	return T
+}
+
+void setOneArgv(T,U){
+
+}
+
 #endif

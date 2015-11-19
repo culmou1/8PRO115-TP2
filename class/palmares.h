@@ -20,12 +20,12 @@ public:
 	~Palmares() {}
 
 	Palmares(const Palmares& other) : _date(other._date), _titre(other._titre) {}
-
+/*
     Palmares& operator=(Palmares&& other) {
 		_date=other._date; _titre=other._titre;
 		return *this;
 	}
-
+*/
 //----------------------------------------------------------------- methods of date
     Date getDate(){
         return _date;
@@ -59,14 +59,16 @@ public:
 	~TitreGagne() { delete _club;}
 
     TitreGagne(const TitreGagne& other) : Palmares(other), _club(other._club) {}
-
+/*
     TitreGagne& operator=(TitreGagne&& other) {
 		Palmares *a, *b;
 		a = this;
 		b = &other;
-		*a = *b; _club = other._club;
+		*a = *b;
+        _club = other._club;
 		return *this;
 	}
+*/
 //----------------------------------------------------------------- methods of club
     Club *getClub() {
         return _club;

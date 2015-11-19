@@ -88,20 +88,9 @@ public :
 	}
 
 	void setReglement(double montantT, std::string droit);
-
-//----------------------------------------------------------------- methods for Contrat 
-	//Calcule la date d'echeance du Contrat
-	Date getDatedEncheance() {
-		Date echeance; echeance.Create(_dateDuContrat.tm_day, _dateDuContrat.tm_month, _dateDuContrat.tm_year+_dureeContrat);
-		return echeance;
-	}
-
-	//Compare si la date donnee est plus recente que la date d'echeance
-	bool lookForEcheance(std::string date) {
-		return getDatedEncheance() <= To_Date(date); //Vrai si cest ok 
-	}
 };
 
+//----------------------------------------------------------------- methods of Date
 
 
 #endif
