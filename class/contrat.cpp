@@ -20,14 +20,14 @@ Contrat::Contrat(Joueur *joueurContractant,Club *clubContractant, int duree,
 Contrat::~Contrat() {}
 
 //----------------------------------------------------------------- Constructeur de recopie
-Contrat::Contrat(const Contrat& other) : 
+Contrat::Contrat(const Contrat& other) :
 	_joueurContractant(other._joueurContractant), _clubContractant(other._clubContractant), _clubLibere(other._clubLibere),
 	_dureeContrat(other._dureeContrat), _datedEntree(other._datedEntree), _dateDuContrat(other._dateDuContrat), _reglement(other._reglement) {}
 
 //----------------------------------------------------------------- Operateur d'affectation
 Contrat& Contrat::operator=(Contrat&& other) {
 	_joueurContractant=other._joueurContractant; _clubContractant=other._clubContractant; _clubLibere=other._clubLibere;
-	_dureeContrat=other._dureeContrat; _datedEntree=other._datedEntree; _dateDuContrat=other._dateDuContrat; _reglement=other._reglement; 
+	_dureeContrat=other._dureeContrat; _datedEntree=other._datedEntree; _dateDuContrat=other._dateDuContrat; _reglement=other._reglement;
 	return *this;
 }
 

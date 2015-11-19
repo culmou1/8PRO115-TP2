@@ -13,7 +13,6 @@ git commit -a -m "Message pour le Commit"
 
 git pull origin master
 
-
 ############## Push ##############
 
 git push origin master
