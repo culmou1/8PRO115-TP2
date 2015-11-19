@@ -1,5 +1,14 @@
+Vagrant.configure(2) do |config|
+  config.vm.box = "ubuntu/trusty"
 
-Vagrant.configure("2") do |config|
+  config.vm.provision "shell", privileged: true, run: "once", inline: <<-SHELL
+    sudo apt-get -y --force-yes install build-essential git wget curl
+    sudo apt-get -y --force-yes install build-essential
+    sudo apt-get -y --force-yes install git-all
+    sudo apt-get -y --force-yes install g++ -std=gnu++11
+    sudo apt-get clean all
 
-  config.vm.box = "ubuntu/trusty64"
+    alias g++="g++ -std=c++0x"
+
+  SHELL
 end

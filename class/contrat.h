@@ -92,12 +92,5 @@ public :
 
 //----------------------------------------------------------------- methods of Date
 
-	bool lookForEcheance(std::string data){
-		Date currentDate = To_Date(data)
-		if(
-
-	}
-
-
 
 #endif

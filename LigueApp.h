@@ -6,13 +6,13 @@
 #include <random>
 #include <algorithm>
 
-#include "class\contrat.h"
+#include "class/contrat.h"
 #include "class/ligue.h"
-#include "class\utils.h"
-#include "class\club.h"
-#include "class\person.h"
-#include "class\calendrier.h"
-#include "class\palmares.h"
+#include "class/utils.h"
+#include "class/club.h"
+#include "class/person.h"
+#include "class/calendrier.h"
+#include "class/palmares.h"
 
 class Application {
 public:
@@ -38,7 +38,7 @@ public:
 	void CreerEffectifs_Staffs_Titres() {
 		//Genere un int random
 		std::default_random_engine generator;
-		std::uniform_int_distribution<int> distribution (1,5); 
+		std::uniform_int_distribution<int> distribution (1,5);
 
 		Entraineur* trainer;Joueur* player; Person* staff; Contrat* contrat; Palmares *titre; TitreGagne* itt;
 		char name='A';  std::string nom = "A";
@@ -58,7 +58,7 @@ public:
 				}
 				else {
 					//Donne un nombre d'annee cumulee aleatoire entre 1 et 5
-					player = new Joueur_NonAutonome(nom, "Joueur_"+std::to_string(i), 18, 1.70, 65.5, "Albertown", k); 
+					player = new Joueur_NonAutonome(nom, "Joueur_"+std::to_string(i), 18, 1.70, 65.5, "Albertown", k);
 					contrat = new Contrat(player, club, 5, "02-05-2005", "06-04-2004", 5000, "Ne pas fumer, ni boire, ni se droguer");
 					club->addEffectif(player);
 					club->addContratdEngagement(contrat);
@@ -77,7 +77,7 @@ public:
 			trainer = new Entraineur(nom, "Trainer_1", 50, "Gilbertown");
 			club->addStaffTechnique(trainer);
 			club->AfficherStaff();
-			
+
 			//Creer titres du type : club titre_numero et affiche
 			for(int i=0;i<k;i++) {
 				titre = new Palmares ("18-06-2008",COUPE);
@@ -121,7 +121,7 @@ public:
 		//Transferer le joueur B Joueur_9 du club B au club D
 		club->TransfertJoueur("B Joueur_9", other);
 
-		//Modifier le joueur C Joueur_0 du club B 
+		//Modifier le joueur C Joueur_0 du club B
 		club->ModifierJoueur("C Joueur_0");
 
 		//Supprimer le joueur D Joueur_9 du club D
