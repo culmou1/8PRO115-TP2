@@ -22,10 +22,10 @@ public:
 	~Application() {delete ligue;}
 
 	void CreerClubs() {
-		Club* A = new Club("aaaaaaa", "jaune", "888 aaaa", "A-Town", "01-01-1900", ligue);
-		Club* B = new Club("bbbbbbb", "bleu", "888 bbbb", "B-Town", "30-09-1928", ligue);
-		Club* C = new Club("ccccccc", "vert", "888 cccc", "C-Town", "24-07-1956", ligue);
-		Club* D = new Club("ddddddd", "noir", "888 dddd", "D-Town", "11-11-1918", ligue);
+		Club* A = new Club("AAA","aaaaaaa", "jaune", "888 aaaa", "A-Town", "01-01-1900", ligue);
+		Club* B = new Club("BBB","bbbbbbb", "bleu", "888 bbbb", "B-Town", "30-09-1928", ligue);
+		Club* C = new Club("CCC","ccccccc", "vert", "888 cccc", "C-Town", "24-07-1956", ligue);
+		Club* D = new Club("DDD","ddddddd", "noir", "888 dddd", "D-Town", "11-11-1918", ligue);
 
 		ligue->AjouterClub(A);
 		ligue->AjouterClub(B);
@@ -35,7 +35,7 @@ public:
 		ligue->AfficherClubs();
 	}
 
-	void CreerEffectifs_Staffs_Titres() {
+	void Creer_effectifs_Staffs_Titres() {
 		//Genere un int random
 		std::default_random_engine generator;
 		std::uniform_int_distribution<int> distribution (1,5); 
@@ -44,7 +44,7 @@ public:
 		char name='A';  std::string nom = "A";
 		Club* club = NULL;
 
-		//Creer effectif du type : club joueur_numero et affiche
+		//Creer _effectif du type : club joueur_numero et affiche
 		for(unsigned int j=0; j<ligue->getClubsDeLaLigue().size(); j++) {
 			club = ligue->getClubsDeLaLigue()[j];
 			nom[0] = name;
@@ -103,13 +103,13 @@ public:
 				ligue->AjouterRencontre(away,home,"22-02-2011");
 			}
 			ligue->AfficherRencontre(home);
-			ligue->AfficherResultat(home->getCouleurDuClub(), "22-02-2011");
+			ligue->AfficherResultat(home->getNomDuClub(), "22-02-2011");
 		}
 	}
 
 	void FaireAutresFonctions() {
 
-		//Rompre le contrat du joueur A Joueur_2 du club A puis afficher effectif du club A
+		//Rompre le contrat du joueur A Joueur_2 du club A puis afficher _effectif du club A
 		Club* club =(ligue->getClubsDeLaLigue())[0];
 		Joueur* rompu = club->rechercherJoueur("A Joueur_2");
 		//Choisir autre couleur que: jaune
@@ -130,14 +130,14 @@ public:
 		//Cree un joueur au club B
 		club->CreerJoueur();
 
-		//Afficher leur effectifs respectifs
+		//Afficher leur _effectifs respectifs
 		club->AfficherEffectif();
 
 		ligue->EntraineurLePlusTitre();
 		ligue->ClubLePlusTitre();
 
-		ligue->SupprimerClub("vert");
-		ligue->SupprimerClub("rose");
+		ligue->SupprimerClub("AAA");
+		ligue->SupprimerClub("FFF");
 	}
 };
 

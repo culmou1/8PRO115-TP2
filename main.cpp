@@ -8,7 +8,7 @@ int main(){
 	Application *app = new Application();
 
 	app->CreerClubs();
-	app->CreerEffectifs_Staffs_Titres();
+	app->Creer_effectifs_Staffs_Titres();
 	app->CreerRencontres();
 	app->FaireAutresFonctions();
 

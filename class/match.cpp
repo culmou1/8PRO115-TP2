@@ -33,8 +33,8 @@ void Match::setResulat(int home, int visitor) {
 }
 
 //----------------------------------------------------------------- methods of Match
-std::string Match::getCouleurClub(Equipe* team) {
-	return team->getClub()->getCouleurDuClub();
+std::string Match::getNomClub(Equipe* team) {
+	return team->getClub()->getNomDuClub();
 }
 
 void Match::obtenirResulatFinal() {

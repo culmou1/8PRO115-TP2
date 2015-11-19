@@ -24,47 +24,52 @@ typedef std::vector<Joueur*>  	VectorJou; // Une ensemble de vecteur de type Jou
 class Club {
 
 private:
-	std::string 			histoireDuClub;
-	std::string 			couleurDuClub;
-	std::string 			adresseDuClub;
-	std::string 			villeDuClub;
-	Date 					anneeDeCreation;
-	VectorJou				effectif;
-	VectorPal			 	unPalmares;
-	VectorPrs			 	staffTechnique;
-	VectorCon 				contratsdEngagement;
-	VectorRup 				rupturesDeContrats;
+	std::string				_nom;
+	std::string 			_histoireDuClub;
+	std::string 			_couleurDuClub;
+	std::string 			_adresseDuClub;
+	std::string 			_villeDuClub;
+	Date 					_anneeDeCreation;
+	VectorJou				_effectif;
+	VectorPal			 	_unPalmares;
+	VectorPrs			 	_staffTechnique;
+	VectorCon 				_contratsdEngagement;
+	VectorRup 				_rupturesDeContrats;
 	Calendrier*				_calendrier;
 	Ligue*					_ligue;
 
 
 public:
-    Club(std::string history, std::string color, std::string address, std::string town, std::string year, Ligue* league);
-
+	Club();
+    Club(std::string name, std::string history, std::string color, std::string address, std::string town, std::string year, Ligue* league);
     ~Club();
     Club(const Club& other);
     Club& operator=(Club&& other);
 
-//----------------------------------------------------------------- methods for HistoireDuClub
+//----------------------------------------------------------------- methods for _histoireDuClub
+	std::string getNomDuClub();
+	void setNomDuClub(std::string name);
+
+//----------------------------------------------------------------- methods for _histoireDuClub
 	std::string getHistoireDuClub();
 	void setHistoireDuClub(std::string history);
 
-//----------------------------------------------------------------- methods for CouleurDuClub
+//----------------------------------------------------------------- methods for _couleurDuClub
 	std::string getCouleurDuClub();
 	void setCouleurDuClub(std::string color);
 
-//----------------------------------------------------------------- methods for AnneeDeCreation
+//----------------------------------------------------------------- methods for _anneeDeCreation
 	Date getAnneeDeCreation();
 	void setAnneeDeCreation (Date year);
 
-//----------------------------------------------------------------- methods for Effectif
+//----------------------------------------------------------------- methods for _effectif
 
 	VectorJou getEffectif();
 	void addEffectif(Joueur *someone);
 	void setEffectif(VectorJou players);
 	Joueur* rechercherJoueur(std::string joueur);
 
-//----------------------------------------------------------------- methods for unPalmares
+//----------------------------------------------------------------- methods for _unPalmares
 	VectorPal getUnPalmares();
 
 	void addUnPalmares(Palmares *trophy);
@@ -73,17 +78,17 @@ public:
 	
 	int getNumberOfTitre();
 
-//----------------------------------------------------------------- methods for VilleDuClub
+//----------------------------------------------------------------- methods for _villeDuClub
 	std::string getVilleDuClub();
 	void setVilleDuClub(std::string town);
 
-//----------------------------------------------------------------- methods for VilleDuClub
+//----------------------------------------------------------------- methods for _villeDuClub
 	std::string getAdresseDuClub();
 	void setAdresseDuClub(std::string address);
 
-//----------------------------------------------------------------- methods for StaffTechnique
+//----------------------------------------------------------------- methods for _staffTechnique
 	VectorPrs getStaffTechnique() {
-		return staffTechnique;
+		return _staffTechnique;
 	}
 
 	void addStaffTechnique(Person *someone);
@@ -92,9 +97,9 @@ public:
 
 	void setStaffTechnique(VectorPrs staff);
 
-//----------------------------------------------------------------- methods for ContratsdEngagement
-	VectorCon getContratsdEngagement(VectorCon &contrats) {
-		return contratsdEngagement;
+//----------------------------------------------------------------- methods for _contratsdEngagement
+	VectorCon getContratdEngagement(VectorCon &contrats) {
+		return _contratsdEngagement;
 	}
 
 	void addContratdEngagement(Contrat *contrats);
@@ -105,9 +110,9 @@ public:
 
 	Contrat* rechercherContratdEngagement(Joueur *joueur);
 
-//----------------------------------------------------------------- methods for RupturesDeContrats
+//----------------------------------------------------------------- methods for _rupturesDeContrats
 	VectorRup getRupturesDeContrats() {
-		return rupturesDeContrats;
+		return _rupturesDeContrats;
 	}
 
 	void addRuptureDeContrats(Rupture *ruptures);
@@ -136,13 +141,10 @@ public:
 	}
 
 //----------------------------------------------------------------- methods of Club
-    void CreerJoueur();
     void ModifierJoueur(std::string joueur);
     void SupprimerJoueur(std::string name);
-    void AfficherEffectif();
 
 	void CreerEntraineur();
-	void AfficherStaff();
 
 	void TransfertJoueur(std::string joueur, Club* club);
 	void AfficherMontantTransferts(std::string date);
