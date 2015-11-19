@@ -62,7 +62,7 @@ public:
 	void setResulat(int home, int visitor);
 
 //----------------------------------------------------------------- methods of Match
-	std::string getCouleurClub(Equipe* team);
+	std::string getNomClub(Equipe* team);
 	void obtenirResulatFinal();
 
 };

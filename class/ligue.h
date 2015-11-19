@@ -36,21 +36,19 @@ public:
 	}
 
 //----------------------------------------------------------------- methods of Ligue
-	void	CreerClub();
 	void	AjouterClub(Club* clubs);
-	Club*	RechercherClub(std::string couleur);
-	void	SupprimerClub(std::string couleur);
+	Club*	RechercherClub(std::string nom);
 	void	AfficherClubs();
 
 	void	EntraineurLePlusTitre();
 	void	ClubLePlusTitre();
 
 	void AfficherRencontre(Club *club);
-	void AfficherResultat(std::string couleur, std::string date);
+	void AfficherResultat(std::string nom, std::string date);
 	void AjouterCalendrier(Calendrier* calendrier);
-	Calendrier* RechercherCalendrier(std::string couleur);
+	Calendrier* RechercherCalendrier(std::string nom);
 	void AjouterRencontre(Club* home, Club* away, std::string date);
-	void SupprimerCalendrier(std::string couleur);
+	void SupprimerCalendrier(std::string nom);
 };
 
 
