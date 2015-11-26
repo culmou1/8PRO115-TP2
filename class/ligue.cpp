@@ -11,7 +11,8 @@ Ligue::Ligue() {
 
 //----------------------------------------------------------------- Destructeur
 // Singleton
-Ligne* Ligne::instance=NULL;
+Ligue* Ligue::instance = NULL;
+
 Ligue::~Ligue() {
 	//Suppression des clubs de la Ligue
 	for (unsigned int i=0; i <_clubs.size(); i++) {
@@ -23,9 +24,9 @@ Ligue::~Ligue() {
 	delete _calendrier;
 }
 // SingleTon
-Ligue* Ligne::getInstance() {
-	if(instance == NUll){
-		instance = new Ligne;
+Ligue* Ligue::getInstance() {
+	if(instance == NULL){
+		instance = new Ligue;
 	}
 	return instance;
 }

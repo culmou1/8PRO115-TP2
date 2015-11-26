@@ -1,7 +1,7 @@
 #ifndef ECRAN_H
 #define ECRAN_H
 
-#include "ligue.h"
+class Ligue;
 
 class Ecran
 {
@@ -10,7 +10,7 @@ class Ecran
 		~Ecran();
 
 		Ligue* getLigue() {
-			return &_ligue;
+			return _ligue;
 		}
 
 		void afficherMenu();
@@ -46,6 +46,6 @@ class Ecran
 		void ModifierRencontre();
 
 	private:
-		Ligue _ligue;
+		Ligue *_ligue;
 };
 #endif
