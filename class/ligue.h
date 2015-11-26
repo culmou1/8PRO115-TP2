@@ -17,7 +17,7 @@ private:
 	VectorCal		calendrierDeLaLigue;
 
 public:
-	Ligue() {}
+	static Ligue* Getinstance();
 
     ~Ligue();
 

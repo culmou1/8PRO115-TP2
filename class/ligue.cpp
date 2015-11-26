@@ -5,6 +5,8 @@
 #include "rencontre.h"
 
 //----------------------------------------------------------------- Destructeur
+// Singleton
+Ligne* Ligne::instance=NULL;
 Ligue::~Ligue() {
 	//Suppression des clubs de la Ligue
 	for (unsigned int i=0; i <clubsDeLaLigue.size(); i++) {
@@ -17,6 +19,13 @@ Ligue::~Ligue() {
 		delete calendrierDeLaLigue[i];
 	}
 	calendrierDeLaLigue.clear();
+}
+// SingleTon
+Ligue* Ligne::getInstance() {
+	if(instance == NUll){
+		instance = new Ligne;
+	}
+	return instance;
 }
 
 Ligue& Ligue::operator=(Ligue&& other) {
@@ -149,16 +158,16 @@ void Ligue::AfficherRencontre(Club *club){
  //----------------------------------------------------------------- AfficherResultat
  void Ligue::AfficherResultat(std::string nom, std::string date) {
  	Club* club = RechercherClub(nom);
- 
+
  	std::cout << std::endl << "*******************RESULTAT DU MATCH DU " << date << "******************* " << std::endl;
- 
+
  	if(club != NULL) {// Si le club existe
  		if(club->getCalendrier() != NULL) {// Si le calendrier est pas vide
  			club->getCalendrier()->AfficherResultat(club, date);
  		}
- 		else 
- 			std::cerr << "Le calendrier du club " << nom << " n\'existe pas." << std::endl; 
+ 		else
+ 			std::cerr << "Le calendrier du club " << nom << " n\'existe pas." << std::endl;
  	}
- 	else 
- 			std::cerr << "Le club " << nom << " n\'existe pas." << std::endl; 
+ 	else
+ 			std::cerr << "Le club " << nom << " n\'existe pas." << std::endl;
  }
