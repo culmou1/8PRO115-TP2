@@ -4,13 +4,12 @@
 #include <vector>
 #include <string>
 #include "utils.h"
+
 class Contrat;
 class Palmares;
 class Rupture;
 class Joueur;
 class Person;
-class Calendrier;
-class Ligue;
 
 
 typedef std::vector<Palmares*>	VectorPal; // Une ensemble de vecteur de type Palmares
@@ -35,13 +34,10 @@ private:
 	VectorPrs			 	_staffTechnique;
 	VectorCon 				_contratsdEngagement;
 	VectorRup 				_rupturesDeContrats;
-	Calendrier*				_calendrier;
-	Ligue*					_ligue;
-
 
 public:
 	Club();
-    Club(std::string name, std::string history, std::string color, std::string address, std::string town, std::string year, Ligue* league);
+    Club(std::string name, std::string history, std::string color, std::string address, std::string town, std::string year);
     ~Club();
     Club(const Club& other);
     Club& operator=(Club&& other);
@@ -63,19 +59,15 @@ public:
 	void setAnneeDeCreation (Date year);
 
 //----------------------------------------------------------------- methods for _effectif
-
-	VectorJou getEffectif();
+	VectorJou* getEffectif();
 	void addEffectif(Joueur *someone);
 	void setEffectif(VectorJou players);
 	Joueur* rechercherJoueur(std::string joueur);
 
 //----------------------------------------------------------------- methods for _unPalmares
-	VectorPal getUnPalmares();
-
+	VectorPal* getUnPalmares();
 	void addUnPalmares(Palmares *trophy);
-
 	void setUnPalmares(VectorPal trophies);
-	
 	int getNumberOfTitre();
 
 //----------------------------------------------------------------- methods for _villeDuClub
@@ -87,63 +79,29 @@ public:
 	void setAdresseDuClub(std::string address);
 
 //----------------------------------------------------------------- methods for _staffTechnique
-	VectorPrs getStaffTechnique() {
-		return _staffTechnique;
-	}
-
+	VectorPrs* getStaffTechnique();
 	void addStaffTechnique(Person *someone);
-
 	void deleteStaffTechnique(Person *someone);
-
 	void setStaffTechnique(VectorPrs staff);
 
 //----------------------------------------------------------------- methods for _contratsdEngagement
-	VectorCon getContratdEngagement(VectorCon &contrats) {
-		return _contratsdEngagement;
-	}
-
+	VectorCon* getContratdEngagement();
 	void addContratdEngagement(Contrat *contrats);
-
 	void deleteContratdEngagement(Contrat *contrats);
-
 	void afficherContratEngagement();
-
 	Contrat* rechercherContratdEngagement(Joueur *joueur);
 
 //----------------------------------------------------------------- methods for _rupturesDeContrats
-	VectorRup getRupturesDeContrats() {
-		return _rupturesDeContrats;
-	}
-
+	VectorRup* getRupturesDeContrats();
 	void addRuptureDeContrats(Rupture *ruptures);
-
 	void deleteRupturesDeContrats(Rupture *ruptures);
-
 	void setRupturesDeContrats(VectorRup ruptures);
-
 	Rupture* rechercherRupturesDeContrats(Joueur* joueur);
 
 //----------------------------------------------------------------- methods for Montant
 	void montantEncaisseDepuisUneDate(std::string date);
 
-
-//----------------------------------------------------------------- methods for calendrier
-	Calendrier* getCalendrier() {
-		return _calendrier;
-	}
-
-	void setCalendrier(Calendrier* schedul) {
-		_calendrier = schedul;
-	}
-//----------------------------------------------------------------- methods for ligue
-	Ligue* getLigue() {
-		return _ligue;
-	}
-
 //----------------------------------------------------------------- methods of Club
-    void ModifierJoueur(std::string joueur);
-    void SupprimerJoueur(std::string name);
-
 	void CreerEntraineur();
 
 	void TransfertJoueur(std::string joueur, Club* club);

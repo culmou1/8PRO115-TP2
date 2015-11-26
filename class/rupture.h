@@ -1,8 +1,10 @@
 
 #ifndef RUPTURE_H
 #define RUPTURE_H
+
 class Joueur;
 class Club;
+
 class Rupture {
 
 private:
@@ -12,6 +14,8 @@ private:
 	double 			_penalite;
 
 public:
+	Rupture() {}
+
 	Rupture(Joueur *player, Club *new_club, std::string why, double money) :
 		_joueurRelaxant(player), _clubContractant(new_club), _raisonsDuDepart(why), _penalite(money) {}
 
@@ -26,7 +30,7 @@ public:
 	}
 
 //----------------------------------------------------------------- methods for joueurRelaxant
-    Joueur *getJoueurRelaxant() {
+    Joueur* getJoueurRelaxant() {
     	return _joueurRelaxant;
     }
 
@@ -35,7 +39,7 @@ public:
     }
 
 //----------------------------------------------------------------- methods for clubContractant
-    Club *getClubContractant() {
+    Club* getClubContractant() {
     	return _clubContractant;
     }
 

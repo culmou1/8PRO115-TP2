@@ -5,12 +5,9 @@
 using namespace std;
 
 int main(){
+	srand((unsigned)time(0)); 
 	Application *app = new Application();
 
-	app->CreerClubs();
-	app->Creer_effectifs_Staffs_Titres();
-	app->CreerRencontres();
-	app->FaireAutresFonctions();
 
     system("pause");
 

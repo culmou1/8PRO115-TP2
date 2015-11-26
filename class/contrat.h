@@ -19,78 +19,47 @@ private :
 	Reglement	_reglement;
 
 public :
+	Contrat();
 	Contrat(Joueur *joueurContractant,Club *clubContractant,Club *clubLibere, int duree,
 			std::string datedEntree,std::string dateDuContrat,double montant, std::string droit);
-
-	// Constructeur lorsque le Joueur n'a pas d'ancienne Équipe. Nous Donnons un Pointeur Null au Club libere.
-	// Pas Besoin d'envoyer un Pointeur NUll. Il va le faire automatiquement
 	Contrat(Joueur *joueurContractant,Club *clubContractant, int duree,
 				std::string datedEntree,std::string dateDuContrat,double montant, std::string droit);
-
 	~Contrat();
     Contrat(const Contrat& other);
     Contrat& operator=(Contrat&& other);
-//----------------------------------------------------------------- methods for joueurContractant
-    Joueur *getJoueurContractant() {
-    	return _joueurContractant;
-    }
 
-    void setJoueurContractant(Joueur *newbie) {
-    	_joueurContractant = newbie;
-    }
+//----------------------------------------------------------------- methods for joueurContractant
+    Joueur *getJoueurContractant();
+    void setJoueurContractant(Joueur *newbie);
 
 //----------------------------------------------------------------- methods for clubContractant
-    Club *getClubContractant() {
-    	return _clubContractant;
-    }
+    Club *getClubContractant();
 
-    void setClubContractant(Club *new_club) {
-    	_clubContractant = new_club;
-    }
+    void setClubContractant(Club *new_club);
 
 //----------------------------------------------------------------- methods for clubLibere
-    Club *getClubLibere() {
-    	return _clubLibere;
-    }
+    Club *getClubLibere();
 
-    void setClubLibere(Club *old_club) {
-    	_clubLibere = old_club;
-    }
+    void setClubLibere(Club *old_club);
 
 //----------------------------------------------------------------- methods for dureeContrat
-    int getDureeContrat() {
-    	return _dureeContrat;
-    }
-
-    void setDureeContrat(int duree) {
-    	_dureeContrat = duree;
-    }
+    int getDureeContrat();
+    void setDureeContrat(int duree);
 
 //----------------------------------------------------------------- methods for datedEntree
-    Date getDatedEntree() {
-    	return _datedEntree;
-    }
+    Date getDatedEntree();
 
-    void setDatedEntree(Date entree) {
-    	_datedEntree = entree;
-    }
+    void setDatedEntree(Date entree);
 
 //----------------------------------------------------------------- methods for dateDuContrat
-    Date getDateDuContrat() {
-    	return _dateDuContrat;
-    }
-
+    Date getDateDuContrat();
     void setDateDuContrat(int d_day, int m_month,int y_year);
 
 //----------------------------------------------------------------- methods of reglement
-	Reglement getReglement() {
-		return _reglement;
-	}
-
+	Reglement* getReglement();
 	void setReglement(double montantT, std::string droit);
 };
 
-//----------------------------------------------------------------- methods of Date
 
 
 #endif

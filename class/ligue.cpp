@@ -4,21 +4,23 @@
 #include "person.h"
 #include "rencontre.h"
 
+//----------------------------------------------------------------- Constructeur
+Ligue::Ligue() {
+	_calendrier = new Calendrier;
+}
+
 //----------------------------------------------------------------- Destructeur
 // Singleton
 Ligne* Ligne::instance=NULL;
 Ligue::~Ligue() {
 	//Suppression des clubs de la Ligue
-	for (unsigned int i=0; i <clubsDeLaLigue.size(); i++) {
-		delete clubsDeLaLigue[i];
+	for (unsigned int i=0; i <_clubs.size(); i++) {
+		delete _clubs[i];
 	}
-	clubsDeLaLigue.clear();
+	_clubs.clear();
 
 	//Suppression du calendrier de Ligue
-	for (unsigned int i=0; i <calendrierDeLaLigue.size(); i++) {
-		delete calendrierDeLaLigue[i];
-	}
-	calendrierDeLaLigue.clear();
+	delete _calendrier;
 }
 // SingleTon
 Ligue* Ligne::getInstance() {
@@ -28,133 +30,74 @@ Ligue* Ligne::getInstance() {
 	return instance;
 }
 
+//----------------------------------------------------------------- Constructeur de recopie
+Ligue::Ligue(const Ligue& other) : _clubs(other._clubs), _calendrier(other._calendrier) {}
+
+//----------------------------------------------------------------- Operateur d'affectation
 Ligue& Ligue::operator=(Ligue&& other) {
-	clubsDeLaLigue=other.clubsDeLaLigue; calendrierDeLaLigue=other.calendrierDeLaLigue;
+	_clubs=other._clubs; _calendrier=other._calendrier;
 	return *this;
 }
 
-//----------------------------------------------------------------- AjouterClub
-void Ligue::AjouterClub(Club* clubs) {
+//----------------------------------------------------------------- methods for _clubs
+VectorClub* Ligue::getClubs() {
+	return &_clubs;
+}
+
+//----------------------------------------------------------------- methods for _calendrier
+VectorRen* Ligue::getCalendrier() {
+	return _calendrier->getRencontres();
+}
+
+//----------------------------------------------------------------- addClub
+void Ligue::addClub(Club* clubs) {
 	//Ajoute un club et son calendrier a la ligue
-	clubsDeLaLigue.push_back(clubs);
-	calendrierDeLaLigue.push_back(clubs->getCalendrier());
+	_clubs.push_back(clubs);
 }
 
-//----------------------------------------------------------------- RechercherClub
-Club* Ligue::RechercherClub(std::string nom) {
-	for (unsigned int i=0; i<clubsDeLaLigue.size(); i++) {
-		if(clubsDeLaLigue[i]->getNomDuClub() == nom)
-			return clubsDeLaLigue[i];
+//----------------------------------------------------------------- rechercherClub
+Club* Ligue::rechercherClub(std::string nom) {
+	for (unsigned int i=0; i<_clubs.size(); i++) {
+		if(_clubs[i]->getNomDuClub() == nom)
+			return _clubs[i];
+	}
+	return NULL;
+}
+
+//----------------------------------------------------------------- addCalendrier
+void Ligue::addCalendrier(Rencontre* match) {
+	_calendrier->addRencontre(match);
+}
+
+Calendrier* Ligue::rechercherCalendrier(std::string nom) {
+	Calendrier* pCalendrier = new Calendrier;
+
+	for (unsigned int i=0; i<getCalendrier()->size(); i++) {
+			if(getCalendrier()->at(i)->getLocaux()->getNomDuClub() == nom ||
+				getCalendrier()->at(i)->getVisiteurs()->getNomDuClub() == nom)
+				pCalendrier->addRencontre(getCalendrier()->at(i));
+		}
+	return pCalendrier;
+}
+
+Rencontre* Ligue::rechercherRencontre(std::string clubLocal, std::string clubInvite, std::string date) {
+	for (unsigned int i=0; i<getCalendrier()->size(); i++) {
+		if(getCalendrier()->at(i)->getDate() == To_Date(date)) {
+			if (getCalendrier()->at(i)->getLocaux()->getNomDuClub() == clubLocal ||
+				getCalendrier()->at(i)->getVisiteurs()->getNomDuClub() == clubLocal) {
+				if (getCalendrier()->at(i)->getLocaux()->getNomDuClub() == clubInvite ||
+					getCalendrier()->at(i)->getVisiteurs()->getNomDuClub() == clubInvite) {
+						return getCalendrier()->at(i);
+				}
+			}
+		}
 	}
 	return NULL;
 }
 
 
-//----------------------------------------------------------------- AfficherClub
-void Ligue::AfficherClubs(){
-	std::cout << "*******************AFFICHAGE LISTE DES CLUBS*******************" << std::endl;
-	for (unsigned int i = 0; i < clubsDeLaLigue.size();i++){
-		std::cout << "Voici la Position du Club: " << i << " - "<< clubsDeLaLigue[i]->getNomDuClub() << std::endl;
-	}
-}
 
-//----------------------------------------------------------------- AjouterCalendrier
-void Ligue::AjouterCalendrier(Calendrier* calendrier) {
-	calendrierDeLaLigue.push_back(calendrier);
-}
-
-Calendrier* Ligue::RechercherCalendrier(std::string nom) {
-	for (unsigned int i=0; i<clubsDeLaLigue.size(); i++) {
-		if(clubsDeLaLigue[i]->getNomDuClub() == nom)
-			return clubsDeLaLigue[i]->getCalendrier();
-	}
-	return NULL;
-}
-
-//-----------------------------------------------------------------SupprimerCalendrier
-void Ligue::SupprimerCalendrier(std::string nom) {
-	Calendrier* aSupprimer = RechercherCalendrier(nom);
-
-	std::cout << std::endl << "*******************SUPPRESSION D\'UN CALENDRIER*******************" << std::endl;
-	if(aSupprimer != NULL) {//Si le calendrier existe
-		for (unsigned int i=0; i<calendrierDeLaLigue.size(); i++) {
-			if(calendrierDeLaLigue[i] == aSupprimer) {
-				delete calendrierDeLaLigue[i];
-				calendrierDeLaLigue.erase(calendrierDeLaLigue.begin()+i);
-			}
-		}
-		std::cout << "Le calendrier du club " << nom << " a ete supprime de la ligue." << std::endl;
-	}
-	else
-		std::cerr << "Le club " << nom << " n\'existe pas." << std::endl;
-}
-
-//-----------------------------------------------------------------EntraineurLePlusTitre
-void Ligue::EntraineurLePlusTitre(){
-
-	int nbTitre = 0;
-	Person *entraineurLePlusTitre = NULL;
-
-	std::cout << std::endl <<"*******************L\'ENTRAINEUR LE PLUS TITRE******************* " << std::endl;
-
-	for (unsigned int i = 0; i < clubsDeLaLigue.size();i++){//Itere dans les clubs de la ligue
-		for(unsigned int j = 0; j < clubsDeLaLigue[i]->getStaffTechnique().size();j++){//Itere dans le staff du club
-			int currentNumber = clubsDeLaLigue[i]->getStaffTechnique()[j]->getNumberOfTitre();
-			if(currentNumber > nbTitre){// si le nb de titre est plus est grand
-				nbTitre = currentNumber;
-				entraineurLePlusTitre = clubsDeLaLigue[i]->getStaffTechnique()[j];
-			}
-		}
-	}
-	std::cout << "Voici l\'entraineur le plsu titre: " << entraineurLePlusTitre->obtenirNP() << ", il a gagne " << nbTitre << " titre(s)." <<std::endl;
-}
-
-//-----------------------------------------------------------------EntraineurLePlusTitre
-void Ligue::ClubLePlusTitre(){
-
-	int nbTitre = 0;
-	Club *clubLePlusTitre = NULL;
-
-	std::cout << std::endl <<"*******************LE CLUB LE PLUS TITRE******************* " << std::endl;
-
-	for (unsigned int i = 0; i < clubsDeLaLigue.size();i++){//Itere dans les clubs de la ligue
-		int currentNumber = clubsDeLaLigue[i]->getNumberOfTitre();
-		if(currentNumber > nbTitre){// si le nb de titre est plus est grand
-			nbTitre = currentNumber;
-			clubLePlusTitre = clubsDeLaLigue[i];
-		}
-	}
-	std::cout << "Voici le club le plus titre: " << clubLePlusTitre->getNomDuClub() << ", il a gagne " << nbTitre << " titre(s)." <<std::endl;
-}
-
-//-----------------------------------------------------------------AjouterRencontre
-void Ligue::AjouterRencontre(Club* home, Club* away, std::string date) {
-	Rencontre* newRencontre = new Rencontre(home, away, date);
-	home->getCalendrier()->addRencontre(newRencontre);
-	away->getCalendrier()->addRencontre(newRencontre);
-}
-
-//----------------------------------------------------------------- AfficherRencontre
-void Ligue::AfficherRencontre(Club *club){
-	std::cout << std::endl << "*******************CALENDRIER DES RENCONTRES DU CLUB******************* " << std::endl;
-    try // Fait la fonction
-    {
-		club->getCalendrier()->AfficherRencontreForHomeClub(club);
-    }
-    catch (const std::exception &e) // Si une Erreur est survenu
-    {
-        std::cerr << e.what() << std::endl; // Description de l'erreur
-    }
-    try // Fait la fonction
-    {
-        club->getCalendrier()->AfficherRencontreForAwayClub(club);
-    }
-    catch (const std::exception & e) // Si une erreur survient
-    {
-        std::cerr << e.what() <<std::endl; // Description de l'erreur
-    }
-}
-
+<<<<<<< HEAD
  //----------------------------------------------------------------- AfficherResultat
  void Ligue::AfficherResultat(std::string nom, std::string date) {
  	Club* club = RechercherClub(nom);
@@ -171,3 +114,6 @@ void Ligue::AfficherRencontre(Club *club){
  	else
  			std::cerr << "Le club " << nom << " n\'existe pas." << std::endl;
  }
+=======
+
+>>>>>>> f5fdf0059ab5df9a10899e1707f5179dab8d57e5

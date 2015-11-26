@@ -3,48 +3,43 @@
 
 #include "utils.h"
 #include "match.h"
-#include "equipe.h"
 
-class Match;
 class Calendrier;
+class Club;
 
 class Rencontre {
 
 private:
-	Match		*_match;
+	Match		_match;
 	Date		_dateDeRencontre;
+	Club		*_locaux, *_visiteurs;
 
 public:
-	Rencontre(Club* home, Club* away, std::string date);
+	Rencontre();
+	Rencontre(Club* home, Club* away, Date date);
+	Rencontre(Club* home, Club* away, Match* game, Date date);
 	~Rencontre();
 	Rencontre(const Rencontre& other);
     Rencontre& operator=(Rencontre&& other);
 
+//----------------------------------------------------------------- methods for Locaux
+    Club *getLocaux();
+	void setLocaux(Club *home);
+
+//----------------------------------------------------------------- methods for Visiteurs
+    Club *getVisiteurs();
+    void setVisiteurs(Club *stranger);
+
 //----------------------------------------------------------------- methods for match
-	Match* getMatch() {
-		return _match;
-	}
-
-	void setMatch(Match *game){
-		_match = game;
-	}
-
+	Match* getMatch();
+	void setMatch(Match *game);
+	void setMatch(Club* home, Club* away);
 //----------------------------------------------------------------- methods for dateDeRencontre
-	Date getDate(){
-		return _dateDeRencontre;
-	}
-
-	void setDate(int day, int month, int year){
-		_dateDeRencontre.tm_day = day;
-		_dateDeRencontre.tm_month = month;
-		_dateDeRencontre.tm_year = year;
-	}
+	Date getDate();
+	void setDate(std::string date);
 
 //----------------------------------------------------------------- methods of Rencontre
-	void getMatchAndGame();
-	Match* CreerMatch(Club* home, Club* away);
-	void resultatAUneDateDonne(std::string date);
-
+	std::string getResultat();
 
 };
 

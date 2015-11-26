@@ -3,52 +3,53 @@
 
 #include <iostream>
 #include <string>
-#include <random>
 #include <algorithm>
 
+#include "class/ecrans.h"
 #include "class/contrat.h"
 #include "class/ligue.h"
 #include "class/utils.h"
 #include "class/club.h"
 #include "class/person.h"
+#include "class/joueur.h"
+#include "class/entraineur.h"
 #include "class/calendrier.h"
 #include "class/palmares.h"
+#include "class/rencontre.h"
 
 class Application {
 public:
-	Ligue *ligue;
+	Ecran screen;
 
-	Application() : ligue(new Ligue()) {}
-	~Application() {delete ligue;}
+	Application() { CreerClubs(); Creer_effectifs_Staffs_Titres(); screen.afficherMenu(); screen.getChoixUtilisateur();}
+	~Application() {}
 
 	void CreerClubs() {
-		Club* A = new Club("AAA","aaaaaaa", "jaune", "888 aaaa", "A-Town", "01-01-1900", ligue);
-		Club* B = new Club("BBB","bbbbbbb", "bleu", "888 bbbb", "B-Town", "30-09-1928", ligue);
-		Club* C = new Club("CCC","ccccccc", "vert", "888 cccc", "C-Town", "24-07-1956", ligue);
-		Club* D = new Club("DDD","ddddddd", "noir", "888 dddd", "D-Town", "11-11-1918", ligue);
+		Club* A = new Club("AAA","aaaaaaa", "jaune", "888 aaaa", "A-Town", "01-01-1900");
+		Club* B = new Club("BBB","bbbbbbb", "bleu", "888 bbbb", "B-Town", "30-09-1928");
+		Club* C = new Club("CCC","ccccccc", "vert", "888 cccc", "C-Town", "24-07-1956");
+		Club* D = new Club("DDD","ddddddd", "noir", "888 dddd", "D-Town", "11-11-1918");
 
-		ligue->AjouterClub(A);
-		ligue->AjouterClub(B);
-		ligue->AjouterClub(C);
-		ligue->AjouterClub(D);
+		screen.getLigue()->addClub(A);
+		screen.getLigue()->addClub(B);
+		screen.getLigue()->addClub(C);
+		screen.getLigue()->addClub(D);
+		//screen.CreerClub();
 
-		ligue->AfficherClubs();
+		//screen.AfficherClubs();
 	}
 
 	void Creer_effectifs_Staffs_Titres() {
-		//Genere un int random
-		std::default_random_engine generator;
-		std::uniform_int_distribution<int> distribution (1,5);
 
 		Entraineur* trainer;Joueur* player; Person* staff; Contrat* contrat; Palmares *titre; TitreGagne* itt;
 		char name='A';  std::string nom = "A";
 		Club* club = NULL;
 
 		//Creer _effectif du type : club joueur_numero et affiche
-		for(unsigned int j=0; j<ligue->getClubsDeLaLigue().size(); j++) {
-			club = ligue->getClubsDeLaLigue()[j];
+		for(unsigned int j=0; j<screen.getLigue()->getClubs()->size(); j++) {
+			club = screen.getLigue()->getClubs()->at(j);
 			nom[0] = name;
-			int k = distribution(generator);
+			int k = RandomInt(5);
 			for (int i=0; i<18; i++) {
 				if (i%2 == 0) {//Pair = Autonome, Impair = NonAutonome
 					player = new Joueur_Autonome(nom, "Joueur_"+std::to_string(i), 27, 1.80, 80.5, "Albertown");
@@ -64,10 +65,11 @@ public:
 					club->addContratdEngagement(contrat);
 				}
 			}
-			club->AfficherEffectif();
-			club->afficherContratEngagement();
-			club->AfficherMontantTransferts("01-02-2004");
-			club->montantEncaisseDepuisUneDate("01-05-2010");
+			//screen.CreerJoueur();
+			//screen.AfficherEffectif();
+			//club->afficherContratEngagement();
+			//club->AfficherMontantTransferts("01-02-2004");
+			//club->montantEncaisseDepuisUneDate("01-05-2010");
 
 			//Creer staff du type : club staff_numero et affiche
 			for(int i=2; i<6;i++) {
@@ -76,48 +78,35 @@ public:
 			}
 			trainer = new Entraineur(nom, "Trainer_1", 50, "Gilbertown");
 			club->addStaffTechnique(trainer);
-			club->AfficherStaff();
 
 			//Creer titres du type : club titre_numero et affiche
 			for(int i=0;i<k;i++) {
-				titre = new Palmares ("18-06-2008",COUPE);
-				itt = new TitreGagne(club, "18-06-2008", COUPE);
+				titre = new Palmares ("18-06-2008","Coupe de France");
+				itt = new TitreGagne(club, "18-06-2008", "Coupe de France");
 				trainer->addTitreGagne(itt);
 				club->addUnPalmares(titre);
 			}
 			trainer->afficherTitreGagne();
 
 			name = static_cast<char>(name+1);
+			//screen.AfficherStaff();
 		}
+		
 	}
 
-	void CreerRencontres() {
-		Club *home=NULL, *away=NULL;
 
-		//Creer des rencontres aller-retour entre chaque club et affiche
-		for(unsigned int i=0; i<ligue->getClubsDeLaLigue().size(); i++) {
-			home = ligue->getClubsDeLaLigue()[i];
-			for(unsigned int j=i+1; j<ligue->getClubsDeLaLigue().size(); j++) {
-				away = ligue->getClubsDeLaLigue()[j];
-				ligue->AjouterRencontre(home,away,"07-11-2010");
-				ligue->AjouterRencontre(away,home,"22-02-2011");
-			}
-			ligue->AfficherRencontre(home);
-			ligue->AfficherResultat(home->getNomDuClub(), "22-02-2011");
-		}
-	}
-
-	void FaireAutresFonctions() {
+	
+	/*void FaireAutresFonctions() {
 
 		//Rompre le contrat du joueur A Joueur_2 du club A puis afficher _effectif du club A
-		Club* club =(ligue->getClubsDeLaLigue())[0];
+		Club* club =(screen.getLigue()->getClubs())[0];
 		Joueur* rompu = club->rechercherJoueur("A Joueur_2");
 		//Choisir autre couleur que: jaune
 		rompu->RompreSonContrat(club->rechercherContratdEngagement(rompu));
 		club->AfficherEffectif();
 
-		club = (ligue->getClubsDeLaLigue())[1];
-		Club* other =(ligue->getClubsDeLaLigue())[3];
+		club = (screen.getLigue()getClubs())[1];
+		Club* other =(screen.getLigue()getClubs())[3];
 		//Transferer le joueur B Joueur_9 du club B au club D
 		club->TransfertJoueur("B Joueur_9", other);
 
@@ -133,12 +122,12 @@ public:
 		//Afficher leur _effectifs respectifs
 		club->AfficherEffectif();
 
-		ligue->EntraineurLePlusTitre();
-		ligue->ClubLePlusTitre();
+		screen.getLigue()EntraineurLePlusTitre();
+		screen.getLigue()ClubLePlusTitre();
 
-		ligue->SupprimerClub("AAA");
-		ligue->SupprimerClub("FFF");
-	}
+		screen.getLigue()SupprimerClub("AAA");
+		screen.getLigue()SupprimerClub("FFF");
+	}*/
 };
 
 

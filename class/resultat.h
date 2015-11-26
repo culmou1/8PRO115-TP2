@@ -8,12 +8,10 @@ private:
 	int _butsVisiteurs;
 
 public:
+	Resultat() {}
 	Resultat(int home, int visitor) : _butsLocaux(home), _butsVisiteurs(visitor) {}
-
 	~Resultat() {}
-
 	Resultat(const Resultat& other) : _butsLocaux(other._butsLocaux), _butsVisiteurs(other._butsVisiteurs) {}
-
     Resultat& operator=(Resultat&& other);
 //----------------------------------------------------------------- methods for butsLocaux
 	int getButsLocaux() {

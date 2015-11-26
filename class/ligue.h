@@ -3,52 +3,42 @@
 
 #include <vector>
 #include <string>
+#include "calendrier.h"
 
 class Club;
-class Calendrier;
+class Rencontre;
 
 typedef std::vector<Club*>			VectorClub;
-typedef std::vector<Calendrier*>	VectorCal;
+typedef std::vector<Rencontre*>		VectorRen;
 
 class Ligue {
 
 private:
-	VectorClub		clubsDeLaLigue;
-	VectorCal		calendrierDeLaLigue;
+	VectorClub		_clubs;
+	Calendrier*		_calendrier;
 
 public:
+<<<<<<< HEAD
 	static Ligue* Getinstance();
 
+=======
+	Ligue();
+>>>>>>> f5fdf0059ab5df9a10899e1707f5179dab8d57e5
     ~Ligue();
-
-	Ligue(const Ligue& other) : clubsDeLaLigue(other.clubsDeLaLigue), calendrierDeLaLigue(other.calendrierDeLaLigue) {}
-
+	Ligue(const Ligue& other);
     Ligue& operator=(Ligue&& other);
 
-//----------------------------------------------------------------- methods for clubsDeLaLigue
-	VectorClub getClubsDeLaLigue() {
-		return clubsDeLaLigue;
-	}
+//----------------------------------------------------------------- methods for _clubs
+	VectorClub* getClubs();
+	void	addClub(Club* clubs);
+	Club*	rechercherClub(std::string nom);
 
-//----------------------------------------------------------------- methods for calendrierDeLaLigue
-	VectorCal getCalendrierDeLaLigue() {
-		return calendrierDeLaLigue;
-	}
+//----------------------------------------------------------------- methods for _calendrier
+	VectorRen *getCalendrier();
+	void addCalendrier(Rencontre* match);
+	Calendrier* rechercherCalendrier(std::string nom);
+	Rencontre* rechercherRencontre(std::string clubLocal, std::string clubInvite, std::string date);
 
-//----------------------------------------------------------------- methods of Ligue
-	void	AjouterClub(Club* clubs);
-	Club*	RechercherClub(std::string nom);
-	void	AfficherClubs();
-
-	void	EntraineurLePlusTitre();
-	void	ClubLePlusTitre();
-
-	void AfficherRencontre(Club *club);
-	void AfficherResultat(std::string nom, std::string date);
-	void AjouterCalendrier(Calendrier* calendrier);
-	Calendrier* RechercherCalendrier(std::string nom);
-	void AjouterRencontre(Club* home, Club* away, std::string date);
-	void SupprimerCalendrier(std::string nom);
 };
 
 

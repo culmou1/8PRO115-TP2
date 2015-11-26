@@ -10,12 +10,10 @@ private:
 	Resultat 	resultat;
 
 public:
+	Periode() {}
 	Periode(int time, Resultat score) : dureePeriode(time), resultat(score) {}
-
     ~Periode();
-
 	Periode(const Periode& other) : dureePeriode(other.dureePeriode), resultat(other.resultat) {}
-
     Periode& operator=(Periode&& other) {
 		dureePeriode=other.dureePeriode, resultat=other.resultat;
 		return *this;
