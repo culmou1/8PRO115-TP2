@@ -1,15 +1,17 @@
 #ifndef ECRAN_H
 #define ECRAN_H
 
-#include <iostream>
-#include <string>
 #include "ligue.h"
-#include "calendrier.h"
-#include "contrat.h"
 
 class Ecran
 {
 	public:
+		Ecran();
+		~Ecran();
+
+		Ligue* getLigue() {
+			return &_ligue;
+		}
 
 		void afficherMenu();
 		int getChoixUtilisateur();
@@ -22,11 +24,11 @@ class Ecran
 		void CreerEntraineur();
 		void AfficherStaff();
 
-		void ModifierSeuil();
-		void TransfertJoueur();
-		void RompreSonContrat();
-		void AfficherMontantTransferts();
-		void AfficherMontantTotal();
+		//void ModifierSeuil();
+		//void TransfertJoueur();
+		//void RompreSonContrat();
+		//void AfficherMontantTransferts();
+		//void AfficherMontantTotal();
 
 		void CreerClub();
 		void SupprimerClub();
@@ -42,9 +44,8 @@ class Ecran
 		void AfficherResultat();
 		void CreerRencontre();
 		void ModifierRencontre();
-		void SupprimerCalendrier();
 
 	private:
-		Ligue *_ligue;
+		Ligue _ligue;
 };
 #endif

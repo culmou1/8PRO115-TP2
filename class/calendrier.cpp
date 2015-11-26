@@ -1,11 +1,4 @@
 #include "calendrier.h"
-#include "club.h"
-#include "rencontre.h"
-#include "match.h"
-#include "equipe.h"
-#include <string>
-#include <stdexcept>
-
 
 //----------------------------------------------------------------- Constructeur
 Calendrier::Calendrier(){}
@@ -33,40 +26,7 @@ void Calendrier::addRencontre(Rencontre* game) {
     _rencontres.push_back(game);
 }
 
-//----------------------------------------------------------------- rechercherAfficherResultat
-void Calendrier::AfficherResultat(Club *club, std::string date) {
-    for(unsigned int i=0;i<_rencontres.size();i++)
-    {
-		if(_rencontres[i]->getMatch()->getLocaux()->getClub() == club || _rencontres[i]->getMatch()->getVisiteurs()->getClub() == club)
-			std::cout << "Resultat : ";  _rencontres[i]->resultatAUneDateDonne(date);
-    }
-}
-
-//----------------------------------------------------------------- AfficherRencontreForAwayClub
-void Calendrier::AfficherRencontreForAwayClub(Club *club){
-    for(unsigned int i=0;i<_rencontres.size();i++)
-    {
-        if(_rencontres[i]->getMatch()->getVisiteurs()->getClub() == club)
-        {
-            std::cout << "Visiteur : ";
-            _rencontres[i]->getMatchAndGame() ;
-        }
-    }
-}
-
-//----------------------------------------------------------------- AfficherRencontreForHomeClub
-void Calendrier::AfficherRencontreForHomeClub(Club *club){
-    for(unsigned int i=0;i<_rencontres.size();i++)
-	{
-        if(_rencontres[i]->getMatch()->getLocaux()->getClub() == club)
-		{
-            std::cout << "Domicile : ";
-            _rencontres[i]->getMatchAndGame();
-        }
-    }
-}
-
 //----------------------------------------------------------------- methods for rencontres
-VectorRen Calendrier::getAllRencontre(){
-    return _rencontres;
+VectorRen* Calendrier::getRencontres(){
+    return &_rencontres;
 }

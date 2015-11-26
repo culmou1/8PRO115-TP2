@@ -2,12 +2,16 @@
 #define UTILS_H
 
 #include <string>
-#include<iostream>
+#include <fstream>
+#include <iostream>
+#include <cstdlib> 
+#include <ctime> 
 #include <stdexcept>
 
 enum Role {
 	JOUEUR,
     ENTRAINEUR,
+	ADJOINT,
     MANAGER,
     SECRETAIRE,
     RECRUTEUR,
@@ -60,20 +64,30 @@ public:// Format DD/MM/YYYY
 		  return true;
   }
 
+	friend std::ostream &operator <<(std::ostream &o, const Date &a);
 
   // Conversion de la date en une string
   std::string To_String() {
-    return std::to_string(tm_day) + "-" + std::to_string(tm_month) + "-" + std::to_string(tm_year);
+	  if(tm_day == 0 && tm_month == 0)
+		  return std::to_string(tm_year);
+	  else if (tm_day < 10 && tm_month < 10)
+		return "0"+std::to_string(tm_day) + "-0" + std::to_string(tm_month) + "-" + std::to_string(tm_year);
+	  else if (tm_day < 10) 
+		  return "0"+std::to_string(tm_day) + "-" + std::to_string(tm_month) + "-" + std::to_string(tm_year);
+	  else if (tm_month < 10) 
+		  return std::to_string(tm_day) + "-0" + std::to_string(tm_month) + "-" + std::to_string(tm_year);
+	  else
+		  return std::to_string(tm_day) + "-" + std::to_string(tm_month) + "-" + std::to_string(tm_year);
   }
 };
 
-Date To_Date(std::string date);
-const char * getTextForTitre( int enumVal );
 
-enum Titre {
-    COUPE,
-    CHAMPIONNAT
-};
+
+Date To_Date(std::string date);
+int RandomInt(int max);
+
+typedef std::string Titre;
+
 
 
 enum Raison {
@@ -86,15 +100,5 @@ enum Raison {
     PERFORMANCES
 };
 
-template <typename T>
-
-template <typename T, typename U>
-T getOneArgv(){
-	return T
-}
-
-void setOneArgv(T,U){
-
-}
 
 #endif

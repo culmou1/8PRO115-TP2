@@ -1,9 +1,8 @@
 #include "club.h"
 #include "person.h"
+#include "joueur.h"
+#include "entraineur.h"
 #include "contrat.h"
-#include "calendrier.h"
-#include "ligue.h"
-#include "rencontre.h"
 #include "rupture.h"
 #include "palmares.h"
 #include "reglement.h"
@@ -11,12 +10,9 @@
 #include <string>
 
 //----------------------------------------------------------------- Constructeur
-Club::Club(std::string name, std::string history, std::string color, std::string address, std::string town, std::string year, Ligue* league) {
+Club::Club(std::string name, std::string history, std::string color, std::string address, std::string town, std::string year) {
 	_nom = name; _histoireDuClub = history; _couleurDuClub = color;
 	_adresseDuClub = address;_villeDuClub = town; _anneeDeCreation = To_Date(year);
-
-	//Ajout du club a la ligue
-	_ligue = league; _calendrier = new Calendrier();
 }
 
 //----------------------------------------------------------------- Destructeur
@@ -24,7 +20,7 @@ Club::~Club() {
 	std::cout << "CARACTERISTIQUES DU CLUB " << _nom << " : " << std::endl;
 	std::cout << "-		COULEUR : " << _couleurDuClub << std::endl;
 	std::cout << "-		HISTOIRE : " << _histoireDuClub << std::endl;
-	std::cout << "-		ANNEE DE CREATION : "<< _anneeDeCreation.To_String() << std::endl;
+	std::cout << "-		ANNEE DE CREATION : "<< _anneeDeCreation << std::endl;
 	std::cout << "-		ADDRESSE : "<< _adresseDuClub << ", " << _villeDuClub << std::endl;
 	std::cout << "-		NOMBRE DE TITRE(S) GAGNE(S) : "<< _unPalmares.size() << std::endl;
 	std::cout << "-		TAILLE DE L\'_effectif : "<< _effectif.size() << std::endl;
@@ -64,62 +60,13 @@ Club::~Club() {
 //----------------------------------------------------------------- Constructeur de recopie
 Club::Club(const Club& other) : _nom(other._nom), _histoireDuClub(other._histoireDuClub), _couleurDuClub(other._couleurDuClub), _adresseDuClub(other._adresseDuClub),
 	_villeDuClub(other._villeDuClub), _anneeDeCreation(other._anneeDeCreation), _effectif(other._effectif), _staffTechnique(other._staffTechnique),
-	_unPalmares(other._unPalmares), _contratsdEngagement(other._contratsdEngagement), _rupturesDeContrats(other._rupturesDeContrats), _ligue(other._ligue),
-	_calendrier(other._calendrier) {}
+	_unPalmares(other._unPalmares), _contratsdEngagement(other._contratsdEngagement), _rupturesDeContrats(other._rupturesDeContrats) {}
 
 //----------------------------------------------------------------- Operateur d'affectation
 Club& Club::operator=(Club&& other) {
 	_nom = other._nom; _villeDuClub=other._villeDuClub; _anneeDeCreation=other._anneeDeCreation; _effectif=other._effectif; _staffTechnique=other._staffTechnique;
-	_unPalmares=other._unPalmares; _contratsdEngagement=other._contratsdEngagement; _rupturesDeContrats=other._rupturesDeContrats; _ligue=other._ligue;
-	_calendrier=other._calendrier;
+	_unPalmares=other._unPalmares; _contratsdEngagement=other._contratsdEngagement; _rupturesDeContrats=other._rupturesDeContrats;
 	return *this;
-}
-
-
-
-//----------------------------------------------------------------- ModifierJoueur
-void Club::ModifierJoueur(std::string joueur){
-
-	Joueur* aModifier = rechercherJoueur(joueur);
-
-	int age;
-	double taille, poids;
-	bool autonome(false);
-
-	if(aModifier != NULL) {//Si le joueur existe
-		std::cout << std::endl << "*******************MODIFICATION D'UN JOUEUR*******************" << std::endl;
-		std::cout << std::endl <<  "//		AGE : "; std::cin >> age;
-		std::cout << std::endl << "//		TAILLE : "; std::cin >> taille;
-		std::cout << std::endl << "//		POIDS : "; std::cin >> poids;
-
-		//Set les caracteristiques
-		aModifier->setAge(age); aModifier->setTaille(taille); aModifier->setPoids(poids);
-		std::cout << "Le joueur " << joueur << " a ete modifie." << std::endl;
-	}
-	else
-		std::cerr << "Le joueur " << joueur << " n\'existe pas." << std::endl;
-
-}
-
-//----------------------------------------------------------------- SupprimerJoueur
-void Club::SupprimerJoueur(std::string name){
-
-	std::cout << std::endl << "*******************SUPPRESSION D'UN JOUEUR*******************" << std::endl;
-	Person* aSupprimer = rechercherJoueur(name);
-	if(aSupprimer != NULL) {//Si le joueur existe
-		//Itere dans l'_effectif du club
-		for (unsigned int i = 0; i < _effectif.size(); i++)
-		{
-			if (aSupprimer == _effectif[i])
-			{
-				delete _effectif[i];
-				_effectif.erase(_effectif.begin()+i);
-			}
-		}
-		std::cout << "Le joueur " << name << " a ete supprime de l'_effectif du club " << _nom << "." << std::endl;
-	}
-	else
-		std::cerr << "Le joueur " << name << " n\'existe pas." << std::endl;
 }
 
 //----------------------------------------------------------------- CreerEntraineur
@@ -158,9 +105,9 @@ void Club::TransfertJoueur(std::string joueur, Club* club){
 			std::cout << std::endl << "//		DROITS DU JOUEUR : "; getline(std::cin,droit);
 
 			//Si la date d'echeance est inferieure a la date du contrat ou que le joueur a rompu son contrat
-			if(newContrat->lookForEcheance(dateDuContrat) || rechercherRupturesDeContrats(aTransferer) != NULL) {
+			if(rechercherRupturesDeContrats(aTransferer) != NULL) {
 				//Si le seuil est respecte
-				//if (montant <= newContrat->getReglement().getSeuilDeTransert()) {
+				//if (montant <= newContrat->getReglement()->getSeuilDeTransert()) {
 					//Cree le nouveau contrat du joueur puis l'ajoute aux _contratsdEngagement du nouveau club
 					newContrat = new Contrat(aTransferer, club, this, dureeDuContrat, datedEntree, dateDuContrat, montant, droit);
 					club->addContratdEngagement(newContrat);
@@ -169,7 +116,7 @@ void Club::TransfertJoueur(std::string joueur, Club* club){
 					club->addEffectif(aTransferer);
 
 					//supprime le joueur de l'_effectif du club libere
-					SupprimerJoueur(joueur);
+					//SupprimerJoueur(joueur);
 				//}
 					std::cout << "Le joueur " << joueur << " a ete transfere du club " << _nom
 										<< " au club " << club->getNomDuClub() << "." << std::endl;
@@ -193,7 +140,7 @@ void Club::AfficherMontantTransferts(std::string date){
 	{
 		//Si la date correspond alors il affiche
 		if(_contratsdEngagement[i]->getDateDuContrat() <= dateDonnee)
-			std::cout << "-  " << _contratsdEngagement[i]->getReglement().getMontantDuTransfert() << std::endl;
+			std::cout << "-  " << _contratsdEngagement[i]->getReglement()->getMontantDuTransfert() << std::endl;
 	}
 }
 
@@ -207,7 +154,7 @@ void Club::montantEncaisseDepuisUneDate(std::string date){
 	{
 		//Si la date est inferieure il ajoute a la sommeTotal
 		if (_contratsdEngagement[i]->getDateDuContrat() <= To_Date(date)){
-			sommeTotal += _contratsdEngagement[i]->getReglement().getMontantDuTransfert();
+			sommeTotal += _contratsdEngagement[i]->getReglement()->getMontantDuTransfert();
 		}
 	}
 	std::cout << "Le montant encaisse par le club " << _nom << " est de : " << sommeTotal << "$." << std::endl;
@@ -241,6 +188,24 @@ void Club::setCouleurDuClub(std::string color) {
 	_couleurDuClub = color;
 }
 
+//----------------------------------------------------------------- methods for _villeDuClub
+std::string Club::getVilleDuClub() {
+	return _villeDuClub;
+}
+
+void Club::setVilleDuClub(std::string town) {
+	_villeDuClub = town;
+}
+
+//----------------------------------------------------------------- methods for _villeDuClub
+std::string Club::getAdresseDuClub() {
+	return _adresseDuClub;
+}
+
+void Club::setAdresseDuClub(std::string address) {
+	_adresseDuClub = address;
+}
+
 //----------------------------------------------------------------- methods for _anneeDeCreation
 Date Club::getAnneeDeCreation() {
 	return _anneeDeCreation;
@@ -252,8 +217,8 @@ void Club::setAnneeDeCreation (Date year) {
 
 //----------------------------------------------------------------- methods for _effectif
 
-VectorJou Club::getEffectif() {
-	return _effectif;
+VectorJou* Club::getEffectif() {
+	return &_effectif;
 }
 
 void Club::addEffectif(Joueur *someone) {
@@ -276,8 +241,8 @@ Joueur* Club::rechercherJoueur(std::string joueur){
 }
 
 //----------------------------------------------------------------- methods for _unPalmares
-VectorPal Club::getUnPalmares() {
-	return _unPalmares;
+VectorPal* Club::getUnPalmares() {
+	return &_unPalmares;
 }
 
 void Club::addUnPalmares(Palmares *trophy) {
@@ -295,25 +260,11 @@ int Club::getNumberOfTitre() {
 	return (int)_unPalmares.size();
 }
 
-//----------------------------------------------------------------- methods for _villeDuClub
-std::string Club::getVilleDuClub() {
-	return _villeDuClub;
-}
-
-void Club::setVilleDuClub(std::string town) {
-	_villeDuClub = town;
-}
-
-//----------------------------------------------------------------- methods for _villeDuClub
-std::string Club::getAdresseDuClub() {
-	return _adresseDuClub;
-}
-
-void Club::setAdresseDuClub(std::string address) {
-	_adresseDuClub = address;
-}
-
 //----------------------------------------------------------------- methods for _staffTechnique
+VectorPrs* Club::getStaffTechnique() {
+		return &_staffTechnique;
+	}
+
 void Club::addStaffTechnique(Person *someone) {
 	_staffTechnique.push_back(someone);
 }
@@ -335,6 +286,10 @@ void Club::setStaffTechnique(VectorPrs staff) {
 }
 
 //----------------------------------------------------------------- methods for _contratsdEngagement
+VectorCon* Club::getContratdEngagement() {
+		return &_contratsdEngagement;
+	}
+
 void Club::addContratdEngagement(Contrat *contrats) {
 	_contratsdEngagement.push_back(contrats);
 }
@@ -365,6 +320,10 @@ Contrat* Club::rechercherContratdEngagement(Joueur *joueur){
 }
 
 //----------------------------------------------------------------- methods for _rupturesDeContrats
+VectorRup* Club::getRupturesDeContrats() {
+		return &_rupturesDeContrats;
+	}
+
 void Club::addRuptureDeContrats(Rupture *ruptures) {
 	_rupturesDeContrats.push_back(ruptures);
 }

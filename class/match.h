@@ -2,9 +2,9 @@
 #define MATCH_H
 
 #include <vector>
-#include <string>
 #include "resultat.h"
 
+class Club;
 class Equipe;
 class Periode;
 
@@ -19,50 +19,29 @@ private:
 	Resultat  	_resultatFinal;
 
 public:
-	Match(Equipe *home, Equipe *visitor);
-	Match(Equipe *home, Equipe *visitor, int butL, int butV);
-
+	Match();
+	Match(Club *home, Club *visitor);
+	Match(Club *home, Club *visitor, int butL, int butV);
     ~Match();
     Match(const Match& other);
     Match& operator=(Match&& other);
 
 //----------------------------------------------------------------- methods for Locaux
-    Equipe *getLocaux(){
-    	return _locaux;
-    }
-
+    Equipe *getLocaux();
+	void setLocaux(Equipe *home);
 //----------------------------------------------------------------- methods for Visiteurs
-    Equipe *getVisiteurs(){
-    	return _visiteurs;
-    }
-
-    void setVisiteurs(Equipe *stranger){
-    	_visiteurs = stranger;
-    }
+    Equipe *getVisiteurs();
+    void setVisiteurs(Equipe *stranger);
 
 //----------------------------------------------------------------- methods for periodesJouees
-	void getPeriodes(VectorPer &half) {
-		for (unsigned int i = 0; i < _periodesJouees.size(); i++) {
-			half[i] = _periodesJouees[i];
-		}
-	}
+	VectorPer getPeriodes();
 
-	void setPeriodes(VectorPer half) {
-		_periodesJouees.clear();
-		for (unsigned int i = 0; i < half.size(); i++) {
-			_periodesJouees.push_back(half[i]);
-		}
-	}
-
+	void setPeriodes(VectorPer half);
 //----------------------------------------------------------------- methods for resultat
-	Resultat getResultat(){
-		return _resultatFinal;
-	}
-
+	Resultat getResultat();
 	void setResulat(int home, int visitor);
 
 //----------------------------------------------------------------- methods of Match
-	std::string getNomClub(Equipe* team);
 	void obtenirResulatFinal();
 
 };

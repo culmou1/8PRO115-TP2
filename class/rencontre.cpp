@@ -1,47 +1,76 @@
 #include "rencontre.h"
+#include "club.h"
 #include "match.h"
-#include "equipe.h"
-#include "resultat.h"
 #include "utils.h"
 
-//----------------------------------------------------------------- Constructeur
-Rencontre::Rencontre(Club* home, Club* away, std::string date) : _match(CreerMatch(home,away)), _dateDeRencontre(To_Date(date)) {}
+//----------------------------------------------------------------- Constructeurs
+Rencontre::Rencontre() {}
+
+Rencontre::Rencontre(Club* home, Club* away, Date date) : _locaux(home), _visiteurs(away), _dateDeRencontre(date) {
+	setMatch(home,away);
+}
+
+Rencontre::Rencontre(Club* home, Club* away, Match* game, Date date) : _locaux(home), _visiteurs(away), _dateDeRencontre(date) {
+	setMatch(game);
+}
 
 //----------------------------------------------------------------- Destructeur
-Rencontre::~Rencontre() {
-	delete _match;
-}
+Rencontre::~Rencontre() {}
 
 //----------------------------------------------------------------- Constructeur de recopie
 Rencontre::Rencontre(const Rencontre& other) :
-	_match(other._match), _dateDeRencontre(other._dateDeRencontre) {}
+	_match(other._match), _dateDeRencontre(other._dateDeRencontre), _locaux(other._locaux), _visiteurs(other._visiteurs) {}
 
 //----------------------------------------------------------------- Operateur d'affectation
 Rencontre& Rencontre::operator=(Rencontre&& other) {
-	_match=other._match; _dateDeRencontre=other._dateDeRencontre;
+	_match=other._match; _dateDeRencontre=other._dateDeRencontre; _locaux=other._locaux; _visiteurs=other._visiteurs;
 	return *this;
 }
 
-//----------------------------------------------------------------- getMatchAndGame
-void Rencontre::getMatchAndGame(){
-	std::cout << _dateDeRencontre.To_String() << "/ " << _match->getNomClub(_match->getLocaux()) << " vs. "
-        << _match->getNomClub(_match->getVisiteurs()) << std::endl;
+//----------------------------------------------------------------- methods for Locaux
+Club* Rencontre::getLocaux(){
+    return _locaux;
 }
 
-//----------------------------------------------------------------- CreerMatch
-/* Ajout des matchs Entre des Équipes */
-Match* Rencontre::CreerMatch(Club* home, Club* away) {
-		Equipe* locaux = new Equipe(home, 18, 2, home->getEffectif()[0]);
-		Equipe* visiteurs = new Equipe(away, 18, 2, away->getEffectif()[0]);
+void Rencontre::setLocaux(Club *home){
+    _locaux = home;
+}
 
-		Match* newMatch = new Match(locaux, visiteurs);
-		return newMatch;
-	}
 
-//----------------------------------------------------------------- resultatAUneDateDonne
-void Rencontre::resultatAUneDateDonne(std::string date){
-    if (To_Date(date) == _dateDeRencontre){
-		std::cout << _match->getNomClub(_match->getLocaux()) << _match->getResultat().getButsLocaux()
-			<< " - " << _match->getNomClub(_match->getVisiteurs()) << _match->getResultat().getButsVisiteurs() << std::endl;
-    }
+//----------------------------------------------------------------- methods for Visiteurs
+Club* Rencontre::getVisiteurs(){
+    return _visiteurs;
+}
+
+void Rencontre::setVisiteurs(Club *stranger){
+    _visiteurs = stranger;
+}
+
+
+//----------------------------------------------------------------- methods for match
+Match* Rencontre::getMatch() {
+	return &_match;
+}
+
+void Rencontre::setMatch(Match *game){
+	_match = *game;
+}
+
+void Rencontre::setMatch(Club* home, Club* away){
+	Match* temp = new Match(home, away);
+	_match = *temp;
+}
+
+//----------------------------------------------------------------- methods for dateDeRencontre
+Date Rencontre::getDate(){
+	return _dateDeRencontre;
+}
+
+void Rencontre::setDate(std::string date){
+	_dateDeRencontre = To_Date(date);
+}
+
+//----------------------------------------------------------------- methods of Rencontre
+std::string Rencontre::getResultat()  {
+	return std::to_string(_match.getResultat().getButsLocaux()) +" - "+ std::to_string(_match.getResultat().getButsVisiteurs());
 }
