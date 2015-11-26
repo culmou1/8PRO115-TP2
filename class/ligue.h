@@ -18,7 +18,12 @@ private:
 	Calendrier*		_calendrier;
 
 public:
+<<<<<<< HEAD
+	static Ligue* Getinstance();
+
+=======
 	Ligue();
+>>>>>>> f5fdf0059ab5df9a10899e1707f5179dab8d57e5
     ~Ligue();
 	Ligue(const Ligue& other);
     Ligue& operator=(Ligue&& other);

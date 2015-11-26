@@ -10,6 +10,9 @@ Ligue::Ligue() {
 }
 
 //----------------------------------------------------------------- Destructeur
+// Singleton
+Ligue* Ligue::instance = NULL;
+
 Ligue::~Ligue() {
 	//Suppression des clubs de la Ligue
 	for (unsigned int i=0; i <_clubs.size(); i++) {
@@ -19,6 +22,13 @@ Ligue::~Ligue() {
 
 	//Suppression du calendrier de Ligue
 	delete _calendrier;
+}
+// SingleTon
+Ligue* Ligue::getInstance() {
+	if(instance == NULL){
+		instance = new Ligue;
+	}
+	return instance;
 }
 
 //----------------------------------------------------------------- Constructeur de recopie
@@ -85,7 +95,3 @@ Rencontre* Ligue::rechercherRencontre(std::string clubLocal, std::string clubInv
 	}
 	return NULL;
 }
-
-
-
-

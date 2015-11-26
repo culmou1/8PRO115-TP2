@@ -54,7 +54,7 @@ void Ecran::afficherMenu()
 		cout << "\n\n" << endl;
 
 		choix = getChoixUtilisateur();
-		
+
 
 	} while(choix!=0);
 
@@ -63,10 +63,15 @@ void Ecran::afficherMenu()
 int Ecran::getChoixUtilisateur()
 {
 	int ret_choix=0;
-	
+
 	cout << "Entrer choix :";
+<<<<<<< HEAD
 	EnterNumber(ret_choix);
 	
+=======
+	cin >> ret_choix;
+
+>>>>>>> 6c1151b03e932d2c312ead5e92c59c5b444b684a
 	switch(ret_choix)
 	{
 	case 1:
@@ -196,10 +201,10 @@ int Ecran::getChoixUtilisateur()
 			break;
 		}
 	case 0://quit
-		break;
-	}
+	break;
+}
 
-	return ret_choix;
+return ret_choix;
 
 }
 
@@ -223,8 +228,9 @@ void Ecran::CreerClub() {
 
 //----------------------------------------------------------------- SupprimerClub
 void Ecran::SupprimerClub() {
+
 	string nomClub;
-	
+
 	cin.ignore(1);
 	cout << endl << "|	Entrer le nom du club a supprimer : "; isAlphabet(nomClub);
 	Club* pClub = _ligue->rechercherClub(nomClub);
@@ -250,8 +256,9 @@ void Ecran::SupprimerClub() {
 
 //----------------------------------------------------------------- AfficherEffectif
 void Ecran::AfficherEffectif() {
+
 	string nomClub;
-	
+
 	cin.ignore(1);
 	cout << endl << "|	Entrer le nom du club : "; isAlphabet(nomClub);
 	Club* pClub = _ligue->rechercherClub(nomClub);
@@ -275,8 +282,9 @@ void Ecran::AfficherEffectif() {
 
 //----------------------------------------------------------------- AfficherStaff
 void Ecran::AfficherStaff(){
+
 	string nomClub;
-	
+
 	cin.ignore(1);
 	cout << endl << "|	Entrer le nom du club : "; isAlphabet(nomClub);
 	Club* pClub = _ligue->rechercherClub(nomClub);
@@ -344,6 +352,66 @@ void Ecran::CreerJoueur(){
 		cerr << "/!\\	Ce club n\'existe pas dans la ligue.	/!\\" << endl;
 }
 
+//----------------------------------------------------------------- TransfertJoueur
+
+void Ecran::TransfertJoueur(){
+	int dureeDuContrat; double montant;
+	string datedEntree, dateDuContrat, droit, nomClubContractant, nomClubDelivreur,joueur;
+
+
+	cout << endl << "Entrer le nom du club contractant : "; cin >> nomClubContractant;
+
+
+	Club* Ptr_clubContractant = _ligue->RechercherClub(nomClubContractant);
+
+	if (Ptr_clubContractant !=NULL){
+		cout << endl << "Entrer le nom du club delivreur : "; cin >> nomClubDelivreur;
+		Club* Ptr_clubDeLivreur = _ligue->RechercherClub(nomClubDelivreur);
+		if(Ptr_clubDeLivreur !=NULL){
+			cin.ignore(1);
+			cout << end << "Veuillez entrer le nom du joueur a transferer : "; getline(cin,joueur);
+			Joueur* Ptr_Transferer = rechercherJoueur(joueur);
+			if (Ptr_Transferer != NULL) {// Si le joueur existe
+			Contrat* newContrat = rechercherContratdEngagement(Ptr_Transferer);
+
+			cout << endl << "*******************TRANSFERT DU JOUEUR*******************" << endl;
+			cout << "//		DUREE DU CONTRAT : "; cin >> dureeDuContrat;
+			cout << endl << "//		DATE D\'ENTREE DU JOUEUR : "; cin >> datedEntree;
+			cout << endl << "//		DATE DU CONTRAT : "; cin >> dateDuContrat;
+			cout << endl << "//		PRIX DU TRANSFERT : "; cin >> montant;
+			cin.ignore(1);
+			cout << endl << "//		DROITS DU JOUEUR : "; getline(cin,droit);
+
+			//Si la date d'echeance est inferieure a la date du contrat ou que le joueur a rompu son contrat
+			if(newContrat->lookForEcheance(dateDuContrat) || rechercherRupturesDeContrats(aTransferer) != NULL) {
+				//Si le seuil est respecte
+				//if (montant <= newContrat->getReglement().getSeuilDeTransert()) {
+				//Cree le nouveau contrat du joueur puis l'ajoute aux _contratsdEngagement du nouveau club
+				newContrat = new Contrat(Ptr_Transferer, Ptr_clubContractant, Ptr_clubDeLivreur, dureeDuContrat, datedEntree, dateDuContrat, montant, droit);
+				Ptr_clubContractant->addContratdEngagement(newContrat);
+
+				//ajoute le joueur a l'_effectif du nouveau club
+				Ptr_clubContractant->addEffectif(aTransferer);
+
+				//supprime le joueur de l'_effectif du club libere
+				SupprimerJoueur(joueur);
+				//}
+				cout << "Le joueur " << joueur << " a ete transfere du club " << _nom
+				<< " au club " << Ptr_clubContractant->getNomDuClub() << "." << endl;
+			}
+			else
+			cout << "Creation du nouveau contrat impossible (voir date d'echeance, existence de rupture ou seuil de transfert)." << endl;
+		}
+		else
+		cerr << "Le joueur " << joueur << " n\'existe pas." << endl;
+	}
+	else
+	cerr << "Le club delivreur n\'a pas été trouver"
+}
+else
+cerr << "Le club contractant n\'a pas été trouver"
+
+
 //----------------------------------------------------------------- ModifierJoueur
 void Ecran::ModifierJoueur(){
 	string nomClub, joueur; int age; double taille, poids; bool autonome(false);
@@ -385,7 +453,7 @@ void Ecran::SupprimerJoueur(){
 		cin.ignore(1);
 		cout << endl << "|	Entrer le nom du joueur a supprimer <Prenom Nom>: "; getline(cin,joueur);
 		Joueur* pJoueur = pClub->rechercherJoueur(joueur);
-		
+
 		if(pJoueur != NULL) {//Si le joueur existe
 			//Itere dans l'_effectif du club
 			for (unsigned int i = 0; i < pClub->getEffectif()->size(); i++)
@@ -414,6 +482,43 @@ void Ecran::AfficherClubs(){
 	}
 	else
 		cerr << "/!\\	Il n'y a pas de clubs dans la ligue.	/!\\" << endl;
+}
+}
+//----------------------------------------------------------------- RompreSonContrat
+
+void Ecran::RompreSonContrat(){
+
+	std::string raisonDuDepart, choisirClub;
+    double penalite;
+
+
+	cout << endl << "Entrer le nom d\'un joueur: "; cin >> nomClubContractant;
+
+
+	std::cout << std::endl << "*******************ROMPRE LE CONTRAT DU JOUEUR*******************" << std::endl;
+
+	//Creation de la rupture
+	if(leContrat != NULL)
+	{
+        std::cout << std::endl <<  "//		RAISON DU DEPART : "; getline(std::cin,raisonDuDepart);
+        std::cout << std::endl <<  "//		PENALITE DE DEPART : "; std::cin >> penalite;
+		std::cout << std::endl << "//		CHOISIR NOUVELLE EQUIPE (ecrire en minuscule): ";  std::cin >> choisirClub; //choix de la couleur du Club
+
+		Club *newClub = leContrat->getClubContractant()->getLigue()->RechercherClub(choisirClub);
+
+        // Construction de la rupture
+		Rupture* newRupture = new Rupture(this,newClub,raisonDuDepart,penalite);
+		leContrat->getClubContractant()->addRuptureDeContrats(newRupture);
+		std::cout << "Le joueur " << obtenirNP() << " a rompu son contrat." << std::endl;
+
+		//Creation du nouveau contrat du joueur
+		leContrat->getClubContractant()->TransfertJoueur(obtenirNP(), newClub);
+
+	}
+    else
+	{
+		std::cout << "Le joueur " << obtenirNP() << " n'a pas de contrat." << std::endl;
+    }
 }
 
 //----------------------------------------------------------------- CreerCalendrier
@@ -448,7 +553,7 @@ void Ecran::CreerCalendrierLigue(){
 			}
 		}
 	}
-	else 
+	else
 		cerr << "/!\\	 Il n'y a pas de clubs dans la ligue.	/!\\" << endl;
 }
 
@@ -480,7 +585,7 @@ void Ecran::AfficherCalendrierClub(){
 				cout << endl << "|	Rencontres du club " << nomClub << " a domicile ou a l\'exterieur :" << endl;
 				for(unsigned int i=0; i<pCalendrier->getRencontres()->size(); i++) {
 					if(pCalendrier->getRencontres()->at(i)->getLocaux() == pClub) {
-						cout << "|		Domicile : " << pCalendrier->getRencontres()->at(i)->getDate() << "/ " << nomClub 
+						cout << "|		Domicile : " << pCalendrier->getRencontres()->at(i)->getDate() << "/ " << nomClub
 							<< " vs. " << pCalendrier->getRencontres()->at(i)->getVisiteurs()->getNomDuClub() << endl;
 					}
 					else {
@@ -489,7 +594,7 @@ void Ecran::AfficherCalendrierClub(){
 					}
 				}
 			}
-			else 
+			else
 				throw pasDeMatchs;
 		}
 		catch (string e) // Si une Erreur est survenu
@@ -510,14 +615,20 @@ void Ecran::AfficherResultat() {
 	cin.ignore(1);
 	cout << endl << "|	Entrer le nom du club invite : "; getline(cin,nomClubInvite);
 	cout << endl << "|	Entrer la date du match : "; cin >> date;
+<<<<<<< HEAD
 	
 	Rencontre* pRencontre = _ligue->rechercherRencontre(nomClubLocal, nomClubInvite, date);
  
+=======
+
+	Rencontre* pRencontre = _ligue.rechercherRencontre(nomClubLocal, nomClubInvite, date);
+
+>>>>>>> 6c1151b03e932d2c312ead5e92c59c5b444b684a
 	if(pRencontre != NULL) {// Si les deux clubs existent
 		cout << nomClubLocal << setw(10) << pRencontre->getResultat() << setw(10) << nomClubInvite;
 	}
- 	else 
-		std::cerr << "/!\\	Le match entre les clubs " << nomClubLocal << " et " << nomClubInvite << " n\'existe pas.	/!\\" << std::endl; 
+ 	else
+		std::cerr << "/!\\	Le match entre les clubs " << nomClubLocal << " et " << nomClubInvite << " n\'existe pas.	/!\\" << std::endl;
 
 }
 
@@ -578,21 +689,21 @@ void Ecran::ModifierRencontre() {
 				cout << "|	Entrer choix : "; cin >> choix;
 				cout << "*" << setfill('*') << setw(50) << "*" << endl;
 				switch (choix) {
-					case 1 : 
+					case 1 :
 						cin.ignore(1);
 						cout << "|	Entrer le nom du nouveau club local : "; getline(cin,nomClubLocal);
 						pClubLocal = _ligue->rechercherClub(nomClubLocal);
 						if (pClubLocal != NULL)
 							pRencontre->setLocaux(pClubLocal);
 						break;
-					case 2 : 
+					case 2 :
 						cin.ignore(1);
 						cout << "|	Entrer le nom du nouveau club invite : "; getline(cin,nomClubInvite);
 						pClubInvite = _ligue->rechercherClub(nomClubInvite);
 						if (pClubInvite != NULL)
 							pRencontre->setVisiteurs(pClubInvite);
 						break;
-					case 3 : 
+					case 3 :
 						cout << "|	Entrer la nouvelle date : "; cin >> date;
 						pRencontre->setDate(date);
 						break;
@@ -601,7 +712,7 @@ void Ecran::ModifierRencontre() {
 				}
 			} while(choix!=0);
 		}
-		else 
+		else
 			std::cerr << "/!\\	Le match entre les clubs " << nomClubLocal << " et " << nomClubInvite << " n\'existe pas.	/!\\" << std::endl;
 	}
 	else
@@ -627,7 +738,7 @@ void Ecran::EntraineurLePlusTitre() {
 		}
 		std::cout << "Voici l\'entraineur le plsu titre: " << entraineurLePlusTitre->obtenirNP() << ", il a gagne " << nbTitre << " titre(s)." <<std::endl;
 	}
-	else 
+	else
 		cerr << "/!\\	Il n'y a pas de clubs dans la ligue.	/!\\" << endl;
 }
 
@@ -646,9 +757,10 @@ void Ecran::ClubLePlusTitre() {
 		}
 		std::cout << "Voici le club le plus titre: " << clubLePlusTitre->getNomDuClub() << ", il a gagne " << nbTitre << " titre(s)." <<std::endl;
 	}
-	else 
+	else
 		cerr << "/!\\	Il n'y a pas de clubs dans la ligue.	/!\\" << endl;
 }
+<<<<<<< HEAD
 
 //----------------------------------------------------------------- AfficherMontantTotal
 void Ecran::AfficherMontantTotal() {
@@ -692,3 +804,5 @@ void Ecran::ModifierSeuil() {
 	else
 		cerr << "/!\\	Le seuil entre est trop bas		/!\\" << endl;
 }
+=======
+>>>>>>> 6c1151b03e932d2c312ead5e92c59c5b444b684a
