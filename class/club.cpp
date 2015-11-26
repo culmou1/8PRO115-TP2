@@ -225,6 +225,15 @@ void Club::addEffectif(Joueur *someone) {
 	_effectif.push_back(someone);
 }
 
+void Club::deleteEffectif(Joueur *someone){
+	for (unsigned int i = 0; i< _effectif.size();i++){
+		if (_effectif[i]== someone){
+			delete _effectif[i];
+			_effectif.erase(_effectif.begin()+i);
+		}
+	}
+}
+
 void Club::setEffectif(VectorJou players) {
 	_effectif.clear();
 	for (unsigned int i = 0; i < players.size(); i++) {

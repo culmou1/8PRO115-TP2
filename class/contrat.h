@@ -58,6 +58,8 @@ public :
 //----------------------------------------------------------------- methods of reglement
 	Reglement* getReglement();
 	void setReglement(double montantT, std::string droit);
+
+	Date getDatedEcheance();
 };
 
 

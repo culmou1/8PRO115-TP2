@@ -97,3 +97,8 @@ Reglement* Contrat::getReglement() {
 void Contrat::setReglement(double montantT, std::string droit) {
 _reglement = Reglement(montantT, droit);
 }
+
+Date Contrat::getDatedEcheance() {
+	Date echeance; echeance.Create(_dateDuContrat.tm_day, _dateDuContrat.tm_month, _dateDuContrat.tm_year+_dureeContrat);
+	return echeance;
+}

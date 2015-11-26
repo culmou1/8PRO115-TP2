@@ -61,6 +61,7 @@ public:
 //----------------------------------------------------------------- methods for _effectif
 	VectorJou* getEffectif();
 	void addEffectif(Joueur *someone);
+	void deleteEffectif(Joueur* someone);
 	void setEffectif(VectorJou players);
 	Joueur* rechercherJoueur(std::string joueur);
 

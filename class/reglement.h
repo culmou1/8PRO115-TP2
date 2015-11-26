@@ -17,7 +17,7 @@ public:
 	Reglement() {};
 
 	Reglement(double montant, std::string droit) :
-		_droitDuJoueur(droit), _montantDuTransfert(montant), _montantAncienClub(montant), _montantJoueur(montant*pourcentJoueur) {}
+		_droitDuJoueur(droit), _montantDuTransfert(montant), _montantAncienClub(montant), _montantJoueur(montant*pourcentJoueur), _seuilDeTransfert(1000000.00) {}
 
     ~Reglement() {}
 
