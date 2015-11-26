@@ -24,11 +24,11 @@ class Ecran
 		void CreerEntraineur();
 		void AfficherStaff();
 
-		//void ModifierSeuil();
-		//void TransfertJoueur();
-		//void RompreSonContrat();
-		//void AfficherMontantTransferts();
-		//void AfficherMontantTotal();
+		void ModifierSeuil();
+		void TransfertJoueur();
+		void RompreSonContrat();
+		void AfficherMontantTransferts();
+		void AfficherMontantTotal();
 
 		void CreerClub();
 		void SupprimerClub();

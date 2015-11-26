@@ -154,31 +154,31 @@ int Ecran::getChoixUtilisateur()
 	case 15:
 		{
 			cout << endl << "*******************MODIFICATION DU SEUIL DE TRANSFERT*******************" << endl;
-			//ModifierSeuil();
+			ModifierSeuil();
 			break;
 		}
 	case 16:
 		{
 			cout << endl << "*******************TRANSFERT DU JOUEUR*******************" << endl;
-			//TransfertJoueur();
+			TransfertJoueur();
 			break;
 		}
 	case 17:
 		{
 			cout << endl << "*******************ROMPRE LE CONTRAT DU JOUEUR*******************" << endl;
-			//RompreSonContrat();
+			RompreSonContrat();
 			break;
 		}
 	case 18:
 		{
 			cout << endl << "*******************AFFICHAGE MONTANTS DES TRANSFERT D\'UN CLUB******************* " << endl;
-			//AfficherMontantTransferts();
+			AfficherMontantTransferts();
 			break;
 		}
 	case 19:
 		{
 			cout << endl << "*******************AFFICHAGE MONTANT TOTAL DES TRANSFERT D\'UN CLUB******************* " << endl;
-			//AfficherMontantTotal();
+			AfficherMontantTotal();
 			break;
 		}
 	case 20:
@@ -368,10 +368,10 @@ void Ecran::TransfertJoueur(){
 			Contrat* newContrat = rechercherContratdEngagement(Ptr_Transferer);
 
 			cout << endl << "*******************TRANSFERT DU JOUEUR*******************" << endl;
-			cout << "//		DUREE DU CONTRAT : "; cin >> dureeDuContrat;
+			cout << "//		DUREE DU CONTRAT : "; cin >> EnterNumber(dureeDuContrat);
 			cout << endl << "//		DATE D\'ENTREE DU JOUEUR : "; cin >> datedEntree;
 			cout << endl << "//		DATE DU CONTRAT : "; cin >> dateDuContrat;
-			cout << endl << "//		PRIX DU TRANSFERT : "; cin >> montant;
+			cout << endl << "//		PRIX DU TRANSFERT : "; cin >> EnterNumber(montant);
 			cin.ignore(1);
 			cout << endl << "//		DROITS DU JOUEUR : "; getline(cin,droit);
 
@@ -746,4 +746,30 @@ void Ecran::ClubLePlusTitre() {
 	}
 	else
 		cerr << "/!\\	Il n'y a pas de clubs dans la ligue.	/!\\" << endl;
+}
+
+void Ecran::AfficherMontantTransferts(){
+	//Convertit en Date
+	std::string nomClubLocal, aDate
+	cout << endl << "|	Entrer le nom du club local : "; isAlphabet(nomClub);
+	Club* pClub = _ligue.rechercherClub(nomClub);
+
+	if(pClub != NULL){
+		cout << endl << "| Entrer une Date pour connaitre le montant depuis cette Date :"; cin >> To_Date(aDate);
+
+		Date dateDonnee = To_Date(date);
+
+		std::cout << std::endl << "******************* MONTANTS ENCAISSES DEPUIS LE " << dateDonnee << " ******************* " << std::endl;
+		std::cout <<  "Les montants des transferts encaisses par le club " << pClub.getNomDuClub() << " sont :" << std::endl;
+		//Itere dans les _contratsdEngagement
+		for (unsigned int i = 0; i < pClub._contratsdEngagement.size(); i++)
+		{
+			//Si la date correspond alors il affiche
+			if(pClub._contratsdEngagement[i]->getDateDuContrat() <= dateDonnee)
+				std::cout << "-  " << pClub._contratsdEngagement[i]->getReglement()->getMontantDuTransfert() << std::endl;
+		}
+	}
+	else {
+		cout << endl << "Le Club n'existe Pas !";
+	}
 }
