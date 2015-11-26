@@ -86,6 +86,12 @@ public:// Format DD/MM/YYYY
 Date To_Date(std::string date);
 int RandomInt(int max);
 
+template<class T>
+T isAlphabet(T str);
+
+template<class T>
+T EnterNumber(T numb);
+
 typedef std::string Titre;
 
 

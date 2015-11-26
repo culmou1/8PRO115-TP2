@@ -51,3 +51,24 @@ std::ostream &operator <<(std::ostream &o, const Date &a)
 		  return o;
 		}
 	}
+
+template<class T>
+void EnterNumber(T &numb) {
+    std::string vide_buffer;
+    std::cin >> numb;
+    while(cin.fail()) {
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<streamsize>::max(), '\n');
+        std::cout << "Bad entry. Enter a NUMBER : "; std::cin >> numb;
+    }
+    std::getline(cin, vide_buffer);
+}
+
+template<class T>
+void isAlphabet(T &str) {
+	std::getline(cin, str);
+	while(std::find_if(str.begin(), str.end(), (int(*)(int))std::isdigit) != str.end()) {
+		std::cout << "No digits allowed in name. Re-enter : "; std::getline(cin, str);
+	}
+}
+		

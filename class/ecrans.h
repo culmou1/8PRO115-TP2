@@ -1,7 +1,7 @@
 #ifndef ECRAN_H
 #define ECRAN_H
 
-#include "ligue.h"
+class Ligue;
 
 class Ecran
 {
@@ -10,7 +10,7 @@ class Ecran
 		~Ecran();
 
 		Ligue* getLigue() {
-			return &_ligue;
+			return _ligue;
 		}
 
 		void afficherMenu();
@@ -24,11 +24,11 @@ class Ecran
 		void CreerEntraineur();
 		void AfficherStaff();
 
-		//void ModifierSeuil();
-		//void TransfertJoueur();
-		//void RompreSonContrat();
-		//void AfficherMontantTransferts();
-		//void AfficherMontantTotal();
+		void ModifierSeuil();
+		void TransfertJoueur();
+		void RompreSonContrat();
+		void AfficherMontantTransferts();
+		void AfficherMontantTotal();
 
 		void CreerClub();
 		void SupprimerClub();
@@ -46,6 +46,6 @@ class Ecran
 		void ModifierRencontre();
 
 	private:
-		Ligue _ligue;
+		Ligue *_ligue;
 };
 #endif
