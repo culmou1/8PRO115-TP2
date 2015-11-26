@@ -94,26 +94,3 @@ Rencontre* Ligue::rechercherRencontre(std::string clubLocal, std::string clubInv
 	}
 	return NULL;
 }
-
-
-
-<<<<<<< HEAD
- //----------------------------------------------------------------- AfficherResultat
- void Ligue::AfficherResultat(std::string nom, std::string date) {
- 	Club* club = RechercherClub(nom);
-
- 	std::cout << std::endl << "*******************RESULTAT DU MATCH DU " << date << "******************* " << std::endl;
-
- 	if(club != NULL) {// Si le club existe
- 		if(club->getCalendrier() != NULL) {// Si le calendrier est pas vide
- 			club->getCalendrier()->AfficherResultat(club, date);
- 		}
- 		else
- 			std::cerr << "Le calendrier du club " << nom << " n\'existe pas." << std::endl;
- 	}
- 	else
- 			std::cerr << "Le club " << nom << " n\'existe pas." << std::endl;
- }
-=======
-
->>>>>>> f5fdf0059ab5df9a10899e1707f5179dab8d57e5
