@@ -99,14 +99,8 @@ public:
 	void setRupturesDeContrats(VectorRup ruptures);
 	Rupture* rechercherRupturesDeContrats(Joueur* joueur);
 
-//----------------------------------------------------------------- methods for Montant
-	void montantEncaisseDepuisUneDate(std::string date);
-
 //----------------------------------------------------------------- methods of Club
 	void CreerEntraineur();
-
-	void TransfertJoueur(std::string joueur, Club* club);
-	void AfficherMontantTransferts(std::string date);
 
 };
 
