@@ -9,14 +9,14 @@ class Contrat;
 class Palmares;
 class Rupture;
 class Joueur;
-class Person;
+class PersonStaff;
 
 
-typedef std::vector<Palmares*>	VectorPal; // Une ensemble de vecteur de type Palmares
-typedef std::vector<Contrat*> 	VectorCon; // Une ensemble de vecteur de type Contrat
-typedef std::vector<Rupture*> 	VectorRup; // Une ensemble de vecteur de type Rupture
-typedef std::vector<Person*>  	VectorPrs; // Une ensemble de vecteur de type Person
-typedef std::vector<Joueur*>  	VectorJou; // Une ensemble de vecteur de type Joueur
+typedef std::vector<Palmares*>		VectorPal; // Une ensemble de vecteur de type Palmares
+typedef std::vector<Contrat*> 		VectorCon; // Une ensemble de vecteur de type Contrat
+typedef std::vector<Rupture*> 		VectorRup; // Une ensemble de vecteur de type Rupture
+typedef std::vector<PersonStaff*>  	VectorPrs; // Une ensemble de vecteur de type Person
+typedef std::vector<Joueur*>  		VectorJou; // Une ensemble de vecteur de type Joueur
 
 
 // Classe Club
@@ -81,8 +81,8 @@ public:
 
 //----------------------------------------------------------------- methods for _staffTechnique
 	VectorPrs* getStaffTechnique();
-	void addStaffTechnique(Person *someone);
-	void deleteStaffTechnique(Person *someone);
+	void addStaffTechnique(PersonStaff *someone);
+	void deleteStaffTechnique(PersonStaff *someone);
 	void setStaffTechnique(VectorPrs staff);
 
 //----------------------------------------------------------------- methods for _contratsdEngagement

@@ -32,7 +32,7 @@ public:
     void setEmplacementNaissance(std::string birthPlace);
 
 //----------------------------------------------------------------- methods for Joueur
-	virtual void RompreSonContrat(Contrat* leContrat) = 0;
+	virtual std::string obtenirNP() { return _prenom+" "+_nom;}
 
 };
 
@@ -45,9 +45,6 @@ public:
     virtual ~Joueur_Autonome();
 	Joueur_Autonome(const Joueur_Autonome& other);
     virtual Joueur_Autonome& operator=(Joueur_Autonome& other);
-
-//----------------------------------------------------------------- methods of Joueur_Autonome
-	void RompreSonContrat(Contrat* leContrat);
 
 };
 
@@ -75,7 +72,6 @@ public:
 
 //----------------------------------------------------------------- methods of Joueur_NonAutonome
 	bool DemandeDeTransfert();
-	void RompreSonContrat(Contrat* leContrat);
 };
 
 #endif

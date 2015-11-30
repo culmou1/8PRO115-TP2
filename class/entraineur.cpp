@@ -5,7 +5,7 @@
 Entraineur::Entraineur() {}
 
 Entraineur::Entraineur(std::string prenom,std::string nom, int age, std::string place) :
-	Person(prenom, nom, age, ENTRAINEUR), _placeGrade(place) {}
+	PersonStaff(prenom, nom, age, ENTRAINEUR), _placeGrade(place) {}
 
 //----------------------------------------------------------------- Destructeur
 Entraineur::~Entraineur() {
@@ -18,11 +18,11 @@ Entraineur::~Entraineur() {
 
 //----------------------------------------------------------------- Constructeur de recopie
 Entraineur::Entraineur(const Entraineur& other) :
-	Person(other), _placeGrade(other._placeGrade), _titreGagne(other._titreGagne) {}
+	PersonStaff(other), _placeGrade(other._placeGrade), _titreGagne(other._titreGagne) {}
 
 //----------------------------------------------------------------- Operateur d'affectation
 Entraineur& Entraineur::operator=(Entraineur& other) {
-	Person *a, *b;
+	PersonStaff *a, *b;
 	a = this;
 	b = &other;
 	*a = *b; _placeGrade = other._placeGrade; _titreGagne = other._titreGagne;
@@ -59,4 +59,27 @@ void Entraineur::afficherTitreGagne(){
 //-----------------------------------------------------------------getNumberOfTitre
 int Entraineur::getNumberOfTitre(){
     return (int)_titreGagne.size(); // Retourne le nombre de titre
+}
+
+//----------------------------------------------------------------- Constructeurs
+Joueur_Entraineur::Joueur_Entraineur() {}
+
+Joueur_Entraineur::Joueur_Entraineur(std::string prenom,std::string nom, int age, double taille, 
+									 double poids,std::string emplacementNaissance, std::string place) :
+	Entraineur(prenom, nom, age, place), Joueur(prenom, nom, age, taille, poids, emplacementNaissance) {}
+
+//----------------------------------------------------------------- Destructeur
+Joueur_Entraineur::~Joueur_Entraineur() {}
+
+//----------------------------------------------------------------- Constructeur de recopie
+Joueur_Entraineur::Joueur_Entraineur(const Joueur_Entraineur& other) :
+	Entraineur(other), Joueur(other) {}
+
+//----------------------------------------------------------------- Operateur d'affectation
+Joueur_Entraineur& Joueur_Entraineur::operator=(Joueur_Entraineur& other) {
+	/*Entraineur a, *b; Joueur *c, *d;
+	a = this;
+	b = &other;
+	*a = *b;*/
+	return *this;
 }

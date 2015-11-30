@@ -41,7 +41,7 @@ public:
 
 	void Creer_effectifs_Staffs_Titres() {
 
-		Entraineur* trainer;Joueur* player; Person* staff; Contrat* contrat; Palmares *titre; TitreGagne* itt;
+		Entraineur* trainer;Joueur* player; PersonStaff* staff; Contrat* contrat; Palmares *titre; TitreGagne* itt; Joueur_Entraineur *big_boy;
 		char name='A';  std::string nom = "A";
 		Club* club = NULL;
 
@@ -73,17 +73,22 @@ public:
 
 			//Creer staff du type : club staff_numero et affiche
 			for(int i=2; i<6;i++) {
-				staff = new Person(nom, "Staff_"+std::to_string(i), 40, static_cast<Role>(i));
+				staff = new PersonStaff(nom, "Staff_"+std::to_string(i), 40, static_cast<Role>(i));
 				club->addStaffTechnique(staff);
 			}
 			trainer = new Entraineur(nom, "Trainer_1", 50, "Gilbertown");
 			club->addStaffTechnique(trainer);
+
+			big_boy = new Joueur_Entraineur(nom, "JoueurTrainer_1", 40, 1.82, 90, "NoWhereTown", "NoWhereTown");
+			club->addEffectif(big_boy);
+			club->addStaffTechnique(big_boy);
 
 			//Creer titres du type : club titre_numero et affiche
 			for(int i=0;i<k;i++) {
 				titre = new Palmares ("18-06-2008","Coupe de France");
 				itt = new TitreGagne(club, "18-06-2008", "Coupe de France");
 				trainer->addTitreGagne(itt);
+				big_boy->addTitreGagne(itt);
 				club->addUnPalmares(titre);
 			}
 			trainer->afficherTitreGagne();

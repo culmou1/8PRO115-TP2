@@ -9,15 +9,14 @@ protected:
     std::string     _prenom;
     std::string     _nom;
     int             _age;
-    Role            _role;
 
 public:
 	Person() {}
-    Person(std::string prenom,std::string nom, int age,Role role): _prenom(prenom),_nom(nom),_age(age),_role(role){};
+    Person(std::string prenom,std::string nom, int age): _prenom(prenom),_nom(nom),_age(age){};
     virtual ~Person() {}
-    Person(const Person& other) : _prenom(other._prenom), _nom(other._nom), _age(other._age), _role(other._role) {}
+    Person(const Person& other) : _prenom(other._prenom), _nom(other._nom), _age(other._age) {}
     virtual Person& operator=(Person& other) {
-		_prenom=other._prenom; _nom=other._nom; _age=other._age; _role=other._role;
+		_prenom=other._prenom; _nom=other._nom; _age=other._age;
 		return *this;
 	}
 
@@ -32,14 +31,36 @@ public:
 	virtual int getAge() { return _age;}
 	virtual void setAge(int nb){ _age = nb;}
 
+//----------------------------------------------------------------- methods for Person
+	virtual std::string obtenirNP()= 0;
+};
+
+
+
+class PersonStaff : public Person{
+
+protected:
+	Role            _role;
+
+public:
+	PersonStaff() {}
+    PersonStaff(std::string prenom,std::string nom, int age,Role role): Person(prenom, nom, age),_role(role){};
+    virtual ~PersonStaff() {}
+    PersonStaff(const PersonStaff& other) : Person(other), _role(other._role) {}
+    virtual PersonStaff& operator=(PersonStaff& other) {
+		Person *a, *b;
+		a = this;
+		b = &other;
+		*a = *b; _role=other._role;
+		return *this;
+	}
+
 //----------------------------------------------------------------- methods of role
 	virtual Role getRole() { return _role;}
 	virtual void setRole(Role choix){ _role = choix;}
 
-//----------------------------------------------------------------- methods for Person
-	std::string obtenirNP() { return _prenom+" "+_nom;}
-	virtual int getNumberOfTitre() {return 0;}
+	virtual std::string obtenirNP() { return _prenom+" "+_nom;}
+	virtual int getNumberOfTitre(){return 0;}
 };
-
 
 #endif

@@ -2,6 +2,7 @@
 #define ENTRAINEUR_H
 
 #include "person.h"
+#include "joueur.h"
 #include <vector>
 
 class Palmares;
@@ -9,7 +10,7 @@ class TitreGagne;
 
 typedef std::vector<Palmares*> VectorPal;
 
-class Entraineur : public Person{
+class Entraineur : public PersonStaff{
 
 protected:
     std::string _placeGrade;
@@ -32,6 +33,18 @@ public:
     void afficherTitreGagne();
     int getNumberOfTitre();
 
+};
+
+class Joueur_Entraineur : public Joueur, public Entraineur {
+public:
+	Joueur_Entraineur();
+    Joueur_Entraineur(std::string prenom,std::string nom, int age, double taille, double poids,std::string emplacementNaissance, std::string place);
+    virtual ~Joueur_Entraineur();
+    Joueur_Entraineur(const Joueur_Entraineur& other);
+    virtual Joueur_Entraineur& operator=(Joueur_Entraineur& other);
+
+//----------------------------------------------------------------- methods for Joueur
+	std::string obtenirNP() { return Joueur::obtenirNP();}
 };
 
 

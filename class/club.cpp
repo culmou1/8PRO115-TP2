@@ -81,7 +81,7 @@ void Club::CreerEntraineur(){
 	std::cout << std::endl << "//		LIEU D\'OBTENTION DU GRADE : "; std::cin >> placeGrade;
 
 	//Cree le nouveau entrainer et l'ajoute au staff du club
-	Person* trainer = new Entraineur(prenom, nom, age, placeGrade);
+	PersonStaff* trainer = new Entraineur(prenom, nom, age, placeGrade);
 	addStaffTechnique(trainer);
 	std::cout << "L\'entraineur " << trainer->obtenirNP() << " a ete cree et ajoute au staff du club " << _nom << "." << std::endl;
 }
@@ -200,11 +200,11 @@ VectorPrs* Club::getStaffTechnique() {
 		return &_staffTechnique;
 	}
 
-void Club::addStaffTechnique(Person *someone) {
+void Club::addStaffTechnique(PersonStaff *someone) {
 	_staffTechnique.push_back(someone);
 }
 
-void Club::deleteStaffTechnique(Person *someone){
+void Club::deleteStaffTechnique(PersonStaff *someone){
 	for (unsigned int i = 0; i< _staffTechnique.size();i++){
 		if (_staffTechnique[i]== someone){
 			delete _staffTechnique[i];

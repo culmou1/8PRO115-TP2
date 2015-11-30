@@ -439,9 +439,9 @@ void Ecran::ModifierJoueur(){
 		Joueur* pJoueur = pClub->rechercherJoueur(joueur);
 
 		if(pJoueur != NULL) {//Si le joueur existe
-			cout << endl << "//		AGE : "; EnterNumber(age);
-			cout << endl << "//		TAILLE : "; EnterNumber(taille);
-			cout << endl << "//		POIDS : "; EnterNumber(poids);
+			cout << endl << "|		AGE : "; EnterNumber(age);
+			cout << endl << "|		TAILLE : "; EnterNumber(taille);
+			cout << endl << "|		POIDS : "; EnterNumber(poids);
 
 			//Set les caracteristiques
 			pJoueur->setAge(age); pJoueur->setTaille(taille); pJoueur->setPoids(poids);

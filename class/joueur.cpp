@@ -12,9 +12,9 @@
 Joueur::Joueur() {}
 
 Joueur::Joueur(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance):
-        Person(prenom,nom,age,JOUEUR),_taille(taille),_poids(poids),_emplacementNaissance(emplacementNaissance) {}
+        Person(prenom,nom,age),_taille(taille),_poids(poids),_emplacementNaissance(emplacementNaissance) {}
 
-Joueur::Joueur(std::string prenom,std::string nom, int age):Person(prenom,nom,age,JOUEUR){ }
+Joueur::Joueur(std::string prenom,std::string nom, int age):Person(prenom,nom,age){ }
 
 //----------------------------------------------------------------- Destructeur
 Joueur::~Joueur(){
@@ -87,37 +87,6 @@ Joueur_Autonome& Joueur_Autonome::operator=(Joueur_Autonome& other) {
 	return *this;
 }
 
-//----------------------------------------------------------------- RompreSonContrat
-void Joueur_Autonome::RompreSonContrat(Contrat* leContrat){
-	std::string raisonDuDepart, choisirClub;
-    double penalite = 0.0;
-
-	std::cout << std::endl << "*******************ROMPRE LE CONTRAT DU JOUEUR*******************" << std::endl;
-
-	//Creation de la rupture
-	/*if(leContrat != NULL)
-	{
-        std::cout << std::endl <<  "//		RAISON DU DEPART : "; getline(std::cin,raisonDuDepart);
-        std::cout << std::endl <<  "//		PENALITE DE DEPART : "; std::cin >> penalite;
-		std::cout << std::endl << "//		CHOISIR NOUVELLE EQUIPE (ecrire en minuscule): ";  std::cin >> choisirClub; //choix de la couleur du Club
-
-		//Club *newClub = leContrat->getClubContractant()->getLigue()->rechercherClub(choisirClub);
-
-        // Construction de la rupture
-		//Rupture* newRupture = new Rupture(this,newClub,raisonDuDepart,penalite);
-		leContrat->getClubContractant()->addRuptureDeContrats(newRupture);
-		std::cout << "Le joueur " << obtenirNP() << " a rompu son contrat." << std::endl;
-
-		//Creation du nouveau contrat du joueur
-		leContrat->getClubContractant()->TransfertJoueur(obtenirNP(), newClub);
-
-	}
-    else
-	{
-		std::cout << "Le joueur " << obtenirNP() << " n'a pas de contrat." << std::endl;
-    }*/
-}
-
 //-------------------------------------Joueur_NonAutonome ------------------------------------
 //---------------------------------------------------------------------------------------------
 //----------------------------------------------------------------- Constructeurs
@@ -167,44 +136,10 @@ void Joueur_NonAutonome::getAvisFavorable(bool avis) {
 
 //----------------------------------------------------------------- DemandeDeTransfert
 bool Joueur_NonAutonome::DemandeDeTransfert(){
-		if (_anneeCumulee >= 3){ // Retourne vrai si la joueur a joué plus de 3 ans
-			_avisFavorable = true;
-			return _avisFavorable;
-        }
-        else return false;
+	if (_anneeCumulee >= 3){ // Retourne vrai si la joueur a joué plus de 3 ans
+		_avisFavorable = true;
+		return _avisFavorable;
     }
-
-//----------------------------------------------------------------- RompreSonContrat
-void Joueur_NonAutonome::RompreSonContrat(Contrat* leContrat){
-	std::string raisonDuDepart, choisirClub;
-    double penalite = 0.0;
-	std::cout << std::endl << "*******************ROMPRE LE CONTRAT DU JOUEUR*******************" << std::endl;
-	/*if(DemandeDeTransfert()){ //Verifie l'avis Favorable en fonction des annees cumulees
-		//Creation de la rupture
-		if(leContrat != NULL)
-		{
-			std::cout << std::endl <<  "//		RAISON DU DEPART : "; getline(std::cin,raisonDuDepart);
-			std::cout << std::endl <<  "//		PENALITE DE DEPART : "; std::cin >> penalite;
-			std::cout << std::endl << "//		CHOISIR NOUVELLE EQUIPE (ecrire en minuscule): ";  std::cin >> choisirClub;//choix de la couleur du Club
-
-			Club *newClub = leContrat->getClubContractant()->getLigue()->rechercherClub(choisirClub);
-
-			// Construction de la rupture
-			Rupture* newRupture = new Rupture(this,newClub,raisonDuDepart,penalite);
-			leContrat->getClubContractant()->addRuptureDeContrats(newRupture);
-			std::cout << "Le joueur " << obtenirNP() << " a rompu son contrat." << std::endl;
-
-			//Creation du nouveau contrat du joueur
-			leContrat->getClubContractant()->TransfertJoueur(this->obtenirNP(), newClub);
-
-		}
-		else
-		{
-			std::cout << "Le joueur " << obtenirNP() << " n'a pas de contrat." << std::endl;
-		}
-	}
-	else
-		std::cout << "Le joueur " << obtenirNP() << " n'a pas d'avis favorable." << std::endl;*/
+    else 
+		return false;
 }
-
-
