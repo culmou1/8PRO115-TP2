@@ -5,8 +5,8 @@
 const double pourcentJoueur = 0.002;
 
 /**
-  *
-  */
+ *  La classe Reglement comporte tout les regles lors d'un engagement avec un contrat
+ */
 class Reglement {
 
 private:
@@ -24,7 +24,7 @@ public:
 
     ~Reglement() {}
 
-    Reglement(const Reglement& other) : 
+    Reglement(const Reglement& other) :
 		_droitDuJoueur(other._droitDuJoueur), _montantDuTransfert(other._montantDuTransfert), _montantAncienClub(other._montantAncienClub), _montantJoueur(other._montantJoueur) {}
 
     Reglement& operator=(Reglement&& other) {

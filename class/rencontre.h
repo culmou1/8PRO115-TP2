@@ -8,8 +8,9 @@ class Calendrier;
 class Club;
 
 /**
-  *
-  */
+ *  Les rencontre contiennent des matchs, la date du match et les équipes
+ *	qui s'affronte
+ */
 class Rencontre {
 
 private:

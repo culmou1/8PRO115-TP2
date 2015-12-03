@@ -4,8 +4,9 @@
 #include "ligue.h"
 
 /**
-  *
-  */
+ *  La class Ecran s occupe de tout l affichage du logiciel.
+ * 	Elle Contient tout les méthdes d affichages
+ */
 class Ecran
 {
 	public:

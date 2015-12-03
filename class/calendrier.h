@@ -9,8 +9,8 @@ class Club;
 typedef std::vector<Rencontre*> 	VectorRen; // Une ensemble de vecteur de type Contrat
 
 /**
-  *
-  */
+ *  Le calendrier contient tout les rencontres entre les Clubs
+ */
 class Calendrier
 {
     VectorRen _rencontres;

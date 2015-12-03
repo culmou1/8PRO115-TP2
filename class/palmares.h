@@ -7,8 +7,9 @@
 class Club;
 
 /**
-  *
-  */
+ *  Un Palmares est un titre (une coupe, ou un championnat)
+ *  obtenu par un club a une certaine date donnee.
+ */
 class Palmares {
 
 protected:

@@ -11,10 +11,9 @@ class TitreGagne;
 typedef std::vector<Palmares*> VectorPal;
 
 /**
-	* Classe Entraineur charge de preparer physiquement, tactiquement, etc,
-	* son equipe pour les differentes rencontres
-	*@authors Gillian Chaville & Daehli Nadeau-Otis
-	*/
+ *  Un entraineur est chargé de préparer physiquement et tactiquement son équipe pour les différentes rencontres
+ *  L entraineur peut obtenir des titres
+ */
 class Entraineur : public PersonStaff{
 
 protected:
@@ -74,6 +73,10 @@ public:
     int getNumberOfTitre();
 
 };
+/**
+ *  Cette classe est une entite d héritage multiple entre un joueur et un entraineur
+ *  Classe Heritage Multiple
+ */
 
 /**
   * Classe Joueur_Entraineur issu de l'heritage multiple de Joueur et Entraineur. 

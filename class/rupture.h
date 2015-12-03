@@ -6,8 +6,11 @@ class Joueur;
 class Club;
 
 /**
-  *
-  */
+ *  Rupture, contient un Joueur qui rompte sont contrat
+ *	Le club qui obtient le joueur
+ *	Une raison de départ en string
+ *	Une somme d'argent 
+ */
 class Rupture {
 
 private:

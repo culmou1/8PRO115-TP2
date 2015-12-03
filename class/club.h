@@ -19,10 +19,11 @@ typedef std::vector<PersonStaff*>  	VectorPrs; // Une ensemble de vecteur de typ
 typedef std::vector<Joueur*>  		VectorJou; // Une ensemble de vecteur de type Joueur
 
 
-// Classe Club
 /**
-  *
-  */
+ *  Le club est une entite qui reprensente les caracteristiques qu une equipe
+ *	doit avoir
+ * 	Par Exemple: Un nom, Un histoire, Une Couleur, etc...
+ */
 class Club {
 
 private:

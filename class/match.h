@@ -11,8 +11,9 @@ class Periode;
 typedef std::vector<Periode*> 	VectorPer;
 
 /**
-  *
-  */
+ *  Les matchs contiennent les 2 équipes (locaux et visiteurs) le nombre de période
+ *	jouer et le résultat finale du matchs
+ */
 class Match {
 
 private:

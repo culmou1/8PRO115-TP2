@@ -5,8 +5,9 @@
 #include "club.h"
 
 /**
-  *
-  */
+ *  Un equipe est une entite qui fait parti d un club et qui contient des joueurs,
+ *	des gardiens et un capitaine
+ */
 class Equipe {
 
 private:

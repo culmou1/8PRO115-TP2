@@ -4,9 +4,15 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-#include <cstdlib> 
-#include <ctime> 
+#include <cstdlib>
+#include <ctime>
 #include <stdexcept>
+
+
+/**
+ *  Type pour les rôles
+ * 	@enum Tout les types de rôle dans une équipe de soccer
+ */
 
 enum Role {
 	JOUEUR,
@@ -17,6 +23,12 @@ enum Role {
     RECRUTEUR,
     INFIRMIER
 };
+
+
+/**
+ *  Type pour les dates
+ * 	@struct Jours, mois, années
+ */
 
 struct Date {
 public:// Format DD/MM/YYYY
@@ -72,9 +84,9 @@ public:// Format DD/MM/YYYY
 		  return std::to_string(tm_year);
 	  else if (tm_day < 10 && tm_month < 10)
 		return "0"+std::to_string(tm_day) + "-0" + std::to_string(tm_month) + "-" + std::to_string(tm_year);
-	  else if (tm_day < 10) 
+	  else if (tm_day < 10)
 		  return "0"+std::to_string(tm_day) + "-" + std::to_string(tm_month) + "-" + std::to_string(tm_year);
-	  else if (tm_month < 10) 
+	  else if (tm_month < 10)
 		  return std::to_string(tm_day) + "-0" + std::to_string(tm_month) + "-" + std::to_string(tm_year);
 	  else
 		  return std::to_string(tm_day) + "-" + std::to_string(tm_month) + "-" + std::to_string(tm_year);
@@ -89,6 +101,10 @@ int RandomInt(int max);
 
 typedef std::string Titre;
 
+/**
+ *  Type pour les Raison
+ * 	@enum: Certains raison de départ
+ */
 
 
 enum Raison {

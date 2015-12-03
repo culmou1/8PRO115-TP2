@@ -3,7 +3,7 @@
 #include "club.h"
 
 
-//---------------------------------------------------------------- Constructeur
+//----------------------------------------------------------------- Constructeur
 Contrat::Contrat() {}
 
 Contrat::Contrat(Joueur *joueurContractant,Club *clubContractant,Club *clubLibere, int duree,

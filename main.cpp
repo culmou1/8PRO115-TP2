@@ -4,8 +4,12 @@
 
 using namespace std;
 
+/**
+ *  Application de Départ
+ */
+
 int main(){
-	srand((unsigned)time(0)); 
+	srand((unsigned)time(0));
 	Application *app = new Application();
 
 
