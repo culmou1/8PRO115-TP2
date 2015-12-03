@@ -5,7 +5,7 @@
 #include "utils.h"
 
 
-//----------------------------------------------------------------- Constructeurs
+//---------------------------------------------------------------- Constructeurs
 Match::Match()  {}
 
 Match::Match(Club *home, Club *visitor) : _resultatFinal(RandomInt(8),RandomInt(8)) {
@@ -18,23 +18,23 @@ Match::Match(Club *home, Club *visitor, int butL, int butV) : _resultatFinal(but
 	_visiteurs = new Equipe(visitor, 18, 2, visitor->getEffectif()->at(0));
 }
 
-//----------------------------------------------------------------- Destructeur
+//---------------------------------------------------------------- Destructeur
 Match::~Match() {
 	delete _locaux;
 	delete _visiteurs;
 }
 
-//----------------------------------------------------------------- Constructeur de recopie
+//---------------------------------------------------------------- Constructeur de recopie
 Match::Match(const Match& other) :
 	_locaux(other._locaux), _visiteurs(other._visiteurs), _periodesJouees(other._periodesJouees), _resultatFinal(other._resultatFinal) {}
 
-//----------------------------------------------------------------- Operateur d'affectation
+//---------------------------------------------------------------- Operateur d'affectation
 Match& Match::operator=(Match&& other) {
 	_locaux=other._locaux; _visiteurs=other._visiteurs; _periodesJouees=other._periodesJouees; _resultatFinal=other._resultatFinal;
 	return *this;
 }
 
-//----------------------------------------------------------------- methods for Locaux
+//---------------------------------------------------------------- methods for Locaux
 Equipe* Match::getLocaux(){
     return _locaux;
 }
@@ -43,7 +43,7 @@ void Match::setLocaux(Equipe *home){
     _locaux = home;
 }
 
-//----------------------------------------------------------------- methods for Visiteurs
+//---------------------------------------------------------------- methods for Visiteurs
 Equipe* Match::getVisiteurs(){
     return _visiteurs;
 }
@@ -52,7 +52,7 @@ void Match::setVisiteurs(Equipe *stranger){
     _visiteurs = stranger;
 }
 
-//----------------------------------------------------------------- methods for periodesJouees
+//---------------------------------------------------------------- methods for periodesJouees
 VectorPer Match::getPeriodes() {
 	return _periodesJouees;
 }
@@ -64,7 +64,7 @@ void Match::setPeriodes(VectorPer half) {
 	}
 }
 
-//----------------------------------------------------------------- methods for resultat
+//---------------------------------------------------------------- methods for resultat
 Resultat Match::getResultat(){
 	return _resultatFinal;
 }
@@ -74,7 +74,7 @@ _resultatFinal.setButsLocaux(home);
 _resultatFinal.setButsVisiteurs(visitor);
 }
 
-//----------------------------------------------------------------- methods of Match
+//---------------------------------------------------------------- methods of Match
 void Match::obtenirResulatFinal() {
     int home=0, visitor=0;
     for (unsigned int i = 0; i <_periodesJouees.size(); i++) { // Regarde tout les periodes et additionne les resultats

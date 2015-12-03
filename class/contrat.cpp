@@ -3,7 +3,7 @@
 #include "club.h"
 
 
-//----------------------------------------------------------------- Constructeur
+//---------------------------------------------------------------- Constructeur
 Contrat::Contrat() {}
 
 Contrat::Contrat(Joueur *joueurContractant,Club *clubContractant,Club *clubLibere, int duree,
@@ -18,22 +18,22 @@ Contrat::Contrat(Joueur *joueurContractant,Club *clubContractant, int duree,
 				_joueurContractant(joueurContractant),_clubContractant(clubContractant), _clubLibere(NULL),_dureeContrat(duree),
 					_datedEntree(To_Date(datedEntree)),_dateDuContrat(To_Date(dateDuContrat)), _reglement(montant, droit) {}
 
-//----------------------------------------------------------------- Destructeur
+//---------------------------------------------------------------- Destructeur
 Contrat::~Contrat() {}
 
-//----------------------------------------------------------------- Constructeur de recopie
+//---------------------------------------------------------------- Constructeur de recopie
 Contrat::Contrat(const Contrat& other) :
 	_joueurContractant(other._joueurContractant), _clubContractant(other._clubContractant), _clubLibere(other._clubLibere),
 	_dureeContrat(other._dureeContrat), _datedEntree(other._datedEntree), _dateDuContrat(other._dateDuContrat), _reglement(other._reglement) {}
 
-//----------------------------------------------------------------- Operateur d'affectation
+//---------------------------------------------------------------- Operateur d'affectation
 Contrat& Contrat::operator=(Contrat&& other) {
 	_joueurContractant=other._joueurContractant; _clubContractant=other._clubContractant; _clubLibere=other._clubLibere;
 	_dureeContrat=other._dureeContrat; _datedEntree=other._datedEntree; _dateDuContrat=other._dateDuContrat; _reglement=other._reglement;
 	return *this;
 }
 
-//----------------------------------------------------------------- methods for joueurContractant
+//---------------------------------------------------------------- methods for joueurContractant
 Joueur* Contrat::getJoueurContractant() {
     return _joueurContractant;
 }
@@ -42,7 +42,7 @@ void Contrat::setJoueurContractant(Joueur *newbie) {
     _joueurContractant = newbie;
 }
 
-//----------------------------------------------------------------- methods for clubContractant
+//---------------------------------------------------------------- methods for clubContractant
 Club* Contrat::getClubContractant() {
     return _clubContractant;
 }
@@ -51,7 +51,7 @@ void Contrat::setClubContractant(Club *new_club) {
     _clubContractant = new_club;
 }
 
-//----------------------------------------------------------------- methods for clubLibere
+//---------------------------------------------------------------- methods for clubLibere
 Club* Contrat::getClubLibere() {
     return _clubLibere;
 }
@@ -60,7 +60,7 @@ void Contrat::setClubLibere(Club *old_club) {
     _clubLibere = old_club;
 }
 
-//----------------------------------------------------------------- methods for dureeContrat
+//---------------------------------------------------------------- methods for dureeContrat
 int Contrat::getDureeContrat() {
     return _dureeContrat;
 }
@@ -69,7 +69,7 @@ void Contrat::setDureeContrat(int duree) {
     _dureeContrat = duree;
 }
 
-//----------------------------------------------------------------- methods for datedEntree
+//---------------------------------------------------------------- methods for datedEntree
 Date Contrat::getDatedEntree() {
     return _datedEntree;
 }
@@ -78,7 +78,7 @@ void Contrat::setDatedEntree(Date entree) {
     _datedEntree = entree;
 }
 
-//----------------------------------------------------------------- methods for dateDuContrat
+//---------------------------------------------------------------- methods for dateDuContrat
 Date Contrat::getDateDuContrat() {
     return _dateDuContrat;
 }
@@ -89,7 +89,7 @@ _dateDuContrat.tm_month = m_month;
 _dateDuContrat.tm_year = y_year;
 }
 
-//----------------------------------------------------------------- methods of reglement
+//---------------------------------------------------------------- methods of reglement
 Reglement* Contrat::getReglement() {
 	return &_reglement;
 }

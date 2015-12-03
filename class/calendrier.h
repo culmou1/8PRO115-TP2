@@ -8,6 +8,9 @@ class Club;
 
 typedef std::vector<Rencontre*> 	VectorRen; // Une ensemble de vecteur de type Contrat
 
+/**
+  *
+  */
 class Calendrier
 {
     VectorRen _rencontres;
@@ -17,7 +20,7 @@ public:
     Calendrier(const Calendrier& other);
     Calendrier& operator=(Calendrier&& other);
 
-//----------------------------------------------------------------- methods for rencontres
+//---------------------------------------------------------------- methods for rencontres
     VectorRen *getRencontres();
 	void addRencontre(Rencontre* game);
 

@@ -3,6 +3,10 @@
 
 #include "utils.h"
 
+/**
+  * Classe virtuelle Person contient le nom, le prenom et l'age de chaque instance de Joueur et PersonStaff 
+  *@authors Gillian Chaville & Daehli Nadeau-Otis
+  */
 class Person {
 
 protected:
@@ -20,23 +24,25 @@ public:
 		return *this;
 	}
 
-//----------------------------------------------------------------- methods of prenom
+//---------------------------------------------------------------- methods of prenom
     virtual std::string getPrenom(){ return _prenom;}
 	virtual void setPrenom(std::string firstName){ _prenom = firstName;}
 
-//----------------------------------------------------------------- methods of nom
+//---------------------------------------------------------------- methods of nom
     virtual std::string getNom(){ return _nom;}
     virtual void setNom(std::string lastName){ _nom = lastName;}
-//----------------------------------------------------------------- methods of age
+//---------------------------------------------------------------- methods of age
 	virtual int getAge() { return _age;}
 	virtual void setAge(int nb){ _age = nb;}
 
-//----------------------------------------------------------------- methods for Person
+//---------------------------------------------------------------- methods for Person
 	virtual std::string obtenirNP()= 0;
 };
 
 
-
+/**
+  *
+  */
 class PersonStaff : public Person{
 
 protected:
@@ -55,7 +61,7 @@ public:
 		return *this;
 	}
 
-//----------------------------------------------------------------- methods of role
+//---------------------------------------------------------------- methods of role
 	virtual Role getRole() { return _role;}
 	virtual void setRole(Role choix){ _role = choix;}
 

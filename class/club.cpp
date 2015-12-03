@@ -9,13 +9,13 @@
 #include <iostream>
 #include <string>
 
-//----------------------------------------------------------------- Constructeur
+//---------------------------------------------------------------- Constructeur
 Club::Club(std::string name, std::string history, std::string color, std::string address, std::string town, std::string year) {
 	_nom = name; _histoireDuClub = history; _couleurDuClub = color;
 	_adresseDuClub = address;_villeDuClub = town; _anneeDeCreation = To_Date(year);
 }
 
-//----------------------------------------------------------------- Destructeur
+//---------------------------------------------------------------- Destructeur
 Club::~Club() {
 	std::cout << "CARACTERISTIQUES DU CLUB " << _nom << " : " << std::endl;
 	std::cout << "-		COULEUR : " << _couleurDuClub << std::endl;
@@ -57,19 +57,19 @@ Club::~Club() {
 	_rupturesDeContrats.clear();
 }
 
-//----------------------------------------------------------------- Constructeur de recopie
+//---------------------------------------------------------------- Constructeur de recopie
 Club::Club(const Club& other) : _nom(other._nom), _histoireDuClub(other._histoireDuClub), _couleurDuClub(other._couleurDuClub), _adresseDuClub(other._adresseDuClub),
 	_villeDuClub(other._villeDuClub), _anneeDeCreation(other._anneeDeCreation), _effectif(other._effectif), _staffTechnique(other._staffTechnique),
 	_unPalmares(other._unPalmares), _contratsdEngagement(other._contratsdEngagement), _rupturesDeContrats(other._rupturesDeContrats) {}
 
-//----------------------------------------------------------------- Operateur d'affectation
+//---------------------------------------------------------------- Operateur d'affectation
 Club& Club::operator=(Club&& other) {
 	_nom = other._nom; _villeDuClub=other._villeDuClub; _anneeDeCreation=other._anneeDeCreation; _effectif=other._effectif; _staffTechnique=other._staffTechnique;
 	_unPalmares=other._unPalmares; _contratsdEngagement=other._contratsdEngagement; _rupturesDeContrats=other._rupturesDeContrats;
 	return *this;
 }
 
-//----------------------------------------------------------------- CreerEntraineur
+//---------------------------------------------------------------- CreerEntraineur
 void Club::CreerEntraineur(){
 	std::string nom, prenom, placeGrade;
 	int age;
@@ -86,7 +86,7 @@ void Club::CreerEntraineur(){
 	std::cout << "L\'entraineur " << trainer->obtenirNP() << " a ete cree et ajoute au staff du club " << _nom << "." << std::endl;
 }
 
-//----------------------------------------------------------------- methods for _nomDuClub
+//---------------------------------------------------------------- methods for _nomDuClub
 std::string Club::getNomDuClub() {
 	return _nom;
 }
@@ -95,7 +95,7 @@ void Club::setNomDuClub(std::string name) {
 	_nom = name;
 }
 
-//----------------------------------------------------------------- methods for _histoireDuClub
+//---------------------------------------------------------------- methods for _histoireDuClub
 std::string Club::getHistoireDuClub() {
 	return _histoireDuClub;
 }
@@ -105,7 +105,7 @@ void Club::setHistoireDuClub(std::string history) {
 }
 
 
-//----------------------------------------------------------------- methods for _couleurDuClub
+//---------------------------------------------------------------- methods for _couleurDuClub
 std::string Club::getCouleurDuClub() {
 	return _couleurDuClub;
 }
@@ -114,7 +114,7 @@ void Club::setCouleurDuClub(std::string color) {
 	_couleurDuClub = color;
 }
 
-//----------------------------------------------------------------- methods for _villeDuClub
+//---------------------------------------------------------------- methods for _villeDuClub
 std::string Club::getVilleDuClub() {
 	return _villeDuClub;
 }
@@ -123,7 +123,7 @@ void Club::setVilleDuClub(std::string town) {
 	_villeDuClub = town;
 }
 
-//----------------------------------------------------------------- methods for _villeDuClub
+//---------------------------------------------------------------- methods for _villeDuClub
 std::string Club::getAdresseDuClub() {
 	return _adresseDuClub;
 }
@@ -132,7 +132,7 @@ void Club::setAdresseDuClub(std::string address) {
 	_adresseDuClub = address;
 }
 
-//----------------------------------------------------------------- methods for _anneeDeCreation
+//---------------------------------------------------------------- methods for _anneeDeCreation
 Date Club::getAnneeDeCreation() {
 	return _anneeDeCreation;
 }
@@ -141,7 +141,7 @@ void Club::setAnneeDeCreation (Date year) {
 	_anneeDeCreation = year;
 }
 
-//----------------------------------------------------------------- methods for _effectif
+//---------------------------------------------------------------- methods for _effectif
 
 VectorJou* Club::getEffectif() {
 	return &_effectif;
@@ -175,7 +175,7 @@ Joueur* Club::rechercherJoueur(std::string joueur){
 	return NULL;
 }
 
-//----------------------------------------------------------------- methods for _unPalmares
+//---------------------------------------------------------------- methods for _unPalmares
 VectorPal* Club::getUnPalmares() {
 	return &_unPalmares;
 }
@@ -195,7 +195,7 @@ int Club::getNumberOfTitre() {
 	return (int)_unPalmares.size();
 }
 
-//----------------------------------------------------------------- methods for _staffTechnique
+//---------------------------------------------------------------- methods for _staffTechnique
 VectorPrs* Club::getStaffTechnique() {
 		return &_staffTechnique;
 	}
@@ -220,7 +220,7 @@ void Club::setStaffTechnique(VectorPrs staff) {
 	}
 }
 
-//----------------------------------------------------------------- methods for _contratsdEngagement
+//---------------------------------------------------------------- methods for _contratsdEngagement
 VectorCon* Club::getContratdEngagement() {
 		return &_contratsdEngagement;
 	}
@@ -254,7 +254,7 @@ Contrat* Club::rechercherContratdEngagement(Joueur *joueur){
 	return NULL;
 }
 
-//----------------------------------------------------------------- methods for _rupturesDeContrats
+//---------------------------------------------------------------- methods for _rupturesDeContrats
 VectorRup* Club::getRupturesDeContrats() {
 		return &_rupturesDeContrats;
 	}

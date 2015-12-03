@@ -17,6 +17,9 @@
 #include "class/palmares.h"
 #include "class/rencontre.h"
 
+/**
+  *
+  */
 class Application {
 public:
 	Ecran screen;

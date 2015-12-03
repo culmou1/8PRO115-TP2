@@ -4,6 +4,9 @@
 #include "person.h"
 #include "club.h"
 
+/**
+  *
+  */
 class Equipe {
 
 private:
@@ -24,7 +27,9 @@ public:
 		return *this;
 	}
 
-//----------------------------------------------------------------- methods for club
+/**
+  * @params methods of club
+  */
     Club *getClub(){
     	return _club;
     }
@@ -33,7 +38,9 @@ public:
     	_club = team;
     }
 
-//----------------------------------------------------------------- methods for nbrJoueurs
+/**
+  * @params methods of nbrJoueurs
+  */
 	int getNbrJoueur(){
 		return _nbrJoueurs;
 	}
@@ -42,7 +49,9 @@ public:
 		_nbrJoueurs = nbr;
 	}
 
-//----------------------------------------------------------------- methods for nbrGardiens
+/**
+  * @params methods of nbrGardiens
+  */
 	int getNbrGardiens(){
 		return _nbrGardiens;
 	}
@@ -51,7 +60,9 @@ public:
 		_nbrGardiens = nbr;
 	}
 
-//----------------------------------------------------------------- methods for nbrGardiens
+/**
+  * @params methods of captaine
+  */
 	Joueur *getCapitaine(){
 		return _capitaine;
 	}

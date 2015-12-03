@@ -7,8 +7,8 @@
 #include "joueur.h"
 
 //----------------------------------------- Joueur -----------------------------------------
-//-------------------------------------------------------------------------------------------
-//----------------------------------------------------------------- Constructeurs
+//------------------------------------------------------------------------------------------
+//---------------------------------------------------------------- Constructeurs
 Joueur::Joueur() {}
 
 Joueur::Joueur(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance):
@@ -16,7 +16,7 @@ Joueur::Joueur(std::string prenom,std::string nom, int age,double taille,double 
 
 Joueur::Joueur(std::string prenom,std::string nom, int age):Person(prenom,nom,age){ }
 
-//----------------------------------------------------------------- Destructeur
+//---------------------------------------------------------------- Destructeur
 Joueur::~Joueur(){
 	std::cout << "CARACTERISTIQUES DU JOUEUR " << obtenirNP() << " : " << std::endl;
 	std::cout << "-		AGE : " << _age << " ans" << std::endl;
@@ -24,11 +24,11 @@ Joueur::~Joueur(){
 	std::cout << "-		POIDS : "<< _poids << "kg" << std::endl;
 }
 
-//----------------------------------------------------------------- Constructeur de recopie
+//---------------------------------------------------------------- Constructeur de recopie
  Joueur::Joueur(const Joueur& other) :
 		Person(other), _taille(other._taille), _poids(other._poids), _emplacementNaissance(other._emplacementNaissance) {}
 
-//----------------------------------------------------------------- Operateur d'affectation
+//---------------------------------------------------------------- Operateur d'affectation
 Joueur& Joueur::operator=(Joueur& other) {
 	Person *a, *b;
 	a = this;
@@ -37,7 +37,7 @@ Joueur& Joueur::operator=(Joueur& other) {
 	return *this;
 }
 
-//----------------------------------------------------------------- methods for Taille
+//---------------------------------------------------------------- methods for Taille
 double Joueur::getTaille(){
     return _taille;
 }
@@ -46,7 +46,7 @@ void Joueur::setTaille(double grandeur){
     _taille = grandeur;
 }
 
-//----------------------------------------------------------------- methods of poids
+//---------------------------------------------------------------- methods of poids
 double Joueur::getPoids(){
     return _poids;
 }
@@ -55,7 +55,7 @@ void Joueur::setPoids(double grosseur){
     _poids = grosseur;
 }
 
-//----------------------------------------------------------------- methods of emplacementNaissance
+//---------------------------------------------------------------- methods of emplacementNaissance
 std::string Joueur::getEmplacementNaissance(){
     return _emplacementNaissance;
 }
@@ -65,20 +65,20 @@ void Joueur::setEmplacementNaissance(std::string birthPlace){
 }
 
 //-------------------------------------- Joueur_Autonome -------------------------------------
-//---------------------------------------------------------------------------------------------
-//----------------------------------------------------------------- Constructeurs
+//--------------------------------------------------------------------------------------------
+//---------------------------------------------------------------- Constructeurs
 Joueur_Autonome::Joueur_Autonome() {}
 	
 Joueur_Autonome::Joueur_Autonome(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance):
 				Joueur(prenom, nom, age, taille, poids, emplacementNaissance) {}
 
-//----------------------------------------------------------------- Destructeur
+//---------------------------------------------------------------- Destructeur
 Joueur_Autonome::~Joueur_Autonome() {}
 
-//----------------------------------------------------------------- Constructeur de recopie
+//---------------------------------------------------------------- Constructeur de recopie
 Joueur_Autonome::Joueur_Autonome(const Joueur_Autonome& other) : Joueur(other) {}
 
-//----------------------------------------------------------------- Operateur d'affectation
+//---------------------------------------------------------------- Operateur d'affectation
 Joueur_Autonome& Joueur_Autonome::operator=(Joueur_Autonome& other) {
 	Joueur *a, *b;
 	a = this;
@@ -88,8 +88,8 @@ Joueur_Autonome& Joueur_Autonome::operator=(Joueur_Autonome& other) {
 }
 
 //-------------------------------------Joueur_NonAutonome ------------------------------------
-//---------------------------------------------------------------------------------------------
-//----------------------------------------------------------------- Constructeurs
+//--------------------------------------------------------------------------------------------
+//---------------------------------------------------------------- Constructeurs
 Joueur_NonAutonome::Joueur_NonAutonome() {}
 
 // Avec AnneeCumulee
@@ -100,14 +100,14 @@ Joueur_NonAutonome::Joueur_NonAutonome(std::string prenom,std::string nom, int a
 Joueur_NonAutonome::Joueur_NonAutonome(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance):
     Joueur(prenom, nom, age, taille, poids, emplacementNaissance), _anneeCumulee(0),_avisFavorable(false) {}
 
-//----------------------------------------------------------------- Destructeur
+//---------------------------------------------------------------- Destructeur
 Joueur_NonAutonome::~Joueur_NonAutonome() {}
 
-//----------------------------------------------------------------- Constructeur de recopie
+//---------------------------------------------------------------- Constructeur de recopie
 Joueur_NonAutonome::Joueur_NonAutonome(const Joueur_NonAutonome& other) :
 	Joueur(other), _anneeCumulee(other._anneeCumulee), _avisFavorable(other._avisFavorable) {}
 
-//----------------------------------------------------------------- Operateur d'affectation
+//---------------------------------------------------------------- Operateur d'affectation
 Joueur_NonAutonome& Joueur_NonAutonome::operator=(Joueur_NonAutonome& other) {
 	Joueur *a, *b;
 	a = this;
@@ -116,7 +116,7 @@ Joueur_NonAutonome& Joueur_NonAutonome::operator=(Joueur_NonAutonome& other) {
 	return *this;
 }
 
-//----------------------------------------------------------------- methods for AnneeCumulee
+//---------------------------------------------------------------- methods for AnneeCumulee
 int Joueur_NonAutonome::getAnneeCumulee() {
 	return _anneeCumulee;
 }
@@ -125,7 +125,7 @@ void Joueur_NonAutonome::setAnneeCumulee(int annee) {
 	_anneeCumulee = annee;
 }
 
-//----------------------------------------------------------------- methods for avisFavorable
+//---------------------------------------------------------------- methods for avisFavorable
 bool Joueur_NonAutonome::getAvisFavorable(){
 	return _avisFavorable;
 }
@@ -134,9 +134,9 @@ void Joueur_NonAutonome::getAvisFavorable(bool avis) {
 	_avisFavorable = avis;
 }
 
-//----------------------------------------------------------------- DemandeDeTransfert
+//---------------------------------------------------------------- DemandeDeTransfert
 bool Joueur_NonAutonome::DemandeDeTransfert(){
-	if (_anneeCumulee >= 3){ // Retourne vrai si la joueur a joué plus de 3 ans
+	if (_anneeCumulee >= 3){ // Retourne vrai si la joueur a joue plus de 3 ans
 		_avisFavorable = true;
 		return _avisFavorable;
     }

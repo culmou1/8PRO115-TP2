@@ -1,13 +1,13 @@
 #include "entraineur.h"
 #include "palmares.h"
 
-//----------------------------------------------------------------- Constructeurs
+//---------------------------------------------------------------- Constructeurs
 Entraineur::Entraineur() {}
 
 Entraineur::Entraineur(std::string prenom,std::string nom, int age, std::string place) :
 	PersonStaff(prenom, nom, age, ENTRAINEUR), _placeGrade(place) {}
 
-//----------------------------------------------------------------- Destructeur
+//---------------------------------------------------------------- Destructeur
 Entraineur::~Entraineur() {
 	//Suppression des _titreGagne
 	for (unsigned int i=0; i <_titreGagne.size(); i++) {
@@ -16,11 +16,11 @@ Entraineur::~Entraineur() {
 	_titreGagne.clear();
 }
 
-//----------------------------------------------------------------- Constructeur de recopie
+//---------------------------------------------------------------- Constructeur de recopie
 Entraineur::Entraineur(const Entraineur& other) :
 	PersonStaff(other), _placeGrade(other._placeGrade), _titreGagne(other._titreGagne) {}
 
-//----------------------------------------------------------------- Operateur d'affectation
+//---------------------------------------------------------------- Operateur d'affectation
 Entraineur& Entraineur::operator=(Entraineur& other) {
 	PersonStaff *a, *b;
 	a = this;
@@ -29,7 +29,7 @@ Entraineur& Entraineur::operator=(Entraineur& other) {
 	return *this;
 }
 
-//----------------------------------------------------------------- methods of placeGrade
+//---------------------------------------------------------------- methods of placeGrade
 std::string Entraineur::getPlaceGrade(){
     return _placeGrade;
 }
@@ -38,17 +38,17 @@ void Entraineur::setPlaceGrade(std::string Grade){
 	_placeGrade = Grade;
 }
 
-//----------------------------------------------------------------- methods of TitresGagnes
+//---------------------------------------------------------------- methods of TitresGagnes
 VectorPal Entraineur::getTitreGagne() {
 	return _titreGagne;
 }
 
-//-----------------------------------------------------------------addTitreGagne
+//----------------------------------------------------------------addTitreGagne
 void Entraineur::addTitreGagne(TitreGagne* titre) {
 	_titreGagne.push_back(titre);
 }
 
-//-----------------------------------------------------------------afficherTitreGagne
+//----------------------------------------------------------------afficherTitreGagne
 void Entraineur::afficherTitreGagne(){
 	std::cout << std::endl <<"*******************LISTE DES TITRES DE L\'ENTRAINEUR******************* " << std::endl;
     for (unsigned int i = 0; i < _titreGagne.size();i++){
@@ -56,26 +56,26 @@ void Entraineur::afficherTitreGagne(){
     }
 }
 
-//-----------------------------------------------------------------getNumberOfTitre
+//----------------------------------------------------------------getNumberOfTitre
 int Entraineur::getNumberOfTitre(){
     return (int)_titreGagne.size(); // Retourne le nombre de titre
 }
 
-//----------------------------------------------------------------- Constructeurs
+//---------------------------------------------------------------- Constructeurs
 Joueur_Entraineur::Joueur_Entraineur() {}
 
 Joueur_Entraineur::Joueur_Entraineur(std::string prenom,std::string nom, int age, double taille, 
 									 double poids,std::string emplacementNaissance, std::string place) :
 	Entraineur(prenom, nom, age, place), Joueur(prenom, nom, age, taille, poids, emplacementNaissance) {}
 
-//----------------------------------------------------------------- Destructeur
+//---------------------------------------------------------------- Destructeur
 Joueur_Entraineur::~Joueur_Entraineur() {}
 
-//----------------------------------------------------------------- Constructeur de recopie
+//---------------------------------------------------------------- Constructeur de recopie
 Joueur_Entraineur::Joueur_Entraineur(const Joueur_Entraineur& other) :
 	Entraineur(other), Joueur(other) {}
 
-//----------------------------------------------------------------- Operateur d'affectation
+//---------------------------------------------------------------- Operateur d'affectation
 Joueur_Entraineur& Joueur_Entraineur::operator=(Joueur_Entraineur& other) {
 	/*Entraineur a, *b; Joueur *c, *d;
 	a = this;

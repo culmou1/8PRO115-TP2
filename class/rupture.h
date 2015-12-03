@@ -5,6 +5,9 @@
 class Joueur;
 class Club;
 
+/**
+  *
+  */
 class Rupture {
 
 private:
@@ -29,7 +32,7 @@ public:
 		return *this;
 	}
 
-//----------------------------------------------------------------- methods for joueurRelaxant
+//---------------------------------------------------------------- methods for joueurRelaxant
     Joueur* getJoueurRelaxant() {
     	return _joueurRelaxant;
     }
@@ -38,7 +41,7 @@ public:
     	_joueurRelaxant = newbie;
     }
 
-//----------------------------------------------------------------- methods for clubContractant
+//---------------------------------------------------------------- methods for clubContractant
     Club* getClubContractant() {
     	return _clubContractant;
     }
@@ -46,7 +49,7 @@ public:
     void setClubContractant(Club *new_club) {
     	_clubContractant = new_club;
     }
-//----------------------------------------------------------------- methods for raisonsDuDepart
+//---------------------------------------------------------------- methods for raisonsDuDepart
     std::string getRaisonsDuDepart() {
     	return _raisonsDuDepart;
     }
@@ -55,7 +58,7 @@ public:
     	_raisonsDuDepart = raisons;
     }
 
-//----------------------------------------------------------------- methods for penalite
+//---------------------------------------------------------------- methods for penalite
     double getPenalite() {
     	return _penalite;
     }

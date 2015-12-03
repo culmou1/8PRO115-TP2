@@ -6,6 +6,9 @@
 
 class Club;
 
+/**
+  *
+  */
 class Palmares {
 
 protected:
@@ -22,7 +25,7 @@ public:
 		_date=other._date; _titre=other._titre;
 		return *this;
 	}
-//----------------------------------------------------------------- methods of date
+//---------------------------------------------------------------- methods of date
     Date getDate(){
         return _date;
     }
@@ -32,7 +35,7 @@ public:
         _date.tm_year = year;
     }
 
-//----------------------------------------------------------------- methods of titre
+//---------------------------------------------------------------- methods of titre
     Titre getTitre(){
         return _titre;
     }
@@ -41,6 +44,9 @@ public:
     }
 };
 
+/**
+  *
+  */
 class TitreGagne : public Palmares {
 
 private:
@@ -61,7 +67,7 @@ public:
 		return *this;
 	}
 
-//----------------------------------------------------------------- methods of club
+//---------------------------------------------------------------- methods of club
     Club *getClub() {
         return _club;
     }

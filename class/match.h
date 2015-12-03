@@ -10,6 +10,9 @@ class Periode;
 
 typedef std::vector<Periode*> 	VectorPer;
 
+/**
+  *
+  */
 class Match {
 
 private:
@@ -26,22 +29,22 @@ public:
     Match(const Match& other);
     Match& operator=(Match&& other);
 
-//----------------------------------------------------------------- methods for Locaux
+//---------------------------------------------------------------- methods for Locaux
     Equipe *getLocaux();
 	void setLocaux(Equipe *home);
-//----------------------------------------------------------------- methods for Visiteurs
+//---------------------------------------------------------------- methods for Visiteurs
     Equipe *getVisiteurs();
     void setVisiteurs(Equipe *stranger);
 
-//----------------------------------------------------------------- methods for periodesJouees
+//---------------------------------------------------------------- methods for periodesJouees
 	VectorPer getPeriodes();
 
 	void setPeriodes(VectorPer half);
-//----------------------------------------------------------------- methods for resultat
+//---------------------------------------------------------------- methods for resultat
 	Resultat getResultat();
 	void setResulat(int home, int visitor);
 
-//----------------------------------------------------------------- methods of Match
+//---------------------------------------------------------------- methods of Match
 	void obtenirResulatFinal();
 
 };

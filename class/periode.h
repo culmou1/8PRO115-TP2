@@ -3,6 +3,9 @@
 
 #include "resultat.h"
 
+/**
+  *
+  */
 class Periode {
 
 private:
@@ -19,7 +22,7 @@ public:
 		return *this;
 	}
 
-//----------------------------------------------------------------- methods for dureePeriode
+//---------------------------------------------------------------- methods for dureePeriode
 	int getDureePeriode() {
 		return dureePeriode;
 	}
@@ -28,7 +31,7 @@ public:
 		dureePeriode = time;
 	}
 
-//----------------------------------------------------------------- methods for score
+//---------------------------------------------------------------- methods for score
 	Resultat getScore() {
 		return resultat;
 	}

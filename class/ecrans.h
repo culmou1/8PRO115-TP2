@@ -3,6 +3,9 @@
 
 #include "ligue.h"
 
+/**
+  *
+  */
 class Ecran
 {
 	public:

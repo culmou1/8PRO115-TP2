@@ -4,12 +4,12 @@
 #include "person.h"
 #include "rencontre.h"
 
-//----------------------------------------------------------------- Constructeur
+//---------------------------------------------------------------- Constructeur
 Ligue::Ligue() {
 	_calendrier = new Calendrier;
 }
 
-//----------------------------------------------------------------- Destructeur
+//---------------------------------------------------------------- Destructeur
 // Singleton
 Ligue* Ligue::instance = NULL;
 
@@ -31,32 +31,32 @@ Ligue* Ligue::getInstance() {
 	return instance;
 }
 
-//----------------------------------------------------------------- Constructeur de recopie
+//---------------------------------------------------------------- Constructeur de recopie
 Ligue::Ligue(const Ligue& other) : _clubs(other._clubs), _calendrier(other._calendrier) {}
 
-//----------------------------------------------------------------- Operateur d'affectation
+//---------------------------------------------------------------- Operateur d'affectation
 Ligue& Ligue::operator=(Ligue&& other) {
 	_clubs=other._clubs; _calendrier=other._calendrier;
 	return *this;
 }
 
-//----------------------------------------------------------------- methods for _clubs
+//---------------------------------------------------------------- methods for _clubs
 VectorClub* Ligue::getClubs() {
 	return &_clubs;
 }
 
-//----------------------------------------------------------------- methods for _calendrier
+//---------------------------------------------------------------- methods for _calendrier
 VectorRen* Ligue::getCalendrier() {
 	return _calendrier->getRencontres();
 }
 
-//----------------------------------------------------------------- addClub
+//---------------------------------------------------------------- addClub
 void Ligue::addClub(Club* clubs) {
 	//Ajoute un club et son calendrier a la ligue
 	_clubs.push_back(clubs);
 }
 
-//----------------------------------------------------------------- rechercherClub
+//---------------------------------------------------------------- rechercherClub
 Club* Ligue::rechercherClub(std::string nom) {
 	for (unsigned int i=0; i<_clubs.size(); i++) {
 		if(_clubs[i]->getNomDuClub() == nom)
@@ -65,7 +65,7 @@ Club* Ligue::rechercherClub(std::string nom) {
 	return NULL;
 }
 
-//----------------------------------------------------------------- addCalendrier
+//---------------------------------------------------------------- addCalendrier
 void Ligue::addCalendrier(Rencontre* match) {
 	_calendrier->addRencontre(match);
 }

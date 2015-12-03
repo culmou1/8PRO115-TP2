@@ -7,6 +7,9 @@
 class Calendrier;
 class Club;
 
+/**
+  *
+  */
 class Rencontre {
 
 private:
@@ -22,23 +25,23 @@ public:
 	Rencontre(const Rencontre& other);
     Rencontre& operator=(Rencontre&& other);
 
-//----------------------------------------------------------------- methods for Locaux
+//---------------------------------------------------------------- methods for Locaux
     Club *getLocaux();
 	void setLocaux(Club *home);
 
-//----------------------------------------------------------------- methods for Visiteurs
+//---------------------------------------------------------------- methods for Visiteurs
     Club *getVisiteurs();
     void setVisiteurs(Club *stranger);
 
-//----------------------------------------------------------------- methods for match
+//---------------------------------------------------------------- methods for match
 	Match* getMatch();
 	void setMatch(Match *game);
 	void setMatch(Club* home, Club* away);
-//----------------------------------------------------------------- methods for dateDeRencontre
+//---------------------------------------------------------------- methods for dateDeRencontre
 	Date getDate();
 	void setDate(std::string date);
 
-//----------------------------------------------------------------- methods of Rencontre
+//---------------------------------------------------------------- methods of Rencontre
 	std::string getResultat();
 
 };

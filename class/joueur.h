@@ -4,6 +4,10 @@
 #include "person.h"
 class Contrat;
 
+/**
+  * Classe Joueur contient la taille, le poids et l'emplacement de naissance de chaque instance de Joueur_Autonome et Joueur_NonAutonome 
+  *@authors Gillian Chaville & Daehli Nadeau-Otis
+  */
 class Joueur : public Person {
 
 protected:
@@ -12,42 +16,108 @@ protected:
     std::string _emplacementNaissance;
 
 public:
+/**
+* @params Constructeur par defaut
+*/
 	Joueur();
+/**
+* @params Constructeur avec lieu de naissance
+*/
 	Joueur(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance);
+/**
+* @params Constructeur sans lieu de naissance
+*/
     Joueur(std::string prenom,std::string nom, int age);
+/**
+* @params Destructeur
+*/
 	virtual ~Joueur();
+/**
+* @params Constructeur de recopie
+*/
 	Joueur(const Joueur& other);
+/**
+* @params Operateur d'affectation
+*/
     virtual Joueur& operator=(Joueur& other);
 
-//----------------------------------------------------------------- methods for Taille
+//---------------------------------------------------------------- methods for Taille
+/**
+* @params Retrourne la taille
+*/
     double getTaille();
+/**
+* @params Modifie la taille 
+*/
     void setTaille(double grandeur);
 
-//----------------------------------------------------------------- methods of poids
+//---------------------------------------------------------------- methods of poids
+/**
+* @params Retrourne le poids
+*/
     double getPoids();
+/**
+* @params Modifie le poids
+*/
     void setPoids(double grosseur);
 
-//----------------------------------------------------------------- methods of emplacementNaissance
+//---------------------------------------------------------------- methods of emplacementNaissance
+/**
+* @params Retrourne l'emplacement de naissance
+*/
     std::string getEmplacementNaissance();
+/**
+* @params Modifie l'emplacement de naissance
+*/
     void setEmplacementNaissance(std::string birthPlace);
 
-//----------------------------------------------------------------- methods for Joueur
+//---------------------------------------------------------------- methods for Joueur
+/**
+* @params Recupere le nom et le prenom
+*/
 	virtual std::string obtenirNP() { return _prenom+" "+_nom;}
 
 };
 
-
+/**
+  * Classe Joueur_Autonome qui peut decider de rompre son contrat
+  * d’engagement avec son ancien club à tout moment, moyennant une
+  * penalite.
+  *@authors Gillian Chaville & Daehli Nadeau-Otis
+  */
 class Joueur_Autonome : public Joueur{
 
 public:
+/**
+* @params Constructeur par defaut
+*/
 	Joueur_Autonome();
+/**
+* @params Constructeur
+*/
 	Joueur_Autonome(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance);
+/**
+* @params Destructeur
+*/
     virtual ~Joueur_Autonome();
+/**
+* @params Constructeur de recopie
+*/
 	Joueur_Autonome(const Joueur_Autonome& other);
+/**
+* @params Operateur d'affectation
+*/
     virtual Joueur_Autonome& operator=(Joueur_Autonome& other);
 
 };
 
+/**
+  * Classe Joueur_NonAutonome qui est repêche (junior) pour evoluer dans
+  *	la ligue en question. Il peut être transfere suite à un avis favorable
+  *	de son Directeur (President) du club et après avoir accumule un
+  *	certain nombre d’annees (en general).
+  *@authors Gillian Chaville & Daehli Nadeau-Otis
+  */
 class Joueur_NonAutonome : public Joueur{
 
 private:
@@ -55,22 +125,55 @@ private:
 	bool   _avisFavorable;
 
 public:
+/**
+* @params Constructeur par defaut
+*/
 	Joueur_NonAutonome();
+/**
+* @params Constructeur avec annee cumulee
+*/
 	Joueur_NonAutonome(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance,int anneecumulee);
+/**
+* @params Constructeur sans annee cumulee
+*/
 	Joueur_NonAutonome(std::string prenom,std::string nom, int age,double taille,double poids,std::string emplacementNaissance);
+/**
+* @params Destructeur
+*/
     virtual ~Joueur_NonAutonome();
+/**
+* @params Constructeur de recopie
+*/
 	Joueur_NonAutonome(const Joueur_NonAutonome& other);
+/**
+* @params Operateur d'affectation
+*/
     virtual Joueur_NonAutonome& operator=(Joueur_NonAutonome& other);
 
-//----------------------------------------------------------------- methods for AnneeCumulee
+//---------------------------------------------------------------- methods for AnneeCumulee
+/**
+* @params Retrourne les annees cumulees
+*/
 	int getAnneeCumulee();
+/**
+* @params Modifie les annees cumulees
+*/
 	void setAnneeCumulee(int annee);
 
-//----------------------------------------------------------------- methods for avisFavorable
+//---------------------------------------------------------------- methods for avisFavorable
+/**
+* @params Retrourne l'avis favorable
+*/
 	bool getAvisFavorable();
+/**
+* @params Modifie l'avis favorable
+*/
 	void getAvisFavorable(bool avis);
 
-//----------------------------------------------------------------- methods of Joueur_NonAutonome
+//---------------------------------------------------------------- methods of Joueur_NonAutonome
+/**
+* @params Retrourne l'autorisation d'une demande de transfert
+*/
 	bool DemandeDeTransfert();
 };
 

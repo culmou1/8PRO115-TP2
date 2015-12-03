@@ -1,6 +1,9 @@
 #ifndef RESULTAT_H
 #define RESULTAT_H
 
+/**
+  *
+  */
 class Resultat {
 
 private:

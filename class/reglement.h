@@ -4,6 +4,9 @@
 #include <string>
 const double pourcentJoueur = 0.002;
 
+/**
+  *
+  */
 class Reglement {
 
 private:
@@ -28,7 +31,7 @@ public:
 		_droitDuJoueur=other._droitDuJoueur; _montantDuTransfert=other._montantDuTransfert; _montantAncienClub=other._montantAncienClub; _montantJoueur=other._montantJoueur;
 		return *this;
 	}
-//----------------------------------------------------------------- methods for droitDuJoueur
+//---------------------------------------------------------------- methods for droitDuJoueur
     std::string getDroitDuJoueur() {
     	return  _droitDuJoueur;
     }
@@ -37,7 +40,7 @@ public:
     	_droitDuJoueur = right;
     }
 
-//----------------------------------------------------------------- methods for montantDuTransfert
+//---------------------------------------------------------------- methods for montantDuTransfert
     double getMontantDuTransfert() {
     	return  _montantDuTransfert;
     }
@@ -46,7 +49,7 @@ public:
     	_montantDuTransfert = somme;
     }
 
-//----------------------------------------------------------------- methods for montantAncienClub
+//---------------------------------------------------------------- methods for montantAncienClub
     double getMontantAncienClub() {
     	return  _montantAncienClub;
     }
@@ -55,7 +58,7 @@ public:
     	_montantAncienClub = somme;
     }
 
-//----------------------------------------------------------------- methods for montantJoueur
+//---------------------------------------------------------------- methods for montantJoueur
     double getMontantJoueur() {
     	return  _montantJoueur;
     }
@@ -64,7 +67,7 @@ public:
     	_montantJoueur = somme;
     }
 
-//----------------------------------------------------------------- methods for seuilDeTransfert
+//---------------------------------------------------------------- methods for seuilDeTransfert
 	double getSeuilDeTransert() {
 		return _seuilDeTransfert;
 	}

@@ -2,7 +2,7 @@
 #include <cstdlib> 
 #include <ctime> 
 
-//----------------------------------------------------------------- convert string to Date
+//---------------------------------------------------------------- convert string to Date
 Date To_Date(std::string date) {
 	Date convert;
     //Date Show Be like that: 01-01-2015

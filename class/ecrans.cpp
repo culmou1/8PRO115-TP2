@@ -227,7 +227,7 @@ return ret_choix;
 
 }
 
-//----------------------------------------------------------------- CreerClub
+//---------------------------------------------------------------- CreerClub
 void Ecran::CreerClub() {
 	string nomDuClub, histoireDuClub, couleurDuClub, adresseDuClub, villeDuClub, anneeDeCreation;
 	cout << endl << "|		NOM : "; isAlphabet(nomDuClub);
@@ -243,7 +243,7 @@ void Ecran::CreerClub() {
 	_ligue.addClub(pClub);
 }
 
-//----------------------------------------------------------------- SupprimerClub
+//---------------------------------------------------------------- SupprimerClub
 void Ecran::SupprimerClub() {
 
 	string nomClub;
@@ -270,7 +270,7 @@ void Ecran::SupprimerClub() {
 		cerr << "/!\\	Ce club n\'existe pas dans la ligue.	/!\\" << endl;
 }
 
-//----------------------------------------------------------------- AfficherEffectif
+//---------------------------------------------------------------- AfficherEffectif
 void Ecran::AfficherEffectif() {
 
 	string nomClub;
@@ -295,7 +295,7 @@ void Ecran::AfficherEffectif() {
 		cerr << "/!\\	Ce club n\'existe pas dans la ligue.	/!\\" << endl;
 }
 
-//----------------------------------------------------------------- AfficherStaff
+//---------------------------------------------------------------- AfficherStaff
 void Ecran::AfficherStaff(){
 
 	string nomClub;
@@ -318,7 +318,7 @@ void Ecran::AfficherStaff(){
 		cerr << "/!\\	Ce club n\'existe pas dans la ligue.	/!\\" << endl;
 }
 
-//----------------------------------------------------------------- CreerJoueur
+//---------------------------------------------------------------- CreerJoueur
 void Ecran::CreerJoueur(){
 	string nomClub, nom, prenom, ville, dateDuContrat, datedEntree, droit;
 	int dureeDuContrat=0, age=0; double taille=0.0, poids=0.0, montant=0.0; bool autonome(false);
@@ -366,7 +366,7 @@ void Ecran::CreerJoueur(){
 		cerr << "/!\\	Ce club n\'existe pas dans la ligue.	/!\\" << endl;
 }
 
-//----------------------------------------------------------------- TransfertJoueur
+//---------------------------------------------------------------- TransfertJoueur
 void Ecran::TransfertJoueur(){
 	int dureeDuContrat=0; double montant=0.0;
 	string datedEntree, dateDuContrat, droit, nomClubContractant, nomClubDelivreur,joueur;
@@ -427,7 +427,7 @@ void Ecran::TransfertJoueur(){
 }
 
 
-//----------------------------------------------------------------- ModifierJoueur
+//---------------------------------------------------------------- ModifierJoueur
 void Ecran::ModifierJoueur(){
 	string nomClub, joueur; int age=0; double taille=0.0, poids=0; bool autonome(false);
 
@@ -454,7 +454,7 @@ void Ecran::ModifierJoueur(){
 		cerr << "/!\\	Ce club n\'existe pas dans la ligue.	/!\\" << endl;
 }
 
-//----------------------------------------------------------------- SupprimerJoueur
+//---------------------------------------------------------------- SupprimerJoueur
 void Ecran::SupprimerJoueur(){
 	string nomClub, joueur;
 
@@ -484,7 +484,7 @@ void Ecran::SupprimerJoueur(){
 		cerr << "/!\\	Ce club n\'existe pas dans la ligue->	/!\\" << endl;
 }
 
-//----------------------------------------------------------------- AfficherClub
+//---------------------------------------------------------------- AfficherClub
 void Ecran::AfficherClubs(){
 	if(!_ligue.getClubs()->empty()) {
 		for (unsigned int i = 0; i < _ligue.getClubs()->size();i++){
@@ -494,7 +494,7 @@ void Ecran::AfficherClubs(){
 	else
 		cerr << "/!\\	Il n'y a pas de clubs dans la ligue.	/!\\" << endl;
 }
-//----------------------------------------------------------------- RompreSonContrat
+//---------------------------------------------------------------- RompreSonContrat
 void Ecran::RompreSonContrat(){
 	string nomClubDelivreur, joueur, raisonDuDepart, nomClubContractant; 
 	double penalite=0.0;
@@ -531,7 +531,7 @@ void Ecran::RompreSonContrat(){
 		cerr << "/!\\	Le club delivreur n\'a pas ete trouve	/!\\";
 }
 
-//----------------------------------------------------------------- CreerCalendrier
+//---------------------------------------------------------------- CreerCalendrier
 void Ecran::CreerCalendrierLigue(){
 	int nb; bool automatique; Club *home=NULL, *away=NULL; Rencontre *match = NULL;
 	Date date;
@@ -567,7 +567,7 @@ void Ecran::CreerCalendrierLigue(){
 		cerr << "/!\\	 Il n'y a pas de clubs dans la ligue.	/!\\" << endl;
 }
 
-//----------------------------------------------------------------- AfficherCalendrierLigue
+//---------------------------------------------------------------- AfficherCalendrierLigue
 void Ecran::AfficherCalendrierLigue(){
 	if(!_ligue.getCalendrier()->empty()) {
 		for (unsigned int i = 0; i < _ligue.getCalendrier()->size();i++){
@@ -579,7 +579,7 @@ void Ecran::AfficherCalendrierLigue(){
 		cerr << "/!\\	Il n'y a pas de rencontres pour la ligue.	/!\\" << endl;
 }
 
-//----------------------------------------------------------------- AfficherCalendrierClub
+//---------------------------------------------------------------- AfficherCalendrierClub
 void Ecran::AfficherCalendrierClub(){
 	string nomClub, pasDeMatchs = "/!\\		Il n'y a pas de rencontres pour ce club.	/!\\";
 
@@ -616,7 +616,7 @@ void Ecran::AfficherCalendrierClub(){
 		cerr << "/!\\	Ce club n\'existe pas dans la ligue.	/!\\" << endl;
 }
 
-//----------------------------------------------------------------- AfficherResultat
+//---------------------------------------------------------------- AfficherResultat
 void Ecran::AfficherResultat() {
 	string nomClubLocal, nomClubInvite, date;
 
@@ -634,7 +634,7 @@ void Ecran::AfficherResultat() {
 
 }
 
-//----------------------------------------------------------------- CreerRencontre
+//---------------------------------------------------------------- CreerRencontre
 void Ecran::CreerRencontre() {
 	string nomClubLocal, nomClubInvite, date; int butsLocaux, butsVisiteurs; bool aleatoire;
 
@@ -663,7 +663,7 @@ void Ecran::CreerRencontre() {
 		cerr << "/!\\	L'un des deux (ou les deux) clubs n\'existe pas dans la ligue.	 /!\\" << endl;
 }
 
-//----------------------------------------------------------------- ModifierRencontre
+//---------------------------------------------------------------- ModifierRencontre
 void Ecran::ModifierRencontre() {
 	string nomClubLocal, nomClubInvite, date; int choix;
 
@@ -717,7 +717,7 @@ void Ecran::ModifierRencontre() {
 		cerr << "/!\\	L'un des deux (ou les deux) clubs n\'existe pas dans la ligue.	/!\\" << endl;
 }
 
-//----------------------------------------------------------------- EntraineurLePlusTitre
+//---------------------------------------------------------------- EntraineurLePlusTitre
 void Ecran::EntraineurLePlusTitre() {
 	int nbTitre = 0;
 	Person *entraineurLePlusTitre = NULL;
@@ -740,7 +740,7 @@ void Ecran::EntraineurLePlusTitre() {
 		cerr << "/!\\	Il n'y a pas de clubs dans la ligue.	/!\\" << endl;
 }
 
-//----------------------------------------------------------------- ClubLePlusTitre
+//---------------------------------------------------------------- ClubLePlusTitre
 void Ecran::ClubLePlusTitre() {
 	int nbTitre = 0;
 	Club *clubLePlusTitre = NULL;
@@ -759,7 +759,7 @@ void Ecran::ClubLePlusTitre() {
 		cerr << "/!\\	Il n'y a pas de clubs dans la ligue.	/!\\" << endl;
 }
 
-//----------------------------------------------------------------- AfficherMontantTransferts
+//---------------------------------------------------------------- AfficherMontantTransferts
 void Ecran::AfficherMontantTransferts(){
 	//Convertit en Date
 	string nomClub, aDate;
@@ -784,7 +784,7 @@ void Ecran::AfficherMontantTransferts(){
 }
 
 
-//----------------------------------------------------------------- AfficherMontantTotal
+//---------------------------------------------------------------- AfficherMontantTotal
 void Ecran::AfficherMontantTotal() {
 	double sommeTotal = 0; string nomClub, date;
 	
@@ -810,7 +810,7 @@ void Ecran::AfficherMontantTotal() {
 		cerr << "/!\\	Ce club n\'existe pas dans la ligue.	/!\\" << endl;
 }
 
-//----------------------------------------------------------------- ModifierSeuil
+//---------------------------------------------------------------- ModifierSeuil
 void Ecran::ModifierSeuil() {
 	double seuil=0.0;
 

@@ -7,6 +7,10 @@
 class Joueur;
 class Club;
 
+/**
+  * Classe Contrat qui instancie le contrat d'un joueur
+  *@authors Gillian Chaville & Daehli Nadeau-Otis
+  */
 class Contrat {
 
 private :
@@ -28,34 +32,48 @@ public :
     Contrat(const Contrat& other);
     Contrat& operator=(Contrat&& other);
 
-//----------------------------------------------------------------- methods for joueurContractant
+/**
+  *  @params methods for joueurContractant
+  */
     Joueur *getJoueurContractant();
     void setJoueurContractant(Joueur *newbie);
 
-//----------------------------------------------------------------- methods for clubContractant
+/**
+  *  @params methods for clubContractant
+  */
     Club *getClubContractant();
 
     void setClubContractant(Club *new_club);
 
-//----------------------------------------------------------------- methods for clubLibere
+/**
+  *  @params methods for clubLibere
+  */
     Club *getClubLibere();
 
     void setClubLibere(Club *old_club);
 
-//----------------------------------------------------------------- methods for dureeContrat
+/**
+  *  @params methods for dureeContrat
+  */
     int getDureeContrat();
     void setDureeContrat(int duree);
 
-//----------------------------------------------------------------- methods for datedEntree
+/**
+  *  @params methods for datedEntree
+  */
     Date getDatedEntree();
 
     void setDatedEntree(Date entree);
 
-//----------------------------------------------------------------- methods for dateDuContrat
+/**
+  *  @params methods for dateDuContrat
+  */
     Date getDateDuContrat();
     void setDateDuContrat(int d_day, int m_month,int y_year);
 
-//----------------------------------------------------------------- methods of reglement
+/**
+  * @params methods of reglement
+  */
 	Reglement* getReglement();
 	void setReglement(double montantT, std::string droit);
 
