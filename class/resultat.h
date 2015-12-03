@@ -1,5 +1,8 @@
 #ifndef RESULTAT_H
 #define RESULTAT_H
+/**
+ *  La classe resultat, contient le resultat des but locaux et des but visiteurs 
+ */
 
 class Resultat {
 

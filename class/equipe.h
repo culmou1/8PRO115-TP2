@@ -4,7 +4,10 @@
 #include "person.h"
 #include "club.h"
 
-class Equipe {
+/**
+ *  Un equipe est une entite qui fait parti d un club et qui contient des joueurs,
+ *	des gardiens et un capitaine
+ */
 
 private:
 	Club* 	_club;

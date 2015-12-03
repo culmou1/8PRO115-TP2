@@ -17,6 +17,10 @@
 #include "class/palmares.h"
 #include "class/rencontre.h"
 
+
+/**
+ *  Application, Implémentation de plusieurs classe du Programme.
+ */
 class Application {
 public:
 	Ecran screen;
@@ -96,12 +100,12 @@ public:
 			name = static_cast<char>(name+1);
 			//screen.AfficherStaff();
 		}
-		
+
 	}
 
 
-	
-	/*void FaireAutresFonctions() {
+
+	void FaireAutresFonctions() {
 
 		//Rompre le contrat du joueur A Joueur_2 du club A puis afficher _effectif du club A
 		Club* club =(screen.getLigue()->getClubs())[0];
@@ -132,7 +136,7 @@ public:
 
 		screen.getLigue()SupprimerClub("AAA");
 		screen.getLigue()SupprimerClub("FFF");
-	}*/
+	}
 };
 
 

@@ -3,6 +3,10 @@
 
 #include "resultat.h"
 
+/**
+ *  La classe Periode contient la duree de la pediode et les resultats des 2 équipes
+ */
+
 class Periode {
 
 private:

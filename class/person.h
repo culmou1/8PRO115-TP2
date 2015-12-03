@@ -35,6 +35,10 @@ public:
 	virtual std::string obtenirNP()= 0;
 };
 
+/**
+ *  Une Person Staff est une classe  qui hérite de Person.
+ *  On lui ajoute seulement un role supplémentaire
+ */
 
 
 class PersonStaff : public Person{
