@@ -74,12 +74,8 @@ public:
 
 };
 /**
- *  Cette classe est une entite d hÃ©ritage multiple entre un joueur et un entraineur
+ *  Cette classe est une entite d heritage multiple entre un joueur et un entraineur
  *  Classe Heritage Multiple
- */
-
-/**
-  * Classe Joueur_Entraineur issu de l'heritage multiple de Joueur et Entraineur. 
   *	Il appartient à la fois au staff et à l'effectif de son Club.
   *@authors Gillian Chaville & Daehli Nadeau-Otis
   */

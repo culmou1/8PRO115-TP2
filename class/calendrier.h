@@ -15,13 +15,31 @@ class Calendrier
 {
     VectorRen _rencontres;
 public:
+/**
+* @params Constructeur par defaut
+*/
     Calendrier();
+/**
+* @params Destructeur
+*/
     ~Calendrier();
+/**
+* @params Constructeur de recopie
+*/
     Calendrier(const Calendrier& other);
+/**
+* @params Operateur d'affectation
+*/
     Calendrier& operator=(Calendrier&& other);
 
 //---------------------------------------------------------------- methods for rencontres
+/**
+* @params Retourne les Rencontre du calendrier
+*/
     VectorRen *getRencontres();
+/**
+* @params Ajoute une Rencontre au calendrier
+*/
 	void addRencontre(Rencontre* game);
 
 };
