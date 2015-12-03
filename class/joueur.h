@@ -5,7 +5,7 @@
 class Contrat;
 
 /**
-  * Classe Joueur contient la taille, le poids et l'emplacement de naissance de chaque instance de Joueur_Autonome et Joueur_NonAutonome 
+  * Classe Joueur contient la taille, le poids et l'emplacement de naissance de chaque instance de Joueur_Autonome et Joueur_NonAutonome
   *@authors Gillian Chaville & Daehli Nadeau-Otis
   */
 class Joueur : public Person {
@@ -43,17 +43,17 @@ public:
 
 //---------------------------------------------------------------- methods for Taille
 /**
-* @params Retrourne la taille
+* @params Retourne la taille
 */
     double getTaille();
 /**
-* @params Modifie la taille 
+* @params Modifie la taille
 */
     void setTaille(double grandeur);
 
 //---------------------------------------------------------------- methods of poids
 /**
-* @params Retrourne le poids
+* @params Retourne le poids
 */
     double getPoids();
 /**
@@ -63,7 +63,7 @@ public:
 
 //---------------------------------------------------------------- methods of emplacementNaissance
 /**
-* @params Retrourne l'emplacement de naissance
+* @params Retourne l'emplacement de naissance
 */
     std::string getEmplacementNaissance();
 /**
@@ -81,7 +81,7 @@ public:
 
 /**
   * Classe Joueur_Autonome qui peut decider de rompre son contrat
-  * d’engagement avec son ancien club à tout moment, moyennant une
+  * dï¿½engagement avec son ancien club ï¿½ tout moment, moyennant une
   * penalite.
   *@authors Gillian Chaville & Daehli Nadeau-Otis
   */
@@ -112,10 +112,10 @@ public:
 };
 
 /**
-  * Classe Joueur_NonAutonome qui est repêche (junior) pour evoluer dans
-  *	la ligue en question. Il peut être transfere suite à un avis favorable
-  *	de son Directeur (President) du club et après avoir accumule un
-  *	certain nombre d’annees (en general).
+  * Classe Joueur_NonAutonome qui est repï¿½che (junior) pour evoluer dans
+  *	la ligue en question. Il peut ï¿½tre transfere suite ï¿½ un avis favorable
+  *	de son Directeur (President) du club et aprï¿½s avoir accumule un
+  *	certain nombre dï¿½annees (en general).
   *@authors Gillian Chaville & Daehli Nadeau-Otis
   */
 class Joueur_NonAutonome : public Joueur{
@@ -152,7 +152,7 @@ public:
 
 //---------------------------------------------------------------- methods for AnneeCumulee
 /**
-* @params Retrourne les annees cumulees
+* @params Retourne les annees cumulees
 */
 	int getAnneeCumulee();
 /**
@@ -162,7 +162,7 @@ public:
 
 //---------------------------------------------------------------- methods for avisFavorable
 /**
-* @params Retrourne l'avis favorable
+* @params Retourne l'avis favorable
 */
 	bool getAvisFavorable();
 /**
@@ -172,7 +172,7 @@ public:
 
 //---------------------------------------------------------------- methods of Joueur_NonAutonome
 /**
-* @params Retrourne l'autorisation d'une demande de transfert
+* @params Retourne l'autorisation d'une demande de transfert
 */
 	bool DemandeDeTransfert();
 };
